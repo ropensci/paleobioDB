@@ -5,6 +5,8 @@ pbdb
 
 The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
 
+pbdb is UNDER DEVELOPMENT!
+
 ## Meta
 
 Please report any issues or bugs](https://github.com/ropensci/pbdb/issues).
