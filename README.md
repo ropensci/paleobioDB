@@ -9,7 +9,8 @@ pbdb is UNDER DEVELOPMENT!
 
 ## Meta
 
-Please report any issues or bugs](https://github.com/ropensci/pbdb/issues).
+Please report any [issues or bugs](https://github.com/ropensci/pbdb/issues).
+---
 
 This package is part of the [rOpenSci](http://ropensci.org/packages) project.
 
