@@ -78,3 +78,15 @@
 
 	df
 }
+
+.build_query_string<-function(args){
+
+	qs <- ''
+
+	for (argName in names(args)) {
+		qs <- paste(qs, argName, "=", args[argName], '&', sep = "")
+	}
+	qs <- substr(qs,0,nchar(qs)-1)
+
+	qs
+}
