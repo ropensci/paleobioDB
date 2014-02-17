@@ -28,7 +28,7 @@ newmap <- getMap(resolution="medium")
 plot(newmap)
 
 
-
+pbdb_query_occurrences (taxon_name="Canis", taxon_rank= )
 
 
 library (maptools)
