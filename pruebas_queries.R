@@ -29,10 +29,6 @@ plot_pbdb (query= canis, name="Canis", col="turquoise1",
            dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
 
 
-query<- canis
-name<- "canis"
-col="#32caf6"
-
 # use min_ma and max_ma to add a filter to the data: minimum and maximum age (specified in Ma) 
 canis_0_2<- pbdb_query_occurrences (limit=100, 
                                            vocab= "pbdb", 
@@ -50,4 +46,76 @@ canis_quaternary<- pbdb_query_occurrences (limit="all",
                                     interval="Quaternary",
                                     show="coords")
 
-plot_pbdb (canis_quaternary, "Canis Quaternary")
+data<- canis_quaternary
+plot_pbdb (canis_quaternary, "Canis Quaternary", 
+           dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
+
+names (canidae_quat)
+# to check the number of species, genera, tribes, families, etc. within a taxon: 
+# set the query not using the pbdb vocab, but the default 3 letters varibles 
+
+canidae_quat<-  pbdb_query_occurrences (limit="all", 
+                                           base_name="Canidae",  
+                                           interval="Quaternary",
+                                           show="coords")
+
+number_of_subtaxa (canidae_quat)
+write.table (canidae_quat, "C:/Users/sara/Documents/_CIENCIAS/pbdb/data/canidae_quat.csv", sep=",", row.names=F)
+
+number_of_subtaxa (canis_quaternary)
+
+str (number of taxa)
+# to check the temporal resolution of the data, in Ma. 
+temporal_resolution (canidae_quat)
+
+# to plot the temporal spam of taxa, set taxon (e.g., "species", "genus"...), 
+# change the colour (blue by default), allow names or not (by default TRUE)
+
+plot_time_spam (canis_quaternary, rank="species",col="red",
+                names=FALSE)
+
+
+
+
+
+
+
+
+# from here, just mess.... UNDER CONSTRUCTION! 
+
+species<- data [data$rnk==3, ]
+max_sp<- aggregate(species$eag, list(species$tna), max)
+min_sp<- aggregate(species$lag, list(species$tna), min)
+temporal_range<- data.frame (max_sp [,2], min_sp[,2])
+row.names (temporal_range)<- max_sp[,1]
+colnames (temporal_range)<- c("max", "min")
+pos<- c(1:dim (temporal_range)[1])
+t_range<- cbind (temporal_range, pos)
+order_by_appearance<- t_range [order (t_range$max),]
+t_range<- order_by_appearance
+t_range$pos<- c(1:dim (t_range)[1])
+
+division<- seq(from=0, to=2, by=0.2)
+
+which (t_range$min <= division [1] & t_range$max>= division [2])
+
+
+order_by_appearance<- t_range [order (t_range$max),]
+t_range<- order_by_appearance
+t_range$pos<- c(1:dim (t_range)[1])
+
+plot(c(min (t_range$min), max (t_range$max)),
+     c(0, dim (t_range)[1]+1),
+     type = "n",axes = FALSE, xlab = "Time (Ma)", ylab = "")
+segments(x0 = t_range$min,
+         y0 = t_range$pos,
+         x1 = t_range$max,
+         y1 = t_range$pos,
+         col = "red",
+         lwd = 6,
+         lend = 2)
+text(x = t_range$min, y = t_range$pos +0.3,
+     labels = row.names (t_range), adj=c(0,0), cex=0.6, col="gray30")
+axis(1, col="gray30") 
+
+

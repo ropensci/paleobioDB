@@ -11,8 +11,8 @@
 #' @return a dataframe with the number of subtaxa of the chosen cathegories
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdbQueryTaxa (taxa= "Canidae", time= "Quaternary")
-#' number_of_subtaxa (data, show=c("genus", "species"))
+#' canidae_quat<-  pbdb_query_occurrences (limit="all", base_name="Canidae",  interval="Quaternary", show="coords")
+#' number_of_subtaxa (canidae_quat)
 #'}
 #'
 #'
@@ -20,6 +20,8 @@
 number_of_subtaxa<- function (data, show=c("species", "genera", "tribes", "subfamilies", "families","superfamilies",  
                                            "orders", "classes", "subclasses", "subphyla", "phyla")){
   
+  if('rnk' %in% colnames(data)) {
+    
   number_subphyla<- length(which (data$rnk== 25))
   number_phyla<- length(which (data$rnk== 20))
   
@@ -47,26 +49,11 @@ number_of_subtaxa<- function (data, show=c("species", "genera", "tribes", "subfa
                         number_superfamilies, number_order, number_subclass, number_class, number_subphyla, number_phyla)
   names (subtaxa)<- all
   
-  subtaxa [,match (show, all)]
-  
+  subtaxa [,match (show, all)]} else {
+  stop ("variable names should have the 3-letters code (the default in the query to PBDB)" )
+  }
 }
 
-number_of_subtaxa ()
-species<- data [data$rnk==3, ]
-max_sp<- aggregate(species$eag, list(species$tna), max)
-min_sp<- aggregate(species$lag, list(species$tna), min)
-temporal_range<- data.frame (max_sp [,2], min_sp[,2])
-row.names (temporal_range)<- max_sp[,1]
-colnames (temporal_range)<- c("max", "min")
-pos<- c(1:dim (temporal_range)[1])
-t_range<- cbind (temporal_range, pos)
-order_by_appearance<- t_range [order (t_range$max),]
-t_range<- order_by_appearance
-t_range$pos<- c(1:dim (t_range)[1])
-
-division<- seq(from=0, to=2, by=0.2)
-
-which (t_range$min <= division [1] & t_range$max>= division [2])
 
 
 

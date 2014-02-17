@@ -14,12 +14,6 @@ plot_pbdb<- function (query, name, col="turquoise1", dir){
     bbox_wintri <- spTransform(bbox, CRS("+proj=wintri"))
     wmap_wintri <- spTransform(wmap, CRS("+proj=wintri"))
     
-    #read data and project using winkel tripel projection
-    latlong <- project(cbind(query[,11], query[,12]), proj="+proj=wintri")
-    latlong<- as.data.frame (latlong)
-    names (latlong)<- c("lng", "lat")
-    counts<- ddply(latlong,.(lng,lat),nrow)
-   
     # create a blank ggplot theme
     theme_opts <- list(theme(panel.grid.minor = element_blank(),
                              panel.grid.major = element_blank(),
@@ -34,7 +28,11 @@ plot_pbdb<- function (query, name, col="turquoise1", dir){
                              axis.title.y = element_blank(),
                              plot.title = element_text(size=22)))
     
-  
+    #read data and project using winkel tripel projection
+    latlong <- project(cbind(query[,11], query[,12]), proj="+proj=wintri")
+    latlong<- as.data.frame (latlong)
+    names (latlong)<- c("lng", "lat")
+    counts<- ddply(latlong,.(lng,lat),nrow)
   
   #plot (the size of the points is the number of records in the site)
   
