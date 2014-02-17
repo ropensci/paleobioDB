@@ -1,4 +1,4 @@
-# Functions and variables for setting up an managing the comunication 
+# Functions and variables for setting up and managing the comunication 
 # with the paleobiodb.org REST API
 
 pbdb_set_format<-function(format){
@@ -9,7 +9,6 @@ pbdb_set_format<-function(format){
 #' 
 #' @param api_base_url Base url for the 
 #
-# .rpbdb_uri_builder <- function(api_base_url, config, ..., api_format = NULL, querystring = ''){
 .pbdb_uri_builder <- function(api_base_url, config, query = query, querystring = qs, 
 	endpoint_name = endpoint, api_format = NULL){
 	

@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+init.R
+rpbdb-Ex.R
+.gitignore
+.git
