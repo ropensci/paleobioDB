@@ -3,30 +3,33 @@
 
 #'
 #'
-.pbdb_query<-function(endpoint, ..., query = list()){
-
-	uri <- pbdb_query_uri(endpoint, ..., query)
+.pbdb_query<-function(endpoint, query = list()){
+	uri <- pbdb_query_uri(endpoint, query)
 
 	df <- .get_data_from_uri(uri)
 
 	df
 }
 
-pbdb_query_uri<-function(endpoint, ..., query = list()){
+pbdb_query_uri<-function(endpoint, query = list()){
 
-	query <- lapply(c(query, list(...)), .implode_to_string)
+  query <- lapply(query, .implode_to_string)
 
-	return (.build_uri(endpoint, query = query))
+  return (.build_uri(endpoint, query = query))
 }
 
 pbdb_query_occurrence<-function(id, ...){
-	
-	pbdb_query('occs/single', query = c(list(id = id), list(...)))
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('occs/single', query = c(list(id = id), l))
 }
 
 pbdb_query_occurrences<-function(...){
-	
-	.pbdb_query('occs/list', query = list(...))
+
+  l<-list(...)
+	.pbdb_query('occs/list', query = l)
+
 }
 
 

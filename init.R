@@ -4,7 +4,8 @@
 library(rjson)
 library(gtools)
 library(RCurl)
-
+library(rgdal)
+library(ggplot2)
 
 source.with.encoding('R/network.R', encoding='UTF-8')
 source.with.encoding('R/rest_api_tools.R', encoding='UTF-8')

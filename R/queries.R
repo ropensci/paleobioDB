@@ -1,39 +1,3 @@
-
-library (rjson)
-
-library (RCurl)
-library(plyr)
-
-uri<- "http://paleobiodb.org/data1.1/occs/list.json?base_name=Alopex&interval=Quaternary&show=geo,time"
-
-json_data
-
-json_df<- as.data.frame (do.call("rbind", json_list))
-json_list<- sapply(json_data$records, unlist)
-str (json_list)
-data<- as.data.frame (t(json_list))
-str (data)
-data
-
-data$lng<- as.numeric (as.character (data$lng))
-data$lat<- as.numeric (as.character (data$lat))
-data$eag<- as.numeric (as.character (data$eag))
-data$lag<- as.numeric (as.character (data$lag))
-
-str (data)
-
-
-library(rworldmap)   # visualising (global) spatial data
-
-# examples:
-newmap <- getMap(resolution="medium")
-plot(newmap)
-
-
-
-
-
-
 data(wrld_simpl)
 land<- readShapePoly ("C:/Users/sara/Documents/_CIENCIAS/pbdb/docs_desarrollo/ne_110m_land.shp")
 ice<- readShapePoly ("C:/Users/sara/Documents/_CIENCIAS/pbdb/docs_desarrollo/ne_110m_glaciated_areas.shp")
