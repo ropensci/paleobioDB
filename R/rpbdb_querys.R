@@ -26,7 +26,7 @@ pbdb_query_occurrence<-function(id, ...){
 
 pbdb_query_occurrences<-function(...){
 	
-	pbdb_query('occs/list', query = list(...))
+	.pbdb_query('occs/list', query = list(...))
 }
 
 
