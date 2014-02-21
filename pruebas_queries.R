@@ -19,19 +19,19 @@
 #' 
 #' 
 
-canis<- pbdb_query_occurrences (limit="100", 
+canis<- pbdb_query_occurrences (limit="all", 
                                 vocab= "pbdb", 
                                 base_name="Canis", 
                                 show="coords")
 
+head (canis)
 # the function plot will plot the query and save a png file in your working directory
-plot_pbdb (query= canis, name="Canis", col="turquoise1",  
+plot_pbdb (canis, "Canis",
            dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
 
 
 # use min_ma and max_ma to add a filter to the data: minimum and maximum age (specified in Ma) 
 canis_0_2<- pbdb_query_occurrences (limit=100, 
-                                           vocab= "pbdb", 
                                            base_name="Canis", 
                                            min_ma = 0,
                                            max_ma = 2,
@@ -117,5 +117,11 @@ segments(x0 = t_range$min,
 text(x = t_range$min, y = t_range$pos +0.3,
      labels = row.names (t_range), adj=c(0,0), cex=0.6, col="gray30")
 axis(1, col="gray30") 
+
+
+
+canis_0_2
+kk (canis)
+
 
 
