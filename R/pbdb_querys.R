@@ -289,3 +289,28 @@ pbdb_taxa<-function(...){
   .pbdb_query('taxa/list', query = l)
 }
 
+
+#' pbdb_taxa_auto
+#' 
+#' Returns a list of names matching the given prefix or partial name. 
+#' 
+#'@param name A partial name or prefix. It must have at least 3 significant characters,
+#' and may include both a genus (possibly abbreviated) and a species.
+#' @param limit set the limit to the number of matches
+#' @param ... 
+#' @return a dataframe with information about the matches (taxon rank and number of occurrences in the database)
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_taxa_auto (name="Cani", limit=10)
+#' 
+#'}
+#'
+#'
+pbdb_taxa_auto<-function(...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('taxa/auto', query = l)
+}
+

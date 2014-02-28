@@ -21,15 +21,18 @@
 #' 
 
 pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
-str (fossil_1001)
+pbdb_occurrences (id=c(10, 11)) 
+
 
 kk<- pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
 str (kk)
 
 pbdb_taxon (name="Canis", vocab="pbdb", show=c("attr", "app", "size"))
 
-pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
-
+pbdb_taxa (name="Canidae", vocab="pbdb", 
+           show=c("attr", "app", "size", "nav"))
+pbdb_taxa (name =c("Canis lupus", "Vulpes vulpes"), vocab="pbdb", 
+           show=c("attr", "app", "size", "nav"), rel="common_ancestor")
 
 pbdb_collection (1003, vocab="pbdb", show="loc")
 pbdb_collections (base_name="Cetacea", interval="Miocene")
