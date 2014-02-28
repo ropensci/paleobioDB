@@ -56,5 +56,8 @@ pbdb_subtaxa<- function (data, show=c("species", "genera", "tribes", "subfamilie
 }
 
 
+pbdb_subtaxa2<- function (data){
 
+  table (data$taxon_rank)
 
+}

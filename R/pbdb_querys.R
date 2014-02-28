@@ -18,14 +18,26 @@ pbdb_query_uri<-function(endpoint, query = list()){
   return (.build_uri(endpoint, query = query))
 }
 
-pbdb_query_occurrence<-function(id, ...){
+#' pbdb_occurrence 
+#' 
+#' Returns information about a single occurrence record from the Paleobiology Database.
+#' 
+#'@param id identifier of the occurrence. 
+#'@param ... all the parameters available in http://paleobiodb.org/data1.1/occs/single 
+#'@param taxon_name Return only records associated with the specified taxonomic name(s). 
+#'You may specify multiple names, separated by commas.
+#'@param base_name  Return only records associated with the specified taxonomic name(s), or any of their children. 
+#'You may specify multiple names, separated by commas.
+#'@param show to show extra variables (e.g. coords)
+#' 
+pbdb_occurrence<-function(id, ...){
   l<-list(...)
   
   # todo: merge lists properly  
   .pbdb_query('occs/single', query = c(list(id = id), l))
 }
 
-pbdb_query_occurrences<-function(...){
+pbdb_occurrences<-function(...){
 
   l<-list(...)
 	.pbdb_query('occs/list', query = l)

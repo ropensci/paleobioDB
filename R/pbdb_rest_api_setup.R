@@ -37,6 +37,55 @@ pbdb_set_format<-function(format){
 	# occurrencies list
 	.setup_api_endpoint('occs/list', 'occs/list.%s', uri_builder = .pbdb_uri_builder)
 	
+  # occurrences references list 
+	.setup_api_endpoint('occs/refs', 'occs/refs.%s', uri_builder = .pbdb_uri_builder)
+  
+  # fossil collection
+	.setup_api_endpoint('colls/single', 'colls/single.%s', uri_builder = .pbdb_uri_builder, 
+	                    compulsory_params = list('id'))
+  
+	# fossil collections
+	.setup_api_endpoint('colls/list', 'colls/list.%s', uri_builder = .pbdb_uri_builder)
+  
+	# fossil collections geo
+	.setup_api_endpoint('colls/summary', 'colls/summary.%s', uri_builder = .pbdb_uri_builder)
+	
+  #taxa single
+	.setup_api_endpoint('taxa/single', 'taxa/single.%s', uri_builder = .pbdb_uri_builder)
+	
+	# taxa list
+	.setup_api_endpoint('taxa/list', 'taxa/list.%s', uri_builder = .pbdb_uri_builder)
+	
+	# taxa auto
+	.setup_api_endpoint('taxa/auto', 'taxa/auto.%s', uri_builder = .pbdb_uri_builder)
+
+	#intervals single
+	.setup_api_endpoint('intervals/single', 'intervals/single.%s', uri_builder = .pbdb_uri_builder, 
+	                    compulsory_params = list('id'))
+	
+	# intervals list
+	.setup_api_endpoint('intervals/list', 'intervals/list.%s', uri_builder = .pbdb_uri_builder)
+	
+	#scales single
+	.setup_api_endpoint('scales/single', 'scales/single.%s', uri_builder = .pbdb_uri_builder, 
+	                    compulsory_params = list('id'))
+	
+	# scales list
+	.setup_api_endpoint('scales/list', 'scales/list.%s', uri_builder = .pbdb_uri_builder)
+
+  # strata list
+	.setup_api_endpoint('strata/list', 'strata/list.%s', uri_builder = .pbdb_uri_builder)
+	
+	# strata auto
+	.setup_api_endpoint('strata/auto', 'strata/auto.%s', uri_builder = .pbdb_uri_builder)
+	
+	# refs list
+	.setup_api_endpoint('refs/list', 'refs/list.%s', uri_builder = .pbdb_uri_builder)
+  
+	# colls refs
+	.setup_api_endpoint('colls/refs', 'colls/refs.%s', uri_builder = .pbdb_uri_builder)
+	
+	
 }
 
 

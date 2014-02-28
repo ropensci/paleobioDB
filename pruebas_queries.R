@@ -37,11 +37,11 @@ canis_0_2<- pbdb_query_occurrences (limit=100,
                                            max_ma = 2,
                                            show="coords")
 
-plot_pbdb (query= canis_0_2, name= "Canis (0-2 Ma)", 
+plot_pbdb (query= canis_0_2, col="red", name= "Canis (0-2 Ma)", 
            dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
 
 canis_quaternary<- pbdb_query_occurrences (limit="all", 
-                                    vocab= "pbdb", 
+                                    #vocab= "pbdb", 
                                     base_name="Canis", 
                                     interval="Quaternary",
                                     show="coords")
@@ -58,11 +58,13 @@ canidae_quat<-  pbdb_query_occurrences (limit="all",
                                            base_name="Canidae",  
                                            interval="Quaternary",
                                            show="coords")
+names (canis_quaternary)
 
-number_of_subtaxa (canidae_quat)
+
+pbdb_subtaxa (canidae_quat)
 write.table (canidae_quat, "C:/Users/sara/Documents/_CIENCIAS/pbdb/data/canidae_quat.csv", sep=",", row.names=F)
 
-number_of_subtaxa (canis_quaternary)
+pbdb_subtaxa (canis_quaternary)
 
 str (number of taxa)
 # to check the temporal resolution of the data, in Ma. 
@@ -71,13 +73,13 @@ temporal_resolution (canidae_quat)
 # to plot the temporal spam of taxa, set taxon (e.g., "species", "genus"...), 
 # change the colour (blue by default), allow names or not (by default TRUE)
 
-plot_time_spam (canis_quaternary, rank="species",col="red",
-                names=FALSE)
+pbdb_time_spam (canis_quaternary, col="red", rank="species",
+                names=F)
 
 
 
 
-
+pbdb_query_occurrence (id=1001)
 
 
 
