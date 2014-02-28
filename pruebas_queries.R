@@ -22,13 +22,8 @@
 
 pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 pbdb_occurrences (id=c(10, 11)) 
-
-
-kk<- pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
-str (kk)
-
+pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
 pbdb_taxon (name="Canis", vocab="pbdb", show=c("attr", "app", "size"))
-
 pbdb_taxa (name="Canidae", vocab="pbdb", 
            show=c("attr", "app", "size", "nav"))
 pbdb_taxa (name =c("Canis lupus", "Vulpes vulpes"), vocab="pbdb", 
@@ -48,7 +43,7 @@ pbdb_strata_auto (name= "Pin")
 pbdb_collections (base_name="Cetacea", interval="Miocene")
 pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, 
 latmin=0.0, latmax=15.0, level=2)
-
+pbdb_ref_collections (id=1)
 pbdb_references (author="Turner")
 
 pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
@@ -60,7 +55,7 @@ plot_pbdb (canis, "Canis",
 
 
 # use min_ma and max_ma to add a filter to the data: minimum and maximum age (specified in Ma) 
-canis_0_2<- pbdb_query_occurrences (limit=100, 
+canis_0_2<- pbdb_occurrences (limit=100, 
                                            base_name="Canis", 
                                            min_ma = 0,
                                            max_ma = 2,
@@ -90,7 +85,17 @@ canidae_quat<-  pbdb_query_occurrences (limit="all",
 names (canis_quaternary)
 
 
-pbdb_subtaxa (canidae_quat)
+canis_sbtx<- pbdb_subtaxa (canis_0_2)
+
+barplot (unlist (canis_sbtx), 
+         col="turquoise1", 
+         border=F, axes=F, xlab="")
+?barplot
+
+?hist
+
+?tab
+
 write.table (canidae_quat, "C:/Users/sara/Documents/_CIENCIAS/pbdb/data/canidae_quat.csv", sep=",", row.names=F)
 
 pbdb_subtaxa (canis_quaternary)

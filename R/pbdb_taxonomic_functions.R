@@ -1,4 +1,4 @@
-#' number_of_subtaxa
+#' pbdb_subtaxa
 #' 
 #' count the number of subtaxa within a given taxa. 
 #' e.g. number of species within a genus. 
@@ -53,6 +53,7 @@ pbdb_subtaxa<- function (data, show=c("species", "genera", "tribes", "subfamilie
   subtaxa [,match (show, all)]} else {
   stop ("variable names should have the 3-letters code (the default in the query to PBDB)" )
   }
+  
 }
 
 
@@ -61,3 +62,16 @@ pbdb_subtaxa2<- function (data){
   table (data$taxon_rank)
 
 }
+
+# plot 
+mamals<-  pbdb_occurrences (limit="all", base_name="Mammalia")  
+
+canis_sbtx<- pbdb_subtaxa (mammals)
+par ( mar=c(8,2,0,0))
+barplot (unlist (canis_sbtx),  
+         beside = T, horiz=F,
+         col=heat.colors(12),
+         border=F,
+         las=2)
+
+
