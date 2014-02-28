@@ -1,7 +1,7 @@
 # Functions and variables for setting up and managing the comunication 
 # with the paleobiodb.org REST API
 
-pbdb_set_format<-function(format){
+.pbdb_set_format<-function(format){
 	.package_cache_set('api_format', format)
 }
 
@@ -85,14 +85,13 @@ pbdb_set_format<-function(format){
 	# colls refs
 	.setup_api_endpoint('colls/refs', 'colls/refs.%s', uri_builder = .pbdb_uri_builder)
 	
-	
 }
 
 
 .pbdb_setup<-function(){
 	.set_api_base('http://paleobiodb.org/data1.1')
 	.pbdb_set_up_endpoints()
-	pbdb_set_format('json')
+	.pbdb_set_format('json')
 }
 
 .pbdb_setup()

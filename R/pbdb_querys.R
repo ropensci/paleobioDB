@@ -1,6 +1,25 @@
 # R Functions leveraging the use o the different API endpoints available
 
 
+#' Converts a list in a comma separated string
+.implode_to_string<-function(param){
+  
+  if(!(is.vector(param))){
+    stop("Vector expected")
+  }
+  
+  if(length(param) > 1){
+    str <- param[[1]]
+    for (p in param[2:length(param)]) {
+      str <- paste(str, ",", p, sep = "")
+    }
+  } else {
+    str <- param
+  }
+  
+  return (str)
+}
+
 #'
 #'
 .pbdb_query<-function(endpoint, query = list()){
@@ -11,7 +30,7 @@
 	df
 }
 
-pbdb_query_uri<-function(endpoint, query = list()){
+.pbdb_query_uri<-function(endpoint, query = list()){
 
   query <- lapply(query, .implode_to_string)
 
@@ -22,13 +41,22 @@ pbdb_query_uri<-function(endpoint, query = list()){
 #' 
 #' Returns information about a single occurrence record from the Paleobiology Database.
 #' 
-#'@param id identifier of the occurrence. 
-#'@param ... all the parameters available in http://paleobiodb.org/data1.1/occs/single 
-#'@param taxon_name Return only records associated with the specified taxonomic name(s). 
-#'You may specify multiple names, separated by commas.
-#'@param base_name  Return only records associated with the specified taxonomic name(s), or any of their children. 
-#'You may specify multiple names, separated by commas.
+#'@param id identifier of the occurrence. This parameter is required.
+#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/single
+#'
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
 #'@param show to show extra variables (e.g. coords)
+#'
+#' @return a dataframe with a single occurrence 
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_occurrence (id=1001)
+#' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
+#'}
+#'
+#' 
 #' 
 pbdb_occurrence<-function(id, ...){
   l<-list(...)
@@ -37,6 +65,27 @@ pbdb_occurrence<-function(id, ...){
   .pbdb_query('occs/single', query = c(list(id = id), l))
 }
 
+#'pbdb_occurrences
+#'
+#'Returns information about species occurrence records stored in the Paleobiology Database.
+#'
+#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/list
+#'
+#'@param limit set limit to "all" to download all the occurrences. By defauls the limit is 500. 
+#'@param taxon_name Return only records associated with the specified taxonomic name(s). 
+#'You may specify multiple names, separated by commas.
+#'@param base_name  Return only records associated with the specified taxonomic name(s), or any of their children. 
+#'You may specify multiple names, separated by commas.
+#'@param show to show extra variables (e.g. coords)
+#' 
+#' @return a dataframe with the species occurrences 
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show="coords")
+#' pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show="coords")
+#'}
+#'
 pbdb_occurrences<-function(...){
 
   l<-list(...)
@@ -44,22 +93,3 @@ pbdb_occurrences<-function(...){
 
 }
 
-
-#' Converts a list in a comma separated string
-.implode_to_string<-function(param){
-
-  if(!(is.vector(param))){
-  	stop("Vector expected")
-  }
-
-  if(length(param) > 1){
-    str <- param[[1]]
-    for (p in param[2:length(param)]) {
-      str <- paste(str, ",", p, sep = "")
-    }
-  } else {
-  	str <- param
-  }
-
-  return (str)
-}

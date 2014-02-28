@@ -19,10 +19,11 @@
 #' 
 #' 
 
-canis<- pbdb_query_occurrences (limit="all", 
-                                vocab= "pbdb", 
-                                base_name="Canis", 
-                                show="coords")
+pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
+str (fossil_1001)
+
+
+pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 
 head (canis)
 # the function plot will plot the query and save a png file in your working directory
