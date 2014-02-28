@@ -4,10 +4,11 @@
 #' Here, for practical reasons we selected the most common filters that 
 #' paleontologists and ecologists might use to run our examples.
 #' 
-#'@param taxon_name Return only records associated with the specified taxonomic name(s). 
+#'@param taxon_name Return only collections associated with the specified taxonomic name(s). 
 #'You may specify multiple names, separated by commas.
-#'@param base_name  Return only records associated with the specified taxonomic name(s), or any of their children. 
+#'@param base_name  Return only collections associated with the specified taxonomic name(s), or any of their children. 
 #'You may specify multiple names, separated by commas.
+#'
 #'@param show to show extra variables (e.g. coords)
 #' 
 #' Set the basic query: 
@@ -22,6 +23,18 @@
 pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 str (fossil_1001)
 
+kk<- pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
+str (kk)
+
+pbdb_taxon (name="Canis", vocab="pbdb", show=c("attr", "app", "size"))
+
+pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
+
+
+pbdb_collection (1003, vocab="pbdb", show="loc")
+pbdb_collections (base_name="Cetacea", interval="Miocene")
+pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, 
+latmin=0.0, latmax=15.0, level=2)
 
 pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 

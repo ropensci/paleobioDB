@@ -99,6 +99,7 @@ pbdb_occurrence<-function(id, ...){
 #' 
 #' @export 
 #' @examples \dontrun{
+#' pbdb_occurrences (id=c(10, 11)) 
 #' pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show="coords")
 #' pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show="coords")
 #'}
@@ -114,9 +115,6 @@ pbdb_occurrences<-function(...){
 #'
 #'Returns information about the bibliographic references associated with fossil occurrences from the database.
 #'
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/refs
-#' go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
-#' 
 #' @param author Select only references for which any of the authors matches the specified name
 #' @param year Select only references published in the specified year
 #' @param pubtitle Select only references that involve the specified publication
@@ -124,6 +122,8 @@ pbdb_occurrences<-function(...){
 #' returned. You can specify multiple values separated by commas, 
 #' and each value may be appended with .asc or .desc.  Accepted values are:
 #' author, year, pubtitle, created, modified, rank. (see documentation in http://paleobiodb.org/data1.1/occs/refs)
+#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/refs
+#' go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
 #' 
 #' @return a dataframe with the information about the references that match the query
 #' 
@@ -145,13 +145,13 @@ pbdb_ref_occurrences<-function(...){
 #'Returns information about a single collection record from the Paleobiology Database.
 #' 
 #'@param id identifier of the collection. This parameter is required.
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/colls/single
-#' Below, we describe the most common filters that 
-#' paleontologists and ecologists might use.
 #'@param vocab set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 #'@param show to show extra variables (e.g. "loc" to show additional information about the geographic locality of the collection)
-#'
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/colls/single
+#' go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
+#' 
 #' @return a dataframe with a single occurrence 
 #' 
 #' @export 
@@ -214,3 +214,78 @@ pbdb_collections_geo<-function(...){
   .pbdb_query('colls/summary', query = l)
   
 }
+
+#' pbdb_taxon
+#' 
+#' Returns information about a single taxonomic name, identified either by name or by identifier.
+#' 
+#'@param name Return information about the most fundamental taxonomic name matching this string. 
+#' The % and _ characters may be used as wildcards.
+#'@param id Return information about the taxonomic name 
+#'corresponding to this identifier. You may not specify both 
+#'name and id in the same query.
+#'
+#'@param ... documentation for all the parameters is available 
+#'in http://paleobiodb.org/data1.1/taxa/single
+#' go to ?pbdb_taxa to see an explanation about the main filtering parameters 
+#'
+#' @return a dataframe with information from a single taxon
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_taxon (name="Canis", vocab="pbdb", show=c("attr", "app", "size"))
+#' 
+#'}
+#'
+#'
+pbdb_taxon<-function(...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('taxa/single', query = l)
+}
+
+
+#' pbdb_taxa
+#' 
+#'Returns information about multiple taxonomic names. 
+#'This function can be used to query for 
+#'all of the children or parents of a given taxon, among other operations.
+#'
+#'@param name Return information about the most fundamental taxonomic name matching this string. 
+#' The % and _ characters may be used as wildcards.
+#'@param id Return information about the taxonomic name 
+#'corresponding to this identifier. You may not specify both 
+#'name and id in the same query.
+#'@param exact if this parameter is specified, then the taxon exactly 
+#'matching the specified name or identifier is selected, 
+#'rather than the senior synonym which is the default.
+#'@param show to show extra variables: attr (The attribution of this taxon (author and year)), 
+#'app (The age of first and last appearance of this taxon from the occurrences recorded in this database), 
+#'size (The number of subtaxa appearing in this database), nav (Additional information for the PBDB Navigator taxon browser)
+#'@param rel set rel="synonyms" to select all synonyms of the base taxon or taxa; 
+#'rel="children" to select the taxa immediately contained within the base taxon or taxa; 
+#'rel="common_ancestor" to select the most specific taxon that contains all of the base taxa.
+#'@param extant TRUE/FALSE to select extinct/extant taxa.
+#'
+#'@param ... documentation for all the parameters is available.
+#'
+#'in http://paleobiodb.org/data1.1/taxa/list
+#'
+#' @return a dataframe with information from a list of taxa
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
+#' pbdb_taxa (id =c(10, 11), vocab="pbdb", show=c("attr", "app", "size", "nav"))
+#' pbdb_taxa (id =c(10, 11), vocab="pbdb", show=c("attr", "app", "size", "nav"), rel="common_ancestor")
+#'}
+#'
+#'
+pbdb_taxa<-function(...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('taxa/list', query = l)
+}
+
