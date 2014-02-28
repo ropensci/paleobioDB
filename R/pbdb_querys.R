@@ -314,3 +314,263 @@ pbdb_taxa_auto<-function(...){
   .pbdb_query('taxa/auto', query = l)
 }
 
+
+
+#'pbdb_interval
+#' 
+#' Returns information about a single interval, selected by identifier.
+#' 
+#'@param id identifier of the temporal interval. This parameter is required.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/intervals/single
+#' @return a dataframe with information from a single temporal interval
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_interval (id=1, vocab="pbdb")
+#' 
+#'}
+#'
+#' 
+#' 
+
+pbdb_interval<-function(id, ...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('intervals/single', query = c(list(id = id), l))
+}
+
+
+
+#'pbdb_intervals
+#' 
+#' Returns information about multiple intervals, 
+#' selected according to the parameters you provide.
+#' 
+#'@param id identifiers of the temporal intervals.
+#'@param min_ma return only intervals that are at least this old
+#'@param max_ma return only intervals that are at most this old
+#'@param order return the intervals in order starting as specified. 
+#'Possible values include older, younger. Defaults to younger.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/intervals/lists
+#' @return a dataframe with information from several temporal intervals
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_intervals (min_ma= 0, max_ma=2, vocab="pbdb")
+#' 
+#'}
+#'
+#' 
+#' 
+
+pbdb_intervals<-function(id, ...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('intervals/list', query = l)
+}
+
+
+#'pbdb_scale
+#' 
+#' Returns information about a single time scale, selected by identifier.
+#' 
+#'@param id identifier of the temporal interval. This parameter is required.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/scales/single
+#' @return a dataframe with information from a single scale
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_scale (id=1, vocab="pbdb")
+#' 
+#'}
+#'
+#' 
+#' 
+
+pbdb_scale<-function(id, ...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('scales/single', query = c(list(id = id), l))
+}
+
+#'pbdb_scales
+#' 
+#' Returns information about multiple time scales.
+#' 
+#'@param id identifiers of the scales. 
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/scales/list
+#' @return a dataframe with information from the selected scales
+#' 
+#' @export 
+#' @examples \dontrun{
+#' # Get a dataframe with all the scales available in PBDB setting no ids
+#' pbdb_scale ()
+#' 
+#'}
+#'
+#' 
+
+pbdb_scales<-function(id, ...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('scales/list', query = l)
+}
+
+
+
+#'pbdb_strata
+#' 
+#' Returns information about geological strata, 
+#' selected by name, rank, and/or geographic location.
+#'
+#'@param name A full or partial name. You can use % and _ as wildcards, 
+#'but the query will be very slow if you put a wildcard at the beginning
+#'@param rank Return only strata of the specified rank: formation, group or member.
+#'@param lngmin numeric. The longitude boundaries will be normalized 
+#'to fall between -180 and 180. (Note that if you specify lngmin then you must also specify lngmax). 
+#'Return only records whose geographic location falls 
+#'within the given bounding box (defined by lngmin, lngmax, latmin, latmax).
+#'It generate two adjacent bounding boxes if the range crosses the antimeridian. 
+#'@param lngmax numeric. The longitude boundaries will be normalized 
+#'to fall between -180 and 180.
+#'@param latmin numeric. between -90 and 90. (Note that if you specify latmin then you must also specify latmax)
+#'@param latmax numeric. between -90 and 90.
+#'@param loc Return only strata associated with some occurrence whose geographic 
+#'location falls within the specified geometry, specified in WKT format.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/strata/list
+#' @return a dataframe with information from the selected strata
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb")
+#' 
+#'}
+#'
+#' 
+
+pbdb_strata<-function(id, ...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('strata/list', query = l)
+}
+
+
+
+#'pbdb_strata_auto
+#' 
+#' Returns a list of strata matching the given prefix or partial name. 
+#' This can be used to implement auto-completion for strata names, 
+#' and can be limited by geographic location if desired.
+#'
+#'@param name A full or partial name. You can use % and _ as wildcards, 
+#'but the query will be very slow if you put a wildcard at the beginning
+#'@param rank Return only strata of the specified rank: formation, group or member.
+#'@param lngmin numeric. The longitude boundaries will be normalized 
+#'to fall between -180 and 180. (Note that if you specify lngmin then you must also specify lngmax). 
+#'Return only records whose geographic location falls 
+#'within the given bounding box (defined by lngmin, lngmax, latmin, latmax).
+#'It generate two adjacent bounding boxes if the range crosses the antimeridian. 
+#'@param lngmax numeric. The longitude boundaries will be normalized 
+#'to fall between -180 and 180.
+#'@param latmin numeric. between -90 and 90. (Note that if you specify latmin then you must also specify latmax)
+#'@param latmax numeric. between -90 and 90.
+#'@param loc Return only strata associated with some occurrence whose geographic 
+#'location falls within the specified geometry, specified in WKT format.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/strata/auto
+#' @return a dataframe with information from the strata that matches our letters.
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_strata_auto (name= "Pin", vocab="pbdb")
+#' 
+#'}
+#'
+#' 
+
+pbdb_strata_auto<-function(id, ...){
+  l<-list(...)
+  
+  # todo: merge lists properly  
+  .pbdb_query('strata/auto', query = l)
+}
+
+
+#'pbdb_references
+#'
+#'Returns information about multiple references, selected according to the parameters you provide.
+#'
+#' @param author Select only references for which any of the authors matches the specified name
+#' @param year Select only references published in the specified year
+#' @param pubtitle Select only references that involve the specified publication
+#' @param order Specifies the order in which the results are 
+#' returned. You can specify multiple values separated by commas, 
+#' and each value may be appended with .asc or .desc.  Accepted values are:
+#' author, year, pubtitle, created, modified, rank. 
+#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list 
+#' 
+#' @return a dataframe with the information about the references that match the query
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_references (author="Turner")
+#'}
+#'
+pbdb_references<-function(...){
+  
+  l<-list(...)
+  .pbdb_query('refs/list', query = l)
+  
+}
+
+
+#'pbdb_ref_collections
+#'
+#'Returns information about the references from which the selected collection data were entered.
+#'
+#' @param id A comma-separated list of collection identifiers.
+#' @param author Select only references for which any of the authors matches the specified name
+#' @param year Select only references published in the specified year
+#' @param pubtitle Select only references that involve the specified publication
+#' @param order Specifies the order in which the results are 
+#' returned. You can specify multiple values separated by commas, 
+#' and each value may be appended with .asc or .desc.  Accepted values are:
+#' author, year, pubtitle, created, modified, rank.
+#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/colls/refs
+#' 
+#' @return a dataframe with the information about the references that match the query
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_ref_collections (id=1)
+#'}
+#'
+pbdb_ref_collections <-function(...){
+  
+  l<-list(...)
+  .pbdb_query('colls/refs', query = l)
+  
+}
+

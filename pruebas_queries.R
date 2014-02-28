@@ -34,10 +34,22 @@ pbdb_taxa (name="Canidae", vocab="pbdb",
 pbdb_taxa (name =c("Canis lupus", "Vulpes vulpes"), vocab="pbdb", 
            show=c("attr", "app", "size", "nav"), rel="common_ancestor")
 
+pbdb_taxa_auto (name="Canis", vocab="pbdb", limit=10)
+pbdb_interval (id=1)
+pbdb_interval (id=1, vocab="pbdb")
+pbdb_intervals (min_ma= 0, max_ma=2)
+
+pbdb_scale (id=1, vocab="pbdb")
+pbdb_scales ()
 pbdb_collection (1003, vocab="pbdb", show="loc")
+
+pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb")
+pbdb_strata_auto (name= "Pin")
 pbdb_collections (base_name="Cetacea", interval="Miocene")
 pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, 
 latmin=0.0, latmax=15.0, level=2)
+
+pbdb_references (author="Turner")
 
 pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 
