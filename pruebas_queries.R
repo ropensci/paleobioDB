@@ -117,6 +117,25 @@ pbdb_query_occurrence (id=1001)
 
 
 
+# plot 
+canidae<-  pbdb_occurrences (limit="all", 
+                             base_name="Carnivora", 
+                             interval="Quaternary")  
+
+canis<- pbdb_subtaxa (canidae, do.plot=TRUE)
+
+
+canis
+par ( mar=c(8,4,2,0))
+barplot (unlist (canis_sbtx),  
+         beside = T, horiz=F,
+         col=heat.colors(12),
+         border=F,
+         las=2)
+
+
+
+
 # from here, just mess.... UNDER CONSTRUCTION! 
 
 species<- data [data$rnk==3, ]

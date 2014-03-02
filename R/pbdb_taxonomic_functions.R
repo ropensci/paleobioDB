@@ -7,6 +7,7 @@
 #' "orders", "classes", "subclasses", "subphyla", "phyla"))
 #' 
 #' @param data input dataframe with our query
+#' @param do.plot by default this function make a plot to visualize the distribution of taxa. Set to FALSE to skip the plot.
 #' @param show use show to choose which subtaxa should be shown: "species", "genera", "tribes", "subfamilies", "families","superfamilies",
 #' "orders", "classes", "subclasses", "subphyla", "phyla". By default the function shows all of them. 
 #' @return a dataframe with the number of subtaxa of the chosen cathegories
@@ -18,7 +19,7 @@
 #'
 #'
 
-pbdb_subtaxa<- function (data, show=c("species", "genera", "tribes", "subfamilies", "families","superfamilies",  
+pbdb_subtaxa<- function (data, do.plot= TRUE, show=c("species", "genera", "tribes", "subfamilies", "families","superfamilies",  
                                            "orders", "classes", "subclasses", "subphyla", "phyla")){
   
   if('rnk' %in% colnames(data)) {
@@ -50,28 +51,26 @@ pbdb_subtaxa<- function (data, show=c("species", "genera", "tribes", "subfamilie
                         number_superfamilies, number_order, number_subclass, number_class, number_subphyla, number_phyla)
   names (subtaxa)<- all
   
-  subtaxa [,match (show, all)]} else {
+  subt<- subtaxa [,match (show, all)]} else {
   stop ("variable names should have the 3-letters code (the default in the query to PBDB)" )
   }
+  if (do.plot==TRUE){
+  par (mar=c(8,4,2,0))
+  barplot (unlist ( subtaxa [,match (show, all)]),  
+           beside = T, horiz=F,
+           col=heat.colors(12),
+           border=F,
+           las=2)
+  }
+  return (subt)
+}
+
+
+#this function does the same than the one above, but it just get the taxa of the query.
+#pbdb_subtaxa2<- function (data){
+# table (data$taxon_rank)
+#}
+
+
   
-}
-
-
-pbdb_subtaxa2<- function (data){
-
-  table (data$taxon_rank)
-
-}
-
-# plot 
-mamals<-  pbdb_occurrences (limit="all", base_name="Mammalia")  
-
-canis_sbtx<- pbdb_subtaxa (mammals)
-par ( mar=c(8,2,0,0))
-barplot (unlist (canis_sbtx),  
-         beside = T, horiz=F,
-         col=heat.colors(12),
-         border=F,
-         las=2)
-
 
