@@ -76,8 +76,8 @@ pbdb_occurrence<-function(id, ...){
 #'@param limit set limit to "all" to download all the occurrences. By defauls the limit is 500. 
 #'@param taxon_name Return only records associated with the specified taxonomic name(s). 
 #'You may specify multiple names, separated by commas.
-#'@param base_name  Return only records associated with the specified taxonomic name(s), or any of their children. 
-#'You may specify multiple names, separated by commas.
+#'@param base_name  Return records associated with the specified taxonomic name(s) 
+#'and any of their children (e.g. base_name="Canis" will return "Canis", "Canis lupus", "Canis mosbachensis", etc.)
 #'
 #'@param lngmin numeric. The longitude boundaries will be normalized 
 #'to fall between -180 and 180. (Note that if you specify lngmin then you must also specify lngmax). 

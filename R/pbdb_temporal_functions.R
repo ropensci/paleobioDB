@@ -78,9 +78,21 @@ pbdb_time_spam<- function (data, rank="species", col="skyblue2", names=TRUE){
 
 #' pbdb_ext_evo
 #' 
-#' plot the extinct taxa or new taxa across time
+#' To plot the extinct and new taxa across time.
+#' 
 #' 
 #' @usage pbdb_ext_evo (data)
+#' 
+#' @param data our query to the PBDB database
+#' @rank to set the rank of the taxa of interest, species by default.
+#' @return a plot
+#' 
+#' @examples \dontrun{
+#' canidae<-  pbdb_query_occurrences (limit="all", vocab="pbdb",
+#' base_name="Canidae")
+#' pbdb_ext_evo (canidae, rank="genus")
+#' pbdb_ext_evo (canidae, rank="species")
+#'}
 #' 
 pbdb_ext_evo<- function (data, rank="species") {  
 species<- data [data$taxon_rank==rank, ]
@@ -108,9 +120,38 @@ plot (evo, xlab="Time (Ma)", type="o", pch=16,
       ylab="Number of taxa", axes=FALSE, xlim=c(xmm-1, xmx+1),
       ylim=c(ymm-1, ymx+1))
 lines (ext, type="o", pch=16, col="red")
-legend(xmx-2, ymx-2, c("evolution","extinction"), cex=0.8, 
+legend("topright", c("evolution","extinction"), cex=0.8, 
        col=c("black","red"), pch=16:16, lty=1:2);
 axis (1)
 axis (2)
 
+}
+
+#' pbdb_richness
+#' 
+#' plot richness across time
+#' 
+#' 
+
+pbdb_richness <- function (rank= "species", resolution=1, temporal_extent=c(0,100)){
+  
+  species<- data [data$taxon_rank==rank, ]
+  max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
+  min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
+  temporal_range<- data.frame (max_sp [,2], min_sp[,2])
+  row.names (temporal_range)<- max_sp[,1]
+  colnames (temporal_range)<- c("max", "min")
+  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
+  te<- temporal_extent
+  a<- temporal_range [,1]>min(te) & temporal_range [,2]<min(te)+1
+  
+  for (i in min(te)+1:(max(te)-1)){  
+    b<- temporal_range [,1]>te [i] & temporal_range [,2]<te [i+1]
+    a<- cbind (a,b)
+  }
+
+plot (colSums (a+0), type="o", pch=16, ylab="Richness", xlab="Time (Ma)", axes=F)
+axis (1)
+axis (2)
+return (a+0)
 }
