@@ -32,7 +32,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @usage pbdb_time_spam (data)
 #' 
 #' @param data input dataframe with our query (set vocab= "pbdb" in the query)
-#' @param rank to set which taxon rank you are interested. E.g. "species"
+#' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param col to change the colour of the bars in the plot, skyblue2 by default. 
 #' @names to include or not the name of the taxa in the plot (TRUE by default)
 #' @return  a plot with the time spam of the taxa selected (species, genus, etc.)
@@ -44,7 +44,8 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #'
 #'
 
-pbdb_time_spam<- function (data, rank, col="skyblue2", names=TRUE){
+pbdb_time_spam<- function (data, rank="species", col="skyblue2", names=TRUE){
+  
   species<- data [data$taxon_rank==rank, ]
   max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
   min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
@@ -71,4 +72,45 @@ pbdb_time_spam<- function (data, rank, col="skyblue2", names=TRUE){
     text(x = t_range$min, y = t_range$pos +0.3,
          labels = row.names (t_range), adj=c(0,0), cex=0.8, col="gray30")
   }
+  return (temporal_range)
+}
+
+
+#' pbdb_ext_evo
+#' 
+#' plot the extinct taxa or new taxa across time
+#' 
+#' @usage pbdb_ext_evo (data)
+#' 
+pbdb_ext_evo<- function (data, rank="species") {  
+species<- data [data$taxon_rank==rank, ]
+max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
+min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
+temporal_range<- data.frame (max_sp [,2], min_sp[,2])
+row.names (temporal_range)<- max_sp[,1]
+colnames (temporal_range)<- c("max", "min")
+temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
+
+evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
+ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
+ext<- ext [ext$Var1!=0,]
+evo$Var1<- as.numeric (evo$Var1)
+ext$Var1<- as.numeric (ext$Var1)
+
+ymx<- max (c(evo[,2], ext[,2]))
+ymm<- min (c(evo[,2], ext[,2]))
+
+xmx<- max (c(evo[,1], ext[,1]))
+xmm<- min (c(evo[,1], ext[,1]))
+
+par (mar=c(4,4,2,2))
+plot (evo, xlab="Time (Ma)", type="o", pch=16,
+      ylab="Number of taxa", axes=FALSE, xlim=c(xmm-1, xmx+1),
+      ylim=c(ymm-1, ymx+1))
+lines (ext, type="o", pch=16, col="red")
+legend(xmx-2, ymx-2, c("evolution","extinction"), cex=0.8, 
+       col=c("black","red"), pch=16:16, lty=1:2);
+axis (1)
+axis (2)
+
 }

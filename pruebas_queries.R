@@ -102,7 +102,23 @@ pbdb_subtaxa (canis_quaternary)
 
 str (number of taxa)
 # to check the temporal resolution of the data, in Ma. 
-temporal_resolution (canidae_quat)
+pbdb_temporal_resolution (canidae_quat)
+
+
+par ( mar=c(8,4,2,0))
+hist (unlist (kk [[2]]), freq=T, col="blue", border=F,
+      breaks= 50, xlab="Temporal resolution of the data (Ma)", 
+      main="")
+
+?hist
+mydata<-  unlist (kk [[2]])
+ggplot(mydata) + geom_histogram() + scale_x_log()
+
+
+         beside = T, horiz=F,
+         col=heat.colors(100),
+         border=F,
+         las=2)
 
 # to plot the temporal spam of taxa, set taxon (e.g., "species", "genus"...), 
 # change the colour (blue by default), allow names or not (by default TRUE)
@@ -134,6 +150,20 @@ barplot (unlist (canis_sbtx),
          las=2)
 
 
+## extinction
+canis<-  pbdb_query_occurrences (limit="all", vocab="pbdb",
+                                        base_name="Canidae",  
+                                        show="coords")
+
+pbdb_time_spam (canis, rank="species")
+
+
+pbdb_ext_evo (canis)
+
+
+head (canis)
+canidae<- pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
+canidae
 
 
 # from here, just mess.... UNDER CONSTRUCTION! 
