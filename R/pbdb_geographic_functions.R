@@ -97,7 +97,7 @@ p<- ggplot(bbox_wintri, aes(long,lat, group=group)) +
 #' 
 #' @export 
 #' @examples \dontrun{
-#' ccanis<- pbdb_query_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+#' canis<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' plot_pbdb (canis, "Canis",colour="red", dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
 #'}
 #'

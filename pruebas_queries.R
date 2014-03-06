@@ -164,27 +164,7 @@ canis$early_age
 
 data<- canis
 
-function (resolution=1, temporal_extent=c(0,100), ){
-  
-species<- data [data$taxon_rank==rank, ]
-max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
-min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
-temporal_range<- data.frame (max_sp [,2], min_sp[,2])
-row.names (temporal_range)<- max_sp[,1]
-colnames (temporal_range)<- c("max", "min")
-temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
 
-te<- temporal_extent
-
-a<- temporal_range [,1]>min(te) & temporal_range [,2]<min(te)+1
-
-  for (i in min(te)+1:(max(te)-1)){  
-  b<- temporal_range [,1]>te [i] & temporal_range [,2]<te [i+1]
-  a<- cbind (a,b)
-  }
-}
-
-colSums (a+0)
 
 canidae<- pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
 canidae

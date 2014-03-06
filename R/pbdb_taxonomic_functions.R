@@ -13,8 +13,8 @@
 #' @return a dataframe with the number of subtaxa of the chosen cathegories
 #' @export 
 #' @examples \dontrun{
-#' canidae_quat<-  pbdb_query_occurrences (limit="all", base_name="Canidae",  interval="Quaternary", show="coords")
-#' number_of_subtaxa (canidae_quat)
+#' canidae_quat<-  pbdb_occurrences (limit="all", base_name="Canidae",  interval="Quaternary", show="coords")
+#' pbdb_subtaxa (canidae_quat)
 #'}
 #'
 #'

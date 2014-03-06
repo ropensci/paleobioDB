@@ -23,7 +23,7 @@
 #'
 #'
 .pbdb_query<-function(endpoint, query = list()){
-	uri <- pbdb_query_uri(endpoint, query)
+	uri <- .pbdb_query_uri(endpoint, query)
 
 	df <- .get_data_from_uri(uri)
 
