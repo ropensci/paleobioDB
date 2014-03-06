@@ -1,7 +1,10 @@
 # this file is a provisional shorcut intended for early development stages
 # will be removed when adopting a proper R package structure
 
-setwd ("C:/Users/sara/Documents/_CIENCIAS/pbdb")
+
+#setwd ("C:/Users/sara/Documents/_CIENCIAS/pbdb")##SARA
+#setwd ("/home/aa/pbdb")##LUCIANO
+
 library(rjson)
 library(gtools)
 library(RCurl)

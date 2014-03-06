@@ -8,6 +8,7 @@ wmap_wintri
 .cache_bbox<- function (){  
 bbox <- readOGR("maps/ne_110m_wgs84_bounding_box.shp", layer="ne_110m_wgs84_bounding_box")
 bbox_wintri <- spTransform(bbox, CRS("+proj=wintri"))
+bbox_wintri
 }
 
 .cache_countries<- function (){  
@@ -121,4 +122,41 @@ plot_pbdb<- function (query, title, colour="turquoise1", dir){
     plot (p2)
 }
 
+
+
+####LUCIANO
+q1<-pbdb_occurrences (limit="10", base_name="Canidae", interval="Quaternary", show="coords")
+q2<-pbdb_occurrences (limit=10, base_name="Canidae", interval="Quaternary", show="coords", vocab="pbdb")
+head(q1)
+query=canis
+head(canis)
+x11()
+require(maps)
+map()
+points(query)
+
+.f1<- function (query){
+    latlong <- data.frame(lng = query$lng, lat = query$lat)
+    counts<- ddply(latlong,.(lng,lat),nrow)
+    colnames (counts)<- c("lng", "lat", "Occ")
+    #m <- counts$Occ-min(counts$Occ)
+    #counts$cex <- exp((m/max(m))+0)
+    counts
+}
+
+
+f2<-function(query,col.int='white',col.points="light green",
+             col.ocean='black',fill=T,...){
+    map(t='n',...)
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")
+         [4], col = col.ocean)
+    map(col=col.int,fill=fill,add=T,main="a",...)
+    data <- .f1(query)
+    points(data[,1:2], col=col.points,...)
+    #box(,col='grey',lwd=15)
+    axis(1);axis(2);axis(3);axis(4);box()
+}
+system.time(f2(query,col.ocean='light blue',col.points='red',pch=16))
+exp(1.5)
+savePlot("sara.tiff","tiff")
 
