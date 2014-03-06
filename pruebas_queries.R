@@ -22,10 +22,13 @@
 
 pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 pbdb_occurrences (id=c(10, 11)) 
+
+pbdb_collection (id=1)
+pbdb_collections (limit=100, base_name="Cetacea")
+
 pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
 pbdb_taxon (name="Canis", vocab="pbdb", show=c("attr", "app", "size"))
-pbdb_taxa (name="Canidae", vocab="pbdb", 
-           show=c("attr", "app", "size", "nav"))
+pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
 pbdb_taxa (name =c("Canis lupus", "Vulpes vulpes"), vocab="pbdb", 
            show=c("attr", "app", "size", "nav"), rel="common_ancestor")
 
@@ -41,12 +44,11 @@ pbdb_collection (1003, vocab="pbdb", show="loc")
 pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb")
 pbdb_strata_auto (name= "Pin")
 pbdb_collections (base_name="Cetacea", interval="Miocene")
-pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, 
-latmin=0.0, latmax=15.0, level=2)
+pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, latmin=0.0, latmax=15.0, level=2)
 pbdb_ref_collections (id=1)
 pbdb_references (author="Turner")
 
-pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+canis<- pbdb_occurrences (limit="50", vocab= "pbdb", base_name="Canis", show="coords")
 
 head (canis)
 # the function plot will plot the query and save a png file in your working directory
@@ -84,8 +86,16 @@ canidae_quat<-  pbdb_query_occurrences (limit="all",
                                            show="coords")
 names (canis_quaternary)
 
+carnivora<- pbdb_occurrences (limit="all", base_name="Carnivora", 
+                              interval="Quaternary", show="coords")
+     
+names (carnivora)
 
-canis_sbtx<- pbdb_subtaxa (canis_0_2)
+head (carnivora)
+pbdb_subtaxa (carnivora)
+head (carnivora)
+pbdb_richness (carnivora)
+pbdb_ext_evo (carnivora, rank="species")
 
 barplot (unlist (canis_sbtx), 
          col="turquoise1", 
@@ -102,7 +112,7 @@ pbdb_subtaxa (canis_quaternary)
 
 str (number of taxa)
 # to check the temporal resolution of the data, in Ma. 
-pbdb_temporal_resolution (canidae_quat)
+pbdb_temporal_resolution (carnivora)
 
 
 par ( mar=c(8,4,2,0))
@@ -164,7 +174,7 @@ canis$early_age
 
 data<- canis
 
-
+pbdb_richness (carnivora)
 
 canidae<- pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
 canidae

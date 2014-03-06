@@ -19,18 +19,18 @@
 #'
 #'
 
-pbdb_subtaxa<- function (data, do.plot= TRUE, show=c("species", "genera", "tribes", "subfamilies", "families","superfamilies",  
+pbdb_subtaxa<- function (data, col="skyblue2", 
+                         do.plot= TRUE, show=c("species", "genera", "tribes", "subfamilies", "families","superfamilies",  
                                            "orders", "classes", "subclasses", "subphyla", "phyla")){
   
   if('rnk' %in% colnames(data)) {
-    
+  number_phyla<- length(which (data$rnk== 20)) 
   number_subphyla<- length(which (data$rnk== 25))
-  number_phyla<- length(which (data$rnk== 20))
   
   number_class_plants_invertebrates<- length(which (data$rnk== 17))
-  number_subclass<- length(which (data$rnk== 16))
-  
+ 
   number_class<- length(which (data$rnk== 15))
+  number_subclass<- length(which (data$rnk== 16))
   
   number_order<- length(which (data$rnk== 13))
   
@@ -58,7 +58,7 @@ pbdb_subtaxa<- function (data, do.plot= TRUE, show=c("species", "genera", "tribe
   par (mar=c(8,4,2,0))
   barplot (unlist ( subtaxa [,match (show, all)]),  
            beside = T, horiz=F,
-           col=heat.colors(12),
+           col=col,
            border=F,
            las=2)
   }

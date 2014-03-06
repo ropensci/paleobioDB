@@ -8,6 +8,7 @@ wmap_wintri
 .cache_bbox<- function (){  
 bbox <- readOGR("maps/ne_110m_wgs84_bounding_box.shp", layer="ne_110m_wgs84_bounding_box")
 bbox_wintri <- spTransform(bbox, CRS("+proj=wintri"))
+bbox_wintri
 }
 
 .cache_countries<- function (){  
