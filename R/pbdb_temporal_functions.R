@@ -94,39 +94,12 @@ pbdb_time_spam<- function (data, rank="species", col="skyblue2", names=TRUE){
 #' pbdb_ext_evo (canidae, rank="species")
 #'}
 #' 
-pbdb_ext_evo<- function (data, rank="species") { 
+pbdb_ext_evo<- function (data, rank="species", colour=c("black","skyblue2")) { 
   
-if (length (data$taxon_rank)!=0){
-  
+if (length (data$taxon_rank)!=0){ 
 species<- data [data$taxon_rank==rank, ]
 max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
 min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
-temporal_range<- data.frame (max_sp [,2], min_sp[,2])
-row.names (temporal_range)<- max_sp[,1]
-colnames (temporal_range)<- c("max", "min")
-temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-
-evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
-ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
-ext<- ext [ext$Var1!=0,]
-evo$Var1<- as.numeric (evo$Var1)
-ext$Var1<- as.numeric (ext$Var1)
-
-ymx<- max (c(evo[,2], ext[,2]))
-ymm<- min (c(evo[,2], ext[,2]))
-
-xmx<- max (c(evo[,1], ext[,1]))
-xmm<- min (c(evo[,1], ext[,1]))
-
-par (mar=c(4,4,2,2))
-plot (evo, xlab="Time (Ma)", type="o", pch=16,
-      ylab=paste ("Number of", rank), axes=FALSE, xlim=c(xmm-1, xmx+1),
-      ylim=c(ymm-1, ymx+1))
-lines (ext, type="o", pch=16, col="red")
-legend("topright", c("evolution","extinction"), cex=0.8, 
-       col=c("black","red"), pch=16:16, lty=1:2);
-axis (1)
-axis (2)
 }
 
 if (length (data$rnk)!=0){
@@ -135,18 +108,19 @@ if (length (data$rnk)!=0){
   rnkk<- rnnk [match (rank, rnnk[,1]), 2]
   species<- data [data$rnk==rnkk, ]
   max_sp<- aggregate(species$eag, list(species$tna), max)
-  min_sp<- aggregate(species$lag, list(species$tna), min)
+  min_sp<- aggregate(species$lag, list(species$tna), min)   
+}
+
   temporal_range<- data.frame (max_sp [,2], min_sp[,2])
   row.names (temporal_range)<- max_sp[,1]
   colnames (temporal_range)<- c("max", "min")
   temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-  
   evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
   ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
   ext<- ext [ext$Var1!=0,]
   evo$Var1<- as.numeric (evo$Var1)
   ext$Var1<- as.numeric (ext$Var1)
-  
+   
   ymx<- max (c(evo[,2], ext[,2]))
   ymm<- min (c(evo[,2], ext[,2]))
   
@@ -154,16 +128,14 @@ if (length (data$rnk)!=0){
   xmm<- min (c(evo[,1], ext[,1]))
   
   par (mar=c(4,4,2,2))
-  plot (evo, xlab="Time (Ma)", type="o", pch=16,
+  plot (evo, xlab="Time (Ma)", type="o", lty=2, pch=16, col= colour[1],
         ylab=paste ("Number of", rank), axes=FALSE, xlim=c(xmm-1, xmx+1),
         ylim=c(ymm-1, ymx+1))
-  lines (ext, type="o", pch=16, col="red")
+  lines (ext, type="o", lty=2, pch=16, col=colour[2])
   legend("topright", c("evolution","extinction"), cex=0.8, 
-         col=c("black","red"), pch=16:16, lty=1:2);
+         col=colour, pch=16:16, lty=2:2)
   axis (1)
   axis (2)
-} 
-
 }
 
 #' pbdb_richness
@@ -172,7 +144,9 @@ if (length (data$rnk)!=0){
 #' 
 #' 
 
-pbdb_richness <- function (data, rank= "species", resolution=1, temporal_extent=c(0,100)){
+pbdb_richness <- function (data, rank= "species", 
+                           resolution=1, 
+                           temporal_extent=c(0,100)){
   if (length (data$taxon_rank)!=0){
   species<- data [data$taxon_rank==rank, ]
   max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
@@ -183,6 +157,8 @@ if (length (data$rnk)!=0){
                     c(3,5,9,13,15))
   rnkk<- rnnk [match (rank, rnnk[,1]), 2]
   species<- data [data$rnk==rnkk, ]
+}
+
   max_sp<- aggregate(species$eag, list(species$tna), max)
   min_sp<- aggregate(species$lag, list(species$tna), min) 
   temporal_range<- data.frame (max_sp [,2], min_sp[,2])
@@ -201,11 +177,11 @@ if (length (data$rnk)!=0){
   a<- cbind (a,b)
   richness<- colSums (a+0, na.rm=T)
   richness<- data.frame (sequence, richness)
+
   plot (richness, type="o", pch=16, ylab=paste ("Number of", rank), xlab="Time (Ma)", axes=F)
   axis (1)
   axis (2)
   return (richness)
-}
 
 }
 

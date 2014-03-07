@@ -94,8 +94,8 @@ names (carnivora)
 head (carnivora)
 pbdb_subtaxa (carnivora)
 head (carnivora)
-pbdb_richness (carnivora, rank="species", 
-               resolution=1, temporal_extent=c(0,4))
+pbdb_richness (carnivora, rank="genera", 
+               resolution=1, temporal_extent=c(0,10))
 pbdb_ext_evo (carnivora, rank="species")
 
 barplot (unlist (canis_sbtx), 
