@@ -125,38 +125,51 @@ plot_pbdb<- function (query, title, colour="turquoise1", dir){
 
 
 ####LUCIANO
-q1<-pbdb_occurrences (limit="10", base_name="Canidae", interval="Quaternary", show="coords")
-q2<-pbdb_occurrences (limit=10, base_name="Canidae", interval="Quaternary", show="coords", vocab="pbdb")
-head(q1)
-query=canis
-head(canis)
-x11()
 require(maps)
-map()
-points(query)
+require (scales)
+require(graphics)
+require (grDevices)
 
-.f1<- function (query){
+#canis <- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+
+.extract.LatLong <- function (query){
     latlong <- data.frame(lng = query$lng, lat = query$lat)
     counts<- ddply(latlong,.(lng,lat),nrow)
-    colnames (counts)<- c("lng", "lat", "Occ")
-    #m <- counts$Occ-min(counts$Occ)
-    #counts$cex <- exp((m/max(m))+0)
+    colnames (counts)<- c("lng", "lat", "Occur")
     counts
 }
 
-
-f2<-function(query,col.int='white',col.points="light green",
-             col.ocean='black',fill=T,...){
-    map(t='n',...)
+.add.ColOcean <-function(col.ocean){
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")
          [4], col = col.ocean)
-    map(col=col.int,fill=fill,add=T,main="a",...)
-    data <- .f1(query)
-    points(data[,1:2], col=col.points,...)
-    #box(,col='grey',lwd=15)
-    axis(1);axis(2);axis(3);axis(4);box()
 }
-system.time(f2(query,col.ocean='light blue',col.points='red',pch=16))
-exp(1.5)
-savePlot("sara.tiff","tiff")
 
+.add.Points <-function(data,col.point,...){
+    Pal <- colorRampPalette(col.point)
+    data$n<-as.numeric(cut(data$Occur,breaks = 5))
+    data$Col <- Pal(5)[data$n]
+    points(data[,1:2], col=alpha(data$Col,0.8),...)
+    data
+}
+
+.add.Legend <- function(dat,col.int,...){
+    n=length(unique(dat$Col))
+    Col=unique(dat$Col)[order(unique(dat$n))]
+    Legend=seq(min(dat$Occur),max(dat$Occur),length.out=n)
+    legend("bottom",col=Col, inset=c(0,-0.11), legend=Legend,ncol=n, title="Occurrences",bg=col.int,...)
+}  
+
+pbdb_plot <- function(query,col.int='white',  col.ocean='black',
+                      main=NULL, col.point=c('light blue','blue'),...){
+    par(mar=c(0,0,0,0),oma=c(6, 0, 0, 0),xpd=TRUE)
+    map(t='n',...)
+    .add.ColOcean(col.ocean)
+    map(col=col.int,fill=T,add=T,...)
+    data <- .extract.LatLong(query)
+    dat<-.add.Points(data,col.point,...)
+    title(main=main,line=1,...)
+    .add.Legend(dat,col.int,...)
+}
+
+#x11()
+#system.time(pbdb_plot(canis,pch=19,col.point=c('light blue','blue')))
