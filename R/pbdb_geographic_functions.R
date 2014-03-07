@@ -159,9 +159,9 @@ require (grDevices)
     legend("bottom",col=Col, inset=c(0,-0.11), legend=Legend,ncol=n, title="Occurrences",bg=col.int,...)
 }  
 
-pbdb_plot <- function(query,col.int='white',  col.ocean='black',
+pbdb_map <- function(query,col.int='white',  col.ocean='black',
                       main=NULL, col.point=c('light blue','blue'),...){
-    par(mar=c(0,0,0,0),oma=c(6, 0, 0, 0),xpd=TRUE)
+    par(mar=c(0,0,0,0),xpd=TRUE,...)
     map(t='n',...)
     .add.ColOcean(col.ocean)
     map(col=col.int,fill=T,add=T,...)
@@ -172,4 +172,45 @@ pbdb_plot <- function(query,col.int='white',  col.ocean='black',
 }
 
 #x11()
-#system.time(pbdb_plot(canis,pch=19,col.point=c('light blue','blue')))
+#system.time(pbdb_map(canis,pch=19,col.point=c('light blue','blue')))
+
+
+
+####effort
+
+.plot.Raster<-function(data,res,col.int,col.ocean,...){
+    e<-map(plot=F,...)
+    ext<-extent(e$range)
+    r<-raster(ext)
+    res(r)<-c(res,res)
+    values(r)<-NA
+    plot(r,xaxt='n',yaxt='n')
+    .add.ColOcean (col.ocean)
+    map(col=col.int,fill=T,add=T,...)
+    r<-rasterize(data[,1:2],r,data[,3],fun=sum)
+}
+##r<-.plot.Raster(data,res=5,col.int='black',col.ocean='white')
+
+.add.pattern<-function(r,col.rich,col.int.line,...){
+    Pal <- colorRampPalette(col.rich)
+    plot(r,col=alpha(Pal(5),0.8),add=T,...)
+    map(,add=T,col=col.int.line,...)
+}
+#.add.rich(r,col.rich=c('yellow','red'),col.int.line='white')
+
+#x11()
+
+
+pbdb_map_effort <- function(query,res=1,col.int='white', col.int.line='black', col.ocean='black',
+                          main=NULL, col.rich=c('light blue','blue'),...){
+    par(mar=c(4,1,4,4),...)
+    data <- .extract.LatLong(query)
+    r<-.plot.Raster(data,res,col.int,col.ocean,...)
+    .add.pattern(r,col.rich,col.int.line,...)
+    title(main=main,line=1,...)
+    mtext('Number of records',4,line=-2,cex=2)
+}
+
+#pbdb_map_effort (query,res=4,main='Canis',cex.main=2)
+
+#savePlot('pbdb_map_effort.tiff','tiff')
