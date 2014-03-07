@@ -94,14 +94,14 @@ names (carnivora)
 head (carnivora)
 pbdb_subtaxa (carnivora)
 head (carnivora)
-pbdb_richness (carnivora)
+pbdb_richness (carnivora, rank="species", 
+               resolution=1, temporal_extent=c(0,4))
 pbdb_ext_evo (carnivora, rank="species")
 
 barplot (unlist (canis_sbtx), 
          col="turquoise1", 
          border=F, axes=F, xlab="")
 ?barplot
-
 ?hist
 
 ?tab
@@ -174,8 +174,8 @@ canis$early_age
 
 data<- canis
 
-pbdb_richness (carnivora)
-
+pbdb_richness (carnivora, rank="families", resolution=0.01, temporal_extent=c(0,3))
+head (carnivora)
 canidae<- pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
 canidae
 
