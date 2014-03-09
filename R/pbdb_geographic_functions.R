@@ -125,11 +125,6 @@ plot_pbdb<- function (query, title, colour="turquoise1", dir){
 
 
 ####LUCIANO
-require(maps)
-require (scales)
-require(graphics)
-require (grDevices)
-
 #canis <- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 
 .extract.LatLong <- function (query){
@@ -139,9 +134,11 @@ require (grDevices)
     counts
 }
 
-.add.ColOcean <-function(col.ocean){
-    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")
-         [4], col = col.ocean)
+.add.ColOcean <-function(col.ocean,col.int,...){
+    par(mar=c(0,0,0,0),xpd=TRUE,...)
+    map(t='n',...)
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
+    map(col=col.int,fill=T,add=T,...)
 }
 
 .add.Points <-function(data,col.point,...){
@@ -161,10 +158,7 @@ require (grDevices)
 
 pbdb_map <- function(query,col.int='white',  col.ocean='black',
                       main=NULL, col.point=c('light blue','blue'),...){
-    par(mar=c(0,0,0,0),xpd=TRUE,...)
-    map(t='n',...)
-    .add.ColOcean(col.ocean)
-    map(col=col.int,fill=T,add=T,...)
+    .add.ColOcean(col.ocean,col.int,...)
     data <- .extract.LatLong(query)
     dat<-.add.Points(data,col.point,...)
     title(main=main,line=1,...)
@@ -179,6 +173,7 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
 ####effort
 
 .plot.Raster<-function(data,res,col.int,col.ocean,...){
+    par(mar=c(4,1,4,4),...)
     e<-map(plot=F,...)
     ext<-extent(e$range)
     r<-raster(ext)
@@ -203,12 +198,12 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
 
 pbdb_map_effort <- function(query,res=1,col.int='white', col.int.line='black', col.ocean='black',
                           main=NULL, col.rich=c('light blue','blue'),...){
-    par(mar=c(4,1,4,4),...)
     data <- .extract.LatLong(query)
     r<-.plot.Raster(data,res,col.int,col.ocean,...)
     .add.pattern(r,col.rich,col.int.line,...)
     title(main=main,line=1,...)
     mtext('Number of records',4,line=-2,cex=2)
+    r
 }
 
 #pbdb_map_effort (query,res=4,main='Canis',cex.main=2)
