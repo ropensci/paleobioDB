@@ -215,22 +215,22 @@ if (length (data$rnk)!=0){
   plot.new()
   par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
   plot.window(xlim=c(max (te),min(te)), xaxs="i",
-              ylim=c(0,max(richness [,2])), yaxs="i")
+              ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
   
-  rect(xleft=min(te), ybottom=min(richness [,2]), xright=max(te), ytop=max(richness [,2]), 
+  rect(xleft=min(te), ybottom=min(richness [,2]), 
+       xright=max(te), ytop=max(richness [,2])+(max(richness [,2])/10), 
        density = NULL, angle = 45,
        col = "#88888890", border = NA)
   abline(v=seq(min(te), max(te), by=1), col="#FFFFFF40")
-  abline(h=seq(0, max(richness [,2]), 
+  abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
                by=(max(richness [,2])/10)), col="#FFFFFF40")
   xx = c(min(te), sequence, max(te))
   yy = c(0, richness[,2], 0)
-  polygon(xx, yy, col="light blue", border=NA)
+  polygon(xx, yy, col="#8470FF", border="#7D9EC0")
   axis(1)
   axis(2, las=1)
   mtext("Million years before present", line=3, adj=1, side=1)
   mtext(paste ("Number of", rank), line= 3 , adj=0, side=2)
   return (richness)
-
 }
 
