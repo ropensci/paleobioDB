@@ -94,6 +94,8 @@ pbdb_time_spam<- function (data, rank="species", col="skyblue2", names=TRUE){
 #' pbdb_ext_evo (canidae, rank="species")
 #'}
 #' 
+#' 
+??gridSample
 pbdb_ext_evo<- function (data, rank="species", colour=c("black","skyblue2")) { 
   
 if (length (data$taxon_rank)!=0){ 
