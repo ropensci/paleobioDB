@@ -146,6 +146,38 @@ if (length (data$rnk)!=0){
 #' 
 #' 
 
+x<- 1920:1970
+y1<- rnorm (51)
+y2<- rnorm (51)
+dev.off()
+plot.new()
+par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+plot.window(xlim=c(1920,1970), xaxs="i",
+            ylim=c(0,max(y)), yaxs="i")
+
+rect(xleft=min(x), ybottom=min(y), xright=max(x), ytop=max(y), 
+     density = NULL, angle = 45,
+     col = "#88888890", border = NA)
+abline(v=seq(min(x), max(x), by=1), col="#FFFFFF40")
+abline(h=seq(0, max(y), by=0.5), col="#FFFFFF40")
+xx = c(min(x), x, max(x))
+yy = c(0, y, 0)
+polygon(xx, yy, col="#FFFFFF40", border=NA)
+axis(1)
+axis(2, las=1)
+mtext("Years", line=3, adj=1, side=1)
+mtext("Extinctions", line= 3 , adj=1, side=2)
+
+
+y<- y2
+xx = c(min(x), x, max(x))
+yy = c(0, y, 0)
+polygon(xx, yy, col="#FF000050", border=NA)
+
+
+
+
+
 pbdb_richness <- function (data, rank= "species", 
                            resolution=1, 
                            temporal_extent=c(0,100)){
@@ -180,9 +212,24 @@ if (length (data$rnk)!=0){
   richness<- colSums (a+0, na.rm=T)
   richness<- data.frame (sequence, richness)
 
-  plot (richness, type="o", pch=16, ylab=paste ("Number of", rank), xlab="Time (Ma)", axes=F)
-  axis (1)
-  axis (2)
+  plot.new()
+  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+  plot.window(xlim=c(max (te),min(te)), xaxs="i",
+              ylim=c(0,max(richness [,2])), yaxs="i")
+  
+  rect(xleft=min(te), ybottom=min(richness [,2]), xright=max(te), ytop=max(richness [,2]), 
+       density = NULL, angle = 45,
+       col = "#88888890", border = NA)
+  abline(v=seq(min(te), max(te), by=1), col="#FFFFFF40")
+  abline(h=seq(0, max(richness [,2]), 
+               by=(max(richness [,2])/10)), col="#FFFFFF40")
+  xx = c(min(te), sequence, max(te))
+  yy = c(0, richness[,2], 0)
+  polygon(xx, yy, col="light blue", border=NA)
+  axis(1)
+  axis(2, las=1)
+  mtext("Million years before present", line=3, adj=1, side=1)
+  mtext(paste ("Number of", rank), line= 3 , adj=0, side=2)
   return (richness)
 
 }
