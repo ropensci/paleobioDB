@@ -95,8 +95,8 @@ pbdb_time_spam<- function (data, rank="species", col="skyblue2", names=TRUE){
 #'}
 #' 
 #' 
-??gridSample
-pbdb_ext_evo<- function (data, rank="species", colour=c("black","skyblue2")) { 
+
+pbdb_evo<- function (data, rank="species", colour="#0000FF30", bord="#0000FF") { 
   
 if (length (data$taxon_rank)!=0){ 
 species<- data [data$taxon_rank==rank, ]
@@ -118,27 +118,177 @@ if (length (data$rnk)!=0){
   colnames (temporal_range)<- c("max", "min")
   temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
   evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
+  evo$Var1<- as.numeric (evo$Var1)
+
+  ymx<- max (evo[,2])
+  ymn<- min (evo[,2])
+  
+  xmx<- max (evo[,1])
+  xmn<- min (evo[,1])
+  
+plot.new()
+par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+plot.window(xlim=c(xmn, xmx), xaxs="i",
+            ylim=c(ymn,ymx), yaxs="i")
+abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
+abline(h=seq(0, ymx, 
+             by=(ymx/10)), col="grey90", lwd=1)
+xx = c(xmn, evo$Var1, xmx)
+yy = c(0, evo$Freq, 0)
+polygon(xx, yy, col=colour, border=bord)
+
+axis(1)
+axis(2, las=1)
+mtext("Million years before present", line=3, adj=1, side=1)
+mtext(paste ("Number of new", rank), line= 3 , adj=0, side=2)
+}
+
+
+pbdb_ext<- function (data, rank="species", colour="#0000FF30", bord="#0000FF") { 
+  
+  if (length (data$taxon_rank)!=0){ 
+    species<- data [data$taxon_rank==rank, ]
+    max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
+    min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
+  }
+  
+  if (length (data$rnk)!=0){
+    rnnk<- data.frame (c("species", "genera", "families", "orders", "classes"), 
+                       c(3,5,9,13,15))
+    rnkk<- rnnk [match (rank, rnnk[,1]), 2]
+    species<- data [data$rnk==rnkk, ]
+    max_sp<- aggregate(species$eag, list(species$tna), max)
+    min_sp<- aggregate(species$lag, list(species$tna), min)   
+  }
+  
+  temporal_range<- data.frame (max_sp [,2], min_sp[,2])
+  row.names (temporal_range)<- max_sp[,1]
+  colnames (temporal_range)<- c("max", "min")
+  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
   ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
   ext<- ext [ext$Var1!=0,]
-  evo$Var1<- as.numeric (evo$Var1)
   ext$Var1<- as.numeric (ext$Var1)
-   
-  ymx<- max (c(evo[,2], ext[,2]))
-  ymm<- min (c(evo[,2], ext[,2]))
   
-  xmx<- max (c(evo[,1], ext[,1]))
-  xmm<- min (c(evo[,1], ext[,1]))
+  ymx<- max (ext[,2])
+  ymn<- min (ext[,2])
   
-  par (mar=c(4,4,2,2))
-  plot (evo, xlab="Time (Ma)", type="o", lty=2, pch=16, col= colour[1],
-        ylab=paste ("Number of", rank), axes=FALSE, xlim=c(xmm-1, xmx+1),
-        ylim=c(ymm-1, ymx+1))
-  lines (ext, type="o", lty=2, pch=16, col=colour[2])
-  legend("topright", c("evolution","extinction"), cex=0.8, 
-         col=colour, pch=16:16, lty=2:2)
-  axis (1)
-  axis (2)
+  xmx<- max (ext[,1])
+  xmn<- min (ext[,1])
+  
+  plot.new()
+  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+  plot.window(xlim=c(xmn, xmx), xaxs="i",
+              ylim=c(ymn,ymx), yaxs="i")
+  abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
+  abline(h=seq(0, ymx, 
+               by=(ymx/10)), col="grey90", lwd=1)
+  xx = c(xmn, evo$Var1, xmx)
+  yy = c(0, evo$Freq, 0)
+  polygon(xx, yy, col=colour, border=bord)
+  
+  axis(1)
+  axis(2, las=1)
+  mtext("Million years before present", line=3, adj=1, side=1)
+  mtext(paste ("Number of extinct", rank), line= 3 , adj=0, side=2)
 }
+
+
+pbdb_evo_rate<- function (data, rank="species", colour="#0000FF30", bord="#0000FF") { 
+  
+  if (length (data$taxon_rank)!=0){ 
+    species<- data [data$taxon_rank==rank, ]
+    max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
+    min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
+  }
+  
+  if (length (data$rnk)!=0){
+    rnnk<- data.frame (c("species", "genera", "families", "orders", "classes"), 
+                       c(3,5,9,13,15))
+    rnkk<- rnnk [match (rank, rnnk[,1]), 2]
+    species<- data [data$rnk==rnkk, ]
+    max_sp<- aggregate(species$eag, list(species$tna), max)
+    min_sp<- aggregate(species$lag, list(species$tna), min)   
+  }
+  
+  temporal_range<- data.frame (max_sp [,2], min_sp[,2])
+  row.names (temporal_range)<- max_sp[,1]
+  colnames (temporal_range)<- c("max", "min")
+  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
+  evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
+  evo$Var1<- as.numeric (evo$Var1)
+  perc<- (evo$Freq[1:length (evo$Freq)-1]/evo$Freq[2:length (evo$Freq)])*100
+  
+  ymx<- max (perc)
+  ymn<- min (perc)
+  xmx<- max (evo[,1])
+  xmn<- min (evo[,1])
+  
+  plot.new()
+  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+  plot.window(xlim=c(xmn, xmx), xaxs="i",
+              ylim=c(ymn,ymx), yaxs="i")
+  abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
+  abline(h=seq(0, ymx, 
+               by=(ymx/10)), col="grey90", lwd=1)
+  xx = c(xmn, evo$Var1, xmx)
+  yy = c(0, c(0,perc), 0)
+  polygon(xx, yy, col=colour, border=bord)
+  
+  axis(1)
+  axis(2, las=1)
+  mtext("Million years before present", line=3, adj=1, side=1)
+  mtext(paste ("Percentage of new", rank), line= 3 , adj=0, side=2)
+}
+
+
+pbdb_ext_rate<- function (data, rank="species", colour="#0000FF30", bord="#0000FF") { 
+  
+  if (length (data$taxon_rank)!=0){ 
+    species<- data [data$taxon_rank==rank, ]
+    max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
+    min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
+  }
+  
+  if (length (data$rnk)!=0){
+    rnnk<- data.frame (c("species", "genera", "families", "orders", "classes"), 
+                       c(3,5,9,13,15))
+    rnkk<- rnnk [match (rank, rnnk[,1]), 2]
+    species<- data [data$rnk==rnkk, ]
+    max_sp<- aggregate(species$eag, list(species$tna), max)
+    min_sp<- aggregate(species$lag, list(species$tna), min)   
+  }
+  
+  temporal_range<- data.frame (max_sp [,2], min_sp[,2])
+  row.names (temporal_range)<- max_sp[,1]
+  colnames (temporal_range)<- c("max", "min")
+  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
+  ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
+  ext<- ext [ext$Var1!=0,]
+  ext$Var1<- as.numeric (ext$Var1)
+  perc<- (ext$Freq[1:length (ext$Freq)-1]/ext$Freq[2:length (ext$Freq)])*100
+  
+  ymx<- max (perc)
+  ymn<- min (perc)
+  xmx<- max (ext[,1])
+  xmn<- min (ext[,1])
+  
+  plot.new()
+  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+  plot.window(xlim=c(xmn, xmx), xaxs="i",
+              ylim=c(ymn,ymx), yaxs="i")
+  abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
+  abline(h=seq(0, ymx, 
+               by=(ymx/10)), col="grey90", lwd=1)
+  xx = c(xmn, ext$Var1, xmx)
+  yy = c(0, c(0,perc), 0)
+  polygon(xx, yy, col=colour, border=bord)
+  
+  axis(1)
+  axis(2, las=1)
+  mtext("Million years before present", line=3, adj=1, side=1)
+  mtext(paste ("Percentage of extinct", rank), line= 3 , adj=0, side=2)
+}
+
 
 #' pbdb_richness
 #' 
@@ -146,41 +296,14 @@ if (length (data$rnk)!=0){
 #' 
 #' 
 
-x<- 1920:1970
-y1<- rnorm (51)
-y2<- rnorm (51)
-dev.off()
-plot.new()
-par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-plot.window(xlim=c(1920,1970), xaxs="i",
-            ylim=c(0,max(y)), yaxs="i")
-
-rect(xleft=min(x), ybottom=min(y), xright=max(x), ytop=max(y), 
-     density = NULL, angle = 45,
-     col = "#88888890", border = NA)
-abline(v=seq(min(x), max(x), by=1), col="#FFFFFF40")
-abline(h=seq(0, max(y), by=0.5), col="#FFFFFF40")
-xx = c(min(x), x, max(x))
-yy = c(0, y, 0)
-polygon(xx, yy, col="#FFFFFF40", border=NA)
-axis(1)
-axis(2, las=1)
-mtext("Years", line=3, adj=1, side=1)
-mtext("Extinctions", line= 3 , adj=1, side=2)
-
-
-y<- y2
-xx = c(min(x), x, max(x))
-yy = c(0, y, 0)
-polygon(xx, yy, col="#FF000050", border=NA)
-
 
 
 
 
 pbdb_richness <- function (data, rank= "species", 
                            resolution=1, 
-                           temporal_extent=c(0,100)){
+                           temporal_extent=c(0,100), 
+                           colour="#0000FF30", bord="#0000FF"){
   if (length (data$taxon_rank)!=0){
   species<- data [data$taxon_rank==rank, ]
   max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
@@ -217,16 +340,12 @@ if (length (data$rnk)!=0){
   plot.window(xlim=c(max (te),min(te)), xaxs="i",
               ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
   
-  rect(xleft=min(te), ybottom=min(richness [,2]), 
-       xright=max(te), ytop=max(richness [,2])+(max(richness [,2])/10), 
-       density = NULL, angle = 45,
-       col = "white", border = NA)
-  abline(v=seq(min(te), max(te), by=1), col="grey", lwd=2)
+  abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)
   abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
-               by=(max(richness [,2])/10)), col="grey", lwd=2)
+               by=(max(richness [,2])/10)), col="grey90", lwd=1)
   xx = c(min(te), sequence, max(te))
   yy = c(0, richness[,2], 0)
-  polygon(xx, yy, col="#0000FF", border="#5090FF90")
+  polygon(xx, yy, col=colour, border=bord)
   axis(1)
   axis(2, las=1)
   mtext("Million years before present", line=3, adj=1, side=1)
