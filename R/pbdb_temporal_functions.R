@@ -220,13 +220,13 @@ if (length (data$rnk)!=0){
   rect(xleft=min(te), ybottom=min(richness [,2]), 
        xright=max(te), ytop=max(richness [,2])+(max(richness [,2])/10), 
        density = NULL, angle = 45,
-       col = "#88888890", border = NA)
-  abline(v=seq(min(te), max(te), by=1), col="#FFFFFF40")
+       col = "white", border = NA)
+  abline(v=seq(min(te), max(te), by=1), col="grey", lwd=2)
   abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
-               by=(max(richness [,2])/10)), col="#FFFFFF40")
+               by=(max(richness [,2])/10)), col="grey", lwd=2)
   xx = c(min(te), sequence, max(te))
   yy = c(0, richness[,2], 0)
-  polygon(xx, yy, col="#8470FF", border="#7D9EC0")
+  polygon(xx, yy, col="#0000FF", border="#5090FF90")
   axis(1)
   axis(2, las=1)
   mtext("Million years before present", line=3, adj=1, side=1)
