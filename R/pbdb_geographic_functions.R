@@ -166,7 +166,7 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
 }
 
 #x11()
-#system.time(pbdb_map(canis,pch=19,col.point=c('light blue','blue')))
+#system.time(pbdb_map(canis,pch=19,col.point=c('light blue','blue'), main='canis'))
 
 
 
@@ -180,7 +180,7 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
     res(r)<-c(res,res)
     values(r)<-NA
     plot(r,xaxt='n',yaxt='n')
-    .add.ColOcean (col.ocean)
+    .add.ColOcean (col.ocean,col.int,...)
     map(col=col.int,fill=T,add=T,...)
     r<-rasterize(data[,1:2],r,data[,3],fun=sum)
 }
@@ -206,6 +206,6 @@ pbdb_map_effort <- function(query,res=1,col.int='white', col.int.line='black', c
     r
 }
 
-#pbdb_map_effort (query,res=4,main='Canis',cex.main=2)
+pbdb_map_effort (canis,res=4,main='Canis',cex.main=2)
 
 #savePlot('pbdb_map_effort.tiff','tiff')
