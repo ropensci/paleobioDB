@@ -125,7 +125,6 @@ plot_pbdb<- function (query, title, colour="turquoise1", dir){
 
 
 ####LUCIANO
-#canis <- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 
 .extract.LatLong <- function (query){
     latlong <- data.frame(lng = query$lng, lat = query$lat)
@@ -133,6 +132,7 @@ plot_pbdb<- function (query, title, colour="turquoise1", dir){
     colnames (counts)<- c("lng", "lat", "Occur")
     counts
 }
+
 
 .add.ColOcean <-function(col.ocean,col.int,...){
     par(mar=c(0,0,0,0),xpd=TRUE,...)
@@ -164,24 +164,32 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
     title(main=main,line=1,...)
     .add.Legend(dat,col.int,...)
 }
-
-#x11()
-#system.time(pbdb_map(canis,pch=19,col.point=c('light blue','blue'), main='canis'))
-
+# canis <- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+# x11()
+#  system.time(pbdb_map(canis,pch=19,col.point=c('light blue','blue'), main='canis'))
+# pbdb_map(canis,pch=19,col.point=c('light blue','blue'), main='canis',font.main=3)
+# 
+# query=canis
 
 
 ####effort
+.add.ColOcean2 <-function(col.ocean,col.int,...){
+    par(mar=c(0,0,0,0),xpd=TRUE,...)
+    map(t='n',add=T,...)
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
+    map(col=col.int,fill=T,add=T,...)
+}
 
 .plot.Raster<-function(data,res,col.int,col.ocean,...){
-    par(mar=c(4,1,4,4),...)
-    e<-map(plot=F,...)
+    par(oma=c(4,0,5,2),...)
+    e<-map()
     ext<-extent(e$range)
     r<-raster(ext)
     res(r)<-c(res,res)
     values(r)<-NA
     plot(r,xaxt='n',yaxt='n')
-    .add.ColOcean (col.ocean,col.int,...)
-    map(col=col.int,fill=T,add=T,...)
+    .add.ColOcean2 (col.ocean,col.int,...)
+   map(col=col.int,fill=T,add=T,...)
     r<-rasterize(data[,1:2],r,data[,3],fun=sum)
 }
 ##r<-.plot.Raster(data,res=5,col.int='black',col.ocean='white')
@@ -189,7 +197,7 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
 .add.pattern<-function(r,col.rich,col.int.line,...){
     Pal <- colorRampPalette(col.rich)
     plot(r,col=alpha(Pal(5),0.8),add=T,...)
-    map(,add=T,col=col.int.line,...)
+    #map(,add=T,col=col.int.line,...)
 }
 #.add.rich(r,col.rich=c('yellow','red'),col.int.line='white')
 
@@ -201,11 +209,17 @@ pbdb_map_effort <- function(query,res=1,col.int='white', col.int.line='black', c
     data <- .extract.LatLong(query)
     r<-.plot.Raster(data,res,col.int,col.ocean,...)
     .add.pattern(r,col.rich,col.int.line,...)
-    title(main=main,line=1,...)
-    mtext('Number of records',4,line=-2,cex=2)
+    title(main=main,...)
+    mtext('Number of records',4,line=-1,cex=2)
     r
 }
-
-pbdb_map_effort (canis,res=4,main='Canis',cex.main=2)
+# x11()
+ pbdb_map_effort (canis,res=2,main='Canis')
+title('A',line=)
 
 #savePlot('pbdb_map_effort.tiff','tiff')
+
+map()
+box()
+axis(1)
+axis(4)
