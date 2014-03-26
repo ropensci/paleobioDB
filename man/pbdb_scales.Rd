@@ -22,9 +22,8 @@ Returns information about multiple time scales.
 }
 \examples{
 \dontrun{
-# Get a dataframe with all the scales available in PBDB setting no ids
+Get a dataframe with all the scales available in PBDB setting no ids
 pbdb_scale ()
-
 }
 }
 

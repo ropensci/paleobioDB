@@ -25,7 +25,6 @@ identifier.
 \examples{
 \dontrun{
 pbdb_scale (id=1, vocab="pbdb")
-
 }
 }
 

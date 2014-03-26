@@ -1,26 +1,7 @@
-#' pbdb_query_occurrences is a highly flexible function. It allows all the parameters available in the PBDB API.
-#' 
-#' Complete list of paramenters is available in http://paleobiodb.org/data1.1/occs/list
-#' Here, for practical reasons we selected the most common filters that 
-#' paleontologists and ecologists might use to run our examples.
-#' 
-#'@param taxon_name Return only collections associated with the specified taxonomic name(s). 
-#'You may specify multiple names, separated by commas.
-#'@param base_name  Return only collections associated with the specified taxonomic name(s), or any of their children. 
-#'You may specify multiple names, separated by commas.
-#'
-#'@param show to show extra variables (e.g. coords)
-#' 
-#' Set the basic query: 
-#' limit= "all" to download all the occurrences (by default the API limit is 500) 
-#' vocab= "pbdb" to show the names of the variables complete (by default variables have short 3-letter names)
-#' base_name= "Canis" to download all the records from the taxon and subtaxa 
-#' (e.g., "Canis", "Canis lupus", "Canis mosbachensis", etc.)
-#' show ="coords" to show latitude and longitude (by default they are not shown)
-#' 
-#' 
 
-pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
+kk<- pbdb_occurrence (id=1001, show="coords")
+is.data.frame (kk)
+
 pbdb_occurrences (id=c(10, 11)) 
 
 pbdb_collection (id=1)

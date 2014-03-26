@@ -5,9 +5,9 @@
 	.package_cache_set('api_format', format)
 }
 
-#' Function that generates the URIs for the paleobiodb.org API
-#' 
-#' @param api_base_url Base url for the 
+# Function that generates the URIs for the paleobiodb.org API
+# 
+# @param api_base_url Base url for the 
 #
 .pbdb_uri_builder <- function(api_base_url, config, query = query, querystring = qs, 
 	endpoint_name = endpoint, api_format = NULL){
@@ -26,8 +26,8 @@
 	uri
 }
 
-#' This functions registers all the endpoints available from the paleobiodb.org REST API
-#'
+# This functions registers all the endpoints available from the paleobiodb.org REST API
+#
 .pbdb_set_up_endpoints<-function(){
 
 	# single occurrencies

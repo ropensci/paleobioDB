@@ -1,7 +1,6 @@
 # R Functions leveraging the use o the different API endpoints available
+#Converts a list in a comma separated string
 
-
-#' Converts a list in a comma separated string
 .implode_to_string<-function(param){
   
   if(!(is.vector(param))){
@@ -20,8 +19,6 @@
   return (str)
 }
 
-#'
-#'
 .pbdb_query<-function(endpoint, query = list()){
 	uri <- .pbdb_query_uri(endpoint, query)
 

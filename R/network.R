@@ -1,5 +1,5 @@
-#' Grabs data as dataframe from a URI in the data_format format
-#' 
+# Grabs data as dataframe from a URI in the data_format format
+ 
 .get_data_from_uri<-function(uri, data_format = 'json'){
 
 	# RCurl: parseHTTPHeader...
@@ -12,11 +12,11 @@
 	df
 }
 
-#' Extracts de body from a HTTP response.
+# Extracts de body from a HTTP response.
 #
-#' @param error_on_not_200 if set to TRUE, will throw error if finds reponse
-#' status differente to 200
-#' 
+# @param error_on_not_200 if set to TRUE, will throw error if finds reponse
+# status differente to 200
+# 
 .extract_response_body<-function(response, error_on_not_200 = TRUE){
 	
 	sp<-strsplit(response, '\r\n\r\n')[[1]]
@@ -35,12 +35,12 @@
 }
 
 
-#' Parse raw data according to configured api call format
-#'
-#' @param data
-#' @return data.frame
-#' @export 
-#'
+# Parse raw data according to configured api call format
+#
+# @param data
+# @return dataframe
+
+#
 .parse_raw_data<-function(data, data_format = 'json'){
 	# package should allow get different formats ?
 
@@ -58,7 +58,7 @@
 }
 
 
-#' Makes a dataframe from a list of lists (fromJSON response)
+# Makes a dataframe from a list of lists (fromJSON response)
 
 .make_data_frame<-function(reg_list){
 

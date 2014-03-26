@@ -35,7 +35,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @param data input dataframe with our query (set vocab= "pbdb" in the query)
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param col to change the colour of the bars in the plot, skyblue2 by default. 
-#' @names to include or not the name of the taxa in the plot (TRUE by default)
+#' @param names TRUE/FALSE (TRUE by default). To include or not the name of the taxa in the plot 
 #' @return  a plot with the time spam of the taxa selected (species, genus, etc.)
 #' @export 
 #' @examples \dontrun{
