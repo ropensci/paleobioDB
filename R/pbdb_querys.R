@@ -215,19 +215,19 @@ pbdb_collections_geo<-function(...){
   
 }
 
-#' pbdb_taxon
+#'pbdb_taxon
 #' 
-#' Returns information about a single taxonomic name, identified either by name or by identifier.
+#'Returns information about a single taxonomic name, identified either by name or by identifier.
 #' 
 #'@param name Return information about the most fundamental taxonomic name matching this string. 
-#' The % and _ characters may be used as wildcards.
+#'The % and _ characters may be used as wildcards.
 #'@param id Return information about the taxonomic name 
 #'corresponding to this identifier. You may not specify both 
 #'name and id in the same query.
 #'
 #'@param ... documentation for all the parameters is available 
 #'in http://paleobiodb.org/data1.1/taxa/single
-#' go to ?pbdb_taxa to see an explanation about the main filtering parameters 
+#'go to ?pbdb_taxa to see an explanation about the main filtering parameters 
 #'
 #' @return a dataframe with information from a single taxon
 #' 
@@ -347,8 +347,8 @@ pbdb_interval<-function(id, ...){
 
 #'pbdb_intervals
 #' 
-#' Returns information about multiple intervals, 
-#' selected according to the parameters you provide.
+#'Returns information about multiple intervals, 
+#'selected according to the parameters you provide.
 #' 
 #'@param id identifiers of the temporal intervals.
 #'@param min_ma return only intervals that are at least this old
@@ -359,7 +359,7 @@ pbdb_interval<-function(id, ...){
 #'(by default variables have short 3-letter names)
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/intervals/lists
-#' @return a dataframe with information from several temporal intervals
+#'@return a dataframe with information from several temporal intervals
 #' 
 #' @export 
 #' @examples \dontrun{
@@ -380,19 +380,18 @@ pbdb_intervals<-function(id, ...){
 
 #'pbdb_scale
 #' 
-#' Returns information about a single time scale, selected by identifier.
+#'Returns information about a single time scale, selected by identifier.
 #' 
 #'@param id identifier of the temporal interval. This parameter is required.
 #'@param vocab set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/scales/single
-#' @return a dataframe with information from a single scale
+#'@return a dataframe with information from a single scale
 #' 
-#' @export 
-#' @examples \dontrun{
-#' pbdb_scale (id=1, vocab="pbdb")
-#' 
+#'@export 
+#'@examples \dontrun{
+#'pbdb_scale (id=1, vocab="pbdb")
 #'}
 #'
 #' 
@@ -407,20 +406,19 @@ pbdb_scale<-function(id, ...){
 
 #'pbdb_scales
 #' 
-#' Returns information about multiple time scales.
+#'Returns information about multiple time scales.
 #' 
 #'@param id identifiers of the scales. 
 #'@param vocab set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/scales/list
-#' @return a dataframe with information from the selected scales
+#'@return a dataframe with information from the selected scales
 #' 
-#' @export 
-#' @examples \dontrun{
-#' # Get a dataframe with all the scales available in PBDB setting no ids
-#' pbdb_scale ()
-#' 
+#'@export 
+#'@examples \dontrun{
+#'Get a dataframe with all the scales available in PBDB setting no ids
+#'pbdb_scale ()
 #'}
 #'
 #' 
@@ -518,6 +516,33 @@ pbdb_strata_auto<-function(id, ...){
 }
 
 
+#'pbdb_reference
+#'
+#'Returns information about a single reference, selected by identifier
+#'
+#'@param id identifier of the reference. This parameter is required.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
+#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/refs/single
+#'go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
+#' 
+#'@return a dataframe with a single reference 
+#'@export 
+#'@examples \dontrun{
+#'pbdb_collection (id=1003, vocab="pbdb", show="loc")
+#'}
+#'
+ 
+pbdb_reference<-function(id, ...){
+  
+  l<-list(...)
+  .pbdb_query('refs/single', query = c(list(id = id), l))
+  
+}
+
+
+
 #'pbdb_references
 #'
 #'Returns information about multiple references, selected according to the parameters you provide.
@@ -574,3 +599,43 @@ pbdb_ref_collections <-function(...){
   
 }
 
+
+#'pbdb_ref_taxa
+#'
+#'This URL path returns information about the source references associated
+#' with taxa in the Paleobiology Database. You can use the same parameters 
+#' that are available with pbdb_taxa, but Reference records are returned 
+#' instead of Taxon records. One record is returned per reference, 
+#'even if it is associated with multiple taxa.
+#'
+#'@param name Return information about the most fundamental taxonomic name matching this string. 
+#' The % and _ characters may be used as wildcards.
+#'@param id Return information about the taxonomic name 
+#'corresponding to this identifier. You may not specify both 
+#'name and id in the same query.
+#'@param exact if this parameter is specified, then the taxon exactly 
+#'matching the specified name or identifier is selected, 
+#'rather than the senior synonym which is the default.
+#'@param show to show extra variables (see documentation for show in http://paleobiodb.org/data1.1/taxa/refs)
+#'@param rel set rel="synonyms" to select all synonyms of the base taxon or taxa; 
+#'rel="children" to select the taxa immediately contained within the base taxon or taxa; 
+#'rel="common_ancestor" to select the most specific taxon that contains all of the base taxa.
+#'@param extant TRUE/FALSE to select extinct/extant taxa.
+#'@param ... documentation for all the parameters is available.
+#'in http://paleobiodb.org/data1.1/taxa/refs
+#'
+#' @return a dataframe with references from a list of taxa
+#' 
+#' @export 
+#' @examples \dontrun{
+#' pbdb_ref_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
+#' 
+#'}
+#'
+
+pbdb_ref_taxa <-function(...){
+  
+  l<-list(...)
+  .pbdb_query('taxa/refs', query = l)
+  
+}

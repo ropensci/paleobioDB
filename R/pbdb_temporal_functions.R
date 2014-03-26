@@ -16,7 +16,8 @@
 #'
 #'
 pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
-  tr<- list (summary=summary (data$eag - data$lag), temporal_resolution=(data$eag - data$lag))
+  tr<- list (summary=summary (data$eag - data$lag), 
+             temporal_resolution=(data$eag - data$lag))
   if (do.plot ==TRUE) {
   hist (unlist (tr [[2]]), freq=T, col="skyblue2", border=F,
         breaks= 50, xlab="Temporal resolution of the data (Ma)", 

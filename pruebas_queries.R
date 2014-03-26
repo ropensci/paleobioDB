@@ -55,7 +55,6 @@ head (canis)
 plot_pbdb (canis, "Canis",
            dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
 
-
 # use min_ma and max_ma to add a filter to the data: minimum and maximum age (specified in Ma) 
 canis_0_2<- pbdb_occurrences (limit=100, 
                                            base_name="Canis", 
@@ -66,11 +65,14 @@ canis_0_2<- pbdb_occurrences (limit=100,
 plot_pbdb (query= canis_0_2, col="red", name= "Canis (0-2 Ma)", 
            dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
 
-canis_quaternary<- pbdb_query_occurrences (limit="all", 
+canis_quaternary<- pbdb_occurrences (limit="all", 
                                     #vocab= "pbdb", 
                                     base_name="Canis", 
                                     interval="Quaternary",
                                     show="coords")
+
+pbdb_reference(360)
+pbdb_ref_taxa (name="Canidae")
 
 data<- canis_quaternary
 plot_pbdb (canis_quaternary, "Canis Quaternary", 
