@@ -82,8 +82,14 @@
 	# refs list
 	.setup_api_endpoint('refs/list', 'refs/list.%s', uri_builder = .pbdb_uri_builder)
   
+	# refs single
+	.setup_api_endpoint('refs/single', 'refs/single.%s', uri_builder = .pbdb_uri_builder)
+  
 	# colls refs
 	.setup_api_endpoint('colls/refs', 'colls/refs.%s', uri_builder = .pbdb_uri_builder)
+	
+  # refs taxa
+	.setup_api_endpoint('taxa/refs', 'taxa/refs.%s', uri_builder = .pbdb_uri_builder)
 	
 }
 
