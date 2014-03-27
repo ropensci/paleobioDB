@@ -12,10 +12,10 @@ plot_pbdb (query, title, colour, dir)
   \item{title}{it sets the title of the map and the name of
   the png file}
 
-  \item{colour}{colour of the points in the map. Turquoise
-  by default.}
+  \item{colour}{colour of the See \code{\link{subset}}
+  points in the map. Turquoise by default.}
 
-  \item{dir}{directory to save the plot}
+  \item{dir}{directory to save the plot \code{df}}
 }
 \description{
 returns a global map for our query. The size of the points

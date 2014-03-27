@@ -4,6 +4,17 @@ is.data.frame (kk)
 
 pbdb_occurrences (id=c(10, 11)) 
 
+data<-  pbdb_occurrences (limit="100", vocab="pbdb",
+                                  base_name="Canidae",  
+                          interval="Quaternary", 
+                          show="coords")
+
+
+pbdb_subtaxa (data)
+names (canidae_quat)
+data<- canidae_quat
+head (canidae_quat)
+
 pbdb_collection (id=1)
 pbdb_collections (limit=100, base_name="Cetacea")
 
@@ -95,8 +106,9 @@ pbdb_subtaxa (canis_quaternary)
 
 str (number of taxa)
 # to check the temporal resolution of the data, in Ma. 
-pbdb_temporal_resolution (carnivora)
-
+pbdb_temporal_resolution (data)
+names (carnivora)
+names (data)
 
 par ( mar=c(8,4,2,0))
 hist (unlist (kk [[2]]), freq=T, col="blue", border=F,

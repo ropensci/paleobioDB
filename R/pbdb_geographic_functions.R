@@ -93,8 +93,8 @@ p<- ggplot(bbox_wintri, aes(long,lat, group=group)) +
 #' @param query a query to the PBDB database, it should have lng
 #' e.g. query<- pbdb_query_occurrences (limit="all", base_name="Canis", show="coords")
 #' @param title it sets the title of the map and the name of the png file 
-#' @param colour colour of the points in the map. Turquoise by default. 
-#' @param dir directory to save the plot
+#' @param colour colour of the See \code{\link{subset}} points in the map. Turquoise by default. 
+#' @param dir directory to save the plot \code{df}
 #' 
 #' @export 
 #' @examples \dontrun{
