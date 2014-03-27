@@ -1,128 +1,3 @@
-#' functions to read the shapefiles and project them to winkel tripel projection
-.cache_wmap<- function (){  
-wmap <- readOGR(dsn="maps/ne_110m_land.shp", layer="ne_110m_land")
-wmap_wintri <- spTransform(wmap, CRS("+proj=wintri"))
-wmap_wintri
-}
-
-.cache_bbox<- function (){  
-bbox <- readOGR("maps/ne_110m_wgs84_bounding_box.shp", layer="ne_110m_wgs84_bounding_box")
-bbox_wintri <- spTransform(bbox, CRS("+proj=wintri"))
-bbox_wintri
-}
-
-.cache_countries<- function (){  
-countries <- readOGR("maps/ne_110m_admin_0_countries.shp", layer="ne_110m_admin_0_countries")
-countries_wintri <- spTransform(countries, CRS("+proj=wintri"))
-countries_wintri
-}
-
-#'Funciton to set the general parameters for the plot
-#' @details Part of this funtion uses modified code from Kristoffer Magnnuson
-#' http://rpsychologist.com/working-with-shapefiles-projections-and-world-maps-in-ggplot/
-#' 
-#' 
-.cache_theme_plot<- function (){  
-# create a blank ggplot theme
-theme_opts <- list(theme(panel.grid.minor = element_blank(),
-                         panel.grid.major = element_blank(),
-                         panel.background = element_blank(),
-                         plot.background = element_rect(fill="white"),
-                         panel.border = element_blank(),
-                         axis.line = element_blank(),
-                         axis.text.x = element_blank(),
-                         axis.text.y = element_blank(),
-                         axis.ticks = element_blank(),
-                         axis.title.x = element_blank(),
-                         axis.title.y = element_blank(), 
-                         plot.title = element_text(size=22)))
-
-p<- ggplot(bbox_wintri, aes(long,lat, group=group)) +
-  
-  geom_polygon(fill="black") +
-  
-  geom_polygon(data=countries_wintri, 
-               aes(long,lat, group=group, fill=hole)) +
-  
-  geom_path(data=countries_wintri, 
-            aes(long,lat, group=group, fill=hole), 
-            color="grey50", size=0.3) +
-  
-  # geom_path(data=grat_wintri, aes(long, lat, group=group, fill=NULL), linetype=3, color="grey60") +
-  
-  coord_equal(ratio=1) +
-  theme_opts +
-  scale_fill_manual(values=c("white", "white"), guide="none") # remove legend
-  p
-}
-
-
-#' 
-#' 
-#' read data and project using winkel tripel projection
-.project_points<- function (query){
-  
-  latlong <- project(cbind(query$lng, query$lat), proj="+proj=wintri")
-  latlong<- as.data.frame (latlong)
-  names (latlong)<- c("lng", "lat")
-  counts<- ddply(latlong,.(lng,lat),nrow)
-  names (counts)<- c("lng", "lat", "Occurrences")
-  counts
-}
-
-
-#' add the points to the ggplot map
-.add_points<- function (points_wt, name, col="turquoise1", dir){
-  
-  p2<- p +  geom_point(data=points_wt, 
-                     aes(lng, lat, 
-                         group=NULL, fill=NULL, 
-                         size=Occurrences), 
-                     color=col, alpha=0.5) +
-                     labs(title=name)
-  p2
-}
-
-
-
-#' plot_pbdb
-#' 
-#' returns a global map for our query. The size of the points indicate the number of fossil records
-#' @usage plot_pbdb (query, title, colour, dir)
-#' 
-#' @param query a query to the PBDB database, it should have lng
-#' e.g. query<- pbdb_query_occurrences (limit="all", base_name="Canis", show="coords")
-#' @param title it sets the title of the map and the name of the png file 
-#' @param colour colour of the points in the map. Turquoise by default. 
-#' @param dir directory to save the plot
-#' 
-#' @export 
-#' @examples \dontrun{
-#' canis<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-#' plot_pbdb (canis, "Canis",colour="red", dir="C:/Users/sara/Documents/_CIENCIAS/pbdb_paper")
-#'}
-#'
-#'
-
-
-plot_pbdb<- function (query, title, colour="turquoise1", dir){
-    if (exists ("bbox_wintri")==FALSE){
-      wmap_wintri<- .cache_wmap()
-      bbox_wintri<- .cache_bbox ()
-      countries_wintri<- .cache_countries ()
-      p<- .cache_theme_plot () 
-    }
-    
-    points_wt<- .project_points (query)
-    p2<- .add_points (points_wt, title, col= colour)+
-    theme(legend.key = element_rect(fill = "white"))
-    
-    #plot (the size of the points is the number of records in the site) 
-    ggsave(plot=p2, paste (dir,"/", title, ".png", sep=""), width=12.5, height=8.25, dpi=300)
-    plot (p2)
-}
-
-
 
 ####LUCIANO
 
@@ -141,35 +16,63 @@ plot_pbdb<- function (query, title, colour="turquoise1", dir){
     map(col=col.int,fill=T,add=T,...)
 }
 
-.add.Points <-function(data,col.point,...){
+.add.Points <-function(data,col.point,pch,...){
     Pal <- colorRampPalette(col.point)
     data$n<-as.numeric(cut(data$Occur,breaks = 5))
     data$Col <- Pal(5)[data$n]
-    points(data[,1:2], col=alpha(data$Col,0.8),...)
+    points(data[,1:2], col=alpha(data$Col,0.8),pch=pch,...)
     data
 }
 
-.add.Legend <- function(dat,col.int,...){
+.add.Legend <- function(dat,col.int,pch,...){
     n=length(unique(dat$Col))
     Col=unique(dat$Col)[order(unique(dat$n))]
     Legend=seq(min(dat$Occur),max(dat$Occur),length.out=n)
-    legend("bottom",col=Col, inset=c(0,-0.11), legend=Legend,ncol=n, title="Occurrences",bg=col.int,...)
+    legend("bottom",col=Col, inset=c(0,-0.11), legend=Legend,ncol=n, title="Occurrences",bg=col.int,pch=pch,...)
 }  
 
-pbdb_map <- function(query,col.int='white',  col.ocean='black',
-                      main=NULL, col.point=c('light blue','blue'),...){
+#' pbdb_map
+#' 
+#' to show of the map of occurences of the fossil data
+#' 
+#' @usage pbdb_map (query, col.int='white',  col.ocean='black', main=NULL, col.point=c('light blue','blue'),...)
+#' 
+#' @param query Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function
+#' @param col.int This will be the color of mainland
+#' @param col.ocean This will be the color of ocean
+#' @param main The title of map 
+#' @param col.point Two or more colors. This generates a color gradient and, is used to show the number of samples at the same point
+#' @param ... Others parameters. See \code{\link{par}} 
+#' @return A map of occurences
+#' @export 
+#' @examples \dontrun{
+#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+#' X11( width=20, height=10) ## or x11()
+#' pbdb_map(data)
+#' pbdb_map(data,pch=1)
+#' pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
+#'}
+#'
+
+
+pbdb_map <- function(query,col.int='white' ,pch=19, col.ocean='black',
+                     main=NULL, col.point=c('light blue','blue'),...){
+    if(names(dev.cur())!='X11cairo'){
+        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map\" help page")}
     .add.ColOcean(col.ocean,col.int,...)
     data <- .extract.LatLong(query)
-    dat<-.add.Points(data,col.point,...)
+    dat<-.add.Points(data,col.point,pch=pch,...)
     title(main=main,line=1,...)
-    .add.Legend(dat,col.int,...)
+    .add.Legend(dat,col.int,pch=pch,...)
 }
-# canis <- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-# x11()
-#  system.time(pbdb_map(canis,pch=19,col.point=c('light blue','blue'), main='canis'))
-# pbdb_map(canis,pch=19,col.point=c('light blue','blue'), main='canis',font.main=3)
-# 
-# query=canis
+canis <- pbdb_occurrences (limit="all", base_name="Canis", show="coords")
+head(canis)
+x11()
+pbdb_map(canis)
+pbdb_map(canis,pch=1)
+pbdb_map(canis,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
+
+head(canis)
 
 
 ####effort
@@ -181,7 +84,7 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
 }
 
 .plot.Raster<-function(data,res,col.int,col.ocean,...){
-    par(oma=c(4,0,5,2),...)
+    par(oma=c(4,0,2,2),...)
     e<-map()
     ext<-extent(e$range)
     r<-raster(ext)
@@ -189,7 +92,7 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
     values(r)<-NA
     plot(r,xaxt='n',yaxt='n')
     .add.ColOcean2 (col.ocean,col.int,...)
-   map(col=col.int,fill=T,add=T,...)
+    map(col=col.int,fill=T,add=T,...)
     r<-rasterize(data[,1:2],r,data[,3],fun=sum)
 }
 ##r<-.plot.Raster(data,res=5,col.int='black',col.ocean='white')
@@ -199,13 +102,13 @@ pbdb_map <- function(query,col.int='white',  col.ocean='black',
     plot(r,col=alpha(Pal(5),0.8),add=T,...)
     #map(,add=T,col=col.int.line,...)
 }
-#.add.rich(r,col.rich=c('yellow','red'),col.int.line='white')
 
-#x11()
-
+x11()
 
 pbdb_map_effort <- function(query,res=1,col.int='white', col.int.line='black', col.ocean='black',
-                          main=NULL, col.rich=c('light blue','blue'),...){
+                            main=NULL, col.rich=c('light blue','blue'),...){
+    if(names(dev.cur())!='X11cairo'){
+        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map_effort\" help page")}
     data <- .extract.LatLong(query)
     r<-.plot.Raster(data,res,col.int,col.ocean,...)
     .add.pattern(r,col.rich,col.int.line,...)
@@ -214,12 +117,48 @@ pbdb_map_effort <- function(query,res=1,col.int='white', col.int.line='black', c
     r
 }
 # x11()
- pbdb_map_effort (canis,res=2,main='Canis')
-title('A',line=)
-
+#  pbdb_map_effort (canis,res=2,main='Canis')
+# title('A',line=1)
+# box()
 #savePlot('pbdb_map_effort.tiff','tiff')
 
-map()
-box()
-axis(1)
-axis(4)
+###extrai o esforço amostral 
+.extract.rank.pbdb<-function(query,rank){
+    if (length (query$taxon_rank)!=0){ 
+        species<- query [query$taxon_rank==rank, ]
+        s<-split(species,paste(species$lng,species$lat))
+        X<-do.call(rbind,lapply(s,function(x)c(x$lng[1],x$lat[1],length(unique(x$taxon_name)))))
+    }
+    
+    if (length (query$rnk)!=0){
+        rnnk<- data.frame (c("species", "genera", "families", "orders", "classes"), 
+                           c(3,5,9,13,15))
+        rnkk<- rnnk [match (rank, rnnk[,1]), 2]
+        species<- query [query$rnk==rnkk, ]
+        s<-split(species,paste(species$lng,species$lat))
+        x<-s[[1]]
+        X<-do.call(rbind,lapply(s,function(x)c(x$lng[1],x$lat[1],length(unique(x$tna)))))   
+    }
+    rownames(X)<-NULL
+    colnames(X)<-c('lng','lat','rich')
+    X
+}
+
+
+
+pbdb_map_richness <- function(query, rank='genera', res=1,col.int='white', col.int.line='black', col.ocean='black',
+                            main=NULL, col.rich=c('light blue','blue'),...){
+    if(!any(rank==c("species", "genera", "families", "orders", "classes"))){
+        stop("Invalid rank name. Use: \"species\" or \"genera\" or \"families\" or \"orders\" or \"classes\"" )}
+    if(names(dev.cur())!='X11cairo'){
+        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pbdb_map_richness\" help page")}
+    
+    data <- .extract.rank.pbdb(query,rank)
+    r<-.plot.Raster(data,res,col.int,col.ocean,...)
+    .add.pattern(r,col.rich,col.int.line,...)
+    title(main=main,...)
+    mtext(paste('Richness of', rank),4,line=-1,cex=2)
+    r
+}
+pbdb_map_richness (query,rank='genera',res=4,main='canis')
+x11()
