@@ -29,10 +29,29 @@ test_that("pbdb_richness output is a dataframe, and the names are characters", {
   response<-  pbdb_richness (data, 
                              rank="family", 
                              resolution=1, 
-                             temporal_extent=c(0,3))
+                             temporal_extent=c(0,3), do.plot=F)
+  expect_true(is.data.frame (response))
+  expect_is (names (response)[1], "character")
+  expect_true (dim (response)[1]>=1)
+})
+
+context("pbdb_evo")
+test_that("pbdb_evo output is a dataframe, and the names are characters", {
+  response<-  pbdb_evo (data, 
+                             rank="family", 
+                             , do.plot=F)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)
 })
 
 
+context("pbdb_ext")
+test_that("pbdb_ext output is a dataframe, and the names are characters", {
+  response<-  pbdb_ext (data, 
+                        rank="species", 
+                        , do.plot=F)
+  expect_true(is.data.frame (response))
+  expect_is (names (response)[1], "character")
+  expect_true (dim (response)[1]>=1)
+})

@@ -86,6 +86,8 @@ carnivora2<- pbdb_occurrences (limit="all",
                               show=c("coords", "phylo", "ident"))
 data<- carnivora2
 pbdb_richness(carnivora2)
+pbdb_evo (canis, rank="species")
+pbdb_evo (data, rank="species")
 data<-  pbdb_occurrences (limit="all", vocab="pbdb",
 base_name="Canidae", show=c("phylo", "ident"))
 pbdb_richness (data, rank="species", resolution=0.1, temporal_extent=c(0,40))
