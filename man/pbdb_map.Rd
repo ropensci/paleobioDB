@@ -2,12 +2,15 @@
 \alias{pbdb_map}
 \title{pbdb_map}
 \usage{
-pbdb_map (query, col.int='white',  col.ocean='black', main=NULL, col.point=c('light blue','blue'),...)
+pbdb_map (query, col.int='white' ,pch=19, col.ocean='black', main=NULL, col.point=c('light blue','blue'),...)
 }
 \arguments{
-  \item{query}{Input dataframe with our query}
+  \item{query}{Input dataframe. This dataframe is the
+  output of \code{\link{pbdb_occurrences}} function}
 
   \item{col.int}{This will be the color of mainland}
+
+  \item{pch}{See: \code{\link{par}}}
 
   \item{col.ocean}{This will be the color of ocean}
 
@@ -17,20 +20,21 @@ pbdb_map (query, col.int='white',  col.ocean='black', main=NULL, col.point=c('li
   color gradient and, is used to show the number of samples
   at the same point}
 
-  \item{...}{Other parameters. See \code{\link{par}}}
+  \item{...}{Others parameters. See \code{\link{par}}}
 }
 \value{
-a list with a summary of the temporal resolution of the
-data (min, max, 1st and 3rd quartils, median and mean), and
-the temporal resolution of each fossil record (Ma).
+A map of occurences
 }
 \description{
-to show of the map of occurences of the fossil data
+shows the map of occurrences of fossil records
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (taxa= "Canidae", time= "Quaternary")
-pbdb_temporal_resolution (data)
+data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+X11( width=20, height=10) ## or x11()
+pbdb_map(data)
+pbdb_map(data,pch=1)
+pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
 }
 }
 
