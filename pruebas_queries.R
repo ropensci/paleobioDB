@@ -85,8 +85,11 @@ carnivora2<- pbdb_occurrences (limit="all",
                               interval="Quaternary",             
                               show=c("coords", "phylo", "ident"))
 data<- carnivora2
-pbdb_time_spam (carnivora)
-
+pbdb_richness(carnivora2)
+data<-  pbdb_occurrences (limit="all", vocab="pbdb",
+base_name="Canidae", show=c("phylo", "ident"))
+pbdb_richness (data, rank="species", resolution=0.1, temporal_extent=c(0,40))
+ 
 carnivora [295,]
 for (i in 1:dim (carnivora)[2]){
 print (match (carnivora [i], carnivora2[i]))

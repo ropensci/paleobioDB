@@ -1,7 +1,9 @@
 # test for the temporal functions
 
+
 data<-  pbdb_occurrences (limit="100", vocab="pbdb",
-                          base_name="Canidae",  interval="Quaternary")
+                          base_name="Canidae",  interval="Quaternary", 
+                          show=c("phylo", "ident"))
 
 context("pbdb_temporal_resolution")
 test_that("pbdb_temporal_resolution output is a dataframe, and the names are characters", {
