@@ -80,17 +80,29 @@ canidae_quat<-  pbdb_query_occurrences (limit="all",
                                            show="coords")
 names (canis_quaternary)
 
-carnivora<- pbdb_occurrences (limit="all", base_name="Carnivora", 
-                              interval="Quaternary", show="coords")
-     
-names (carnivora)
+carnivora2<- pbdb_occurrences (limit="all", 
+                              base_name="Canis",
+                              interval="Quaternary",             
+                              show=c("coords", "phylo", "ident"))
+data<- carnivora2
+pbdb_time_spam (carnivora)
+
+carnivora [295,]
+for (i in 1:dim (carnivora)[2]){
+print (match (carnivora [i], carnivora2[i]))
+}
+
+cbind (names (carnivora), names (carnivora2))
+
+kk<- carnivora [carnivora$rnk==3,]
+?pbdb_occurrences
 
 head (carnivora)
 pbdb_subtaxa (carnivora)
 head (carnivora)
 pbdb_richness (carnivora, rank="genera", 
                resolution=1, temporal_extent=c(0,10))
-pbdb_ext_evo (carnivora, rank="species")
+pbdb_evo (carnivora, rank="species")
 
 barplot (unlist (canis_sbtx), 
          col="turquoise1", 
@@ -127,9 +139,9 @@ ggplot(mydata) + geom_histogram() + scale_x_log()
 
 # to plot the temporal spam of taxa, set taxon (e.g., "species", "genus"...), 
 # change the colour (blue by default), allow names or not (by default TRUE)
-
-pbdb_time_spam (canis_quaternary, col="red", rank="species",
-                names=F)
+names (canis)
+pbdb_time_spam (canis, col="blue", rank="species",
+                names=T)
 
 
 
@@ -157,9 +169,11 @@ barplot (unlist (canis_sbtx),
 pbdb_time_spam (canis, rank="species")
 
 ## extinction
-canidae<-  pbdb_query_occurrences (limit="all", vocab="pbdb",
-                                        base_name="Canidae")
-pbdb_ext_evo (canidae)
+canidae<-  pbdb_occurrences (limit=100,
+                                        base_name="Canis")
+
+head (canidae)
+pbdb_evo (canidae)
 pbdb_ext_evo (canis, rank="genus")
 pbdb_ext_evo (canis, rank="species")
 
@@ -168,8 +182,15 @@ head (canis)
 canis$early_age
 
 data<- canis
+data<- carnivora
+names (carnivora)
+names (canidae)
+pbdb_richness (canidae, 
+               rank="family", 
+               resolution=1, 
+               temporal_extent=c(0,3))
 
-pbdb_richness (carnivora, rank="families", resolution=0.01, temporal_extent=c(0,3))
+
 head (carnivora)
 canidae<- pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
 canidae
