@@ -153,10 +153,11 @@ pbdb_time_spam<- function (data, rank="species",
   }
     colnames (temporal_range)<- c("max", "min")
     temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-    pos<- c(1:dim (temporal_range)[1]-0.9)
-    t_range<- cbind (temporal_range, pos)
+  
   
   if (do.plot==TRUE){
+    pos<- c(1:dim (temporal_range)[1]-0.9)
+    t_range<- cbind (temporal_range, pos)
   par(mar = c(4, 0, 1, 0))
   plot(c(min (t_range$min), max (t_range$max)),
        c(0, dim (t_range)[1]),
@@ -212,101 +213,8 @@ pbdb_richness <- function (data, rank= "species",
                            bord="#0000FF", 
                            do.plot=TRUE){
   
+ temporal_range<- pbdb_time_spam (data=data, rank=rank,do.plot=FALSE)
   
-  if('taxon_rank' %in% colnames(data)) {
-    if (!'genus_name' %in% colnames(data)){
-      stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
-    }
-    if (rank=="species"){ 
-      selection<- data [data$taxon_rank==rank, ]
-      max_sp<- tapply(selection$early_age, list(selection$taxon_no), max)
-      min_sp<- tapply(selection$late_age, list(selection$taxon_no), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$genus_name[match (row.names (temporal_range), 
-                                                                      selection$taxon_no)], 
-                                          selection$species_name [match (row.names (temporal_range), 
-                                                                         selection$taxon_no)])
-      
-    }
-    
-    if (rank=="genus"){
-      max_sp<- tapply(data$early_age, list(data$genus_name), max)
-      min_sp<- tapply(data$late_age, list(data$genus_name), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="family"){ 
-      max_sp<- tapply(data$early_age, list(data$family), max)
-      min_sp<- tapply(data$late_age, list(data$family), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="order"){ 
-      max_sp<- tapply(data$early_age, list(data$order), max)
-      min_sp<- tapply(data$late_age, list(data$order), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="class"){ 
-      max_sp<- tapply(data$early_age, list(data$class), max)
-      min_sp<- tapply(data$late_age, list(data$class), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="phylum"){ 
-      max_sp<- tapply(data$early_age, list(data$phylum), max)
-      min_sp<- tapply(data$late_age, list(data$phylum), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-  }
-  
-  if('rnk' %in% colnames(data)) {
-    if (!'idt' %in% colnames(data)){
-      stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
-    }
-    if (rank=="species"){ 
-      selection<- data [data$rnk==3, ]
-      max_sp<- tapply(selection$eag, list(selection$tid), max)
-      min_sp<- tapply(selection$lag, list(selection$tid), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$idt[match (row.names (temporal_range), 
-                                                               selection$tid)], 
-                                          selection$ids [match (row.names (temporal_range), 
-                                                                selection$tid)])
-    }
-    
-    if (rank=="genus"){
-      max_sp<- tapply(data$eag, list(data$idt), max)
-      min_sp<- tapply(data$lag, list(data$idt), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="family"){ 
-      max_sp<- tapply(data$eag, list(data$fml), max)
-      min_sp<- tapply(data$lag, list(data$fml), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="order"){ 
-      max_sp<- tapply(data$eag, list(data$odn), max)
-      min_sp<- tapply(data$lag, list(data$odn), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="class"){ 
-      max_sp<- tapply(data$eag, list(data$cll), max)
-      min_sp<- tapply(data$lag, list(data$cll), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="phylum"){ 
-      max_sp<- tapply(data$eag, list(data$phl), max)
-      min_sp<- tapply(data$lag, list(data$phl), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-  }
-
-    
-  colnames (temporal_range)<- c("max", "min")
-  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
   te<- temporal_extent
   sequence<- seq (from=min(te), to= (max(te)), by=resolution)
   
@@ -354,6 +262,7 @@ pbdb_richness <- function (data, rank= "species",
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
+#' @param evo_ext 1= evolution, 2=extinction.
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' 
 #' @return a plot and a dataframe with the 
@@ -367,396 +276,88 @@ pbdb_richness <- function (data, rank= "species",
 #'}
 #' 
 
-
-pbdb_evo<- function (data, rank="species", 
-                     colour="#0000FF30", bord="#0000FF", do.plot=TRUE) { 
+pbdb_evo_ext<- function (data, rank="species", 
+                     colour="#0000FF30", bord="#0000FF", 
+                     do.plot=TRUE, perc=FALSE, temporal_extent=c(0,10), 
+                     resolution=1, evo_ext=1) { 
   
-  
-  
-  if('taxon_rank' %in% colnames(data)) {
-    if (!'genus_name' %in% colnames(data)){
-      stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
-    }
-    if (rank=="species"){ 
-      selection<- data [data$taxon_rank==rank, ]
-      max_sp<- tapply(selection$early_age, list(selection$taxon_no), max)
-      min_sp<- tapply(selection$late_age, list(selection$taxon_no), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$genus_name[match (row.names (temporal_range), 
-                                                                      selection$taxon_no)], 
-                                          selection$species_name [match (row.names (temporal_range), 
-                                                                         selection$taxon_no)])
-      
-    }
-    
-    if (rank=="genus"){
-      max_sp<- tapply(data$early_age, list(data$genus_name), max)
-      min_sp<- tapply(data$late_age, list(data$genus_name), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="family"){ 
-      max_sp<- tapply(data$early_age, list(data$family), max)
-      min_sp<- tapply(data$late_age, list(data$family), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="order"){ 
-      max_sp<- tapply(data$early_age, list(data$order), max)
-      min_sp<- tapply(data$late_age, list(data$order), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="class"){ 
-      max_sp<- tapply(data$early_age, list(data$class), max)
-      min_sp<- tapply(data$late_age, list(data$class), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="phylum"){ 
-      max_sp<- tapply(data$early_age, list(data$phylum), max)
-      min_sp<- tapply(data$late_age, list(data$phylum), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
+  temporal_range<- pbdb_time_spam (data=data, rank=rank,do.plot=FALSE)
+  te<- temporal_extent
+  sequence<- seq (from=min(te), to= (max(te)), by=resolution)
+  intv<- data.frame (min=sequence [1:length (sequence)-1], 
+                     max=sequence [2:length (sequence)]) 
+  labels1<- paste (intv[,1], intv[,2], sep="-")
+  labels2<- paste (labels[1:(length (labels)-1)], labels[2:(length (labels))], sep=" to ")
+  res_sp<- list ()
+  for (i in 1:dim(intv)[1])
+  {
+  intvv<- intv [i,]
+  sps<-temporal_range [unlist (which (intvv$max <=temporal_range$max & 
+                           intvv$min >=temporal_range$min)),]
+  res_sp[[i]]<- sps
   }
   
-  if('rnk' %in% colnames(data)) {
-    if (!'idt' %in% colnames(data)){
-      stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
-    }
-    if (rank=="species"){ 
-      selection<- data [data$rnk==3, ]
-      max_sp<- tapply(selection$eag, list(selection$tid), max)
-      min_sp<- tapply(selection$lag, list(selection$tid), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$idt[match (row.names (temporal_range), 
-                                                               selection$tid)], 
-                                          selection$ids [match (row.names (temporal_range), 
-                                                                selection$tid)])
-    }
+  change<- data.frame ()
+  for (i in length (res_sp):2)
+  {
+  new<- length (setdiff (row.names (res_sp[[i-1]]), row.names (res_sp[[i]])))
+  ext<- length (setdiff (row.names (res_sp[[i]]), row.names (res_sp[[i-1]])))
+  col<- c(new, ext)
+  change<- rbind (change, col)
+  }  
+  names (change)<- c("new", "ext")
+  row.names (change)<- labels2
+  
+  if (perc==TRUE){
+  increment<- (evo$Freq[1:length (evo$Freq)-1]*100/evo$Freq[2:length (evo$Freq)])
+  start<- evo$Var1[1:length (evo$Var1)-1]
+  end<-  evo$Var1[2:length (evo$Var1)]
+  percentage<- data.frame (start, end, increment)
+    if (plot==TRUE){
+    ymx<- max (increment)
+    ymn<- min (increment)
+    xmn<- evo$Var1[1]
+    xmx<- evo$Var1 [length (evo$Var1)]
+    plot.new()
+    par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+    plot.window(xlim=c(xmn, xmx), xaxs="i",
+                ylim=c(ymn,ymx), yaxs="i")
+    abline(v=seq(xmn, xmx, by=(xmx/10)), col="grey90", lwd=1)
+    abline(h=seq(0, ymx,  by=(ymx/10)), col="grey90", lwd=1)
+    xx = c(xmn, evo$Var1, xmx)
+    yy = c(0, c(increment,0), 0)
+    polygon(xx, yy, col=colour, border=bord)
+    axis(1, line=1)
+    axis(2, line=0.5, las=1)
+    mtext("Million years before present", line=3, adj=1, side=1)
+    mtext(paste ("% Percentage of Increment"), line= 3 , adj=0, side=2)
     
-    if (rank=="genus"){
-      max_sp<- tapply(data$eag, list(data$idt), max)
-      min_sp<- tapply(data$lag, list(data$idt), min)
-      temporal_range<- data.frame (max_sp, min_sp)
     }
+  return (percentage)
+  } else { 
+    if (do.plot==TRUE){
+    ymx<- max (change[,evo_ext])
+    ymn<- min (change[,evo_ext])
+    xmx<- sequence[length (sequence)-1]
+    xmn<- sequence [2]
+    plot.new()
+    par (mar=c(5,5,2,5),font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+    plot.window(xlim=c(xmn, xmx), xaxs="i",
+                ylim=c(ymn,ymx), yaxs="i")
+    abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
+    abline(h=seq(0, ymx, 
+                 by=(ymx/10)), col="grey90", lwd=1)
+    xx <- c(xmn,  sequence[2:(length (sequence)-1)], xmx)
+    yy <- c(0, change[,evo_ext], 0)
+    polygon(xx, yy, col=colour, border=bord)
     
-    if (rank=="family"){ 
-      max_sp<- tapply(data$eag, list(data$fml), max)
-      min_sp<- tapply(data$lag, list(data$fml), min)
-      temporal_range<- data.frame (max_sp, min_sp)
+    axis(1, line=1, labels=labels2, at=c(1:length (labels2)))
+    axis(2, line=1, las=1)
+    mtext("Million years before present", line=3, adj=1, side=1)
+    mtext(rank, line= 3 , adj=0, side=2)
+    title (ifelse (evo_ext==1,"Evolution", "Extinction"))
     }
-    if (rank=="order"){ 
-      max_sp<- tapply(data$eag, list(data$odn), max)
-      min_sp<- tapply(data$lag, list(data$odn), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="class"){ 
-      max_sp<- tapply(data$eag, list(data$cll), max)
-      min_sp<- tapply(data$lag, list(data$cll), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="phylum"){ 
-      max_sp<- tapply(data$eag, list(data$phl), max)
-      min_sp<- tapply(data$lag, list(data$phl), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
+  return (change)
   }
-  
-  
-  colnames (temporal_range)<- c("max", "min")
-  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-  evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
-  evo$Var1<- as.numeric (evo$Var1)
-
-  ymx<- max (evo[,2])
-  ymn<- min (evo[,2])
-  
-  xmx<- max (evo[,1])
-  xmn<- min (evo[,1])
-
-if (do.plot==TRUE){
-plot.new()
-par (mar=c(5,5,2,5),font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-plot.window(xlim=c(xmn, xmx), xaxs="i",
-            ylim=c(ymn,ymx), yaxs="i")
-abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
-abline(h=seq(0, ymx, 
-             by=(ymx/10)), col="grey90", lwd=1)
-xx = c(xmn, evo$Var1, xmx)
-yy = c(0, evo$Freq, 0)
-polygon(xx, yy, col=colour, border=bord)
-
-axis(1, line=1)
-axis(2, line=1, las=1)
-mtext("Million years before present", line=3, adj=1, side=1)
-mtext(rank, line= 3 , adj=0, side=2)
-title ("Evolution")
 }
-names (evo)<- c("time", rank)
-return (evo)
-
-}
-
-
-#' pbdb_ext
-#' 
-#' Plots the extinction of the selected taxon rank across the time.
-#' 
-#' @usage pbdb_ext (data, rank, colour, bord, do.plot)
-#' 
-#' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
-#' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
-#' to do that
-#' set: show=c("phylo", "ident") (see example).
-#' @param rank to set which taxon rank you are interested. By default rank= "species"
-#' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
-#' @param bord to set the colour of the border of the polygon
-#' @param do.plot TRUE/FALSE (TRUE by default).
-#' 
-#' @return a plot and a dataframe with the 
-#' number of extinctions across time
-#' 
-#' @examples \dontrun{
-#' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
-#' base_name="Canidae", show=c("phylo", "ident"))
-#' pbdb_ext (canidae, rank="genus")
-#' pbdb_ext (canidae, rank="species")
-#'}
-#' 
-
-
-  
-
-pbdb_ext<- function (data, rank="species", colour="#0000FF30", 
-                     bord="#0000FF", do.plot=TRUE) { 
-  
-  
-  if('taxon_rank' %in% colnames(data)) {
-    if (!'genus_name' %in% colnames(data)){
-      stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
-    }
-    if (rank=="species"){ 
-      selection<- data [data$taxon_rank==rank, ]
-      max_sp<- tapply(selection$early_age, list(selection$taxon_no), max)
-      min_sp<- tapply(selection$late_age, list(selection$taxon_no), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$genus_name[match (row.names (temporal_range), 
-                                                                      selection$taxon_no)], 
-                                          selection$species_name [match (row.names (temporal_range), 
-                                                                         selection$taxon_no)])
-      
-    }
-    
-    if (rank=="genus"){
-      max_sp<- tapply(data$early_age, list(data$genus_name), max)
-      min_sp<- tapply(data$late_age, list(data$genus_name), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="family"){ 
-      max_sp<- tapply(data$early_age, list(data$family), max)
-      min_sp<- tapply(data$late_age, list(data$family), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="order"){ 
-      max_sp<- tapply(data$early_age, list(data$order), max)
-      min_sp<- tapply(data$late_age, list(data$order), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="class"){ 
-      max_sp<- tapply(data$early_age, list(data$class), max)
-      min_sp<- tapply(data$late_age, list(data$class), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="phylum"){ 
-      max_sp<- tapply(data$early_age, list(data$phylum), max)
-      min_sp<- tapply(data$late_age, list(data$phylum), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-  }
-  
-  if('rnk' %in% colnames(data)) {
-    if (!'idt' %in% colnames(data)){
-      stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
-    }
-    if (rank=="species"){ 
-      selection<- data [data$rnk==3, ]
-      max_sp<- tapply(selection$eag, list(selection$tid), max)
-      min_sp<- tapply(selection$lag, list(selection$tid), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$idt[match (row.names (temporal_range), 
-                                                               selection$tid)], 
-                                          selection$ids [match (row.names (temporal_range), 
-                                                                selection$tid)])
-    }
-    
-    if (rank=="genus"){
-      max_sp<- tapply(data$eag, list(data$idt), max)
-      min_sp<- tapply(data$lag, list(data$idt), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="family"){ 
-      max_sp<- tapply(data$eag, list(data$fml), max)
-      min_sp<- tapply(data$lag, list(data$fml), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="order"){ 
-      max_sp<- tapply(data$eag, list(data$odn), max)
-      min_sp<- tapply(data$lag, list(data$odn), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    if (rank=="class"){ 
-      max_sp<- tapply(data$eag, list(data$cll), max)
-      min_sp<- tapply(data$lag, list(data$cll), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-    if (rank=="phylum"){ 
-      max_sp<- tapply(data$eag, list(data$phl), max)
-      min_sp<- tapply(data$lag, list(data$phl), min)
-      temporal_range<- data.frame (max_sp, min_sp)
-    }
-    
-  }
-  
-  colnames (temporal_range)<- c("max", "min")
-  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-  ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
-  ext<- ext [ext$Var1!=0,]
-  ext$Var1<- as.numeric (ext$Var1)
-  
-  ymx<- max (ext[,2])
-  ymn<- min (ext[,2])
-  
-  xmx<- max (ext[,1])
-  xmn<- min (ext[,1])
-  
-if (do.plot==TRUE){
-  
-  plot.new()
-  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-  plot.window(xlim=c(xmn, xmx), xaxs="i",
-              ylim=c(ymn,ymx), yaxs="i")
-  abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
-  abline(h=seq(0, ymx, 
-               by=(ymx/10)), col="grey90", lwd=1)
-  xx = c(xmn, ext$Var1, xmx)
-  yy = c(0, ext$Freq, 0)
-  polygon(xx, yy, col=colour, border=bord)
-  
-  axis(1, line=1)
-  axis(2, line=1, las=1)
-  mtext("Million years before present", line=3, adj=1, side=1)
-  mtext(rank, line= 3 , adj=0, side=2)
-  title ("Extinction")
-  } 
-names (ext)<- c("time", rank)
-return (ext)
-}
-
-
-
-
-pbdb_evo_rate<- function (data, rank="species", colour="#0000FF30", bord="#0000FF") { 
-  
-  if (length (data$taxon_rank)!=0){ 
-    species<- data [data$taxon_rank==rank, ]
-    max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
-    min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
-  }
-  
-  if (length (data$rnk)!=0){
-    rnnk<- data.frame (c("species", "genera", "families", "orders", "classes"), 
-                       c(3,5,9,13,15))
-    rnkk<- rnnk [match (rank, rnnk[,1]), 2]
-    species<- data [data$rnk==rnkk, ]
-    max_sp<- aggregate(species$eag, list(species$tna), max)
-    min_sp<- aggregate(species$lag, list(species$tna), min)   
-  }
-  
-  temporal_range<- data.frame (max_sp [,2], min_sp[,2])
-  row.names (temporal_range)<- max_sp[,1]
-  colnames (temporal_range)<- c("max", "min")
-  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-  evo<- as.data.frame (table (temporal_range[,1]), stringsAsFactors=F)
-  evo$Var1<- as.numeric (evo$Var1)
-  perc<- (evo$Freq[1:length (evo$Freq)-1]/evo$Freq[2:length (evo$Freq)])*100
-  
-  ymx<- max (perc)
-  ymn<- min (perc)
-  xmx<- max (evo[,1])
-  xmn<- min (evo[,1])
-  
-  plot.new()
-  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-  plot.window(xlim=c(xmn, xmx), xaxs="i",
-              ylim=c(ymn,ymx), yaxs="i")
-  abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
-  abline(h=seq(0, ymx, 
-               by=(ymx/10)), col="grey90", lwd=1)
-  xx = c(xmn, evo$Var1, xmx)
-  yy = c(0, c(0,perc), 0)
-  polygon(xx, yy, col=colour, border=bord)
-  
-  axis(1)
-  axis(2, las=1)
-  mtext("Million years before present", line=3, adj=1, side=1)
-  mtext(paste ("Percentage of new", rank), line= 3 , adj=0, side=2)
-  title ("Evolution")
-}
-
-
-pbdb_ext_rate<- function (data, rank="species", colour="#0000FF30", bord="#0000FF") { 
-  
-  if (length (data$taxon_rank)!=0){ 
-    species<- data [data$taxon_rank==rank, ]
-    max_sp<- aggregate(species$early_age, list(species$taxon_name), max)
-    min_sp<- aggregate(species$late_age, list(species$taxon_name), min)
-  }
-  
-  if (length (data$rnk)!=0){
-    rnnk<- data.frame (c("species", "genera", "families", "orders", "classes"), 
-                       c(3,5,9,13,15))
-    rnkk<- rnnk [match (rank, rnnk[,1]), 2]
-    species<- data [data$rnk==rnkk, ]
-    max_sp<- aggregate(species$eag, list(species$tna), max)
-    min_sp<- aggregate(species$lag, list(species$tna), min)   
-  }
-  
-  temporal_range<- data.frame (max_sp [,2], min_sp[,2])
-  row.names (temporal_range)<- max_sp[,1]
-  colnames (temporal_range)<- c("max", "min")
-  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
-  ext<- as.data.frame (table (temporal_range[,2]), stringsAsFactors=F)
-  ext<- ext [ext$Var1!=0,]
-  ext$Var1<- as.numeric (ext$Var1)
-  perc<- (ext$Freq[1:length (ext$Freq)-1]/ext$Freq[2:length (ext$Freq)])*100
-  
-  ymx<- max (perc)
-  ymn<- min (perc)
-  xmx<- max (ext[,1])
-  xmn<- min (ext[,1])
-  
-  plot.new()
-  par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-  plot.window(xlim=c(xmn, xmx), xaxs="i",
-              ylim=c(ymn,ymx), yaxs="i")
-  abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
-  abline(h=seq(0, ymx, 
-               by=(ymx/10)), col="grey90", lwd=1)
-  xx = c(xmn, ext$Var1, xmx)
-  yy = c(0, c(0,perc), 0)
-  polygon(xx, yy, col=colour, border=bord)
-  
-  axis(1)
-  axis(2, las=1)
-  mtext("Million years before present", line=3, adj=1, side=1)
-  mtext(paste ("Percentage of extinct", rank), line= 3 , adj=0, side=2)
-}
-
 
