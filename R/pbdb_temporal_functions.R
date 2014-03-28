@@ -57,7 +57,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #'}
   
 
-pbdb_time_spam<- function (data, rank="species", 
+pbdb_time_spam<- function (data, rank, 
                              col="skyblue2", names=TRUE, 
                              do.plot=TRUE){
   
@@ -206,7 +206,7 @@ pbdb_time_spam<- function (data, rank="species",
 #'}
 #' 
 
-pbdb_richness <- function (data, rank= "species", 
+pbdb_richness <- function (data, rank, 
                            resolution=1, 
                            temporal_extent=c(0,100), 
                            colour="#0000FF30", 
@@ -265,29 +265,33 @@ pbdb_richness <- function (data, rank= "species",
 #' @param evo_ext 1= evolution, 2=extinction.
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' 
-#' @return a plot and a dataframe with the 
-#' number of new appearances of the selected taxon rank across time
+#' @return a  dataframe with the 
+#' number of new appearances and extinctions of the selected taxon rank across time, 
+#' and a plot with the appearances or extinctions of the selected taxon rank across
+#'  time.
 #' 
 #' @examples \dontrun{
 #' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
 #' base_name="Canidae", show=c("phylo", "ident"))
-#' pbdb_evo (canidae, rank="genus")
-#' pbdb_evo (canidae, rank="species")
+#' pbdb_evo_ext (canidae, rank="genus", evo_ext=1) # plot of the evolutive rates.
+#' pbdb_evo_ext (canidae, rank="species", evo_ext=2) # plot of the extinction rates.
 #'}
 #' 
 
-pbdb_evo_ext<- function (data, rank="species", 
+pbdb_evo_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 
-                     do.plot=TRUE, perc=FALSE, temporal_extent=c(0,10), 
+                     do.plot=TRUE, temporal_extent, 
                      resolution=1, evo_ext=1) { 
   
-  temporal_range<- pbdb_time_spam (data=data, rank=rank,do.plot=FALSE)
+  temporal_range<- pbdb_time_spam (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
   sequence<- seq (from=min(te), to= (max(te)), by=resolution)
   intv<- data.frame (min=sequence [1:length (sequence)-1], 
                      max=sequence [2:length (sequence)]) 
   labels1<- paste (intv[,1], intv[,2], sep="-")
-  labels2<- paste (labels[1:(length (labels)-1)], labels[2:(length (labels))], sep=" to ")
+  labels2<- paste (labels[1:(length (labels)-1)], 
+                   labels[2:(length (labels))], sep=" to ")
+  
   res_sp<- list ()
   for (i in 1:dim(intv)[1])
   {
@@ -308,33 +312,6 @@ pbdb_evo_ext<- function (data, rank="species",
   names (change)<- c("new", "ext")
   row.names (change)<- labels2
   
-  if (perc==TRUE){
-  increment<- (evo$Freq[1:length (evo$Freq)-1]*100/evo$Freq[2:length (evo$Freq)])
-  start<- evo$Var1[1:length (evo$Var1)-1]
-  end<-  evo$Var1[2:length (evo$Var1)]
-  percentage<- data.frame (start, end, increment)
-    if (plot==TRUE){
-    ymx<- max (increment)
-    ymn<- min (increment)
-    xmn<- evo$Var1[1]
-    xmx<- evo$Var1 [length (evo$Var1)]
-    plot.new()
-    par (font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-    plot.window(xlim=c(xmn, xmx), xaxs="i",
-                ylim=c(ymn,ymx), yaxs="i")
-    abline(v=seq(xmn, xmx, by=(xmx/10)), col="grey90", lwd=1)
-    abline(h=seq(0, ymx,  by=(ymx/10)), col="grey90", lwd=1)
-    xx = c(xmn, evo$Var1, xmx)
-    yy = c(0, c(increment,0), 0)
-    polygon(xx, yy, col=colour, border=bord)
-    axis(1, line=1)
-    axis(2, line=0.5, las=1)
-    mtext("Million years before present", line=3, adj=1, side=1)
-    mtext(paste ("% Percentage of Increment"), line= 3 , adj=0, side=2)
-    
-    }
-  return (percentage)
-  } else { 
     if (do.plot==TRUE){
     ymx<- max (change[,evo_ext])
     ymn<- min (change[,evo_ext])
@@ -358,6 +335,6 @@ pbdb_evo_ext<- function (data, rank="species",
     title (ifelse (evo_ext==1,"Evolution", "Extinction"))
     }
   return (change)
-  }
 }
+
 

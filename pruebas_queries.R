@@ -9,6 +9,18 @@ data<-  pbdb_occurrences (limit="100", vocab="pbdb",
                           interval="Quaternary", 
                           show="coords")
 
+canis<-  pbdb_occurrences (limit="all", vocab="pbdb",
+                          base_name="Crocuta",  
+                          interval="Quaternary", 
+                          show=c("phylo", "ident"))
+pbdb_evo_ext (canidae, rank="species", evo_ext=1) # plot of the evolutive rates.
+pbdb_evo_ext (canis, rank="species", evo_ext=1, 
+              temporal_extent=c(0,5))
+
+
+
+canis
+
 
 pbdb_subtaxa (data)
 names (canidae_quat)
