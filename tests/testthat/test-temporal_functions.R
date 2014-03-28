@@ -35,7 +35,7 @@ test_that("pbdb_richness output is a dataframe, and the names are characters", {
   expect_true (dim (response)[1]>=1)
 })
 
-context("pbdb_evo")
+context("pbdb_evo_ext")
 test_that("pbdb_evo output is a dataframe, and the names are characters", {
   response<-  pbdb_evo (data, 
                              rank="family", 
@@ -45,13 +45,3 @@ test_that("pbdb_evo output is a dataframe, and the names are characters", {
   expect_true (dim (response)[1]>=1)
 })
 
-
-context("pbdb_ext")
-test_that("pbdb_ext output is a dataframe, and the names are characters", {
-  response<-  pbdb_ext (data, 
-                        rank="species", 
-                        , do.plot=F)
-  expect_true(is.data.frame (response))
-  expect_is (names (response)[1], "character")
-  expect_true (dim (response)[1]>=1)
-})

@@ -281,7 +281,7 @@ pbdb_richness <- function (data, rank,
 pbdb_evo_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 
                      do.plot=TRUE, temporal_extent, 
-                     resolution=1, evo_ext=1) { 
+                     resolution, evo_ext=1) { 
   
   temporal_range<- pbdb_time_spam (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
