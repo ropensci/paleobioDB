@@ -35,29 +35,29 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   return (tr)
 }
 
-#' pbdb_time_spam
+#' pbdb_time_span
 #' 
-#' to show the time spam of a selected taxon rank included in the query
+#' to show the time span of a selected taxon rank included in the query
 #' 
-#' @usage pbdb_time_spam (data)
+#' @usage pbdb_time_span (data)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 #' to do that
 #' set: show=c("phylo", "ident") (see example).
-#' @param rank to set which taxon rank you are interested. By default rank= "species"
+#' @param rank to set which taxon rank you are interested.
 #' @param col to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param names TRUE/FALSE (TRUE by default). To include or not the name of the taxa in the plot 
 #' @param do.plot TRUE/FALSE (TRUE by default).
-#' @return a plot and a dataframe with the time spam of the taxa selected (species, genus, etc.)
+#' @return a plot and a dataframe with the time span of the taxa selected (species, genus, etc.)
 #' @export 
 #' @examples \dontrun{
 #' canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis",interval="Quaternary", show=c("coords", "phylo", "ident"))
-#' pbdb_time_spam (canis_quaternary, rank="species", names=TRUE)
+#' pbdb_time_span (canis_quaternary, rank="species", names=TRUE)
 #'}
   
 
-pbdb_time_spam<- function (data, rank, 
+pbdb_time_span<- function (data, rank, 
                              col="skyblue2", names=TRUE, 
                              do.plot=TRUE){
   
@@ -70,11 +70,18 @@ pbdb_time_spam<- function (data, rank,
       max_sp<- tapply(selection$early_age, list(selection$taxon_no), max)
       min_sp<- tapply(selection$late_age, list(selection$taxon_no), min)
       temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$genus_name[match (row.names (temporal_range), 
-                                                                      selection$taxon_no)], 
-                                          selection$species_name [match (row.names (temporal_range), 
-                                                                         selection$taxon_no)])
-      
+      sp_names<- paste (selection$genus_name[match (row.names (temporal_range), 
+                        selection$taxon_no)], 
+                        selection$species_name [match (row.names (temporal_range), 
+                        selection$taxon_no)])
+      if (anyDuplicated(sp_names)){
+        sp_names [which (duplicated (sp_names))]
+        stop ("The Paleobiology Database has duplicated ids (taxon_no) identyfing 
+              the names of the following species: ",  sp_names [which (duplicated (sp_names))], 
+              ". Please, debug your query personally to choose what to do with the problematic data 
+              and re-run the function again.")
+      }
+      row.names (temporal_range)<- sp_names
     }
     
     if (rank=="genus"){
@@ -116,10 +123,18 @@ pbdb_time_spam<- function (data, rank,
       max_sp<- tapply(selection$eag, list(selection$tid), max)
       min_sp<- tapply(selection$lag, list(selection$tid), min)
       temporal_range<- data.frame (max_sp, min_sp)
-      row.names (temporal_range)<- paste (selection$idt[match (row.names (temporal_range), 
+      sp_names<- paste (selection$idt[match (row.names (temporal_range), 
                                                                selection$tid)], 
                                           selection$ids [match (row.names (temporal_range), 
                                                                 selection$tid)])
+      if (anyDuplicated(sp_names)){
+        sp_names [which (duplicated (sp_names))]
+        stop ("The Paleobiology Database has duplicated ids (taxon_no) identyfing 
+              the names of the following species: ",  sp_names [which (duplicated (sp_names))], 
+              ". Please, debug your query personally to choose what to do with the problematic data 
+              and re-run the function again.")
+      }
+      row.names (temporal_range)<- sp_names
     }
     
     if (rank=="genus"){
@@ -213,7 +228,7 @@ pbdb_richness <- function (data, rank,
                            bord="#0000FF", 
                            do.plot=TRUE){
   
- temporal_range<- pbdb_time_spam (data=data, rank=rank,do.plot=FALSE)
+ temporal_range<- pbdb_time_span (data=data, rank=rank,do.plot=FALSE)
   
   te<- temporal_extent
   sequence<- seq (from=min(te), to= (max(te)), by=resolution)
@@ -283,14 +298,14 @@ pbdb_evo_ext<- function (data, rank,
                      do.plot=TRUE, temporal_extent, 
                      resolution, evo_ext=1) { 
   
-  temporal_range<- pbdb_time_spam (data=data, rank=rank, do.plot=FALSE)
+  temporal_range<- pbdb_time_span (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
   sequence<- seq (from=min(te), to= (max(te)), by=resolution)
   intv<- data.frame (min=sequence [1:length (sequence)-1], 
                      max=sequence [2:length (sequence)]) 
   labels1<- paste (intv[,1], intv[,2], sep="-")
-  labels2<- paste (labels[1:(length (labels)-1)], 
-                   labels[2:(length (labels))], sep=" to ")
+  labels2<- paste (labels1[1:(length (labels1)-1)], 
+                   labels1[2:(length (labels1))], sep=" to ")
   
   res_sp<- list ()
   for (i in 1:dim(intv)[1])
@@ -309,6 +324,7 @@ pbdb_evo_ext<- function (data, rank,
   col<- c(new, ext)
   change<- rbind (change, col)
   }  
+  
   names (change)<- c("new", "ext")
   row.names (change)<- labels2
   

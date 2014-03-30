@@ -5,10 +5,9 @@ setwd ("C:/Users/sara/Documents/_CIENCIAS/pbdb")
 library(rjson)
 library(gtools)
 library(RCurl)
-library(rgdal)
-library(ggplot2)
 library (testthat)
 library(plyr)
+
 
 source.with.encoding('R/network.R', encoding='UTF-8')
 source.with.encoding('R/rest_api_tools.R', encoding='UTF-8')

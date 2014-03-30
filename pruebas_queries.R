@@ -14,8 +14,8 @@ canis<-  pbdb_occurrences (limit="all", vocab="pbdb",
                           interval="Quaternary", 
                           show=c("phylo", "ident"))
 pbdb_evo_ext (canidae, rank="species", evo_ext=1) # plot of the evolutive rates.
-pbdb_evo_ext (canis, rank="species", evo_ext=1, 
-              temporal_extent=c(0,5))
+pbdb_evo_ext (canis, rank="species", evo_ext=2, 
+              temporal_extent=c(0,5), resolution=0.5)
 
 
 
@@ -165,14 +165,36 @@ pbdb_time_spam (canis, col="blue", rank="species",
 
 pbdb_query_occurrence (id=1001)
 
+lista<- paste (selection$genus_name[match (row.names (temporal_range), 
+                                               selection$taxon_no)], 
+                   selection$species_name [match (row.names (temporal_range), 
+                                                  selection$taxon_no)])
 
+selection [which (selection$genus_name=="Phoca" & selection$species_name=="vitulina"),]
+
+
+lista [which (duplicated (lista))]
+  
+  
+carnivora$genus_name
 
 # plot 
-canidae<-  pbdb_occurrences (limit="all", 
+carnivora<-  pbdb_occurrences (limit="all", vocab="pbdb",
                              base_name="Carnivora", 
-                             interval="Quaternary")  
+                             interval="Quaternary",             
+                             show=c("coords", "phylo", "ident"))  
+data<- carnivora
+carnivora2<-  pbdb_occurrences (limit="all",
+                               base_name="Carnivora", 
+                               interval="Quaternary",             
+                               show=c("coords", "phylo", "ident"))  
 
-canis<- pbdb_subtaxa (canidae, do.plot=TRUE)
+pbdb_subtaxa (carnivora, do.plot=TRUE)
+
+names (carnivora)
+carnivora2$rnk
+dev.off()
+pbdb_subtaxa (carnivora2, do.plot=TRUE)
 
 
 canis
