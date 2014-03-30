@@ -43,12 +43,12 @@ canidae<-  pbdb_occurrences (limit="all",
 
 **CAUTION WITH THE RAW DATA**
 
-Beware of synonyms and errors, they could twist your estimations about species richness across time, evolutionary and extinction rates, etc. paleobioDB users should be critical about the raw data downloaded from the database and filter the data before analyzing it.
+Beware of synonyms and errors, they could twist your estimations about species richness, evolutionary and extinction rates, etc. paleobioDB users should be critical about the raw data downloaded from the database and filter the data before analyzing it.
 
-For instance, when using base_name in pbdb_occurrences check out the synonyms that could appear in "taxon_name", "genus_name", etc. 
+For instance, when using "base_name" for downloading the information with the function pbdb_occurrences, check out the synonyms and errors that could appear in "taxon_name", "genus_name", etc. In our example, in canidae$genus_name there are errors: "Canidae" and "Caninae" appeared as genus names. If not eliminated, they will increase the richness of genera. 
 
 
-**Subtaxa**
+**pbdb_subtaxa**
 
 To know how many species, genera, families, etc. are in your data.
   
@@ -56,8 +56,59 @@ To know how many species, genera, families, etc. are in your data.
 pbdb_subtaxa (canidae, do.plot=TRUE)         
 
 ```
+**pbdb_temporal_resolution**
 
-         
+To find out about the temporal resolution of the data in your query
+
+```coffee
+pbdb_temporal_resolution (canidae)
+```   
+
+**pbdb_time_span**
+
+Returns a dataframe and a plot with the time span of the species, genera, families, etc. in your query.
+
+```coffee
+pbdb_time_span (canidae, rank="species")
+``` 
+
+**pbdb_richness**
+
+Returns a dataframe and a plot with the number of species (or genera, families, etc.) across time. You should set the temporal extent and the temporal resolution for the steps.
+
+```coffee
+pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), resolution=1)
+``` 
+
+**pbdb_evo_ext**
+
+Returns a dataframe and a plot with the number of new/extinct species, genera, families, etc. in your query across the time. You should set the temporal extent and the resolution of the steps. 
+
+```coffee
+# evolutionary rates= evo_ext=1
+pbdb_richness (canidae, rank="species", evo_ext=1, temporal_extent=c(0,10), resolution=1)
+
+# extinction rates= evo_ext=2
+pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
+
+**pbdb_time_spam**
+
+``` 
+
+**pbdb_plot**
+
+```coffee
+``` 
+**pbdb_effort**
+
+```coffee
+``` 
+
+**pbdb_richness**
+
+```coffee
+``` 
+
 ## Meta
 
 Please report any [issues or bugs](https://github.com/ropensci/pbdb/issues).

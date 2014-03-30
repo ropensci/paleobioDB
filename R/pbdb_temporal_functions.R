@@ -233,10 +233,10 @@ pbdb_richness <- function (data, rank,
  temporal_range<- pbdb_time_span (data=data, rank=rank,do.plot=FALSE)
   
   te<- temporal_extent
-  sequence<- seq (from=min(te), to= (max(te)), by=resolution)
+  Time<- seq (from=min(te), to= (max(te)), by=resolution)
   
   a<- temporal_range [,2]<=min(te)
-  seq<- sequence [-c(1, length (sequence))]
+  seq<- Time [-c(1, length (Time))]
   for (i in 1:length (seq)) {
     b<- temporal_range [,1]>=seq [i] & temporal_range [,2]<=seq [i+1]
     a<- cbind (a,b)
@@ -244,7 +244,7 @@ pbdb_richness <- function (data, rank,
   b<- temporal_range [,1]>=max(te)
   a<- cbind (a,b)
   richness<- colSums (a+0, na.rm=T)
-  richness<- data.frame (sequence, richness)
+  richness<- data.frame (Time, richness)
   if (do.plot==TRUE) {
   plot.new()
   par (mar=c(5,5,0,5), font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
@@ -254,7 +254,7 @@ pbdb_richness <- function (data, rank,
   abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)
   abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
                by=(max(richness [,2])/10)), col="grey90", lwd=1)
-  xx = c(min(te), sequence, max(te))
+  xx = c(min(te), Time, max(te))
   yy = c(0, richness[,2], 0)
   polygon(xx, yy, col=colour, border=bord)
   axis(1, line=1)
