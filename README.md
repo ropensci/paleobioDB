@@ -35,8 +35,8 @@ library(paleobioDB)
 To download all the fossil data that belongs to the Order Carnivora, set base_name=Carnivora.  
 
 ```coffee
-carnivora<-  pbdb_occurrences (limit="all", vocab="pbdp",
-                             base_name="Carnivora", 
+canidae<-  pbdb_occurrences (limit="all", vocab="pbdp",
+                             base_name="Canidae", 
                              interval="Quaternary",             
                              show=c("coords", "phylo", "ident")) 
 ```
@@ -56,13 +56,13 @@ To cite package `paleobioDB` in publications use:
 ```coffee
 To cite package `paleobioDB` in publications use:
 
-Sara Varela, Javier González-Hernández and Luciano Sgarbi (2014). paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database. R package version 0.1. https://github.com/ropensci/paleobioDB
+Sara Varela, Javier Gonzalez-Hernandez and Luciano F. Sgarbi (2014). paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database. R package version 0.1. https://github.com/ropensci/paleobioDB
 
 A BibTeX entry for LaTeX users is
 
   @Manual{,
     title = {paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database},
-    author = {{Sara Varela}, {Javier González-Hernández} and {Luciano Sgarbi}},
+    author = {{Sara Varela} and {Javier Gonzalez-Hernandez} and {Luciano F. Sgarbi}},
     year = {2014},
     note = {R package version 0.1},
     base = {https://github.com/ropensci/paleobioDB},

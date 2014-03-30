@@ -157,7 +157,7 @@ ggplot(mydata) + geom_histogram() + scale_x_log()
 # to plot the temporal spam of taxa, set taxon (e.g., "species", "genus"...), 
 # change the colour (blue by default), allow names or not (by default TRUE)
 names (canis)
-pbdb_time_spam (canis, col="blue", rank="species",
+pbdb_time_span (canis, col="blue", rank="species",
                 names=T)
 
 
@@ -189,6 +189,13 @@ carnivora2<-  pbdb_occurrences (limit="all",
                                interval="Quaternary",             
                                show=c("coords", "phylo", "ident"))  
 
+
+canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
+                               base_name="Canidae", 
+                               interval="Quaternary",             
+                               show=c("coords", "phylo", "ident")) 
+
+pbdb_time_span (carnivora, rank=)
 pbdb_subtaxa (carnivora, do.plot=TRUE)
 
 names (carnivora)

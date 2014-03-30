@@ -75,9 +75,9 @@ pbdb_time_span<- function (data, rank,
                         selection$species_name [match (row.names (temporal_range), 
                         selection$taxon_no)])
       if (anyDuplicated(sp_names)){
-        sp_names [which (duplicated (sp_names))]
+        sp<-   toString (unlist (sp_names [which (duplicated (sp_names))]))
         stop ("The Paleobiology Database has duplicated ids (taxon_no) identyfing 
-              the names of the following species: ",  sp_names [which (duplicated (sp_names))], 
+              the names of the following species: ",  sp,
               ". Please, debug your query personally to choose what to do with the problematic data 
               and re-run the function again.")
       }
@@ -127,11 +127,13 @@ pbdb_time_span<- function (data, rank,
                                                                selection$tid)], 
                                           selection$ids [match (row.names (temporal_range), 
                                                                 selection$tid)])
+   
       if (anyDuplicated(sp_names)){
-        sp_names [which (duplicated (sp_names))]
+        sp<- toString (unlist (sp_names [which (duplicated (sp_names))]))
         stop ("The Paleobiology Database has duplicated ids (taxon_no) identyfing 
-              the names of the following species: ",  sp_names [which (duplicated (sp_names))], 
-              ". Please, debug your query personally to choose what to do with the problematic data 
+              the names of the following species: ",  
+                    sp,
+                    ". Please, debug your query personally to choose what to do with the problematic data 
               and re-run the function again.")
       }
       row.names (temporal_range)<- sp_names

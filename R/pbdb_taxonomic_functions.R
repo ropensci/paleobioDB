@@ -17,7 +17,7 @@
 #'}
 #'
 
-
+data<- canis
 pbdb_subtaxa<- function (data, 
                          do.plot= TRUE,  col="skyblue2")
   
@@ -27,7 +27,7 @@ pbdb_subtaxa<- function (data,
   orders<- nrow (pbdb_time_span (data=data, rank="order",do.plot=FALSE))
   classes<- nrow (pbdb_time_span (data=data, rank="class",do.plot=FALSE))
 
-  data.frame (species, genera, families, orders, classes)
+  subtaxa<- data.frame (species, genera, families, orders, classes)
 
   return (subtaxa)
 }
