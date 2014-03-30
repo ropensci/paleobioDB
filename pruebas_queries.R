@@ -184,25 +184,28 @@ carnivora<-  pbdb_occurrences (limit="all", vocab="pbdb",
                              interval="Quaternary",             
                              show=c("coords", "phylo", "ident"))  
 data<- carnivora
-carnivora2<-  pbdb_occurrences (limit="all",
-                               base_name="Carnivora", 
+artiodactyla<-  pbdb_occurrences (limit="all",
+                               base_name="Artiodactyla", 
                                interval="Quaternary",             
                                show=c("coords", "phylo", "ident"))  
 
+pbdb_subtaxa (artiodactyla, do.plot=TRUE)
 
-canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
-                               base_name="Canidae", 
+
+canis<-  pbdb_occurrences (limit="all", vocab="pbdb",
+                           base_name="canis", 
                                interval="Quaternary",             
                                show=c("coords", "phylo", "ident")) 
 
-pbdb_time_span (carnivora, rank=)
-pbdb_subtaxa (carnivora, do.plot=TRUE)
+pbdb_time_span (canis, rank="species")
+
+
 
 names (carnivora)
 carnivora2$rnk
 dev.off()
-pbdb_subtaxa (carnivora2, do.plot=TRUE)
-
+pbdb_subtaxa (canidae, do.plot=TRUE)
+canidae
 
 canis
 par ( mar=c(8,4,2,0))
