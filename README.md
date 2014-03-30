@@ -42,7 +42,9 @@ carnivora<-  pbdb_occurrences (limit="all", vocab="pbdp",
 ```
 **
 
-                             
+         
+         
+         
 ## Meta
 
 Please report any [issues or bugs](https://github.com/ropensci/pbdb/issues).
@@ -67,7 +69,6 @@ A BibTeX entry for LaTeX users is
   }
 ```
 
-Get citation information for `solr` in R doing `citation(package = 'solr')`
 ---
 
 This package is part of the [rOpenSci](http://ropensci.org/packages) project.
