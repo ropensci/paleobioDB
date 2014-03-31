@@ -55,13 +55,13 @@
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
 #' pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
+#' l_ply(dev.list(),dev.off)#
 #'}
 #'
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'),...){
-    if(names(dev.cur())!='X11cairo'){
-        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map\" help page")}
+    X11(width=13, height=7)
     .add.ColOcean(col.ocean,col.int,...)
     Y <- .extract.LatLong(data)
     Y1<-.add.Points(Y,col.point,pch,...)
@@ -123,13 +123,13 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' x11() ## maximize and minimize
 #' r<-pbdb_map_effort (data,res=2)
+#' l_ply(dev.list(),dev.off)#
 #'}
 #'
 
 pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
                             col.eff=c('light blue','blue'),...){
-    if(names(dev.cur())!='X11cairo'){
-        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map_effort\" help page")}
+    X11(width=13, height=7)
     Y <- .extract.LatLong(data)
     r<-.plot.Raster(Y,res,col.int,col.ocean,...)
     .add.pattern(r,col.eff,...)
@@ -252,6 +252,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' r1<- pbdb_map_richness (data,res=3,rank='genus')
 #' r2<- pbdb_map_richness (data,res=3,rank='family')
 #' r3<- pbdb_map_richness (data,res=3,rank='family',do.plot=F)
+#' l_ply(dev.list(),dev.off)#
 #' }
 #'
 
@@ -274,9 +275,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
     }
     
     if(do.plot==TRUE){
-        if(names(dev.cur())!='X11cairo'){
-            stop("Can only view from 'X11(type=\"*cairo\")'. See \"pbdb_map_richness\" help page")}
-
+        X11(width=13, height=7)
         .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
         mtext(paste('Richness of', rank),4,line=-1,cex=2)
         
