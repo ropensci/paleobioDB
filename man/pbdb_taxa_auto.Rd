@@ -24,7 +24,6 @@ partial name.
 \examples{
 \dontrun{
 pbdb_taxa_auto (name="Cani", limit=10)
-
 }
 }
 

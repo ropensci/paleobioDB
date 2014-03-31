@@ -2,25 +2,22 @@
 \alias{pbdb_subtaxa}
 \title{pbdb_subtaxa}
 \usage{
-number_of_subtaxa (data, show=c("species", "genera", "tribes", "subfamilies", "families","superfamilies",
-"orders", "classes", "subclasses", "subphyla", "phyla"))
+pbdbr_of_subtaxa (data, do.plot, col)
 }
 \arguments{
-  \item{data}{input dataframe with our query}
+  \item{data}{dataframe with our query to the paleoBD
+  \code{\link{pbdb_occurrences}}}
 
   \item{do.plot}{by default this function make a plot to
   visualize the distribution of taxa. Set to FALSE to skip
   the plot.}
 
-  \item{show}{use show to choose which subtaxa should be
-  shown: "species", "genera", "tribes", "subfamilies",
-  "families","superfamilies", "orders", "classes",
-  "subclasses", "subphyla", "phyla". By default the
-  function shows all of them.}
+  \item{col}{set the colour of the histogram. skyblue2 by
+  default.}
 }
 \value{
-a dataframe with the number of subtaxa of the chosen
-cathegories
+a plot and a dataframe with the number of subtaxa in the
+data.
 }
 \description{
 count the number of subtaxa within a given taxa. e.g.
@@ -28,7 +25,8 @@ number of species within a genus.
 }
 \examples{
 \dontrun{
-canidae_quat<-  pbdb_occurrences (limit="all", base_name="Canidae",  interval="Quaternary", show="coords")
+canidae_quat<-  pbdb_occurrences (limit="all",
+base_name="Canidae",  interval="Quaternary", show=c("coords", "phylo", "ident")
 pbdb_subtaxa (canidae_quat)
 }
 }

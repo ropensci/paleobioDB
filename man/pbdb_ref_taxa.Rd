@@ -46,7 +46,6 @@ per reference, even if it is associated with multiple taxa.
 \examples{
 \dontrun{
 pbdb_ref_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
-
 }
 }
 

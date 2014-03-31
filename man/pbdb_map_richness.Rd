@@ -33,42 +33,40 @@ pbdb_map_effort (data, rank='species', do.plot=T, res=1, col.int='white', col.oc
   \code{\link{map()}}}
 }
 \value{
-A map of occurences
+A RasterLayer object with richness of fossil records by
+cell. This RasterLayer object have the resolution
+controlled by the argument \code{\link{res}}. The deflaut
+is \code{\link{res=1}}. Additionally the
+\code{\link{pbdb_map_effort}} function returns a richness
+of the fossil records by cells.
 }
 \description{
 Create a RasterLayer object with richness of fossil records
 by cell. Furthermore this function maps the richness of the
-fossil records
+fossil records using a cairo \code{\link{x11}}( ) device.
 }
 \details{
 \strong{CAUTION!} Is required use the argument
 \code{\link{show = c('phylo', 'coords', 'ident')}} in
 \code{\link{pbdb_occurrences}} function. See
 \strong{Examples}
-
-Only cairo \code{\link{x11}}( ) devices are supported. See
-\strong{Examples}
-
-The simplest use of this function is:
-\code{\link{pbdb_map_richness(data)}}.
-
-Before running the function
-\code{\link{pbdb_map_richness(...)}}, we recommended to
-open the \code{\link{x11()}} device, maximize and minimize.
 }
 \examples{
 \dontrun{
 data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show="coords")
-x11() ## maximize and minimize
-r<-pbdb_map_richness (data,res=3,rank='genus')
+pbdb_map_richness (data,res=3,rank='genus')
 ## Error in pbdb_map_richness(data, res = 3, rank = "genus") :
 ## Invalid data input. Use in "pbdb_occurrences" function the argument: show=c("phylo","coords","ident").
 ## e.g. pbdb_occurrences(..., show=c("phylo","coords","ident")).
 ## See "pbdb_map_richness" help page
 data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
-r1<- pbdb_map_richness (data,res=3,rank='genus')
-r2<- pbdb_map_richness (data,res=3,rank='family')
-r3<- pbdb_map_richness (data,res=3,rank='family',do.plot=F)
+pbdb_map_richness (data,res=3,rank='genus')
+pbdb_map_richness (data,res=3,rank='family')
+pbdb_map_richness (data,res=3,rank='family',do.plot=F)
 }
+}
+\seealso{
+See\code{\link{map}}, \code{\link{par}} and
+\code{\link{colors}} help pages
 }
 

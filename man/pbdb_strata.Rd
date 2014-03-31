@@ -49,7 +49,6 @@ name, rank, and/or geographic location.
 \examples{
 \dontrun{
 pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb")
-
 }
 }
 

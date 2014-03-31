@@ -2,10 +2,44 @@
 \alias{pbdb_richness}
 \title{pbdb_richness}
 \usage{
-pbdb_richness(data, rank = "species", resolution = 1,
-  temporal_extent = c(0, 100), colour = "#0000FF30", bord = "#0000FF")
+pbdb_richness (data, rank, resolution, temporal_extent, colour, bord, do.plot)
+}
+\arguments{
+  \item{data}{dataframe with our query to the paleoBD
+  \code{\link{pbdb_occurrences}}. Important, it is required
+  to show the name of the families, orders, etc. in the
+  dataframe, to do that set: show=c("phylo", "ident") (see
+  example).}
+
+  \item{rank}{to set which taxon rank you are interested.
+  By default rank= "species"}
+
+  \item{colour}{to change the colour of the bars in the
+  plot, skyblue2 by default.}
+
+  \item{bord}{to set the colour of the border of the
+  polygon}
+
+  \item{resolution}{numeric. to set the intervals of the
+  temporal extent}
+
+  \item{temporal_extent}{vector to set the temporal extent
+  (min, max)}
+
+  \item{do.plot}{TRUE/FALSE (TRUE by default).}
+}
+\value{
+a plot and a dataframe with the richness aggregated by the
+taxon rank in the specified temporal extent and resolution.
 }
 \description{
-plot richness across time
+Plots the number of the interested.
+}
+\examples{
+\dontrun{
+data<-  pbdb_occurrences (limit="all", vocab="pbdb",
+base_name="Canidae", show=c("phylo", "ident"))
+pbdb_richness (data, rank="species", resolution=1, temporal_extent=c(0,3))
+}
 }
 
