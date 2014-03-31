@@ -14,7 +14,7 @@ Install dependencies
 
 
 ```coffee
-install.packages(c("rjson","plyr","gtools", "RCurl"))
+install.packages(c("rjson","plyr","gtools", "RCurl", "maps", "scales", "raster"))
 ```
 
 Install paleobioDB
@@ -93,17 +93,24 @@ pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resol
 
 ``` 
 
-**pbdb_plot**
+**pbdb_map**
+
+Returns a map with the species occurrences.
 
 ```coffee
+pbdb_map(canidae)
 ``` 
-**pbdb_effort**
+**pbdb_map_effort**
+Returns a map and a raster object with the sampling effort (number of fossil records per cell).
 
 ```coffee
+pbdb_map_effort (canidae, res= 2)
 ``` 
-**pbdb_richness**
+**pbdb_map_richness**
+Returns a map and a raster object with the number of different species, genera, family, etc. per cell.
 
 ```coffee
+pbdb_map_richness (data, res= 3, rank="species")
 ``` 
 
 ## Meta

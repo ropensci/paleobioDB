@@ -221,7 +221,7 @@ pbdb_time_span<- function (data, rank,
 #' base_name="Canidae", show=c("phylo", "ident"))
 #' pbdb_richness (data, rank="species", resolution=1, temporal_extent=c(0,3))
 #'}
-#' 
+ 
 
 pbdb_richness <- function (data, rank, 
                            resolution=1, 
@@ -293,7 +293,7 @@ pbdb_richness <- function (data, rank,
 #' pbdb_evo_ext (canidae, rank="genus", evo_ext=1) # plot of the evolutive rates.
 #' pbdb_evo_ext (canidae, rank="species", evo_ext=2) # plot of the extinction rates.
 #'}
-#' 
+
 
 pbdb_evo_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 

@@ -51,15 +51,16 @@
 #' @export 
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-#' x11( ) ## maximize and minimize
+#' x11(type="*cairo") ## IMPORTANT: You should maximize and minimize the window plot
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
-#' pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
+#' pbdb_map(data, pch=19, col.point=c('pink','red'), col.ocean='light blue', main='canis')
 #'}
-#'
+
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'),...){
+    
     if(names(dev.cur())!='X11cairo'){
         stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map\" help page")}
     .add.ColOcean(col.ocean,col.int,...)
@@ -122,7 +123,7 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' x11() ## maximize and minimize
-#' r<-pbdb_map_effort (data,res=2)
+#' pbdb_map_effort (data,res=2)
 #'}
 #'
 
@@ -249,9 +250,9 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' ## e.g. pbdb_occurrences(..., show=c("phylo","coords","ident")). 
 #' ## See "pbdb_map_richness" help page
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
-#' r1<- pbdb_map_richness (data,res=3,rank='genus')
-#' r2<- pbdb_map_richness (data,res=3,rank='family')
-#' r3<- pbdb_map_richness (data,res=3,rank='family',do.plot=F)
+#' pbdb_map_richness (data,res=3,rank='genus')
+#' pbdb_map_richness (data,res=3,rank='family')
+#' pbdb_map_richness (data,res=3,rank='family',do.plot=F)
 #' }
 #'
 
