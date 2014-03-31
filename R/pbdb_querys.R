@@ -1,5 +1,5 @@
 # R Functions leveraging the use o the different API endpoints available
-#Converts a list in a comma separated string
+# Converts a list in a comma separated string
 
 .implode_to_string<-function(param){
   
@@ -38,30 +38,31 @@
 #' 
 #' Returns information about a single occurrence record from the Paleobiology Database.
 #' 
-#'@param id identifier of the occurrence. This parameter is required.
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/single
+#' @param id identifier of the occurrence. This parameter is required.
+#' @param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/single
 #' Below, we describe the most common filters that 
 #' paleontologists and ecologists might use.
-#'@param vocab set vocab="pbdb" to show the complete name of the variables
-#'(by default variables have short 3-letter names)
-#'@param show to show extra variables (e.g. coords)
+#' @param vocab set vocab="pbdb" to show the complete name of the variables
+#' (by default variables have short 3-letter names)
+#' @param show to show extra variables (e.g. coords)
 #'
 #' @return a dataframe with a single occurrence 
 #' 
 #' @export 
-#' @examples \dontrun{
+#' 
+#' @examples \dontrun {
 #' pbdb_occurrence (id=1001)
 #' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 #'}
-#'
-#' 
-#' 
+
+
+
 pbdb_occurrence<-function(id, ...){
   l<-list(...)
-  
   # todo: merge lists properly  
   .pbdb_query('occs/single', query = c(list(id = id), l))
 }
+
 
 #'pbdb_occurrences
 #'
@@ -75,7 +76,6 @@ pbdb_occurrence<-function(id, ...){
 #'You may specify multiple names, separated by commas.
 #'@param base_name  Return records associated with the specified taxonomic name(s) 
 #'and any of their children (e.g. base_name="Canis" will return "Canis", "Canis lupus", "Canis mosbachensis", etc.)
-#'
 #'@param lngmin numeric. The longitude boundaries will be normalized 
 #'to fall between -180 and 180. (Note that if you specify lngmin then you must also specify lngmax). 
 #'Return only records whose geographic location falls 
@@ -85,7 +85,6 @@ pbdb_occurrence<-function(id, ...){
 #'to fall between -180 and 180.
 #'@param latmin numeric. between -90 and 90. (Note that if you specify latmin then you must also specify latmax)
 #'@param latmax numeric. between -90 and 90.
-#'
 #'@param min_ma return only records whose temporal locality is at least this old, specified in Ma.
 #'@param max_ma return only records whose temporal locality is at most this old, specified in Ma.
 #'@param interval return only records whose temporal locality falls within the named geologic time interval (e.g. "Miocene").
@@ -95,12 +94,14 @@ pbdb_occurrence<-function(id, ...){
 #' @return a dataframe with the species occurrences 
 #' 
 #' @export 
+#' 
 #' @examples \dontrun{
 #' pbdb_occurrences (id=c(10, 11)) 
 #' pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show="coords")
 #' pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show="coords")
 #'}
-#'
+
+
 pbdb_occurrences<-function(...){
 
   l<-list(...)
@@ -128,7 +129,8 @@ pbdb_occurrences<-function(...){
 #' @examples \dontrun{
 #' pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
 #'}
-#'
+
+
 pbdb_ref_occurrences<-function(...){
   
   l<-list(...)
@@ -156,9 +158,8 @@ pbdb_ref_occurrences<-function(...){
 #' pbdb_collection (id=1003, vocab="pbdb", show="loc")
 #' 
 #'}
-#'
-#' 
-#' 
+
+
 pbdb_collection<-function(id, ...){
   l<-list(...)
   
@@ -179,7 +180,8 @@ pbdb_collection<-function(id, ...){
 #' @examples \dontrun{
 #' pbdb_collections (base_name="Cetacea", interval="Miocene")
 #'}
-#'
+
+
 pbdb_collections<-function(...){
   
   l<-list(...)
@@ -204,7 +206,8 @@ pbdb_collections<-function(...){
 #' @examples \dontrun{
 #' pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, latmin=0.0, latmax=15.0, level=2)
 #'}
-#'
+
+
 pbdb_collections_geo<-function(...){
   
   l<-list(...)
@@ -233,8 +236,8 @@ pbdb_collections_geo<-function(...){
 #' pbdb_taxon (name="Canis", vocab="pbdb", show=c("attr", "app", "size"))
 #' 
 #'}
-#'
-#'
+
+
 pbdb_taxon<-function(...){
   l<-list(...)
   
@@ -277,8 +280,8 @@ pbdb_taxon<-function(...){
 #' pbdb_taxa (id =c(10, 11), vocab="pbdb", show=c("attr", "app", "size", "nav"))
 #' pbdb_taxa (id =c(10, 11), vocab="pbdb", show=c("attr", "app", "size", "nav"), rel="common_ancestor")
 #'}
-#'
-#'
+
+
 pbdb_taxa<-function(...){
   l<-list(...)
   
@@ -299,11 +302,10 @@ pbdb_taxa<-function(...){
 #' 
 #' @export 
 #' @examples \dontrun{
-#' pbdb_taxa_auto (name="Cani", limit=10)
-#' 
+#' pbdb_taxa_auto (name="Cani", limit=10) 
 #'}
-#'
-#'
+
+
 pbdb_taxa_auto<-function(...){
   l<-list(...)
   
@@ -327,11 +329,7 @@ pbdb_taxa_auto<-function(...){
 #' @export 
 #' @examples \dontrun{
 #' pbdb_interval (id=1, vocab="pbdb")
-#' 
 #'}
-#'
-#' 
-#' 
 
 pbdb_interval<-function(id, ...){
   l<-list(...)
@@ -360,12 +358,9 @@ pbdb_interval<-function(id, ...){
 #' 
 #' @export 
 #' @examples \dontrun{
-#' pbdb_intervals (min_ma= 0, max_ma=2, vocab="pbdb")
-#' 
+#' pbdb_intervals (min_ma= 0, max_ma=2, vocab="pbdb") 
 #'}
-#'
-#' 
-#' 
+ 
 
 pbdb_intervals<-function(id, ...){
   l<-list(...)
@@ -390,9 +385,7 @@ pbdb_intervals<-function(id, ...){
 #'@examples \dontrun{
 #'pbdb_scale (id=1, vocab="pbdb")
 #'}
-#'
-#' 
-#' 
+ 
 
 pbdb_scale<-function(id, ...){
   l<-list(...)
@@ -417,8 +410,7 @@ pbdb_scale<-function(id, ...){
 #'Get a dataframe with all the scales available in PBDB setting no ids
 #'pbdb_scale ()
 #'}
-#'
-#' 
+ 
 
 pbdb_scales<-function(id, ...){
   l<-list(...)
@@ -456,11 +448,9 @@ pbdb_scales<-function(id, ...){
 #' 
 #' @export 
 #' @examples \dontrun{
-#' pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb")
-#' 
+#' pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb") 
 #'}
-#'
-#' 
+
 
 pbdb_strata<-function(id, ...){
   l<-list(...)
@@ -499,11 +489,9 @@ pbdb_strata<-function(id, ...){
 #' 
 #' @export 
 #' @examples \dontrun{
-#' pbdb_strata_auto (name= "Pin", vocab="pbdb")
-#' 
+#' pbdb_strata_auto (name= "Pin", vocab="pbdb") 
 #'}
-#'
-#' 
+
 
 pbdb_strata_auto<-function(id, ...){
   l<-list(...)
@@ -529,7 +517,7 @@ pbdb_strata_auto<-function(id, ...){
 #'@examples \dontrun{
 #'pbdb_collection (id=1003, vocab="pbdb", show="loc")
 #'}
-#'
+
  
 pbdb_reference<-function(id, ...){
   
@@ -551,7 +539,7 @@ pbdb_reference<-function(id, ...){
 #' returned. You can specify multiple values separated by commas, 
 #' and each value may be appended with .asc or .desc.  Accepted values are:
 #' author, year, pubtitle, created, modified, rank. 
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list 
+#' @param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list 
 #' 
 #' @return a dataframe with the information about the references that match the query
 #' 
@@ -559,7 +547,8 @@ pbdb_reference<-function(id, ...){
 #' @examples \dontrun{
 #' pbdb_references (author="Turner")
 #'}
-#'
+
+
 pbdb_references<-function(...){
   
   l<-list(...)
@@ -588,7 +577,8 @@ pbdb_references<-function(...){
 #' @examples \dontrun{
 #' pbdb_ref_collections (id=1)
 #'}
-#'
+
+
 pbdb_ref_collections <-function(...){
   
   l<-list(...)
@@ -625,10 +615,9 @@ pbdb_ref_collections <-function(...){
 #' 
 #' @export 
 #' @examples \dontrun{
-#' pbdb_ref_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
-#' 
+#' pbdb_ref_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav")) 
 #'}
-#'
+
 
 pbdb_ref_taxa <-function(...){
   

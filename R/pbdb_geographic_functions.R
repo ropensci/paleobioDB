@@ -49,12 +49,15 @@
 #' pbdb_map(data,pch=1)
 #' pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
 #' l_ply(dev.list(),dev.off)#
-#'}
-#'
+
+
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'),...){
-    X11(width=13, height=7)
+
+    if(names(dev.cur())!='X11cairo'){
+        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map\" help page")}
+
     .add.ColOcean(col.ocean,col.int,...)
     Y <- .extract.LatLong(data)
     Y1<-.add.Points(Y,col.point,pch,...)
@@ -218,16 +221,16 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' @export 
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show="coords")
-#' r<-pbdb_map_richness (data,res=3,rank='genus')
+#' pbdb_map_richness (data,res=3,rank='genus')
 #' ## Error in pbdb_map_richness(data, res = 3, rank = "genus") : 
 #' ## Invalid data input. Use in "pbdb_occurrences" function the argument: show=c("phylo","coords","ident"). 
 #' ## e.g. pbdb_occurrences(..., show=c("phylo","coords","ident")). 
 #' ## See "pbdb_map_richness" help page
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
-#' r1<- pbdb_map_richness (data,res=3,rank='genus')
-#' r2<- pbdb_map_richness (data,res=3,rank='family')
-#' r3<- pbdb_map_richness (data,res=3,rank='family',do.plot=F)
-#' l_ply(dev.list(),dev.off)#
+#' pbdb_map_richness (data,res=3,rank='genus')
+#' pbdb_map_richness (data,res=3,rank='family')
+#' pbdb_map_richness (data,res=3,rank='family',do.plot=F)
+
 #' }
 #'
 
