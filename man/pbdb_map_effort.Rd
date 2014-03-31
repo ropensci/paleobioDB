@@ -6,7 +6,9 @@ pbdb_map_effort (data, res=1, col.int='white', col.ocean='black', col.eff=c('lig
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
-  of \code{\link{pbdb_occurrences}} function}
+  of \code{\link{pbdb_occurrences}} function using the
+  argument: \code{\link{show = 'coords'}}. See too:
+  \strong{Details} and \strong{Examples}}
 
   \item{res}{the resolution of the RasterLayer object in
   decimal degrees. See: \code{\link{raster}} ()}
@@ -35,6 +37,12 @@ Create a RasterLayer object with sampling effort of fossil
 records. Furthermore this function maps the sampling effort
 of the fossil records using a cairo \code{\link{x11}}( )
 device
+}
+\details{
+\strong{CAUTION!} Is required use the argument
+\code{\link{show = 'coords'}} in
+\code{\link{pbdb_occurrences}} function. See
+\strong{Examples}
 }
 \examples{
 \dontrun{

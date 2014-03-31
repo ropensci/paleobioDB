@@ -24,7 +24,7 @@
     n=length(unique(Y1$Col))
     Col=unique(Y1$Col)[order(unique(Y1$n))]
     Legend=seq(min(Y1$Occur),max(Y1$Occur),length.out=n)
-    legend("bottom",col=Col, inset=c(0,-0.11), legend=Legend,ncol=n, title="Occurrences",bg=col.int,pch=pch,...)
+    legend("bottom",col=Col, inset=c(0,-0.14), legend=Legend,ncol=n, title="Occurrences",bg=col.int,pch=pch,...)
 }  
 
 #' pbdb_map
@@ -33,31 +33,42 @@
 #' 
 #' @usage pbdb_map (data, col.int='white' ,pch=19, col.ocean='black', main=NULL, col.point=c('light blue','blue'),...)
 #' 
-#' @param data Input dataframe. This dataframe is the output of the \code{\link{pbdb_occurrences}} function
+#' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = 'coords'}}. See too: \strong{Details} and \strong{Examples}
 #' @param col.int The color of mainland. 
 #' @param pch See: \code{\link{par}}
 #' @param col.ocean The color of ocean 
 #' @param main The title of map 
 #' @param col.point Two or more colors. This generates a color gradient and, is used to show the number of samples at the same point
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
+#' @details \strong{CAUTION!} Is required use the argument \code{\link{show =  'coords'}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
 #' @return The map of occurrences of fossil records, with the points with a color gradient, according to the number of samples in each site
 #' @seealso See \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
+#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis")
+#' pbdb_map(data)
+#' ###
+#' ##Error in pbdb_map(data) : 
+#' ##Invalid data input. Use in "pbdb_occurrences" function the argument: show="coords". e.g. pbdb_occurrences(..., show="coords"). 
+#' ##See "pbdb_map" help page
+#' ###
+#' 
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
 #' pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
-#' l_ply(dev.list(),dev.off)#
+#' l_ply(dev.list(),dev.off)## to close all windows graphics
+#' }
+#' 
 
 
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'),...){
-
-    if(names(dev.cur())!='X11cairo'){
-        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map\" help page")}
-
+    if (!any(colnames(data) %in% c("lat","lng"))){
+        stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\"). 
+             See \"pbdb_map\" help page" )}
+    X11(width=12, height=8)    
     .add.ColOcean(col.ocean,col.int,...)
     Y <- .extract.LatLong(data)
     Y1<-.add.Points(Y,col.point,pch,...)
@@ -100,26 +111,38 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' 
 #' @usage pbdb_map_effort (data, res=1, col.int='white', col.ocean='black', col.eff=c('light blue','blue'),...)
 #' 
-#' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function
+#' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = 'coords'}}. See too: \strong{Details} and \strong{Examples}
 #' @param res the resolution of the RasterLayer object in decimal degrees. See: \code{\link{raster}} ()
 #' @param col.int The color of mainland
 #' @param col.ocean The color of ocean
 #' @param col.eff Two or more colors. This generates a color gradient and, is used to show the sampling effort in each cell
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}}
+#' @details  \strong{CAUTION!} Is required use the argument \code{\link{show =  'coords'}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
 #' @return A RasterLayer object with sampling effort of fossil. This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
 #' Additionally the \code{\link{pbdb_map_effort}} function returns a map with the sampling effort by cells. 
 #' @seealso See \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
+#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis")
+#' r<-pbdb_map_effort (data,res=2)
+#' ###
+#' ##Error in pbdb_map_effort(data,res=2) : 
+#' ##Invalid data input. Use in "pbdb_occurrences" function the argument: show="coords". e.g. pbdb_occurrences(..., show="coords"). 
+#' ##See "pbdb_map_effort" help page
+#' ###
+#' 
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' r<-pbdb_map_effort (data,res=2)
-#' l_ply(dev.list(),dev.off)#
+#' l_ply(dev.list(),dev.off)## to close all windows graphics
 #'}
 #'
 
 pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
                             col.eff=c('light blue','blue'),...){
-    X11(width=13, height=7)
+    if (!any(colnames(data) %in% c("lat","lng"))){
+        stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\"). 
+             See \"pbdb_map_effort\" help page" )}
+    X11(width=13, height=7.8)
     Y <- .extract.LatLong(data)
     r<-.plot.Raster(Y,res,col.int,col.ocean,...)
     .add.pattern(r,col.eff,...)
@@ -164,7 +187,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
     values(r)<-0
     ranks<-data.frame(rank=c("genus","family","order","class","phylum"),
                       taxon_rank=c("genus_name","family","order","class","phylum"), 
-                      rnk=c("idt","fmn","odn","cll","phl") )
+                      rnk=c("idt","fmn","odl","cll","phl") )
     if (length (data$taxon_rank)!=0){ 
         f<-paste(data[,paste(ranks$taxon_rank[ranks$rank==rank])])
         S<-split(data,f)
@@ -220,7 +243,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' @seealso See\code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show="coords")
+#' data<- pbdb_occurrences (limit=100, vocab= "pbdb", base_name="mammalia", show="coords")
 #' pbdb_map_richness (data,res=3,rank='genus')
 #' ## Error in pbdb_map_richness(data, res = 3, rank = "genus") : 
 #' ## Invalid data input. Use in "pbdb_occurrences" function the argument: show=c("phylo","coords","ident"). 
@@ -230,7 +253,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' pbdb_map_richness (data,res=3,rank='genus')
 #' pbdb_map_richness (data,res=3,rank='family')
 #' pbdb_map_richness (data,res=3,rank='family',do.plot=F)
-
+#' l_ply(dev.list(),dev.off)## to close all windows graphics
 #' }
 #'
 
@@ -240,7 +263,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
         stop("Invalid rank name. Use: \"species\" or \"genus\" or \"family\" or \"order\" or \"class\" or \"phylum\".
              See \"pbdb_map_richness\" help page" )}
     
-    if (!any(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odn","cll","phl"))){
+    if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")). 
              See \"pbdb_map_richness\" help page" )}
     
@@ -253,7 +276,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
     }
     
     if(do.plot==TRUE){
-        X11(width=12, height=7)
+        X11(width=13, height=7.8)
         .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
         mtext(paste('Richness of', rank),4,line=-1,cex=2)
         
