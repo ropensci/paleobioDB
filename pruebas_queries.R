@@ -17,10 +17,23 @@ pbdb_evo_ext (canidae, rank="species", evo_ext=1) # plot of the evolutive rates.
 pbdb_evo_ext (canis, rank="species", evo_ext=2, 
               temporal_extent=c(0,5), resolution=0.5)
 
-
+x11(type="cairo") 
+pbdb_map (canis)
 
 canis
+f1<-function(){
+  print(names(dev.cur()))
+  print(Sys.info())
+}
+f1()
 
+
+f1<-function(){
+  x11()
+  print(names(dev.cur()))
+  print(Sys.info())
+}
+f1()
 
 pbdb_subtaxa (data)
 names (canidae_quat)
