@@ -5,12 +5,12 @@
 
 .private_pk_cache <- new.env()
 
-#' Returns a cached variable if it's intializated. If not, 
-#' initialize it by calling the function provided
-#' 
-#' @param varname Name of the variable to retrieve
-#' @param setupfun Function to compute the value of the variable the first time
-#'
+# Returns a cached variable if it's intializated. If not, 
+# initialize it by calling the function provided
+# 
+# @param varname Name of the variable to retrieve
+# @param setupfun Function to compute the value of the variable the first time
+#
 
 .package_cache_return_or_setup<-function(varname, setupfun)
 {

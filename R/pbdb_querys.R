@@ -38,13 +38,13 @@
 #' 
 #' Returns information about a single occurrence record from the Paleobiology Database.
 #' 
-#'@param id identifier of the occurrence. This parameter is required.
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/single
+#' @param id identifier of the occurrence. This parameter is required.
+#' @param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/single
 #' Below, we describe the most common filters that 
 #' paleontologists and ecologists might use.
-#'@param vocab set vocab="pbdb" to show the complete name of the variables
-#'(by default variables have short 3-letter names)
-#'@param show to show extra variables (e.g. coords)
+#' @param vocab set vocab="pbdb" to show the complete name of the variables
+#' (by default variables have short 3-letter names)
+#' @param show to show extra variables (e.g. coords)
 #'
 #' @return a dataframe with a single occurrence 
 #' 
@@ -56,6 +56,8 @@
 #'
 #' 
 #' 
+
+
 pbdb_occurrence<-function(id, ...){
   l<-list(...)
   

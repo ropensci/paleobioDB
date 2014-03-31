@@ -117,13 +117,13 @@ To cite package `paleobioDB` in publications use:
 ```coffee
 To cite package `paleobioDB` in publications use:
 
-Sara Varela, Javier Gonzalez-Hernandez and Luciano F. Sgarbi (2014). paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database. R package version 0.1. https://github.com/ropensci/paleobioDB
+Sara Varela, Javier Gonzalez-Hernandez and Luciano Fabris Sgarbi (2014). paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database. R package version 0.1. https://github.com/ropensci/paleobioDB
 
 A BibTeX entry for LaTeX users is
 
   @Manual{,
     title = {paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database},
-    author = {{Sara Varela} and {Javier Gonzalez-Hernandez} and {Luciano F. Sgarbi}},
+    author = {{Sara Varela} and {Javier Gonzalez-Hernandez} and {Luciano Fabris Sgarbi}},
     year = {2014},
     note = {R package version 0.1},
     base = {https://github.com/ropensci/paleobioDB},
