@@ -151,8 +151,8 @@ pbdb_time_span<- function (data, rank,
       temporal_range<- data.frame (max_sp, min_sp)
     }
     if (rank=="order"){ 
-      max_sp<- tapply(data$eag, list(data$odn), max)
-      min_sp<- tapply(data$lag, list(data$odn), min)
+      max_sp<- tapply(data$eag, list(data$odl), max)
+      min_sp<- tapply(data$lag, list(data$odl), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     if (rank=="class"){ 

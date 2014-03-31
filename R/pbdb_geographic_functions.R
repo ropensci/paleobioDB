@@ -164,7 +164,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
     values(r)<-0
     ranks<-data.frame(rank=c("genus","family","order","class","phylum"),
                       taxon_rank=c("genus_name","family","order","class","phylum"), 
-                      rnk=c("idt","fmn","odn","cll","phl") )
+                      rnk=c("idt","fmn","odl","cll","phl") )
     if (length (data$taxon_rank)!=0){ 
         f<-paste(data[,paste(ranks$taxon_rank[ranks$rank==rank])])
         S<-split(data,f)
@@ -240,7 +240,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
         stop("Invalid rank name. Use: \"species\" or \"genus\" or \"family\" or \"order\" or \"class\" or \"phylum\".
              See \"pbdb_map_richness\" help page" )}
     
-    if (!any(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odn","cll","phl"))){
+    if (!any(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")). 
              See \"pbdb_map_richness\" help page" )}
     

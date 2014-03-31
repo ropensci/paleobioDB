@@ -3,7 +3,7 @@
 #' count the number of subtaxa within a given taxa. 
 #' e.g. number of species within a genus. 
 #' 
-#' @usage pbdbr_of_subtaxa (data, do.plot, col)
+#' @usage pbdb_subtaxa (data, do.plot, col)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}} 
 #' @param do.plot by default this function make a plot to visualize the distribution of taxa. Set to FALSE to skip the plot.
