@@ -91,8 +91,6 @@ pbdb_richness (canidae, rank="species", evo_ext=1, temporal_extent=c(0,10), reso
 # extinction rates= evo_ext=2
 pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
 
-**pbdb_time_spam**
-
 ``` 
 
 **pbdb_plot**
@@ -103,7 +101,6 @@ pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resol
 
 ```coffee
 ``` 
-
 **pbdb_richness**
 
 ```coffee

@@ -9,9 +9,9 @@
 #' initialize it by calling the function provided
 #' 
 #' @param varname Name of the variable to retrieve
-#' @param setupfun Function to compute the value of the variable the
-#' fist time
-#
+#' @param setupfun Function to compute the value of the variable the first time
+#'
+
 .package_cache_return_or_setup<-function(varname, setupfun)
 {
   if(!.package_cache_Has(varname))

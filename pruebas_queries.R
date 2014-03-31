@@ -197,8 +197,13 @@ canis<-  pbdb_occurrences (limit="all", vocab="pbdb",
                                interval="Quaternary",             
                                show=c("coords", "phylo", "ident")) 
 
-pbdb_time_span (canis, rank="species")
+pbdb_time_span (canidae, rank="genus")
 
+canidae$genus_name
+pbdb_temporal_resolution (canidae)
+pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), resolution=1)
+
+pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
 
 
 names (carnivora)
