@@ -9,15 +9,22 @@ data<-  pbdb_occurrences (limit="100", vocab="pbdb",
                           interval="Quaternary", 
                           show="coords")
 
-canis<-  pbdb_occurrences (limit="all", vocab="pbdb",
-                          base_name="Crocuta",  
+head (data)
+library (testthat)
+test_dir("C:/Users/sara/Documents/_CIENCIAS/pbdb/tests/testthat")
+
+carnivora<-  pbdb_occurrences (limit="all", vocab="pbdb",
+                          base_name="Carnivora",  
                           interval="Quaternary", 
                           show=c("phylo", "ident"))
-pbdb_evo_ext (canidae, rank="species", evo_ext=1) # plot of the evolutive rates.
+
+pbdb_evo_ext (carnivora, rank="species", temporal_extent =c(0, 10), 
+              evo_ext=2) # plot of the evolutive rates.
 pbdb_evo_ext (canis, rank="species", evo_ext=2, 
               temporal_extent=c(0,5), resolution=0.5)
 
-x11(type="cairo") 
+x11()
+  ) 
 pbdb_map (canis)
 
 canis
