@@ -50,3 +50,8 @@ test_that("Error if uri_builder not a not a function", {
 	expect_error(.setup_api_endpoint('testend4', 'controller4', uri_builder = "wrongBuilder"))
 	expect_error(.setup_api_endpoint('testend4', 'controller4', uri_builder = list("a")))
 })
+
+
+# We are adding this set up here because the tests in this file may modify the runtime 
+# configuration of the package, which is a problem when developing 
+.pbdb_setup()

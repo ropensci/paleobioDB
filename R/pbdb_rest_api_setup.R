@@ -26,7 +26,7 @@
 	uri
 }
 
-# This functions registers all the endpoints available from the paleobiodb.org REST API
+# This function registers all the endpoints available from the paleobiodb.org REST API
 #
 .pbdb_set_up_endpoints<-function(){
 
@@ -37,10 +37,10 @@
 	# occurrencies list
 	.setup_api_endpoint('occs/list', 'occs/list.%s', uri_builder = .pbdb_uri_builder)
 	
-  # occurrences references list 
+  	# occurrences references list 
 	.setup_api_endpoint('occs/refs', 'occs/refs.%s', uri_builder = .pbdb_uri_builder)
   
-  # fossil collection
+  	# fossil collection
 	.setup_api_endpoint('colls/single', 'colls/single.%s', uri_builder = .pbdb_uri_builder, 
 	                    compulsory_params = list('id'))
   
@@ -50,7 +50,7 @@
 	# fossil collections geo
 	.setup_api_endpoint('colls/summary', 'colls/summary.%s', uri_builder = .pbdb_uri_builder)
 	
-  #taxa single
+  	#taxa single
 	.setup_api_endpoint('taxa/single', 'taxa/single.%s', uri_builder = .pbdb_uri_builder)
 	
 	# taxa list
@@ -73,7 +73,7 @@
 	# scales list
 	.setup_api_endpoint('scales/list', 'scales/list.%s', uri_builder = .pbdb_uri_builder)
 
-  # strata list
+  	# strata list
 	.setup_api_endpoint('strata/list', 'strata/list.%s', uri_builder = .pbdb_uri_builder)
 	
 	# strata auto
@@ -88,12 +88,13 @@
 	# colls refs
 	.setup_api_endpoint('colls/refs', 'colls/refs.%s', uri_builder = .pbdb_uri_builder)
 	
-  # refs taxa
+  	# refs taxa
 	.setup_api_endpoint('taxa/refs', 'taxa/refs.%s', uri_builder = .pbdb_uri_builder)
 	
 }
 
 
+# Initialize configuration of package API
 .pbdb_setup<-function(){
 	.set_api_base('http://paleobiodb.org/data1.1')
 	.pbdb_set_up_endpoints()
