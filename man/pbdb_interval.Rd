@@ -27,7 +27,6 @@ identifier.
 \examples{
 \dontrun{
 pbdb_interval (id=1, vocab="pbdb")
-
 }
 }
 

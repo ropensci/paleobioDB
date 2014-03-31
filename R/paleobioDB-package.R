@@ -18,7 +18,7 @@
 #' @title paleobioDB: An R-package for downloading, visualizing and processing data from the Paleobiology Database
 #' @author Sara Varela \email{svarela@@paleobiogeography.org}
 #' @author Javier Gonzalez \email{javigzz@@yahoo.es}
-#' @author Luciano Fabris Sgarbi \email{@@}
+#' @author Luciano Fabris Sgarbi \email{luciano.f.sgarbi@@gmail.com}
 #' @references Sara Varela, Javier Gonzalez-Hernandez,
 #' Luciano Fabris Sgarbi, Charles Marshall, Mark D. Uhen, in prep. paleobioDB: 
 #' an R-package for downloading, visualizing and processing data from the Paleobiology Database
@@ -32,7 +32,7 @@
 #' }
 #'
 #'@seealso {
-#'http://paleobiodb.org
+#'\url{http://paleobiodb.org}
 #' }
 #'@examples \dontrun{
 #'canidae<-  pbdb_occurrences (limit="all", base_name="canidae", interval="Quaternary", show=c("coords", "phylo", "ident"))

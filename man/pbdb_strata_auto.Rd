@@ -52,7 +52,6 @@ if desired.
 \examples{
 \dontrun{
 pbdb_strata_auto (name= "Pin", vocab="pbdb")
-
 }
 }
 

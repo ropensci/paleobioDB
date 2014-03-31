@@ -32,27 +32,16 @@ in each site
 Shows the map of occurrences of fossil records in a cairo
 \code{\link{x11}}( ) device
 }
-\details{
-Only cairo \code{\link{x11}}( ) devices are supported.
-
-The simplest use of this function is:
-\code{\link{pbdb_map(data)}}.
-
-Before running the function \code{\link{pbdb_map(...)}}, we
-recommended to open the \code{\link{x11()}} device,
-maximize and minimize.
-}
 \examples{
 \dontrun{
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-x11( ) ## maximize and minimize
 pbdb_map(data)
 pbdb_map(data,pch=1)
 pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
-}
+l_ply(dev.list(),dev.off)#
 }
 \seealso{
-See \code{\link{pbdb_map}}, \code{\link{par}} and
+See \code{\link{map}}, \code{\link{par}} and
 \code{\link{colors}} help pages
 }
 

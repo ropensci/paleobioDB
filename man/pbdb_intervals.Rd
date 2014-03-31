@@ -36,7 +36,6 @@ according to the parameters you provide.
 \examples{
 \dontrun{
 pbdb_intervals (min_ma= 0, max_ma=2, vocab="pbdb")
-
 }
 }
 

@@ -41,28 +41,23 @@
 #' @param col.point Two or more colors. This generates a color gradient and, is used to show the number of samples at the same point
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
 #' @return The map of occurrences of fossil records, with the points with a color gradient, according to the number of samples in each site
-#' @details Only cairo \code{\link{x11}}( ) devices are supported.
-#' 
-#' The simplest use of this function is: \code{\link{pbdb_map(data)}}.
-#' 
-#' Before running the function \code{\link{pbdb_map(...)}}, we recommended to open the \code{\link{x11()}} device, maximize and minimize.
-#' 
-#' @seealso See \code{\link{pbdb_map}}, \code{\link{par}} and \code{\link{colors}} help pages
+#' @seealso See \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-#' x11(type="*cairo") ## IMPORTANT: You should maximize and minimize the window plot
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
-#' pbdb_map(data, pch=19, col.point=c('pink','red'), col.ocean='light blue', main='canis')
-#'}
+#' pbdb_map(data,pch=19,col.point=c('pink','red'), col.ocean='light blue',main='canis')
+#' l_ply(dev.list(),dev.off)#
+
 
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'),...){
-    
+
     if(names(dev.cur())!='X11cairo'){
         stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map\" help page")}
+
     .add.ColOcean(col.ocean,col.int,...)
     Y <- .extract.LatLong(data)
     Y1<-.add.Points(Y,col.point,pch,...)
@@ -100,7 +95,8 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 
 #' pbdb_map_effort
 #' 
-#' Create a RasterLayer object with sampling effort of fossil records. Furthermore this function maps the sampling effort of the fossil records
+#' Create a RasterLayer object with sampling effort of fossil records. 
+#' Furthermore this function maps the sampling effort of the fossil records using a cairo \code{\link{x11}}( ) device
 #' 
 #' @usage pbdb_map_effort (data, res=1, col.int='white', col.ocean='black', col.eff=c('light blue','blue'),...)
 #' 
@@ -110,27 +106,20 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @param col.ocean The color of ocean
 #' @param col.eff Two or more colors. This generates a color gradient and, is used to show the sampling effort in each cell
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}}
-#' @details Only cairo \code{\link{x11}}( ) devices are supported. See \strong{Examples}
-#' 
-#' The simplest use of this function is: \code{\link{pbdb_map_effort(data)}}.
-#' 
-#' Before running the function \code{\link{pbdb_map_effort(...)}}, we recommended to open the \code{\link{x11()}} device, maximize and minimize.
-#' 
 #' @return A RasterLayer object with sampling effort of fossil. This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
 #' Additionally the \code{\link{pbdb_map_effort}} function returns a map with the sampling effort by cells. 
-#' @seealso See \code{\link{pbdb_map}}, \code{\link{par}} and \code{\link{colors}} help pages
+#' @seealso See \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-#' x11() ## maximize and minimize
-#' pbdb_map_effort (data,res=2)
+#' r<-pbdb_map_effort (data,res=2)
+#' l_ply(dev.list(),dev.off)#
 #'}
 #'
 
 pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
                             col.eff=c('light blue','blue'),...){
-    if(names(dev.cur())!='X11cairo'){
-        stop("Can only view from 'X11(type=\"*cairo\")'. See \"pdbd_map_effort\" help page")}
+    X11(width=13, height=7)
     Y <- .extract.LatLong(data)
     r<-.plot.Raster(Y,res,col.int,col.ocean,...)
     .add.pattern(r,col.eff,...)
@@ -164,8 +153,6 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
     )
     all<-calc(stack(R), function(x) sum(x[!is.na(x)]))
     values(all)[values(all)==0]<-NA
-    #     plot(all)
-    #     map(add=T)
     all
 }
 
@@ -196,8 +183,6 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
     )
     all<-calc(stack(R), function(x) sum(x[!is.na(x)]))
     values(all)[values(all)==0]<-NA
-    #     plot(all)
-    #     map(add=T)
     all
 }
 
@@ -217,7 +202,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' pbdb_map_richness
 #' 
 #' Create a RasterLayer object with richness of fossil records by cell. 
-#' Furthermore this function maps the richness of the fossil records.
+#' Furthermore this function maps the richness of the fossil records using a cairo \code{\link{x11}}( ) device.
 #' 
 #' @usage pbdb_map_effort (data, rank='species', do.plot=T, res=1, col.int='white', col.ocean='black', col.rich=c('light blue','blue'),...)
 #' 
@@ -230,21 +215,13 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' @param col.rich Two or more colors. This generates a color gradient and, is used to show the richness in each cell
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
 #' @details  \strong{CAUTION!} Is required use the argument \code{\link{show = c('phylo', 'coords', 'ident')}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
-#' 
-#' Only cairo \code{\link{x11}}( ) devices are supported. See \strong{Examples}
-#' 
-#' The simplest use of this function is: \code{\link{pbdb_map_richness(data)}}.
-#' 
-#' Before running the function \code{\link{pbdb_map_richness(...)}}, we recommended to open the \code{\link{x11()}} device, maximize and minimize.
-#' 
 #' @return A RasterLayer object with richness of fossil records by cell. This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
 #' Additionally the \code{\link{pbdb_map_effort}} function returns a richness of the fossil records by cells. 
-#' 
+#' @seealso See\code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show="coords")
-#' x11() ## maximize and minimize 
-#' r<-pbdb_map_richness (data,res=3,rank='genus')
+#' pbdb_map_richness (data,res=3,rank='genus')
 #' ## Error in pbdb_map_richness(data, res = 3, rank = "genus") : 
 #' ## Invalid data input. Use in "pbdb_occurrences" function the argument: show=c("phylo","coords","ident"). 
 #' ## e.g. pbdb_occurrences(..., show=c("phylo","coords","ident")). 
@@ -253,6 +230,7 @@ pbdb_map_effort <- function(data,res=1,col.int='white', col.ocean='black',
 #' pbdb_map_richness (data,res=3,rank='genus')
 #' pbdb_map_richness (data,res=3,rank='family')
 #' pbdb_map_richness (data,res=3,rank='family',do.plot=F)
+
 #' }
 #'
 
@@ -262,7 +240,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
         stop("Invalid rank name. Use: \"species\" or \"genus\" or \"family\" or \"order\" or \"class\" or \"phylum\".
              See \"pbdb_map_richness\" help page" )}
     
-    if (!any(colnames(data) %in% c("genus_name","family","order","class","phylum","idt","fmn","odn","cll","phl"))){
+    if (!any(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odn","cll","phl"))){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")). 
              See \"pbdb_map_richness\" help page" )}
     
@@ -275,9 +253,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
     }
     
     if(do.plot==TRUE){
-        if(names(dev.cur())!='X11cairo'){
-            stop("Can only view from 'X11(type=\"*cairo\")'. See \"pbdb_map_richness\" help page")}
-
+        X11(width=12, height=7)
         .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
         mtext(paste('Richness of', rank),4,line=-1,cex=2)
         
