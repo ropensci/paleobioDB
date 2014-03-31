@@ -59,7 +59,6 @@
 
 
 # Makes a dataframe from a list of lists (fromJSON response)
-
 .make_data_frame<-function(reg_list){
 
 	df<-as.data.frame(reg_list[1])
@@ -69,6 +68,10 @@
 	if(len < 2){
 		return (df)
 	}
+
+# TODO: fix warning thrown when different types of data found for a column. smartbind
+# converts to character and throws warning. see: pbdb_ref_taxa (name="Canidae")
+# fix: - convert certain columns to character on the fly
 
 	for (reg in reg_list[2:len]){
 	    # smartbind from gtools let us bind rows with different

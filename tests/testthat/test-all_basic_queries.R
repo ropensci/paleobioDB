@@ -99,14 +99,6 @@ test_that("pbdb_scales output is a dataframe, and the names are characters", {
 
 context("pbdb_scales")
 test_that("pbdb_scales output is a dataframe, and the names are characters", {
-  response<- pbdb_scales ()
-  expect_true(is.data.frame (response))
-  expect_is (names (response)[1], "character")
-  expect_true (dim (response)[1]>=1)
-})
-
-context("pbdb_scales")
-test_that("pbdb_scales output is a dataframe, and the names are characters", {
   response<- pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=5, rank="formation")
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
