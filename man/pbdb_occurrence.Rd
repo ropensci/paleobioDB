@@ -27,7 +27,7 @@ Returns information about a single occurrence record from
 the Paleobiology Database.
 }
 \examples{
-\dontrun {
+\dontrun{
 pbdb_occurrence (id=1001)
 pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 }

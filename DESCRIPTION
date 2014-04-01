@@ -21,9 +21,7 @@ Imports:
     maps,
     scales,
     raster
-    
 Suggests:
     testthat,
     roxygen2
-    
 LazyData: true
