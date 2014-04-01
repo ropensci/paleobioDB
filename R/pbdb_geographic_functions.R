@@ -110,13 +110,14 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' 
 #' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell). 
 #' 
-#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...)
+#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...))
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show="coords"}}. See too: \strong{Details} and \strong{Examples}
 #' @param res the resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}} ()
 #' @param col.int The colour of the mainland
 #' @param col.ocean The colour of the ocean
-#' @param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
+#' @param col.eff Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
+#' @param do.plot Logical; \code{\link{TRUE}} the function returns a RasterLayer and a plot.
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
 #' @details \strong{CAUTION!} The argument \code{\link{show =  "coords"}} in \code{\link{pbdb_occurrences}} function is
 #'  required. See \strong{Examples}
@@ -210,7 +211,7 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' 
 #' Creates a RasterLayer object and a plot with richness of species, genera, families, etc. per cell.
 #' 
-#' @usage pbdb_map_effort (data, rank="species", do.plot=T, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
+#' @usage pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = c("phylo", "coords", "ident")}}. See too: \strong{Details} and \strong{Examples}
 #' @param rank To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")
@@ -218,7 +219,7 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' @param res The resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}} ()
 #' @param col.int The colour of the mainland
 #' @param col.ocean The colour of the ocean
-#' @param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
+#' @param col.rich Two or more colours. To generate the colour gradient used to show the richness per cell in map
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
 #' @details \strong{CAUTION!} The argument \code{\link{show =  "coords"}} in \code{\link{pbdb_occurrences}} function is required. See \strong{Examples}
 #' @return A RasterLayer object and a plot with richness of species, genera, families, etc. per cell. This RasterLayer object have the resolution controlled by 

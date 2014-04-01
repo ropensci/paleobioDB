@@ -2,7 +2,7 @@
 \alias{pbdb_map_richness}
 \title{pbdb_map_richness}
 \usage{
-pbdb_map_effort (data, rank="species", do.plot=T, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
+pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -25,9 +25,9 @@ pbdb_map_effort (data, rank="species", do.plot=T, res=1, col.int="white", col.oc
 
   \item{col.ocean}{The colour of the ocean}
 
-  \item{col.point}{Two or more colours. To generate the
-  colour gradient used to show the number of occurrences
-  per cell in map}
+  \item{col.rich}{Two or more colours. To generate the
+  colour gradient used to show the richness per cell in
+  map}
 
   \item{...}{Others parameters. See \code{\link{par}} and
   \code{\link{map()}}}
