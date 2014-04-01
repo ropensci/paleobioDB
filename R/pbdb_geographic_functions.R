@@ -202,7 +202,8 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
         r2<-rasterize(X[,1:2],r,X[,3])
     }
     )
-    all<-calc(stack(R), function(x) sum(x[!is.na(x)]))
+    names(R)=NULL
+    all<-calc(stack(R), function(x) sum(x,na.rm=T))
     values(all)[values(all)==0]<-NA
     all
 }
