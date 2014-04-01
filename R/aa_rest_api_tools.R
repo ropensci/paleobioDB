@@ -1,6 +1,9 @@
 # Functions abstracting common behaviours for different API enpoint configurations.
 # The aim is to provide a framework for all the API calls in the package
 
+# about the name of this file. This file must be read before others when checking / building de package
+# (particularly by the .pbdb_setup function). Aparently it is read by alphabetical hence those starting 'aa'
+
 #' Configuration for the several api endpoints
 .api_end_points <- list()
 
