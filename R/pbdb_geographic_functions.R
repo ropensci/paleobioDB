@@ -84,37 +84,46 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
     map(col=col.int,fill=T,add=T,...)
 }
 
-.plot.Raster<-function(Y,res,col.int,col.ocean,...){
-    par(oma=c(4,0,2,2),...)
-    e<-map(type='n',...)
+.Raster<-function(Y,res,col.int,col.ocean,...){
+    e<-map(plot=F,...)
     ext<-extent(e$range)
     r<-raster(ext)
     res(r)<-c(res,res)
     values(r)<-NA
-    plot(r,xaxt='n',yaxt='n')
-    .add.ColOcean2 (col.ocean,col.int,...)
-    map(col=col.int,fill=T,add=T,...)
     r<-rasterize(Y[,1:2],r,Y[,3],fun=sum)
+    r
 }
 
 .add.pattern<-function(r,col.eff,...){
     Pal <- colorRampPalette(col.eff)
     plot(r,col=alpha(Pal(5),0.8),add=T,...)
-    #map(,add=T,col=col.int.line,...)
 }
 
+.plot.Raster.rich<-function(r,col.eff,col.ocean,col.int,res,...){
+    par(oma=c(4,0,2,2),...)
+    e<-map(type="n",...)
+    ext<-extent(e$range)
+    r2<-raster(ext)
+    res(r2)<-c(res,res)
+    values(r2)<-NA
+    plot(r2,xaxt="n",yaxt="n")
+    .add.ColOcean2 (col.ocean,col.int,...)
+    map(col=col.int,fill=T,add=T,...)
+    .add.pattern(r,col.eff,...)
+}
 #' pbdb_map_effort
 #' 
 #' Create a RasterLayer object with sampling effort of fossil records. 
 #' Furthermore this function maps the sampling effort of the fossil records using a cairo \code{\link{x11}}( ) device
 #' 
-#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), ...)
+#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show="coords"}}. See too: \strong{Details} and \strong{Examples}
 #' @param res the resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}} ()
 #' @param col.int The color of mainland
 #' @param col.ocean The color of ocean
 #' @param col.eff Two or more colors. This generates a color gradient and, is used to show the sampling effort in each cell
+#' @param do.plot Logical; If \code{\link{TRUE}} specifies that plotting should be done
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}}
 #' @details  \strong{CAUTION!} Is required use the argument \code{\link{show="coords"}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
 #' @return A RasterLayer object with sampling effort of fossil records. This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
@@ -130,21 +139,24 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' ##See "pbdb_map_effort" help page
 #' ###
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
-#' r<-pbdb_map_effort (data,res=2)
+#' pbdb_map_effort (data,res=2)
+#' pbdb_map_effort (data,res=2,do.plot=F)
+#' 
 #' l_ply(dev.list(),dev.off)## to close all windows graphics
 #'}
 #'
 
 pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
-                            col.eff=c("light blue","blue"),...){
+                            col.eff=c("light blue","blue"), do.plot=TRUE, ...){
     if (sum((colnames(data) %in% c("lat","lng")))!=2){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\"). 
              See \"pbdb_map_effort\" help page" )}
-    X11(width=13, height=7.8)
     Y <- .extract.LatLong(data)
-    r<-.plot.Raster(Y,res,col.int,col.ocean,...)
-    .add.pattern(r,col.eff,...)
-    mtext("Number of records",4,line=-1,cex=2)
+    r<-.Raster(Y,res,col.int,col.ocean,...)
+    if(do.plot==T){
+        X11(width=13, height=7.8)
+        .plot.Raster.rich(r,col.eff,col.ocean,col.int,res,...)
+            mtext("Number of records",4,line=-1,cex=2)}
     r
 }
 
@@ -172,7 +184,8 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
         r2<-rasterize(X[,1:2],r,X[,3])
     }
     )
-    all<-calc(stack(R), function(x) sum(x[!is.na(x)]))
+    names(R)==NULL
+    all<-calc(stack(R), function(x) sum(x,na.rm=T))
     values(all)[values(all)==0]<-NA
     all
 }
@@ -208,19 +221,6 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
     all
 }
 
-.plot.Raster.rich<-function(r,col.eff,col.ocean,col.int,res,...){
-    par(oma=c(4,0,2,2),...)
-    e<-map(type="n",...)
-    ext<-extent(e$range)
-    r2<-raster(ext)
-    res(r2)<-c(res,res)
-    values(r2)<-NA
-    plot(r2,xaxt="n",yaxt="n")
-    .add.ColOcean2 (col.ocean,col.int,...)
-    map(col=col.int,fill=T,add=T,...)
-    .add.pattern(r,col.eff,...)
-}
-
 #' pbdb_map_richness
 #' 
 #' Create a RasterLayer object with richness of fossil records by cell. 
@@ -250,7 +250,7 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' ## See "pbdb_map_richness" help page
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
 #' pbdb_map_richness (data,res=3,rank="genus")
-#' pbdb_map_richness (data,res=3,rank="family")
+#' pbdb_map_richness (data,res=8,rank="family")
 #' pbdb_map_richness (data,res=3,rank="family",do.plot=F)
 #' l_ply(dev.list(),dev.off)## to close all windows graphics
 #' }
@@ -261,7 +261,7 @@ pbdb_map_richness <- function(data, rank="species", do.plot=T, res=1,col.int="wh
     if(!any(rank==c("species", "genus","family","order","class","phylum"))){
         stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".
              See \"pbdb_map_richness\" help page" )}
-        if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
+    if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")). 
              See \"pbdb_map_richness\" help page" )}
     
@@ -282,4 +282,3 @@ pbdb_map_richness <- function(data, rank="species", do.plot=T, res=1,col.int="wh
     }
     r
 }
-
