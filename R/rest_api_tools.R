@@ -3,7 +3,6 @@
 
 #' Configuration for the several api endpoints
 .api_end_points <- list()
-.api_base <- NULL
 
 #' Sets up configuration for an API endpoint
 #' 

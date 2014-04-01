@@ -1,17 +1,19 @@
 # test for the geographic functions
 
 
-data<-  pbdb_occurrences (limit="100", vocab="pbdb",
-                          base_name="canis")##missing coordinates
-pbdb_map_effort (data)
-expect_error(pbdb_map_effort (data))
-x11()
-pbdb_map_effort (data)
-expect_error(pbdb_map_effort (data))
+test_that("tests on pbdb_map_effort", {
 
-data<-  pbdb_occurrences (limit="100", vocab="pbdb",
-                          base_name="canis",show='coords')
-expect_error(pbdb_map_effort (data))  
+	##missing coordinates
+	data<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis")
+	
+	pbdb_map_effort (data)
+	expect_error(pbdb_map_effort (data))
+	x11()
 
-r<-pbdb_map_effort (data)
-class(r)
+	data<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis",show='coords')
+	expect_error(pbdb_map_effort (data))  
+
+	# todo: test class to be RasterLayer (with params ok)
+	# r<-pbdb_map_effort (data)
+	# class(r)
+})

@@ -262,8 +262,7 @@ pbdb_map_richness <- function(data, rank='species', do.plot=T, res=1,col.int='wh
     if(!any(rank==c("species", "genus","family","order","class","phylum"))){
         stop("Invalid rank name. Use: \"species\" or \"genus\" or \"family\" or \"order\" or \"class\" or \"phylum\".
              See \"pbdb_map_richness\" help page" )}
-    
-    if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
+        if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")). 
              See \"pbdb_map_richness\" help page" )}
     
