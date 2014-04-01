@@ -61,7 +61,7 @@ pbdb_map_richness (data,res=3,rank="genus")
 ## See "pbdb_map_richness" help page
 data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
 pbdb_map_richness (data,res=3,rank="genus")
-pbdb_map_richness (data,res=3,rank="family")
+pbdb_map_richness (data,res=8,rank="family")
 pbdb_map_richness (data,res=3,rank="family",do.plot=F)
 l_ply(dev.list(),dev.off)## to close all windows graphics
 }
