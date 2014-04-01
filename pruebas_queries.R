@@ -4,10 +4,24 @@ is.data.frame (kk)
 
 pbdb_occurrences (id=c(10, 11)) 
 
-data<-  pbdb_occurrences (limit="100", vocab="pbdb",
-                                  base_name="Canidae",  
+data<-  pbdb_occurrences (limit="all", vocab="pbdb",
+                                  base_name="Mammalia",  
                           interval="Quaternary", 
-                          show="coords")
+                          show=c("coords", "phylo", "ident"))
+carnivo<- data[duplicated (data$taxon_no), ]
+canidae<- canis
+pbdb_subtaxa (canidae, do.plot=TRUE) 
+pbdb_temporal_resolution (canidae)
+pbdb_time_span (canidae, rank="species")
+pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), resolution=1)
+# evolutionary rates= evo_ext=1
+pbdb_evo_ext (canidae, rank="species", evo_ext=1, temporal_extent=c(0,10), resolution=1)
+# extinction rates= evo_ext=2
+pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
+pbdb_map(canidae)
+pbdb_map_effort (canidae, res= 2)
+pbdb_map_richness (data, res= 3, rank="species")
+
 
 head (data)
 library (testthat)
