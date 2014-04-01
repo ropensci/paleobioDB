@@ -2,7 +2,7 @@
 \alias{pbdb_subtaxa}
 \title{pbdb_subtaxa}
 \usage{
-pbdbr_of_subtaxa (data, do.plot, col)
+pbdb_subtaxa (data, do.plot, col)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD

@@ -2,11 +2,13 @@
 \alias{pbdb_map_effort}
 \title{pbdb_map_effort}
 \usage{
-pbdb_map_effort (data, res=1, col.int='white', col.ocean='black', col.eff=c('light blue','blue'),...)
+pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"),...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
-  of \code{\link{pbdb_occurrences}} function}
+  of \code{\link{pbdb_occurrences}} function using the
+  argument: \code{\link{show="coords"}}. See too:
+  \strong{Details} and \strong{Examples}}
 
   \item{res}{the resolution of the RasterLayer object in
   decimal degrees. See: \code{\link{raster}} ()}
@@ -36,15 +38,28 @@ records. Furthermore this function maps the sampling effort
 of the fossil records using a cairo \code{\link{x11}}( )
 device
 }
+\details{
+\strong{CAUTION!} Is required use the argument
+\code{\link{show="coords"}} in
+\code{\link{pbdb_occurrences}} function. See
+\strong{Examples}
+}
 \examples{
 \dontrun{
+data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis")
+r<-pbdb_map_effort (data,res=2)
+###
+##Error in pbdb_map_effort(data,res=2) :
+##Invalid data input. Use in "pbdb_occurrences" function the argument: show="coords". e.g. pbdb_occurrences(..., show="coords").
+##See "pbdb_map_effort" help page
+###
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 r<-pbdb_map_effort (data,res=2)
-l_ply(dev.list(),dev.off)#
+l_ply(dev.list(),dev.off)## to close all windows graphics
 }
 }
 \seealso{
-See \code{\link{map}}, \code{\link{par}} and
-\code{\link{colors}} help pages
+See \code{\link{pbdb_occurrences}}, \code{\link{map}},
+\code{\link{par}} and \code{\link{colors}} help pages
 }
 
