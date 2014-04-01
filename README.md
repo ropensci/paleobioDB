@@ -117,7 +117,7 @@ pbdb_map_richness (data, res= 3, rank="species")
 
 Please report any [issues or bugs](https://github.com/ropensci/pbdb/issues).
 
-License: CC0
+License: GPL-2
 
 To cite package `paleobioDB` in publications use:
 

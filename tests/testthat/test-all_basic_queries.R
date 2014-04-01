@@ -121,13 +121,13 @@ test_that("pbdb_reference output is a dataframe, and the names are characters", 
   expect_true (dim (response)[1]==1)
 })
 
- context("pbdb_references")
-test_that("pbdb_references output is a dataframe, and the names are characters", {
-  response<- pbdb_references (author="Turner")
-  expect_true(is.data.frame (response))
-  expect_is (names (response)[1], "character")
-  expect_true (dim (response)[1]>=1)
-})
+#  context("pbdb_references")
+# test_that("pbdb_references output is a dataframe, and the names are characters", {
+#   response<- pbdb_references (author="Turner")
+#   expect_true(is.data.frame (response))
+#   expect_is (names (response)[1], "character")
+#   expect_true (dim (response)[1]>=1)
+# })
 
 context("pbdb_ref_occurrences")
 test_that("pbdb_ref_occurrences output is a dataframe, and the names are characters", {
