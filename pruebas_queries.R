@@ -8,20 +8,38 @@ data<-  pbdb_occurrences (limit="all", vocab="pbdb",
                                   base_name="Mammalia",  
                           interval="Quaternary", 
                           show=c("coords", "phylo", "ident"))
+
 unique(data$class)
 carnivo<- data[duplicated (data$taxon_no), ]
 canidae<- canis
 pbdb_subtaxa (canidae, do.plot=TRUE) 
 pbdb_temporal_resolution (canidae)
+pbdb_subtaxa 
+
 pbdb_time_span (canidae, rank="species")
+canidae<- data
 pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), resolution=1)
 # evolutionary rates= evo_ext=1
 pbdb_evo_ext (canidae, rank="species", evo_ext=1, temporal_extent=c(0,10), resolution=1)
 # extinction rates= evo_ext=2
-pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
+pbdb_evo_ext (canidae, rank="species", evo_ext=2, 
+              temporal_extent=c(0,20), resolution=1)
 kk<- pbdb_map(data)
 kkk<- pbdb_map_effort (data, res= 4)
+kkk
 pbdb_map_richness (data, res= 4, rank="species")
+
+
+data<- pbdb_occurrences (limit="all", vocab= "pbdb", 
+                         base_name="Canis", 
+                         show=c("phylo","coords","ident"))
+pbdb_map(data)
+pbdb_map(data,pch=1)
+pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",main="canis")
+
+pbdb_map_effort (data, res=3)
+pbdb_map_richness (data,res=3,rank="species")
+pbdb_map_richness (data,res=3,rank="family")
 
 
 head (data)
