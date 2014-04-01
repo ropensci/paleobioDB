@@ -20,7 +20,7 @@ pbdb_evo_ext (canidae, rank="species", evo_ext=1, temporal_extent=c(0,10), resol
 # extinction rates= evo_ext=2
 pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
 kk<- pbdb_map(data)
-kkk<- pbdb_map_effort (canis, res= 4)
+kkk<- pbdb_map_effort (data, res= 4)
 pbdb_map_richness (data, res= 4, rank="species")
 
 

@@ -29,29 +29,24 @@
 
 #' pbdb_map
 #' 
-#' Shows the map of occurrences of fossil records in a cairo \code{\link{x11}}( ) device
+#' Maps the fossil records
+#' 
+#' The function opens a new window for the map
 #' 
 #' @usage pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL, col.point=c("light blue","blue"), ...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = "coords"}}. See too: \strong{Details} and \strong{Examples}
-#' @param col.int The color of mainland. 
+#' @param col.int The colour of the mainland. 
 #' @param pch See: \code{\link{par}}
-#' @param col.ocean The color of ocean 
-#' @param main The title of map 
-#' @param col.point Two or more colors. This generates a color gradient and, is used to show the number of samples at the same point in map
+#' @param col.ocean The colour of the ocean.
+#' @param main To set the title of the map. See: \code{\link{par}}
+#' @param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
-#' @details \strong{CAUTION!} Is required use the argument \code{\link{show =  "coords"}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
-#' @return The map of occurrences of fossil records, with the points with a color gradient, according to the number of samples in each site
+#' @details \strong{CAUTION!} The argument \code{\link{show =  "coords"}} in \code{\link{pbdb_occurrences}} function is required. See \strong{Examples}
+#' @return A map showing the distribution of the fossil records, with the points with a color gradient, according to the number of occurrences per cell.
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis")
-#' pbdb_map(data)
-#' ###
-#' ##Error in pbdb_map(data) : 
-#' ##Invalid data input. Use in "pbdb_occurrences" function the argument: show="coords". e.g. pbdb_occurrences(..., show="coords"). 
-#' ##See "pbdb_map" help page
-#' ###
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
@@ -105,30 +100,21 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 
 #' pbdb_map_effort
 #' 
-#' Create a RasterLayer object with sampling effort of fossil records. 
-#' Furthermore this function maps the sampling effort of the fossil records using a cairo \code{\link{x11}}( ) device
+#' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell). 
 #' 
 #' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), ...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show="coords"}}. See too: \strong{Details} and \strong{Examples}
 #' @param res the resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}} ()
-#' @param col.int The color of mainland
-#' @param col.ocean The color of ocean
-#' @param col.eff Two or more colors. This generates a color gradient and, is used to show the sampling effort in each cell
-#' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}}
-#' @details  \strong{CAUTION!} Is required use the argument \code{\link{show="coords"}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
-#' @return A RasterLayer object with sampling effort of fossil records. This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
-#' Additionally the \code{\link{pbdb_map_effort}} function returns a map with the sampling effort by cells. 
+#' @param col.int The colour of the mainland
+#' @param col.ocean The colour of the ocean
+@param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
+#' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
+#' @details \strong{CAUTION!} The argument \code{\link{show =  "coords"}} in \code{\link{pbdb_occurrences}} function is required. See \strong{Examples}
+#' @return A RasterLayer object and a plot with the sampling effort (number of fossil records per cell). This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis")
-#' r<-pbdb_map_effort (data,res=2)
-#' ###
-#' ##Error in pbdb_map_effort(data,res=2) : 
-#' ##Invalid data input. Use in "pbdb_occurrences" function the argument: show="coords". e.g. pbdb_occurrences(..., show="coords"). 
-#' ##See "pbdb_map_effort" help page
-#' ###
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
 #' r<-pbdb_map_effort (data,res=2)
 #' l_ply(dev.list(),dev.off)## to close all windows graphics
@@ -223,31 +209,24 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 
 #' pbdb_map_richness
 #' 
-#' Create a RasterLayer object with richness of fossil records by cell. 
-#' Furthermore this function maps the richness of the fossil records using a cairo \code{\link{x11}}( ) device.
+#' Creates a RasterLayer object and a plot with richness of species, genera, families, etc. per cell.
 #' 
 #' @usage pbdb_map_effort (data, rank="species", do.plot=T, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = c("phylo", "coords", "ident")}}. See too: \strong{Details} and \strong{Examples}
 #' @param rank To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")
-#' @param do.plot Logical; If \code{\link{TRUE}} specifies that plotting should be done
+#' @param do.plot Logical; \code{\link{TRUE}} the function returns a RasterLayer and a plot.
 #' @param res The resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}} ()
-#' @param col.int The color of mainland
-#' @param col.ocean The color of ocean
-#' @param col.rich Two or more colors. This generates a color gradient and, is used to show the richness in each cell
+#' @param col.int The colour of the mainland
+#' @param col.ocean The colour of the ocean
+@param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map()}} 
-#' @details  \strong{CAUTION!} Is required use the argument \code{\link{show = c("phylo", "coords", "ident")}} in \code{\link{pbdb_occurrences}} function. See \strong{Examples}
-#' @return A RasterLayer object with richness of fossil records by cell. This RasterLayer object have the resolution controlled by the argument \code{\link{res}}. The deflaut is  \code{\link{res=1}}.
-#' Additionally the \code{\link{pbdb_map_effort}} function returns a richness of the fossil records by cells. 
+#' @details \strong{CAUTION!} The argument \code{\link{show =  "coords"}} in \code{\link{pbdb_occurrences}} function is required. See \strong{Examples}
+#' @return A RasterLayer object and a plot with richness of species, genera, families, etc. per cell. This RasterLayer object have the resolution controlled by 
+#' the argument \code{\link{res}}. The default is  \code{\link{res=1}}. 
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit=100, vocab= "pbdb", base_name="mammalia", show="coords")
-#' pbdb_map_richness (data,res=3,rank="genus")
-#' ## Error in pbdb_map_richness(data, res = 3, rank = "genus") : 
-#' ## Invalid data input. Use in "pbdb_occurrences" function the argument: show=c("phylo","coords","ident"). 
-#' ## e.g. pbdb_occurrences(..., show=c("phylo","coords","ident")). 
-#' ## See "pbdb_map_richness" help page
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
 #' pbdb_map_richness (data,res=3,rank="genus")
 #' pbdb_map_richness (data,res=3,rank="family")
