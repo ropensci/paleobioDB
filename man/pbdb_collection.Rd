@@ -2,24 +2,21 @@
 \alias{pbdb_collection}
 \title{pbdb_collection}
 \usage{
-pbdb_collection(id, ...)
+pbdb_collection (id, ...)
 }
 \arguments{
   \item{id}{identifier of the collection. This parameter is
   required.}
 
-  \item{vocab}{set vocab="pbdb" to show the complete name
-  of the variables (by default variables have short
-  3-letter names)}
-
-  \item{show}{to show extra variables (e.g. "loc" to show
-  additional information about the geographic locality of
-  the collection)}
-
   \item{...}{documentation for all the parameters is
   available in http://paleobiodb.org/data1.1/colls/single
   go to ?pbdb_occurrences to see an explanation about the
-  main filtering parameters}
+  main filtering parameters For example: \code{vocab} set
+  vocab="pbdb" to show the complete name of the variables
+  (by default variables have short 3-letter names)
+  \code{show} to show extra variables (e.g. "loc" to show
+  additional information about the geographic locality of
+  the collection)}
 }
 \value{
 a dataframe with a single occurrence

@@ -4,18 +4,18 @@
 # about the name of this file. This file must be read before others when checking / building de package
 # (particularly by the .pbdb_setup function). Aparently it is read by alphabetical hence those starting 'aa'
 
-#' Configuration for the several api endpoints
+# Configuration for the several api endpoints
 .api_end_points <- list()
 
-#' Sets up configuration for an API endpoint
-#' 
-#' @param name Internal use name of the endpoint
-#' @param endpoint_base Base of the endpoint. Should not include de api_base. 
-#' eg: 'products' in a 'http://sample.org/api/products' where 'http://sample.org/api' 
-#' ould be the api_base
-#' @param ... Custom parameters passed to the uri_builder callback when generating the URI's
-#' @param uri_builder Function that generates the URI's to the API
-#' 
+# Sets up configuration for an API endpoint
+# 
+# @param name Internal use name of the endpoint
+# @param endpoint_base Base of the endpoint. Should not include de api_base. 
+# eg: products in a http://sample.org/api/products where http://sample.org/api 
+# ould be the api_base
+# @param ... Custom parameters passed to the uri_builder callback when generating the URIs
+# @param uri_builder Function that generates the URIs to the API
+# 
 .setup_api_endpoint<-function(name, endpoint_base, ..., uri_builder = .default_uri_builder, 
 	query_params = list()){
 
@@ -33,7 +33,7 @@
     
 }
 
-#' Set up available options or validators to the different api parameters
+# Set up available options or validators to the different api parameters
 #
 .set_api_param_options<-function(paramname){
 
@@ -41,8 +41,8 @@
 }
 
 
-#' Default uri builder. An URI builder must include
-#'
+# Default uri builder. An URI builder must include
+#
 .default_uri_builder<-function(api_base_uri, config, ..., querystring = ''){
 
 	endpoint_base <- config[['endpoint_base']]
@@ -56,12 +56,12 @@
 	uri
 }
 
-#' Generates a URI based on the endpoint configuration and query parameters
-#'
-#' @param endpoint Name of an endopoint
-#' @param ... Custom parameters for the query string
-#' @param query URI parameters for the query string passed as a named list
-#' @param api_base API base for this URI, no matter if global value was defined
+# Generates a URI based on the endpoint configuration and query parameters
+#
+# @param endpoint Name of an endopoint
+# @param ... Custom parameters for the query string
+# @param query URI parameters for the query string passed as a named list
+# @param api_base API base for this URI, no matter if global value was defined
 #
 .build_uri<-function(endpoint, ..., query = list(), api_base = NULL, api_format = NULL){
 
@@ -107,7 +107,7 @@
 	.package_cache_set('api_base', api_base)
 }
 
-#' Finds the first (if any) compulsory query string param that is missing
+# Finds the first (if any) compulsory query string param that is missing
 .stop_on_missing_param<-function(compulsory_params, query){
 
 	q_params <- names(query)
