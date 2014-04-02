@@ -2,7 +2,7 @@
 \alias{pbdb_map_effort}
 \title{pbdb_map_effort}
 \usage{
-pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...)
+pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...))
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -17,9 +17,12 @@ pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("lig
 
   \item{col.ocean}{The colour of the ocean}
 
-  \item{col.point}{Two or more colours. To generate the
+  \item{col.eff}{Two or more colours. To generate the
   colour gradient used to show the number of occurrences
   per cell in map}
+
+  \item{do.plot}{Logical; \code{\link{TRUE}} the function
+  returns a RasterLayer and a plot.}
 
   \item{...}{Others parameters. See \code{\link{par}} and
   \code{\link{map()}}}
