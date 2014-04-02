@@ -27,10 +27,8 @@
 	df
 }
 
-.pbdb_query_uri<-function(endpoint, query = list()){
-
+.pbdb_query_uri<- function(endpoint, query = list()){
   query <- lapply(query, .implode_to_string)
-
   return (.build_uri(endpoint, query = query))
 }
 
@@ -55,7 +53,7 @@
 #' @examples \dontrun {
 #' pbdb_occurrence (id=1001)
 #' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
-#'}
+#' }
 
 
 
@@ -103,7 +101,7 @@ pbdb_occurrence<-function(id, ...){
 #' pbdb_occurrences (id=c(10, 11)) 
 #' pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show="coords")
 #' pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show="coords")
-#'}
+#' }
 
 
 pbdb_occurrences<-function(...){
