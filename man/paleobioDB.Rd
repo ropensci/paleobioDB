@@ -27,6 +27,7 @@ License: \tab GPL-2 \cr }
 }
 \examples{
 \dontrun{
+
 canidae<-  pbdb_occurrences (limit="all", base_name="canidae", interval="Quaternary", show=c("coords", "phylo", "ident"))
 
 # to explore the number of subtaxa

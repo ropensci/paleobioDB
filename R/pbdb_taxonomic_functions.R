@@ -5,14 +5,17 @@
 #' 
 #' @usage pbdb_subtaxa (data, do.plot, col)
 #' 
-#' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}} 
-#' @param do.plot by default this function make a plot to visualize the distribution of taxa. Set to FALSE to skip the plot.
+#' @param data dataframe with our query to the 
+#' paleoBD \code{\link{pbdb_occurrences}} 
+#' @param do.plot by default this function make a plot to 
+#' visualize the distribution of taxa. Set to FALSE to skip the plot.
 #' @param col set the colour of the histogram. skyblue2 by default.
 #' @return a plot and a dataframe with the number of subtaxa in the data.
 #' @export 
 #' @examples \dontrun{
 #' canidae_quat<-  pbdb_occurrences (limit="all", 
-#' base_name="Canidae",  interval="Quaternary", show=c("coords", "phylo", "ident")
+#' base_name="Canidae",  interval="Quaternary", 
+#' show=c("coords", "phylo", "ident")
 #' pbdb_subtaxa (canidae_quat)
 #'}
 #'
