@@ -50,7 +50,7 @@
 #' 
 #' @export 
 #' 
-#' @examples \dontrun {
+#' @examples \dontrun{
 #' pbdb_occurrence (id=1001)
 #' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 #' }
@@ -369,7 +369,7 @@ pbdb_interval<-function(id, ...){
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/intervals/lists. For example: 
 #'\code{min_ma}  return only intervals that are at least this old
-#'\code{ max_ma} return only intervals that are at most this old
+#'\code{max_ma} return only intervals that are at most this old
 #'\code{order} return the intervals in order starting as specified. 
 #'Possible values include older, younger. Defaults to younger.
 #'\code{vocab} set vocab="pbdb" to show the complete name of the variables
@@ -399,7 +399,7 @@ pbdb_intervals<-function(...){
 #'@param id identifier of the temporal interval. This parameter is required.
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/scales/single. For example:
-#'\code {vocab} set vocab="pbdb" to show the complete name of the variables
+#'\code{vocab} set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 #'
 #'@return a dataframe with information from a single scale
@@ -542,7 +542,7 @@ pbdb_strata_auto<-function(id, ...){
 #'is available in http://paleobiodb.org/data1.1/refs/single
 #'go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
 #' For example:
-#' \code {vocab} set vocab="pbdb" to show the complete name of the variables
+#' \code{vocab} set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 
 #'@return a dataframe with a single reference 
@@ -569,10 +569,10 @@ pbdb_reference<-function(id, ...){
 #'
 #'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list. 
 #' For example: 
-#'\code {author} Select only references for which any of the authors matches the specified name
-#'\code {year} Select only references published in the specified year
-#'\code {pubtitle} Select only references that involve the specified publication
-#'\code {order} Specifies the order in which the results are 
+#'\code{author} Select only references for which any of the authors matches the specified name
+#'\code{year} Select only references published in the specified year
+#'\code{pubtitle} Select only references that involve the specified publication
+#'\code{order} Specifies the order in which the results are 
 #' returned. You can specify multiple values separated by commas, 
 #' and each value may be appended with .asc or .desc.  Accepted values are:
 #' author, year, pubtitle, created, modified, rank. 
@@ -598,13 +598,14 @@ pbdb_references<-function(...){
 #'
 #'@usage pbdb_ref_collections (...)
 #'
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/colls/refs.
+#'@param ... documentation for all the parameters is available 
+#'in \url{http://paleobiodb.org/data1.1/colls/refs}.
 #' For example: 
-#' \code {id} A comma-separated list of collection identifiers.
-#' \code {author} Select only references for which any of the authors matches the specified name
-#' \code {year} Select only references published in the specified year
-#' \code {pubtitle} Select only references that involve the specified publication
-#' \code {order} Specifies the order in which the results are 
+#' \code{id} A comma-separated list of collection identifiers.
+#' \code{author} Select only references for which any of the authors matches the specified name
+#' \code{year} Select only references published in the specified year
+#' \code{pubtitle} Select only references that involve the specified publication
+#' \code{order} Specifies the order in which the results are 
 #' returned. You can specify multiple values separated by commas, 
 #' and each value may be appended with .asc or .desc.  Accepted values are:
 #' author, year, pubtitle, created, modified, rank.
