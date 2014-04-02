@@ -30,7 +30,6 @@
 #' Date: \tab 2014-04-04\cr
 #' License: \tab GPL-2 \cr
 #' }
-#'
 #'@seealso {
 #'\url{http://paleobiodb.org}
 #' }
