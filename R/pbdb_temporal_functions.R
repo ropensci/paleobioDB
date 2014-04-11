@@ -52,7 +52,8 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @return a plot and a dataframe with the time span of the taxa selected (species, genus, etc.)
 #' @export 
 #' @examples \dontrun{
-#' canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis", interval="Quaternary", show=c("coords", "phylo", "ident"))
+#' canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis", 
+#'                  interval="Quaternary", show=c("coords", "phylo", "ident"))
 #' pbdb_time_span (canis_quaternary, rank="species", names=TRUE)
 #'}
   

@@ -25,7 +25,7 @@ a dataframe with a single occurrence
 pbdb_occurrence
 }
 \examples{
-\dontrun {
+\dontrun{
 pbdb_occurrence (id=1001)
 pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 }

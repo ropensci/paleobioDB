@@ -9,7 +9,7 @@ pbdb_intervals (...)
   available in
   http://paleobiodb.org/data1.1/intervals/lists. For
   example: \code{min_ma} return only intervals that are at
-  least this old \code{ max_ma} return only intervals that
+  least this old \code{max_ma} return only intervals that
   are at most this old \code{order} return the intervals in
   order starting as specified. Possible values include
   older, younger. Defaults to younger. \code{vocab} set

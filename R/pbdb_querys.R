@@ -199,13 +199,13 @@ pbdb_collections<-function(...){
 
 #'pbdb_collections_geo
 #'
-#'@usage pbdb_collections_geo (...)
-#'
 #'This path returns information about geographic clusters of collections from the Paleobiology Database. 
 #'These clusters are defined in order to facilitate the 
 #'generation of maps at low resolutions. 
 #'You can make a config request via http://paleobiodb.org/data1.1/config
 #'in order to get a list of the available summary levels.
+#'
+#'@usage pbdb_collections_geo (...)
 #'
 #'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/colls/summary
 #' go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
