@@ -525,7 +525,7 @@ pbdb_strata<-function(...){
 #'}
 
 
-pbdb_strata_auto<-function(id, ...){
+pbdb_strata_auto<-function(...){
   l<-list(...)
   
   # todo: merge lists properly  

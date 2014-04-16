@@ -2,7 +2,7 @@
 #' 
 #' to show the temporal resolution of the fossil data
 #' 
-#' @usage pbdb_temporal_resolution (data)
+#' @usage pbdb_temporal_resolution (data, do.plot=TRUE)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}} 
 #' @param do.plot TRUE/FALSE. To show a frequency plot of the data (TRUE by default).
@@ -39,7 +39,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' 
 #' to show the time span of a selected taxon rank included in the query
 #' 
-#' @usage pbdb_time_span (data)
+#' @usage pbdb_time_span (data, rank, col = "skyblue2", names = TRUE, do.plot =TRUE)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
@@ -267,11 +267,11 @@ pbdb_richness <- function (data, rank,
 }
 
 
-#' pbdb_evo
+#' pbdb_evo_ext
 #' 
 #' Plots the appearance of new taxa across time.
 #' 
-#' @usage pbdb_evo (data, rank, colour, bord, do.plot)
+#' @usage pbdb_evo_ext (data, rank, colour, bord, do.plot)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
