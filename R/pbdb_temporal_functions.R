@@ -248,7 +248,8 @@ pbdb_richness <- function (data, rank,
   richness<- data.frame (time, richness)
   if (do.plot==TRUE) {
   plot.new()
-  par (mar=c(5,5,0,5), font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
+  par (mar=c(5,5,0,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
+       cex.axis=0.8)
   plot.window(xlim=c(max (te),min(te)), xaxs="i",
               ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
   
@@ -271,22 +272,21 @@ pbdb_richness <- function (data, rank,
 #' 
 #' Plots the appearance of new taxa across time.
 #' 
-#' @usage pbdb_evo_ext (data, rank, colour, bord, do.plot)
+#' @usage pbdb_evo_ext (data, rank, evo_ext, colour, bord, do.plot)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 #' to do that
 #' set: show=c("phylo", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
+#' @param evo_ext 1= evolution, 2=extinction.
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
-#' @param evo_ext 1= evolution, 2=extinction.
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' 
 #' @return a  dataframe with the 
 #' number of new appearances and extinctions of the selected taxon rank across time, 
-#' and a plot with the appearances or extinctions of the selected taxon rank across
-#'  time.
+#' and a plot with the appearances or extinctions of the selected taxon rank across time.
 #' 
 #' @examples \dontrun{
 #' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",

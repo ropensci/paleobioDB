@@ -34,9 +34,10 @@
 
 #' pbdb_occurrence 
 #' 
-#' @usage pbdb_occurrence (id, ...)
+#' Returns information about a single occurrence record 
+#' from the Paleobiology Database.
 #' 
-#' Returns information about a single occurrence record from the Paleobiology Database.
+#' @usage pbdb_occurrence (id, ...)
 #' 
 #' @param id identifier of the occurrence. This parameter is required.
 #' @param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/occs/single
@@ -98,9 +99,9 @@ pbdb_occurrence<-function(id, ...){
 #' @export 
 #' 
 #' @examples \dontrun{
-#' pbdb_occurrences (id=c(10, 11)) 
-#' pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show="coords")
-#' pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show="coords")
+#' pbdb_occurrences (id=c(10, 11), show=c("coords", "phylo", "ident")) 
+#' pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show=c("coords", "phylo", "ident"))
+#' pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show=c("coords", "phylo", "ident"))
 #' }
 
 
@@ -233,8 +234,6 @@ pbdb_collections_geo<-function(...){
 #'
 #'@usage pbdb_taxon (...)
 #'
-#'@param id Return information about the taxonomic name 
-#'corresponding to this identifier. You may not specify both 
 #'name and id in the same query.
 #'@param ... documentation for all the parameters is available 
 #'in http://paleobiodb.org/data1.1/taxa/single
@@ -432,10 +431,10 @@ pbdb_scale<-function(id, ...){
 #' 
 #'@export 
 #'@examples \dontrun{
-#'Get a dataframe with all the scales available in PBDB setting no ids
+#'## Get a dataframe with all the scales available in PBDB setting no ids
 #'pbdb_scale ()
 #'}
- 
+#' 
 
 pbdb_scales<-function(...){
   l<-list(...)
