@@ -21,7 +21,7 @@
 #'
 
 pbdb_subtaxa<- function (data, 
-                         do.plot=TRUE,  col="skyblue2"){
+                         do.plot=TRUE,  col="#0000FF"){
   
   species<- nrow (pbdb_time_span (data=data, rank="species",do.plot=FALSE))
   genera<- nrow (pbdb_time_span(data=data, rank="genus",do.plot=FALSE))

@@ -28,7 +28,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   }
   
   if (do.plot ==TRUE) {
-  hist (unlist (tr [[2]]), freq=T, col="skyblue2", border=F,
+  hist (unlist (tr [[2]]), freq=T, col="#0000FF", border=F,
         breaks= 50, xlab="Temporal resolution of the data (Ma)", 
         main="")
   }
@@ -59,7 +59,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   
 
 pbdb_time_span<- function (data, rank, 
-                             col="skyblue2", names=TRUE, 
+                             col="#0000FF", names=TRUE, 
                              do.plot=TRUE){
   
   if('taxon_rank' %in% colnames(data)) {
