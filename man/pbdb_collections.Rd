@@ -2,7 +2,7 @@
 \alias{pbdb_collections}
 \title{pbdb_collections}
 \usage{
-pbdb_collections(...)
+pbdb_collections (...)
 }
 \arguments{
   \item{...}{documentation for all the parameters is

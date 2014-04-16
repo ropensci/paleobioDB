@@ -2,7 +2,8 @@
 \alias{pbdb_map}
 \title{pbdb_map}
 \usage{
-pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL, col.point=c("light blue","blue"), ...)
+pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
+                 col.point=c("light blue","blue"), ...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -43,10 +44,12 @@ required. See \strong{Examples}
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+data<- pbdb_occurrences (limit="all", vocab= "pbdb",
+                         base_name="Canis", show="coords")
 pbdb_map(data)
 pbdb_map(data,pch=1)
-pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",main="canis")
+pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
+         main="canis")
 l_ply(dev.list(),dev.off)## to close all windows graphics
 }
 }

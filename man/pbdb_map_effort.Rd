@@ -2,7 +2,8 @@
 \alias{pbdb_map_effort}
 \title{pbdb_map_effort}
 \usage{
-pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...))
+pbdb_map_effort (data, res=1, col.int="white", col.ocean="black",
+                     col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -44,7 +45,8 @@ required. See \strong{Examples}
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
+                         show="coords")
 pbdb_map_effort (data,res=2)
 pbdb_map_effort (data,res=2,do.plot=F)
 l_ply(dev.list(),dev.off)## to close all windows graphics

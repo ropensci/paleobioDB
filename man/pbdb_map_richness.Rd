@@ -2,7 +2,9 @@
 \alias{pbdb_map_richness}
 \title{pbdb_map_richness}
 \usage{
-pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
+pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1,
+                         col.int="white", col.ocean="black",
+                         col.rich=c("light blue","blue"),...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -49,7 +51,8 @@ required. See \strong{Examples}
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
+data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
+                         show=c("phylo","coords","ident"))
 pbdb_map_richness (data,res=3,rank="genus")
 pbdb_map_richness (data,res=8,rank="family")
 pbdb_map_richness (data,res=3,rank="family",do.plot=F)

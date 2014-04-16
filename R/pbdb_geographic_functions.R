@@ -33,9 +33,10 @@
 #' 
 #' The function opens a new window for the map
 #' 
-#' @usage pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL, col.point=c("light blue","blue"), ...)
+#' @usage pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
+#'                  col.point=c("light blue","blue"), ...)
 #' 
-#' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = "coords"}}. See too: \strong{Details} and \strong{Examples}
+#' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = "coords"}}. See too: \strong{Details} and \strong{Examples}
 #' @param col.int The colour of the mainland. 
 #' @param pch See: \code{\link{par}}
 #' @param col.ocean The colour of the ocean.
@@ -47,10 +48,12 @@
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", 
+#'                          base_name="Canis", show="coords")
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
-#' pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",main="canis")
+#' pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
+#'          main="canis")
 #' l_ply(dev.list(),dev.off)## to close all windows graphics
 #' }
 #' 
@@ -74,7 +77,7 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 
 .add.ColOcean2 <-function(col.ocean,col.int,...){
     par(mar=c(0,0,0,0),...)
-    map(t='n',add=T,...)
+    map(type='n',add=T,...)
     rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
     map(col=col.int,fill=T,add=T,...)
 }
@@ -110,7 +113,8 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' 
 #' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell). 
 #' 
-#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", col.eff=c("light blue","blue"), do.plot=TRUE, ...))
+#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black", 
+#'                      col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show="coords"}}. See too: \strong{Details} and \strong{Examples}
 #' @param res the resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}} ()
@@ -125,7 +129,8 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", show="coords")
+#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", 
+#'                          show="coords")
 #' pbdb_map_effort (data,res=2)
 #' pbdb_map_effort (data,res=2,do.plot=F) 
 #' l_ply(dev.list(),dev.off)## to close all windows graphics
@@ -211,7 +216,9 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' 
 #' Creates a RasterLayer object and a plot with richness of species, genera, families, etc. per cell.
 #' 
-#' @usage pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1, col.int="white", col.ocean="black", col.rich=c("light blue","blue"),...)
+#' @usage pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1, 
+#'                          col.int="white", col.ocean="black", 
+#'                          col.rich=c("light blue","blue"),...)
 #' 
 #' @param data Input dataframe. This dataframe is the output of  \code{\link{pbdb_occurrences}} function using the argument: \code{\link{show = c("phylo", "coords", "ident")}}. See too: \strong{Details} and \strong{Examples}
 #' @param rank To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")
@@ -227,7 +234,8 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", show=c("phylo","coords","ident"))
+#' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia", 
+#'                          show=c("phylo","coords","ident"))
 #' pbdb_map_richness (data,res=3,rank="genus")
 #' pbdb_map_richness (data,res=8,rank="family")
 #' pbdb_map_richness (data,res=3,rank="family",do.plot=F)
@@ -235,7 +243,7 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' }
 #'
 
-pbdb_map_richness <- function(data, rank="species", do.plot=T, res=1,col.int="white", col.ocean="black",
+pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=1,col.int="white", col.ocean="black",
                               col.rich=c("light blue","blue"),...){
     if(!any(rank==c("species", "genus","family","order","class","phylum"))){
         stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".

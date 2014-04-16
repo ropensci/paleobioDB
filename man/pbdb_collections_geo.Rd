@@ -2,7 +2,7 @@
 \alias{pbdb_collections_geo}
 \title{pbdb_collections_geo}
 \usage{
-pbdb_collections_geo(...)
+pbdb_collections_geo (...)
 }
 \arguments{
   \item{...}{documentation for all the parameters is
