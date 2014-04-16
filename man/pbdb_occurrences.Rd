@@ -48,9 +48,9 @@ in the Paleobiology Database.
 }
 \examples{
 \dontrun{
-pbdb_occurrences (id=c(10, 11))
-pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show="coords")
-pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show="coords")
+pbdb_occurrences (id=c(10, 11), show=c("coords", "phylo", "ident"))
+pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show=c("coords", "phylo", "ident"))
+pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show=c("coords", "phylo", "ident"))
 }
 }
 

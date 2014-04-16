@@ -3,12 +3,10 @@
 \title{pbdb_taxon}
 \usage{
 pbdb_taxon (...)
+
+name and id in the same query.
 }
 \arguments{
-  \item{id}{Return information about the taxonomic name
-  corresponding to this identifier. You may not specify
-  both name and id in the same query.}
-
   \item{...}{documentation for all the parameters is
   available in http://paleobiodb.org/data1.1/taxa/single go
   to ?pbdb_taxa to see an explanation about the main

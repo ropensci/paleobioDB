@@ -2,7 +2,7 @@
 \alias{pbdb_temporal_resolution}
 \title{pbdb_temporal_resolution}
 \usage{
-pbdb_temporal_resolution (data)
+pbdb_temporal_resolution (data, do.plot=TRUE)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD

@@ -250,7 +250,7 @@ pbdb_richness <- function (data, rank,
   plot.new()
   par (mar=c(5,5,0,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
        cex.axis=0.8)
-  plot.window(xlim=c(max (te),min(te)), xaxs="i",
+  plot.window(xlim=c(min (te),max(te)), xaxs="i",
               ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
   
   abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)

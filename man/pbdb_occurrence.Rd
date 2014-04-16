@@ -3,8 +3,6 @@
 \title{pbdb_occurrence}
 \usage{
 pbdb_occurrence (id, ...)
-
-Returns information about a single occurrence record from the Paleobiology Database.
 }
 \arguments{
   \item{id}{identifier of the occurrence. This parameter is
@@ -22,7 +20,8 @@ Returns information about a single occurrence record from the Paleobiology Datab
 a dataframe with a single occurrence
 }
 \description{
-pbdb_occurrence
+Returns information about a single occurrence record from
+the Paleobiology Database.
 }
 \examples{
 \dontrun{

@@ -1,8 +1,8 @@
 \name{pbdb_evo_ext}
 \alias{pbdb_evo_ext}
-\title{pbdb_evo}
+\title{pbdb_evo_ext}
 \usage{
-pbdb_evo (data, rank, colour, bord, do.plot)
+pbdb_evo_ext (data, rank, evo_ext, colour, bord, do.plot)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD
@@ -14,13 +14,13 @@ pbdb_evo (data, rank, colour, bord, do.plot)
   \item{rank}{to set which taxon rank you are interested.
   By default rank= "species"}
 
+  \item{evo_ext}{1= evolution, 2=extinction.}
+
   \item{colour}{to change the colour of the bars in the
   plot, skyblue2 by default.}
 
   \item{bord}{to set the colour of the border of the
   polygon}
-
-  \item{evo_ext}{1= evolution, 2=extinction.}
 
   \item{do.plot}{TRUE/FALSE (TRUE by default).}
 }

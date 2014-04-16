@@ -2,7 +2,7 @@
 \alias{pbdb_time_span}
 \title{pbdb_time_span}
 \usage{
-pbdb_time_span (data)
+pbdb_time_span (data, rank, col = "skyblue2", names = TRUE, do.plot =TRUE)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD
