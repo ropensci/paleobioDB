@@ -175,11 +175,13 @@ pbdb_collection<-function(id, ...){
 
 #'pbdb_collections
 #'
-#'Returns information about multiple collections, selected according to the parameters you provide.
+#'Returns information about multiple collections, selected 
+#'according to the parameters you provide.
 #'
 #'@usage pbdb_collections (...)
 #'
-#'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/colls/list
+#'@param ... documentation for all the parameters is available 
+#'in http://paleobiodb.org/data1.1/colls/list
 #' go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
 #' 
 #' @return a dataframe with the collections that match the query
