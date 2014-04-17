@@ -28,18 +28,20 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   }
   
   if (do.plot ==TRUE) {
-  hist (unlist (tr [[2]]), freq=T, col="#0000FF", border=F,
+
+  hist (unlist (tr [[2]]), freq=T, col="#0000FF", border=F, 
+        xlim= c(max(unlist (tr [[2]])), 0),
         breaks= 50, xlab="Temporal resolution of the data (Ma)", 
-        main="")
+        main="", col.lab="grey30", col.axis="grey30", cex.axis=0.8)
   }
   return (tr)
 }
 
-#' pbdb_time_span
+#' pbdb_temp_range
 #' 
-#' to show the time span of a selected taxon rank included in the query
+#' constructs a plot and a dataframe with the temporal range of the taxa (species, genera, families, etc.) within in a selected higher taxon. 
 #' 
-#' @usage pbdb_time_span (data, rank, col = "skyblue2", names = TRUE, do.plot =TRUE)
+#' @usage pbdb_temp_range (data, rank, col = "skyblue2", names = TRUE, do.plot =TRUE)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
@@ -54,11 +56,11 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @examples \dontrun{
 #' canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis", 
 #'                  interval="Quaternary", show=c("coords", "phylo", "ident"))
-#' pbdb_time_span (canis_quaternary, rank="species", names=TRUE)
+#' pbdb_temp_range (canis_quaternary, rank="species", names=TRUE)
 #'}
   
 
-pbdb_time_span<- function (data, rank, 
+pbdb_temp_range<- function (data, rank, 
                              col="#0000FF", names=TRUE, 
                              do.plot=TRUE){
   
@@ -177,9 +179,11 @@ pbdb_time_span<- function (data, rank,
     pos<- c(1:dim (temporal_range)[1]-0.9)
     t_range<- cbind (temporal_range, pos)
   par(mar = c(4, 0, 1, 0))
-  plot(c(min (t_range$min), max (t_range$max)),
-       c(0, dim (t_range)[1]),
-       type = "n",axes = FALSE, xlab = "Time (Ma)", ylab = "")
+  plot(c(min (t_range$max), max (t_range$max)),
+       c(0, dim (t_range)[1]), 
+       type = "n",axes = FALSE, 
+       xlab = "Time (Ma)", ylab = "", 
+       xlim=c(max (t_range$max), min (t_range$max)))
   segments(x0 = t_range$min,
            y0 = t_range$pos,
            x1 = t_range$max,
@@ -226,31 +230,33 @@ pbdb_time_span<- function (data, rank,
 
 pbdb_richness <- function (data, rank, 
                            resolution=1, 
-                           temporal_extent=c(0,100), 
+                           temporal_extent=c(0,10), 
                            colour="#0000FF30", 
                            bord="#0000FF", 
                            do.plot=TRUE){
   
- temporal_range<- pbdb_time_span (data=data, rank=rank,do.plot=FALSE)
+ temporal_range<- pbdb_temp_range (data=data, rank=rank,do.plot=FALSE)
   
   te<- temporal_extent
   time<- seq (from=min(te), to= (max(te)), by=resolution)
   
   a<- temporal_range [,2]<=min(te)
-  seq<- time [-c(1, length (time))]
-  for (i in 1:length (seq)) {
-    b<- temporal_range [,1]>=seq [i] & temporal_range [,2]<=seq [i+1]
+  for (i in 2:(length (time)-1)) {
+    b<- temporal_range [,1]>time[i] & temporal_range [,2]<=time [i+1]
     a<- cbind (a,b)
   }
-  b<- temporal_range [,1]>=max(te)
+  b<- temporal_range [,1] > max(te)
   a<- cbind (a,b)
   richness<- colSums (a+0, na.rm=T)
-  richness<- data.frame (time, richness)
+  labels1<- paste (time[-length (time)], time[-1], sep="-")
+  labels2<- c(labels1, paste (">", max(te), sep=""))
+  labels2[1]<- paste ("<=", time[2], sep="") 
+  richness<- data.frame (labels2, richness)
   if (do.plot==TRUE) {
   plot.new()
-  par (mar=c(5,5,0,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
+  par (mar=c(5,5,1,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
        cex.axis=0.8)
-  plot.window(xlim=c(min (te),max(te)), xaxs="i",
+  plot.window(xlim=c(max (te),min(te)), xaxs="i",
               ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
   
   abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)
@@ -259,10 +265,12 @@ pbdb_richness <- function (data, rank,
   xx = c(min(te), time, max(te))
   yy = c(0, richness[,2], 0)
   polygon(xx, yy, col=colour, border=bord)
-  axis(1, line=1)
+ 
+  axis(1, line=1, las=2, labels=labels2, 
+       at=c(0:(length (labels2)-1)))
   axis(2, line=1, las=1)
-  mtext("Million years before present", line=3, adj=1, side=1)
-  mtext("Richness", line= 3 , adj=0, side=2)
+  mtext("Million years before present", line=3.5, adj=1, side=1)
+  mtext("Richness", line= 3.5 , adj=0, side=2)
   }
   return (richness)
 }
@@ -290,8 +298,8 @@ pbdb_richness <- function (data, rank,
 #' @examples \dontrun{
 #' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
 #' base_name="Canidae", show=c("phylo", "ident"))
-#' pbdb_orig_ext (canidae, rank="genus", orig_ext=1) # plot of the evolutive rates.
-#' pbdb_orig_ext (canidae, rank="species", orig_ext=2) # plot of the extinction rates.
+#' pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), resolution=1, orig_ext=1) # plot of the evolutive rates.
+#' pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), resolution=1, orig_ext=2) # plot of the extinction rates.
 #'}
 
 
@@ -300,7 +308,7 @@ pbdb_orig_ext<- function (data, rank,
                      do.plot=TRUE, temporal_extent, 
                      resolution, orig_ext=1) { 
   
-  temporal_range<- pbdb_time_span (data=data, rank=rank, do.plot=FALSE)
+  temporal_range<- pbdb_temp_range (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
   sequence<- seq (from=min(te), to= (max(te)), by=resolution)
   intv<- data.frame (min=sequence [1:length (sequence)-1], 
@@ -337,7 +345,7 @@ pbdb_orig_ext<- function (data, rank,
     xmn<- sequence [2]
     plot.new()
     par (mar=c(5,5,2,5),font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-    plot.window(xlim=c(xmn, xmx), xaxs="i",
+    plot.window(xlim=c(xmx, xmn), xaxs="i",
                 ylim=c(ymn,ymx), yaxs="i")
     abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
     abline(h=seq(0, ymx, 
