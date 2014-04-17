@@ -268,38 +268,37 @@ pbdb_richness <- function (data, rank,
 }
 
 
-#' pbdb_evo_ext
+#' pbdb_orig_ext
 #' 
 #' Plots the appearance of new taxa across time.
 #' 
-#' @usage pbdb_evo_ext (data, rank, evo_ext, colour, bord, do.plot)
+#' @usage pbdb_orig_ext (data, rank, orig_ext, colour, bord, do.plot)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
-#' to do that
-#' set: show=c("phylo", "ident") (see example).
+#' to do that set: show=c("phylo", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
-#' @param evo_ext 1= evolution, 2=extinction.
+#' @param orig_ext 1= origination, 2=extinction.
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' 
 #' @return a  dataframe with the 
-#' number of new appearances and extinctions of the selected taxon rank across time, 
-#' and a plot with the appearances or extinctions of the selected taxon rank across time.
+#' number of first appearances and extinctions of the selected taxon rank across time, 
+#' and a plot with the first appearances or extinctions of the selected taxon rank across time.
 #' 
 #' @examples \dontrun{
 #' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
 #' base_name="Canidae", show=c("phylo", "ident"))
-#' pbdb_evo_ext (canidae, rank="genus", evo_ext=1) # plot of the evolutive rates.
-#' pbdb_evo_ext (canidae, rank="species", evo_ext=2) # plot of the extinction rates.
+#' pbdb_orig_ext (canidae, rank="genus", orig_ext=1) # plot of the evolutive rates.
+#' pbdb_orig_ext (canidae, rank="species", orig_ext=2) # plot of the extinction rates.
 #'}
 
 
-pbdb_evo_ext<- function (data, rank, 
+pbdb_orig_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 
                      do.plot=TRUE, temporal_extent, 
-                     resolution, evo_ext=1) { 
+                     resolution, orig_ext=1) { 
   
   temporal_range<- pbdb_time_span (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
@@ -332,8 +331,8 @@ pbdb_evo_ext<- function (data, rank,
   row.names (change)<- labels2
   
     if (do.plot==TRUE){
-    ymx<- max (change[,evo_ext])
-    ymn<- min (change[,evo_ext])
+    ymx<- max (change[,orig_ext])
+    ymn<- min (change[,orig_ext])
     xmx<- sequence[length (sequence)-1]
     xmn<- sequence [2]
     plot.new()
@@ -344,14 +343,14 @@ pbdb_evo_ext<- function (data, rank,
     abline(h=seq(0, ymx, 
                  by=(ymx/10)), col="grey90", lwd=1)
     xx <- c(xmn,  sequence[2:(length (sequence)-1)], xmx)
-    yy <- c(0, change[,evo_ext], 0)
+    yy <- c(0, change[,orig_ext], 0)
     polygon(xx, yy, col=colour, border=bord)
     
     axis(1, line=1, labels=labels2, at=c(1:length (labels2)))
     axis(2, line=1, las=1)
     mtext("Million years before present", line=3, adj=1, side=1)
     mtext(rank, line= 3 , adj=0, side=2)
-    title (ifelse (evo_ext==1,"Evolution", "Extinction"))
+    title (ifelse (orig_ext==1,"First appearences", "Last appearences"))
     }
   return (change)
 }
