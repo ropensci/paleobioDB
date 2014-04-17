@@ -1,3 +1,6 @@
+#' @include rest_api_tools.R
+
+
 # Functions and variables for setting up and managing the comunication 
 # with the paleobiodb.org REST API
 

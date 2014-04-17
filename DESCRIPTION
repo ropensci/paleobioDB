@@ -1,23 +1,24 @@
 Package: paleobioDB
-Description: paleobioDB version 0.1 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found in <http://paleobiodb.org/data1.1/>.
+Description: paleobioDB version 0.1 has 19 functions to wrap each endpoint of
+    the PaleobioDB API, plus 8 functions to visualize and process the fossil
+    data. The API documentation for the Paleobiology Database can be found in
+    <http://paleobiodb.org/data1.1/>.
 Encoding: UTF-8
 Type: Package
 License: GPL-2
-
-Title: paleobioDB: a package for downloading, visualizing and processing data from Paleobiology Database.
+Title: paleobioDB: a package for downloading, visualizing and processing data
+    from Paleobiology Database.
 Version: 0.1
 Date: 2014-04-02
 Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     email = "svarela@paleobiogeography.org"),
     person("Javier", "González Hernández", role = "aut",
-    email = "javigzz@yahoo.es"), 
+    email = "javigzz@yahoo.es"),
     person("Luciano", "Fabris Sgarbi", role = "aut",
     email = "luciano.f.sgarbi@gmail.com"))
-    
 Maintainer: Sara Varela González <svarela@paleobiogeography.org>
 BugReports: https://github.com/ropensci/paleobioDB/issues
 URL: https://github.com/ropensci/paleobioDB
-
 LazyData: true
 Depends:
     R (>= 3.0.1)
@@ -30,5 +31,15 @@ Imports:
     scales,
     raster
 Suggests:
-    testthat,
-    roxygen2
+    roxygen2,
+    testthat
+Collate:
+    'network.R'
+    'paleobioDB-package.R'
+    'pbdb_cache.R'
+    'pbdb_geographic_functions.R'
+    'pbdb_querys.R'
+    'rest_api_tools.R'
+    'pbdb_rest_api_setup.R'
+    'pbdb_taxonomic_functions.R'
+    'pbdb_temporal_functions.R'

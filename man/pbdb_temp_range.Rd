@@ -26,8 +26,9 @@ a plot and a dataframe with the time span of the taxa
 selected (species, genus, etc.)
 }
 \description{
-to show the time span of a selected taxon rank included in
-the query
+constructs a plot and a dataframe with the temporal range
+of the taxa (species, genera, families, etc.) within in a
+selected higher taxon.
 }
 \examples{
 \dontrun{

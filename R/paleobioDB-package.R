@@ -37,6 +37,8 @@
 #'\url{http://paleobiodb.org}
 #' }
 #' 
+#' @import rjson gtools RCurl plyr maps scales raster
+#' 
 #'@examples \dontrun{
 #'
 #'canidae<-  pbdb_occurrences (limit="all", base_name="canidae", 

@@ -37,8 +37,8 @@ Plots the appearance of new taxa across time.
 \dontrun{
 canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
 base_name="Canidae", show=c("phylo", "ident"))
-pbdb_orig_ext (canidae, rank="genus", orig_ext=1) # plot of the evolutive rates.
-pbdb_orig_ext (canidae, rank="species", orig_ext=2) # plot of the extinction rates.
+pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), resolution=1, orig_ext=1) # plot of the evolutive rates.
+pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), resolution=1, orig_ext=2) # plot of the extinction rates.
 }
 }
 
