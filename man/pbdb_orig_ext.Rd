@@ -2,7 +2,9 @@
 \alias{pbdb_orig_ext}
 \title{pbdb_orig_ext}
 \usage{
-pbdb_orig_ext (data, rank, orig_ext, colour, bord, do.plot)
+pbdb_orig_ext (data, rank,
+temporal_extent, resolution, orig_ext,
+colour="#0000FF30", bord="#0000FF", do.plot=TRUE)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD
@@ -13,6 +15,12 @@ pbdb_orig_ext (data, rank, orig_ext, colour, bord, do.plot)
 
   \item{rank}{to set which taxon rank you are interested.
   By default rank= "species"}
+
+  \item{temporal_extent}{vector to set the temporal extent
+  (min, max)}
+
+  \item{resolution}{numeric. to set the intervals of the
+  temporal extent}
 
   \item{orig_ext}{1= origination, 2=extinction.}
 
@@ -37,8 +45,14 @@ Plots the appearance of new taxa across time.
 \dontrun{
 canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
 base_name="Canidae", show=c("phylo", "ident"))
-pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), resolution=1, orig_ext=1) # plot of the evolutive rates.
-pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), resolution=1, orig_ext=2) # plot of the extinction rates.
+
+# plot of the evolutive rates.
+pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10),
+resolution=1, orig_ext=1)
+
+# plot of the extinction rates.
+pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10),
+resolution=1, orig_ext=2)
 }
 }
 

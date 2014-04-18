@@ -24,12 +24,12 @@ pbdb_subtaxa<- function (data,
                          do.plot=TRUE,  
                          col="#0000FF"){
   
-  species<- nrow (pbdb_time_span (data=data, rank="species",do.plot=FALSE))
-  genera<- nrow (pbdb_time_span(data=data, rank="genus",do.plot=FALSE))
-  families<- nrow (pbdb_time_span (data=data, rank="family",do.plot=FALSE))
-  orders<- nrow (pbdb_time_span (data=data, rank="order",do.plot=FALSE))
-  classes<- nrow (pbdb_time_span (data=data, rank="class",do.plot=FALSE))
-  phyla<- nrow (pbdb_time_span (data=data, rank="phylum",do.plot=FALSE))
+  species<- nrow (pbdb_temp_range (data=data, rank="species",do.plot=FALSE))
+  genera<- nrow (pbdb_temp_range(data=data, rank="genus",do.plot=FALSE))
+  families<- nrow (pbdb_temp_range (data=data, rank="family",do.plot=FALSE))
+  orders<- nrow (pbdb_temp_range (data=data, rank="order",do.plot=FALSE))
+  classes<- nrow (pbdb_temp_range (data=data, rank="class",do.plot=FALSE))
+  phyla<- nrow (pbdb_temp_range (data=data, rank="phylum",do.plot=FALSE))
   subtaxa<- data.frame (species, genera, families, orders, classes, phyla)
 
 if (do.plot==TRUE){

@@ -20,11 +20,11 @@ pbdb_richness (data, rank, resolution, temporal_extent, colour, bord, do.plot)
   \item{bord}{to set the colour of the border of the
   polygon}
 
-  \item{resolution}{numeric. to set the intervals of the
-  temporal extent}
-
   \item{temporal_extent}{vector to set the temporal extent
   (min, max)}
+
+  \item{resolution}{numeric. to set the intervals of the
+  temporal extent}
 
   \item{do.plot}{TRUE/FALSE (TRUE by default).}
 }

@@ -230,11 +230,11 @@ pbdb_collections_geo<-function(...){
 
 #'pbdb_taxon
 #' 
-#'Returns information about a single taxonomic name, identified either by name or by identifier.
+#'Returns information about a single taxonomic name, 
+#'identified either by name or by identifier.
 #'
 #'@usage pbdb_taxon (...)
 #'
-#'name and id in the same query.
 #'@param ... documentation for all the parameters is available 
 #'in http://paleobiodb.org/data1.1/taxa/single
 #'go to ?pbdb_taxa to see an explanation about the main filtering parameters. 

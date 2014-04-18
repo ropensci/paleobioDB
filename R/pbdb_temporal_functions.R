@@ -41,7 +41,8 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' 
 #' constructs a plot and a dataframe with the temporal range of the taxa (species, genera, families, etc.) within in a selected higher taxon. 
 #' 
-#' @usage pbdb_temp_range (data, rank, col = "skyblue2", names = TRUE, do.plot =TRUE)
+#' @usage pbdb_temp_range (data, rank, col = "#0000FF", 
+#' names = TRUE, do.plot =TRUE)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
@@ -215,8 +216,8 @@ pbdb_temp_range<- function (data, rank,
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
-#' @param resolution numeric. to set the intervals of the temporal extent
 #' @param temporal_extent vector to set the temporal extent (min, max)
+#' @param resolution numeric. to set the intervals of the temporal extent
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' 
 #' @return a plot and a dataframe with the richness aggregated by the taxon rank in the specified temporal extent and resolution.
@@ -280,12 +281,16 @@ pbdb_richness <- function (data, rank,
 #' 
 #' Plots the appearance of new taxa across time.
 #' 
-#' @usage pbdb_orig_ext (data, rank, orig_ext, colour, bord, do.plot)
+#' @usage pbdb_orig_ext (data, rank, 
+#' temporal_extent, resolution, orig_ext,  
+#' colour="#0000FF30", bord="#0000FF", do.plot=TRUE)
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 #' to do that set: show=c("phylo", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
+#' @param temporal_extent vector to set the temporal extent (min, max)
+#' @param resolution numeric. to set the intervals of the temporal extent
 #' @param orig_ext 1= origination, 2=extinction.
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
@@ -298,16 +303,22 @@ pbdb_richness <- function (data, rank,
 #' @examples \dontrun{
 #' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
 #' base_name="Canidae", show=c("phylo", "ident"))
-#' pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), resolution=1, orig_ext=1) # plot of the evolutive rates.
-#' pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), resolution=1, orig_ext=2) # plot of the extinction rates.
+#' 
+#' # plot of the evolutive rates.
+#' pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), 
+#' resolution=1, orig_ext=1) 
+#' 
+#' # plot of the extinction rates.
+#' pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), 
+#' resolution=1, orig_ext=2) 
 #'}
 
 
 
-pbdb_orig_ext<- function (data, rank, 
+pbdb_orig_ext<- function (data, rank, temporal_extent, 
+                     resolution, orig_ext=1, 
                      colour="#0000FF30", bord="#0000FF", 
-                     do.plot=TRUE, temporal_extent, 
-                     resolution, orig_ext=1) { 
+                     do.plot=TRUE) { 
   
   temporal_range<- pbdb_temp_range (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
