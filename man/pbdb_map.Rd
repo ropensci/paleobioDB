@@ -8,7 +8,7 @@ pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
   of \code{\link{pbdb_occurrences}} function using the
-  argument: \code{\link{show = "coords"}}. See too:
+  argument: \code{show = "coords"}. See too:
   \strong{Details} and \strong{Examples}}
 
   \item{col.int}{The colour of the mainland.}
@@ -25,7 +25,7 @@ pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
   per cell in map}
 
   \item{...}{Others parameters. See \code{\link{par}} and
-  \code{\link{map()}}}
+  \code{\link{map}}}
 }
 \value{
 A map showing the distribution of the fossil records, with
@@ -38,9 +38,9 @@ Maps the fossil records
 \details{
 The function opens a new window for the map
 
-\strong{CAUTION!} The argument \code{\link{show =
-"coords"}} in \code{\link{pbdb_occurrences}} function is
-required. See \strong{Examples}
+\strong{CAUTION!} The argument \code{show = "coords"} in
+\code{\link{pbdb_occurrences}} function is required. See
+\strong{Examples}
 }
 \examples{
 \dontrun{

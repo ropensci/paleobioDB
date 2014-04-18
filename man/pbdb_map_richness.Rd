@@ -9,19 +9,18 @@ pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1,
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
   of \code{\link{pbdb_occurrences}} function using the
-  argument: \code{\link{show = c("phylo", "coords",
-  "ident")}}. See too: \strong{Details} and
-  \strong{Examples}}
+  argument: \code{show = c("phylo", "coords", "ident")}.
+  See too: \strong{Details} and \strong{Examples}}
 
   \item{rank}{To set which taxon rank you are interested
   for calculate richness. The options are: "species",
   "genus", "family", "order", "class" or "phylum")}
 
-  \item{do.plot}{Logical; \code{\link{TRUE}} the function
-  returns a RasterLayer and a plot.}
+  \item{do.plot}{Logical; \code{TRUE} the function returns
+  a RasterLayer and a plot.}
 
   \item{res}{The resolution of the RasterLayer object (in
-  decimal degrees). See: \code{\link{raster}} ()}
+  decimal degrees). See: \code{\link{raster}}}
 
   \item{col.int}{The colour of the mainland}
 
@@ -32,22 +31,22 @@ pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1,
   map}
 
   \item{...}{Others parameters. See \code{\link{par}} and
-  \code{\link{map()}}}
+  \code{\link{map}}}
 }
 \value{
 A RasterLayer object and a plot with richness of species,
 genera, families, etc. per cell. This RasterLayer object
-have the resolution controlled by the argument
-\code{\link{res}}. The default is \code{\link{res=1}}.
+have the resolution controlled by the argument \code{res}.
+The default is \code{res=1}.
 }
 \description{
 Creates a RasterLayer object and a plot with richness of
 species, genera, families, etc. per cell.
 }
 \details{
-\strong{CAUTION!} The argument \code{\link{show =
-"coords"}} in \code{\link{pbdb_occurrences}} function is
-required. See \strong{Examples}
+\strong{CAUTION!} The argument \code{show = "coords"} in
+\code{\link{pbdb_occurrences}} function is required. See
+\strong{Examples}
 }
 \examples{
 \dontrun{
