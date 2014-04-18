@@ -15,29 +15,27 @@ pbdb_occurrences (...)
   You may specify multiple names, separated by commas.
   \code{base_name} Return records associated with the
   specified taxonomic name(s) and any of their children
-  (e.g. base_name="Canis" will return "Canis", "Canis
-  lupus", "Canis mosbachensis", etc.) \code{lngmin}
-  numeric. The longitude boundaries will be normalized to
-  fall between -180 and 180. (Note that if you specify
-  lngmin then you must also specify lngmax). Return only
-  records whose geographic location falls within the given
-  bounding box (defined by lngmin, lngmax, latmin, latmax).
-  It generate two adjacent bounding boxes if the range
-  crosses the antimeridian. \code{lngmax} numeric. The
+  (e.g. base_name="Canis" will \code{lngmin} numeric. The
   longitude boundaries will be normalized to fall between
-  -180 and 180. \code{latmin} numeric. between -90 and 90.
-  (Note that if you specify latmin then you must also
-  specify latmax) \code{latmax} numeric. between -90 and
-  90. \code{min_ma} return only records whose temporal
-  locality is at least this old, specified in Ma.
-  \code{max_ma} return only records whose temporal locality
-  is at most this old, specified in Ma. \code{interval}
-  return only records whose temporal locality falls within
-  the named geologic time interval (e.g. "Miocene").
-  \code{continent} return only records whose geographic
-  location falls within the specified continent(s).
-  \code{show} to show extra variables (e.g. coords, phylo,
-  ident)}
+  -180 and 180. (Note that if you specify lngmin then you
+  must also specify lngmax). Return only records whose
+  geographic location falls within the given bounding box
+  (defined by lngmin, lngmax, latmin, latmax). It generate
+  two adjacent bounding boxes if the range crosses the
+  antimeridian. \code{lngmax} numeric. The longitude
+  boundaries will be normalized to fall between -180 and
+  180. \code{latmin} numeric. between -90 and 90. (Note
+  that if you specify latmin then you must also specify
+  latmax) \code{latmax} numeric. between -90 and 90.
+  \code{min_ma} return only records whose temporal locality
+  is at least this old, specified in Ma. \code{max_ma}
+  return only records whose temporal locality is at most
+  this old, specified in Ma. \code{interval} return only
+  records whose temporal locality falls within the named
+  geologic time interval (e.g. "Miocene"). \code{continent}
+  return only records whose geographic location falls
+  within the specified continent(s). \code{show} to show
+  extra variables (e.g. coords, phylo, ident)}
 }
 \value{
 a dataframe with the species occurrences
@@ -49,8 +47,10 @@ in the Paleobiology Database.
 \examples{
 \dontrun{
 pbdb_occurrences (id=c(10, 11), show=c("coords", "phylo", "ident"))
-pbdb_occurrences (limit="all", vocab= "pbdb", taxon_name="Canis", show=c("coords", "phylo", "ident"))
-pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canidae", show=c("coords", "phylo", "ident"))
+pbdb_occurrences (limit="all", vocab= "pbdb",
+taxon_name="Canis", show=c("coords", "phylo", "ident"))
+pbdb_occurrences (limit="all", vocab= "pbdb",
+base_name="Canidae", show=c("coords", "phylo", "ident"))
 }
 }
 

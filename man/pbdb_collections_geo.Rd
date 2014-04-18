@@ -23,7 +23,8 @@ of the available summary levels.
 }
 \examples{
 \dontrun{
-pbdb_collections_geo (vocab="pbdb", lngmin=0.0, lngmax=15.0, latmin=0.0, latmax=15.0, level=2)
+pbdb_collections_geo (vocab="pbdb", lngmin=0.0,
+lngmax=15.0, latmin=0.0, latmax=15.0, level=2)
 }
 }
 

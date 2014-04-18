@@ -16,7 +16,7 @@ pbdb_ref_occurrences (...)
   \code{order} Specifies the order in which the results are
   returned. You can specify multiple values separated by
   commas, and each value may be appended with .asc or
-  .desc.  Accepted values are: author, year, pubtitle,
+  .desc. Accepted values are: author, year, pubtitle,
   created, modified, rank. (see documentation in
   http://paleobiodb.org/data1.1/occs/refs)}
 }
@@ -30,7 +30,8 @@ associated with fossil occurrences from the database.
 }
 \examples{
 \dontrun{
-pbdb_ref_occurrences (vocab="pbdb", taxon_name="Canis", year=2000)
+pbdb_ref_occurrences (vocab="pbdb",
+taxon_name="Canis", year=2000)
 }
 }
 

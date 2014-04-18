@@ -39,9 +39,12 @@ parents of a given taxon, among other operations.
 }
 \examples{
 \dontrun{
-pbdb_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav"))
-pbdb_taxa (id =c(10, 11), vocab="pbdb", show=c("attr", "app", "size", "nav"))
-pbdb_taxa (id =c(10, 11), vocab="pbdb", show=c("attr", "app", "size", "nav"), rel="common_ancestor")
+pbdb_taxa (name="Canidae", vocab="pbdb",
+show=c("attr", "app", "size", "nav"))
+pbdb_taxa (id =c(10, 11), vocab="pbdb",
+show=c("attr", "app", "size", "nav"))
+pbdb_taxa (id =c(10, 11), vocab="pbdb",
+show=c("attr", "app", "size", "nav"), rel="common_ancestor")
 }
 }
 
