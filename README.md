@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ropensci/paleobioDB.svg)](https://travis-ci.org/ropensci/paleobioDB)
+
 paleobioDB
 =======
 
