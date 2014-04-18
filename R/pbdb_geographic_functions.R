@@ -1,3 +1,4 @@
+
 .extract.LatLong <- function (data){
     latlong <- data.frame(lng = data$lng, lat = data$lat)
     counts<- ddply(latlong,.(lng,lat),nrow)
@@ -6,9 +7,11 @@
 }
 
 .add.ColOcean <-function(col.ocean,col.int,...){
-    par(mar=c(0,0,0,0),xpd=TRUE,...)
+    par(mar=c(0,0,0,0),xpd=NA,...)
+    ??xpd
     map(type="n",...)
-    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], 
+         par("usr") [4], col = col.ocean)
     map(col=col.int,fill=T,add=T,...)
 }
 
@@ -21,10 +24,12 @@
 }
 
 .add.Legend <- function(Y1,col.int,pch,...){
-    n=length(unique(Y1$Col))
-    Col=unique(Y1$Col)[order(unique(Y1$n))]
-    Legend=seq(min(Y1$Occur),max(Y1$Occur),length.out=n)
-    legend("bottom",col=Col, inset=c(0,-0.14), legend=Legend,ncol=n, title="Occurrences",bg=col.int,pch=pch,...)
+    n<-length(unique(Y1$Col))
+    Col<-unique(Y1$Col)[order(unique(Y1$n))]
+    Legend<-seq(min(Y1$Occur),max(Y1$Occur),
+               length.out=n)
+    legend("bottom", col=Col, inset=c(0,-0.14), legend=Legend,ncol=n, title="Occurrences",
+           bg=col.int, pch=pch, ...)
 }  
 
 #' pbdb_map
@@ -61,17 +66,19 @@
 
 
 
-pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
+pbdb_map <- function(data, col.int='white' ,pch=19 , col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'), ...){
     if (sum((colnames(data) %in% c("lat","lng")))!=2){
-        stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\"). 
+        stop("Invalid data input. Use in \"pbdb_occurrences\" 
+        function the argument: show=\"coords\". 
+        e.g. pbdb_occurrences(..., show=\"coords\"). 
              See \"pbdb_map\" help page" )}
-    X11(width=12, height=8)    
-    .add.ColOcean(col.ocean,col.int,...)
+    #X11(width=12, height=8)    
+    .add.ColOcean(col.ocean,col.int),...)
     Y <- .extract.LatLong(data)
-    Y1<-.add.Points(Y,col.point,pch,...)
-    title(main=main,line=1,...)
-    .add.Legend(Y1,col.int,pch,...)
+    Y1<-.add.Points(Y,col.point,pch),...)
+    title(main="Title",line=0.5),...)
+    .add.Legend(Y1,col.int,pch),...)
 }
 
 #-------------------------------------------------
