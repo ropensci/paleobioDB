@@ -303,6 +303,7 @@ pbdb_richness <- function (data, rank,
 #'}
 
 
+
 pbdb_orig_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 
                      do.plot=TRUE, temporal_extent, 
@@ -314,8 +315,9 @@ pbdb_orig_ext<- function (data, rank,
   intv<- data.frame (min=sequence [1:length (sequence)-1], 
                      max=sequence [2:length (sequence)]) 
   labels1<- paste (intv[,1], intv[,2], sep="-")
-  labels2<- paste (labels1[1:(length (labels1)-1)], 
-                   labels1[2:(length (labels1))], sep=" to ")
+  labels2<- paste (labels1[2:(length (labels1))],
+                   labels1[1:(length (labels1)-1)], 
+                   sep=" to ")
   
   res_sp<- list ()
   for (i in 1:dim(intv)[1])
@@ -336,6 +338,7 @@ pbdb_orig_ext<- function (data, rank,
   }  
   
   names (change)<- c("new", "ext")
+  change<- change[order(rev (row.names(change))),]
   row.names (change)<- labels2
   
     if (do.plot==TRUE){
