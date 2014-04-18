@@ -3,8 +3,6 @@
 \title{pbdb_taxon}
 \usage{
 pbdb_taxon (...)
-
-name and id in the same query.
 }
 \arguments{
   \item{...}{documentation for all the parameters is

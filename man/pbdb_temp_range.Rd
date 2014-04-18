@@ -2,7 +2,8 @@
 \alias{pbdb_temp_range}
 \title{pbdb_temp_range}
 \usage{
-pbdb_temp_range (data, rank, col = "skyblue2", names = TRUE, do.plot =TRUE)
+pbdb_temp_range (data, rank, col = "#0000FF",
+names = TRUE, do.plot =TRUE)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD
