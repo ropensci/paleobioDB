@@ -302,6 +302,9 @@ pbdb_richness <- function (data, rank,
 #' pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), resolution=1, orig_ext=2) # plot of the extinction rates.
 #'}
 
+temporal_range<- data.frame (max=c(3,3,3,2), min=c(0,1,2,0))
+row.names(temporal_range)<- c("A", "B", "C", "D")
+orig_ext=2
 
 pbdb_orig_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 
@@ -314,8 +317,9 @@ pbdb_orig_ext<- function (data, rank,
   intv<- data.frame (min=sequence [1:length (sequence)-1], 
                      max=sequence [2:length (sequence)]) 
   labels1<- paste (intv[,1], intv[,2], sep="-")
-  labels2<- paste (labels1[1:(length (labels1)-1)], 
-                   labels1[2:(length (labels1))], sep=" to ")
+  labels2<- paste (labels1[2:(length (labels1))],
+                   labels1[1:(length (labels1)-1)], 
+                   sep=" to ")
   
   res_sp<- list ()
   for (i in 1:dim(intv)[1])
@@ -336,6 +340,7 @@ pbdb_orig_ext<- function (data, rank,
   }  
   
   names (change)<- c("new", "ext")
+  change<- change[order(rev (row.names(change))),]
   row.names (change)<- labels2
   
     if (do.plot==TRUE){

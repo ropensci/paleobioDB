@@ -14,10 +14,10 @@ test_that("pbdb_temporal_resolution output is a dataframe, and the names are cha
   expect_true (length (response)==2)
 })
 
-context("pbdb_time_span")
-test_that("pbdb_time_span output is a dataframe, and the names are characters", {
+context("pbdb_temp_range")
+test_that("pbdb_temp_range output is a dataframe, and the names are characters", {
 
-  response<-  pbdb_time_span (data, rank="species", do.plot=F)
+  response<-  pbdb_temp_range (data, rank="species", do.plot=F)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)
@@ -35,13 +35,14 @@ test_that("pbdb_richness output is a dataframe, and the names are characters", {
   expect_true (dim (response)[1]>=1)
 })
 
-context("pbdb_evo_ext")
-test_that("pbdb_evo_ext output is a dataframe, and the names are characters", {
-  response<-  pbdb_evo_ext (data, 
+context("pbdb_orig_ext")
+test_that("pbdb_orig_ext output is a dataframe, and the names are characters", {
+  response<-  pbdb_orig_ext (data, 
                              rank="family", 
                              , do.plot=F,temporal_extent=c(0,10))
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)
+  
 })
 
