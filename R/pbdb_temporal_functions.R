@@ -302,9 +302,7 @@ pbdb_richness <- function (data, rank,
 #' pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), resolution=1, orig_ext=2) # plot of the extinction rates.
 #'}
 
-temporal_range<- data.frame (max=c(3,3,3,2), min=c(0,1,2,0))
-row.names(temporal_range)<- c("A", "B", "C", "D")
-orig_ext=2
+
 
 pbdb_orig_ext<- function (data, rank, 
                      colour="#0000FF30", bord="#0000FF", 
