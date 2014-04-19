@@ -71,7 +71,7 @@ pbdb_temporal_resolution (canidae)
 Returns a dataframe and a plot with the time span of the species, genera, families, etc. in your query.
 
 ```coffee
-pbdb_time_span (canidae, rank="species")
+pbdb_temp_range (canidae, rank="species")
 ``` 
 
 **pbdb_richness**
@@ -82,16 +82,16 @@ Returns a dataframe and a plot with the number of species (or genera, families, 
 pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), resolution=1)
 ``` 
 
-**pbdb_evo_ext**
+**pbdb_orig_ext**
 
-Returns a dataframe and a plot with the number of new/extinct species, genera, families, etc. in your query across the time. You should set the temporal extent and the resolution of the steps. 
+Returns a dataframe and a plot with the number of new appearances and last appearances of species, genera, families, etc. in your query across the time. You should set the temporal extent and the resolution of the steps. 
 
 ```coffee
-# evolutionary rates= evo_ext=1
-pbdb_richness (canidae, rank="species", evo_ext=1, temporal_extent=c(0,10), resolution=1)
+# evolutionary rates= orig_ext=1
+pbdb_orig_ext (canidae, rank="species", orig_ext=1, temporal_extent=c(0,10), resolution=1)
 
-# extinction rates= evo_ext=2
-pbdb_evo_ext (canidae, rank="species", evo_ext=2, temporal_extent=c(0,10), resolution=1)
+# extinction rates= orig_ext=2
+pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), resolution=1)
 
 ``` 
 

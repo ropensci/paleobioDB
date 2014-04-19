@@ -1,55 +1,63 @@
-
 .extract.LatLong <- function (data){
-    latlong <- data.frame(lng = data$lng, lat = data$lat)
-    counts<- ddply(latlong,.(lng,lat),nrow)
+    latlong <- data.frame(lng = data$lng, 
+                          lat = data$lat)
+    counts<- ddply(latlong,.(latlong$lng,latlong$lat),nrow)
     colnames (counts)<- c("lng", "lat", "Occur")
     counts
 }
 
-.add.ColOcean <-function(col.ocean,col.int,...){
-    par(mar=c(0,0,0,0),xpd=NA,...)
-    ??xpd
-    map(type="n",...)
+.add.ColOcean <-function(col.ocean, col.int, ...){
+  par (mar=c(0,0,0,0))
+  map (type="n")
     rect(par("usr")[1], par("usr")[3], par("usr")[2], 
          par("usr") [4], col = col.ocean)
-    map(col=col.int,fill=T,add=T,...)
+    map(col=col.int, fill=T, add=T)
 }
 
-.add.Points <-function(Y,col.point,pch,...){
-    Pal <- colorRampPalette(col.point)
-    Y$n<-as.numeric(cut(Y$Occur,breaks = 5))
-    Y$Col <- Pal(5)[Y$n]
-    points(Y[,1:2], col=alpha(Y$Col,0.8),pch=pch,...)
-    Y
+.add.Points <-function(coords,col.point, pch,...){
+  Pal <- colorRampPalette (col.point)
+  coords$n<- as.numeric(cut(coords$Occur, breaks = 5))
+  coords$Col <- Pal(5)[coords$n]
+  points(coords[,1:2], col=alpha(coords$Col,0.8),pch=pch,...)
+  coords
 }
+
 
 .add.Legend <- function(Y1,col.int,pch,...){
+    
     n<-length(unique(Y1$Col))
     Col<-unique(Y1$Col)[order(unique(Y1$n))]
-    Legend<-seq(min(Y1$Occur),max(Y1$Occur),
-               length.out=n)
-    legend("bottom", col=Col, inset=c(0,-0.14), legend=Legend,ncol=n, title="Occurrences",
-           bg=col.int, pch=pch, ...)
+    Legend<-as.integer (seq(min(Y1$Occur), max(Y1$Occur),
+               length.out= n))
+    legend(par("usr")[1], par("usr")[3], 
+    col= Col, 
+    legend=Legend, ncol=n, 
+    title="Occurrences",
+    bg=col.int, pch=pch)
 }  
 
 #' pbdb_map
 #' 
-#' Maps the fossil records
+#' Returns a map showing the occurrences and a dataframe 
+#' with the coordinates of the fossil sites and the number of records.
 #' 
-#' The function opens a new window for the map
+#' @usage pbdb_map (data, col.int="white" ,pch=19, 
+#' col.ocean="black", main=NULL, 
+#' col.point=c("light blue","blue"), ...)
 #' 
-#' @usage pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
-#'                  col.point=c("light blue","blue"), ...)
-#' 
-#' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the 
-#' argument: \code{show = "coords"}. See too: \strong{Details} and \strong{Examples}
+#' @param data Input dataframe. This dataframe is the output 
+#' of \code{\link{pbdb_occurrences}} function using the 
+#' argument: \code{show = "coords"}. See too: \strong{Details} 
+#' and \strong{Examples}
 #' @param col.int The colour of the mainland. 
 #' @param pch See: \code{\link{par}}
 #' @param col.ocean The colour of the ocean.
-#' @param main To set the title of the map. See: \code{\link{par}}
-#' @param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
+#' @param col.point Two or more colours. 
+#' To generate the colour gradient used to show the number of occurrences per cell in map
+#' @param name_map name to save the map as a tiff file, if not given the map is not saved. 
+#' @param main To set the title of the map in the tiff file. See: \code{\link{par}}
 #' @param ... Others parameters. See \code{\link{par}} and \code{\link{map}} 
-#' @details \strong{CAUTION!} The argument \code{show =  "coords"} in \code{\link{pbdb_occurrences}} function is required. See \strong{Examples}
+#' @details \strong{CAUTION!} The argument \code{show = "coords"} in \code{\link{pbdb_occurrences}} function is required. See \strong{Examples}
 #' @return A map showing the distribution of the fossil records, with the points with a color gradient, according to the number of occurrences per cell.
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export 
@@ -57,36 +65,54 @@
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", 
 #'                          base_name="Canis", show="coords")
 #' pbdb_map(data)
-#' pbdb_map(data,pch=1)
-#' pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
+#' 
+#' ## set the name_map and main, to save the map as a tiff
+#' pbdb_map(data, name_map="Canis", main="Map of the fossil records of Canis")
+#' 
+#'## the map can be tunned, e.g. you can change the shape of the points or their colours.
+#'pbdb_map(data,pch=1)
+#'pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
 #'          main="canis")
-#' l_ply(dev.list(),dev.off)## to close all windows graphics
+#'
 #' }
 #' 
 
 
-
-pbdb_map <- function(data, col.int='white' ,pch=19 , col.ocean='black',
-                     main=NULL, col.point=c('light blue','blue'), ...){
+pbdb_map <- function(data, col.int='white' ,pch=19 , 
+                     col.ocean='black',
+                     name_map=NULL, main=NULL, 
+                     col.point=c('light blue','blue'), ...){
     if (sum((colnames(data) %in% c("lat","lng")))!=2){
         stop("Invalid data input. Use in \"pbdb_occurrences\" 
         function the argument: show=\"coords\". 
         e.g. pbdb_occurrences(..., show=\"coords\"). 
-             See \"pbdb_map\" help page" )}
-    #X11(width=12, height=8)    
-    .add.ColOcean(col.ocean,col.int),...)
-    Y <- .extract.LatLong(data)
-    Y1<-.add.Points(Y,col.point,pch),...)
-    title(main="Title",line=0.5),...)
-    .add.Legend(Y1,col.int,pch),...)
+        See \"pbdb_map\" help page")}
+    coords <- .extract.LatLong(data)
+    par (mar=c(0,0,0,0), xpd=FALSE)
+    .add.ColOcean (col.ocean, col.int)
+    Y1<-.add.Points (coords, col.point, pch,...)
+    
+    if (!is.null (name_map)){
+    tiff(file=paste (name_map, ".tiff", sep=""),
+         units="in", width=11, height=8.5, res=300)
+    par (mar=c(0,0,0,0), xpd=TRUE)
+    .add.ColOcean (col.ocean, col.int)
+    Y1<-.add.Points (coords, col.point, pch,...)
+    title(main=main,line=0.5,...)
+    .add.Legend(Y1, col.int, pch,...)
+    dev.off()
+    coords [,1:3]
+    }
 }
+
 
 #-------------------------------------------------
 
 .add.ColOcean2 <-function(col.ocean,col.int,...){
     par(mar=c(0,0,0,0),...)
     map(type='n',add=T,...)
-    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
+    rect(par("usr")[1], par("usr")[3], par("usr")[2], 
+         par("usr") [4], col = col.ocean)
     map(col=col.int,fill=T,add=T,...)
 }
 
@@ -105,18 +131,19 @@ pbdb_map <- function(data, col.int='white' ,pch=19 , col.ocean='black',
     plot(r,col=alpha(Pal(5),0.8),add=T,...)
 }
 
-.plot.Raster.rich<-function(r,col.eff,col.ocean,col.int,res,...){
-    par(oma=c(4,0,2,2),...)
-    e<-map(type="n",...)
-    ext<-extent(e$range)
-    r2<-raster(ext)
-    res(r2)<-c(res,res)
-    values(r2)<-NA
-    plot(r2,xaxt="n",yaxt="n")
-    .add.ColOcean2 (col.ocean,col.int,...)
-    map(col=col.int,fill=T,add=T,...)
-    .add.pattern(r,col.eff,...)
+.plot.Raster.rich<- function (r, col.eff, col.ocean,col.int,res,...){
+    e<- map(type="n", ...)
+    ext<- extent (e$range)
+    r2<- raster (ext)
+    res(r2)<- c (res,res)
+    values(r2)<- NA
+    par (oma= c( 0, 0, 0, 0), ...)
+    plot(r2, xaxt="n", yaxt="n")
+    .add.ColOcean2 (col.ocean, col.int,...)
+    map(col= col.int, fill=T, add=T,...)
+    .add.pattern (r, col.eff,...)
 }
+
 #' pbdb_map_effort
 #' 
 #' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell). 
@@ -139,23 +166,28 @@ pbdb_map <- function(data, col.int='white' ,pch=19 , col.ocean='black',
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis", 
 #'                          show="coords")
-#' pbdb_map_effort (data,res=2)
-#' pbdb_map_effort (data,res=2,do.plot=F) 
-#' l_ply(dev.list(),dev.off)## to close all windows graphics
+#' pbdb_map_effort (data, res=2)
+#' pbdb_map_effort (data, res=2, do.plot= F) 
 #'}
 #'
 
-pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
-                            col.eff=c("light blue","blue"), do.plot=TRUE, ...){
+pbdb_map_effort <- function(data,res=1, name_map=NULL, col.int="white", col.ocean="black",
+                            col.eff=c("light blue","blue"), ...){
     if (sum((colnames(data) %in% c("lat","lng")))!=2){
         stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\"). 
              See \"pbdb_map_effort\" help page" )}
     Y <- .extract.LatLong(data)
     r<-.Raster(Y,res,col.int,col.ocean,...)
-    if(do.plot==T){
-        X11(width=13, height=7.8)
-        .plot.Raster.rich(r,col.eff,col.ocean,col.int,res,...)
-            mtext("Number of records",4,line=-1,cex=2)}
+    
+      if (!is.null (name_map)){
+        tiff(file=paste (name_map, ".tiff", sep=""),
+             units="in", width=11, height=8.5, res=300)
+        .plot.Raster.rich(r,col.eff,
+                          col.ocean,
+                          col.int,res,...)
+            mtext("Number of records",4,line=-1,cex=2)
+      dev.off()
+      }
     r
 }
 
@@ -247,7 +279,6 @@ pbdb_map_effort <- function(data,res=1,col.int="white", col.ocean="black",
 #' pbdb_map_richness (data,res=3,rank="genus")
 #' pbdb_map_richness (data,res=8,rank="family")
 #' pbdb_map_richness (data,res=3,rank="family",do.plot=F)
-#' l_ply(dev.list(),dev.off)## to close all windows graphics
 #' }
 #'
 
@@ -269,7 +300,6 @@ pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=1,col.int=
     }
     
     if(do.plot==TRUE){
-        X11(width=13, height=7.8)
         .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
         mtext(paste("Richness of", rank),4,line=-1,cex=2)
         
