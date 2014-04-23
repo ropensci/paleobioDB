@@ -119,7 +119,7 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #'
 #' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell).
 #'
-#' @usage pbdb_map_effort (data, res=1, col.int="white", col.ocean="black",
+#' @usage pbdb_map_effort (data, res=5, col.int="white", col.ocean="black",
 #' col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 #'
 #' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show="coords"}. See too: \strong{Details} and \strong{Examples}
@@ -222,7 +222,7 @@ pbdb_map_effort <- function(data,res=5,col.int="white", col.ocean="black",
 #'
 #' Creates a RasterLayer object and a plot with richness of species, genera, families, etc. per cell.
 #'
-#' @usage pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1,
+#' @usage pbdb_map_richness (data, rank="species", do.plot=TRUE, res=5,
 #' col.int="white", col.ocean="black",
 #' col.rich=c("light blue","blue"),...)
 #'

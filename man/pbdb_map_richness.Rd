@@ -2,7 +2,7 @@
 \alias{pbdb_map_richness}
 \title{pbdb_map_richness}
 \usage{
-pbdb_map_richness (data, rank="species", do.plot=TRUE, res=1,
+pbdb_map_richness (data, rank="species", do.plot=TRUE, res=5,
 col.int="white", col.ocean="black",
 col.rich=c("light blue","blue"),...)
 }
