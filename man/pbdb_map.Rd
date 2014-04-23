@@ -3,7 +3,7 @@
 \title{pbdb_map}
 \usage{
 pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
-                 col.point=c("light blue","blue"), ...)
+col.point=c("light blue","blue"), ...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -45,11 +45,11 @@ The function opens a new window for the map
 \examples{
 \dontrun{
 data<- pbdb_occurrences (limit="all", vocab= "pbdb",
-                         base_name="Canis", show="coords")
+base_name="Canis", show="coords")
 pbdb_map(data)
 pbdb_map(data,pch=1)
 pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
-         main="canis")
+main="canis")
 l_ply(dev.list(),dev.off)## to close all windows graphics
 }
 }

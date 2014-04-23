@@ -3,7 +3,7 @@
 \title{pbdb_map_effort}
 \usage{
 pbdb_map_effort (data, res=1, col.int="white", col.ocean="black",
-                     col.eff=c("light blue","blue"), do.plot=TRUE, ...)
+col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 }
 \arguments{
   \item{data}{Input dataframe. This dataframe is the output
@@ -46,7 +46,7 @@ effort (number of fossil records per cell).
 \examples{
 \dontrun{
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
-                         show="coords")
+show="coords")
 pbdb_map_effort (data,res=2)
 pbdb_map_effort (data,res=2,do.plot=F)
 l_ply(dev.list(),dev.off)## to close all windows graphics
