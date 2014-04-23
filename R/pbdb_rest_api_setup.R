@@ -1,23 +1,20 @@
 #' @include rest_api_tools.R
 
-
 # Functions and variables for setting up and managing the comunication 
 # with the paleobiodb.org REST API
 
-.pbdb_set_format<-function(format){
-	.package_cache_set('api_format', format)
-}
+#' .pbdb_uri_builder
+#' 
+#' Function that generates the URIs for the paleobiodb.org API
+#' 
+#' @param api_base_url Base url for the 
+#' @param config Configuration of the endpoint
+#' @param querystring compiled querystring
+#'
 
-# Function that generates the URIs for the paleobiodb.org API
-# 
-# @param api_base_url Base url for the 
-#
-.pbdb_uri_builder <- function(api_base_url, config, query = query, querystring = qs, 
-	endpoint_name = endpoint, api_format = NULL){
+.pbdb_uri_builder <- function(api_base_url, config, querystring = ''){
 	
-	if(is.null(api_format)){
-		stop("api_format param is required for building pbdb API calls")
-	}
+	api_format<-'json'
 
 	# endpoint_base is expected to be a string format to fit the api_format in
 	uri <- paste(api_base_url, '/', sprintf(config[['endpoint_base']], api_format), sep = "")
@@ -29,8 +26,11 @@
 	uri
 }
 
-# This function registers all the endpoints available from the paleobiodb.org REST API
-#
+
+#' .pbdb_set_up_endpoints
+#'
+#' This function registers all the endpoints available from the paleobiodb.org REST API
+#'
 .pbdb_set_up_endpoints<-function(){
 
 	# single occurrencies
@@ -101,7 +101,7 @@
 .pbdb_setup<-function(){
 	.set_api_base('http://paleobiodb.org/data1.1')
 	.pbdb_set_up_endpoints()
-	.pbdb_set_format('json')
+	.package_cache_set('api_format', 'json')
 }
 
 .pbdb_setup()

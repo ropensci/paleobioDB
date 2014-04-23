@@ -10,10 +10,6 @@ test_that("Error on non 200 status response", {
 	expect_error(.extract_response_body(bad_http_response))
 })
 
-test_that("No error on HTTP error if error flag is false", {
-	expect_equal(.extract_response_body(bad_http_response, FALSE), 'THE BODY')
-})
-
 test_that("Body extraction on successful request", {
 	expect_equal(.extract_response_body(good_http_response), 'THE BODY')
 })

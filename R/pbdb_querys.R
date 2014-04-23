@@ -1,37 +1,62 @@
 # R Functions leveraging the use o the different API endpoints 
 # available
-# Converts a list in a comma separated string
 
-.implode_to_string<-function(param){
+#' .pbdb_query
+#' 
+#' Central function for sending all queries to the remote API
+#'
+#' @usage .pbdb_query(endpoint, query)
+#'
+#' @param endpoint Name of the endpoint, inside the API, to which the query must be sent. 
+#' This endpoint must have been previously configured
+#' @param query List of filter parameters for the api. The values provided to the parameters
+#' may be a single string or a list of strings.
+#' @return dataframe
+#' @examples \dontrun{
+#' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "phylo", "ident")))
+#' }
+#' 
+
+.pbdb_query<-function(endpoint, query = list()){
+
+  query <- lapply(query, .implode_to_string)
+  uri <- .build_uri(endpoint, query = query)
+
+  df <- .get_data_from_uri(uri)
+
+  df
+}
+
+
+#' .implode_to_string
+#'
+#' Converts a list of strings in a single comma separated string
+#' 
+#' @usage .implode_to_string(params)
+#' @param params list of strings
+#' @return character
+#' @examples \dontrun{
+#' .implode_to_string(list("categoryA","categoryB","categoryC"))
+#' }
+
+.implode_to_string<-function(params){
   
-  if(!(is.vector(param))){
+  if(!(is.vector(params))){
     stop("Vector expected")
   }
   
-  if(length(param) > 1){
-    str <- param[[1]]
-    for (p in param[2:length(param)]) {
+  if(length(params) > 1){
+    str <- params[[1]]
+    for (p in params[2:length(params)]) {
       str <- paste(str, ",", p, sep = "")
     }
   } else {
-    str <- param
+    str <- params
   }
   
   return (str)
 }
 
-.pbdb_query<-function(endpoint, query = list()){
-	uri <- .pbdb_query_uri(endpoint, query)
-
-	df <- .get_data_from_uri(uri)
-
-	df
-}
-
-.pbdb_query_uri<- function(endpoint, query = list()){
-  query <- lapply(query, .implode_to_string)
-  return (.build_uri(endpoint, query = query))
-}
 
 #' pbdb_occurrence 
 #' 
@@ -58,9 +83,6 @@
 #' @examples \dontrun{
 #' pbdb_occurrence (id=1001)
 #' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
-#' }
-
-
 
 pbdb_occurrence<-function(id, ...){
   l<-list(...)

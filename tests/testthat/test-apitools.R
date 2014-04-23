@@ -2,11 +2,10 @@ context("rest_api_tools: Core API set up and endpoint configuration functions")
 
 # test default url generation
 
-.setup_api_endpoint('testend1', 'controller1')
-
 test_base_uri <- 'http://sample.org'
 
 test_that("Well formed URIs with default builder and no params", {
+	.setup_api_endpoint('testend1', 'controller1')
 	expect_equal(.build_uri('testend1', api_base = test_base_uri), 'http://sample.org/controller1')
 })
 

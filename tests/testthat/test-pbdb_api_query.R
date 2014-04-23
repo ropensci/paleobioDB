@@ -2,7 +2,7 @@ context("rpbdb query functions and uri generation")
 
 # uri generation
 
-.pbdb_setup()
+# .pbdb_setup()
 
 # setup_api_endpoint
 # test_that("pbdb_uri_builder works", { 

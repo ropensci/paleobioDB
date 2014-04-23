@@ -1,23 +1,33 @@
-# Grabs data as dataframe from a URI in the data_format format
- 
-.get_data_from_uri<-function(uri, data_format = 'json'){
+#' .get_data_from_uri
+#' 
+#' Grabs data as dataframe from a URI. Expects the response data to be in JSON format
+#'
+#' @param uri Public internet address of the data
+#' @return dataframe with rows of data
+#' @examples \dontrun{
+#' .get_data_from_uri("http://api.example.com/ecologydata")
+#' }
 
-	# RCurl: parseHTTPHeader...
-	
-	response <- getURL(uri, header = TRUE)
+.get_data_from_uri<-function(uri){
+
+	response <- RCurl::getURL(uri, header = TRUE)
 	raw_data <- .extract_response_body(response)
 
-	df <- .parse_raw_data(raw_data, data_format = data_format)
+	df<-.parse_raw_data(raw_data)
 
 	df
 }
 
-# Extracts de body from a HTTP response.
+
+#' .extract_response_body
+#'
+#' Extracts de body from a HTTP response or throws error if not 200 status
 #
-# @param error_on_not_200 if set to TRUE, will throw error if finds reponse
-# status differente to 200
-# 
-.extract_response_body<-function(response, error_on_not_200 = TRUE){
+#' @param response Raw http response
+#' @return character
+#'
+
+.extract_response_body<-function(response){
 	
 	sp<-strsplit(response, '\r\n\r\n')[[1]]
 	header<-sp[[1]]
@@ -25,7 +35,7 @@
   
 	body<-sp[[2]]
 
-	if(error_on_not_200 && (status != '200')){
+	if(status != '200'){
 		stop(sprintf('Error in API response. The server returned a status %s, which indicates that 
 			something went wrong with your request. \r\nIn order to debug the problem you may find
 			usefull information in the following server response:\r\n%s', status, body))
@@ -34,31 +44,30 @@
 	body
 }
 
+#' .parse_raw_data
+#' 
+#' Parse raw json string as a dataframe
+#' 
+#' @param raw_data json encoded data
+#' @return dataframe
+#' 
 
-# Parse raw data according to configured api call format
-#
-# @param data
-# @return dataframe
+.parse_raw_data<-function(raw_data){
 
-#
-.parse_raw_data<-function(data, data_format = 'json'){
-	# package should allow get different formats ?
-
-	if(data_format != 'json'){
-		stop(paste('Format not implemented: ', .data_format))
-	}
-
-	# json
-	# pack rjson
-	data_list <- fromJSON(data)
-
+	data_list <- fromJSON(raw_data)
 	df <- .make_data_frame(data_list[[1]])
 
-	df
+	df	
 }
 
+#' .make_data_frame
+#' 
+#' Makes a dataframe from a list of lists
+#'
+#' @param reg_list data rows as a list of lists
+#' @return dataframe
+#'
 
-# Makes a dataframe from a list of lists (fromJSON response)
 .make_data_frame<-function(reg_list){
 
 	df<-as.data.frame(reg_list[1])
@@ -69,9 +78,9 @@
 		return (df)
 	}
 
-# TODO: fix warning thrown when different types of data found for a column. smartbind
-# converts to character and throws warning. see: pbdb_ref_taxa (name="Canidae")
-# fix: - convert certain columns to character on the fly
+	# TODO: fix warning thrown when different types of data found for a column. smartbind
+	# converts to character and throws warning. see: pbdb_ref_taxa (name="Canidae")
+	# fix: - convert certain columns to character on the fly
 
 	for (reg in reg_list[2:len]){
 	    # smartbind from gtools let us bind rows with different
@@ -81,6 +90,20 @@
 
 	df
 }
+
+
+#' .build_query_string
+#' 
+#' Builds a query string ready for been added to a url, from a list of name/value parameters
+#'
+#' @usage .build_query_string(args)
+#'
+#' @param args list of parameters
+#' @return character
+#' @examples \dontrun{
+#' .build_query_string(list(name="Bob", city="Berlin"))
+#' }
+#' 
 
 .build_query_string<-function(args){
 
