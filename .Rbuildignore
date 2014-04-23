@@ -5,3 +5,4 @@ rpbdb-Ex.R
 .gitignore
 .git
 
+^\.travis\.yml$
