@@ -1,6 +1,7 @@
 # test for the geographic functions
 
 
+context("pbdb_map_occur")
 test_that("tests on pbdb_map_occur", {
 
 	##missing coordinates
@@ -9,7 +10,7 @@ test_that("tests on pbdb_map_occur", {
 	expect_error(pbdb_map_occur (data))
 	data<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis",show='coords')
 	mp<- pbdb_map_occur (data, res=4, do.plot=F) 
-    expect_true(class (mp) == 'RasterLayer')
+  expect_true(class (mp) == 'RasterLayer')
 	expect_true(sum(mp@data@values,na.rm=T)==nrow(data))
     d1<-data.frame(lng=c(0,0),lat=c(0,0))
 	r1<-pbdb_map_occur(d1, do.plot=F)
@@ -21,7 +22,7 @@ test_that("tests on pbdb_map_occur", {
 
 })
 
-
+context("pbdb_map_richness")
 test_that("tests on pbdb_map_richness", {
     
     ##missing coordinates

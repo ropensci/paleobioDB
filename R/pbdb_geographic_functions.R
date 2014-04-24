@@ -64,8 +64,6 @@
 #' }
 #'
 
-
-
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'), ...){
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
@@ -115,6 +113,8 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
   map(col=col.int,fill=T,add=T,...)
   .add.pattern(r,col.eff,...)
 }
+
+
 #' pbdb_map_occur
 #'
 #' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell).
@@ -146,8 +146,8 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
                             col.eff=c("light blue","blue"), do.plot=TRUE, ...){
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
-    stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\").
-         See \"pbdb_map_occur\" help page" )}
+    stop("Invalid data input. Please, add show=c('coord') to your pbdb_occurrences query")
+  }
   Y <- .extract.LatLong(data)
   r<-.Raster(Y,res,col.int,col.ocean,...)
   if(do.plot==T){
