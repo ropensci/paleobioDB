@@ -1,8 +1,8 @@
-\name{pbdb_map_effort}
-\alias{pbdb_map_effort}
-\title{pbdb_map_effort}
+\name{pbdb_map_occur}
+\alias{pbdb_map_occur}
+\title{pbdb_map_occur}
 \usage{
-pbdb_map_effort (data, res=5, col.int="white", col.ocean="black",
+pbdb_map_occur (data, res=5, col.int="white", col.ocean="black",
 col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 }
 \arguments{
@@ -47,8 +47,8 @@ effort (number of fossil records per cell).
 \dontrun{
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 show="coords")
-pbdb_map_effort (data,res=2)
-pbdb_map_effort (data,res=2,do.plot=F)
+pbdb_map_occur (data,res=2)
+pbdb_map_occur (data,res=2,do.plot=F)
 l_ply(dev.list(),dev.off)## to close all windows graphics
 }
 }

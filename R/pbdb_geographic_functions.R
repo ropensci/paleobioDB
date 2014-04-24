@@ -115,11 +115,11 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
   map(col=col.int,fill=T,add=T,...)
   .add.pattern(r,col.eff,...)
 }
-#' pbdb_map_effort
+#' pbdb_map_occur
 #'
 #' Creates a RasterLayer object and a plot of the sampling effort (number of fossil records per cell).
 #'
-#' @usage pbdb_map_effort (data, res=5, col.int="white", col.ocean="black",
+#' @usage pbdb_map_occur (data, res=5, col.int="white", col.ocean="black",
 #' col.eff=c("light blue","blue"), do.plot=TRUE, ...)
 #'
 #' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show="coords"}. See too: \strong{Details} and \strong{Examples}
@@ -137,17 +137,17 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 #' show="coords")
-#' pbdb_map_effort (data,res=2)
-#' pbdb_map_effort (data,res=2,do.plot=F)
+#' pbdb_map_occur (data,res=2)
+#' pbdb_map_occur (data,res=2,do.plot=F)
 #' l_ply(dev.list(),dev.off)## to close all windows graphics
 #'}
 #'
 
-pbdb_map_effort <- function(data,res=5,col.int="white", col.ocean="black",
+pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
                             col.eff=c("light blue","blue"), do.plot=TRUE, ...){
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
     stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\").
-         See \"pbdb_map_effort\" help page" )}
+         See \"pbdb_map_occur\" help page" )}
   Y <- .extract.LatLong(data)
   r<-.Raster(Y,res,col.int,col.ocean,...)
   if(do.plot==T){

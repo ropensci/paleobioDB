@@ -1,21 +1,21 @@
 # test for the geographic functions
 
 
-test_that("tests on pbdb_map_effort", {
+test_that("tests on pbdb_map_occur", {
 
 	##missing coordinates
   data(worldMapEnv)
 	data<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis")
-	expect_error(pbdb_map_effort (data))
+	expect_error(pbdb_map_occur (data))
 	data<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis",show='coords')
-	mp<- pbdb_map_effort (data, res=4, do.plot=F) 
+	mp<- pbdb_map_occur (data, res=4, do.plot=F) 
     expect_true(class (mp) == 'RasterLayer')
 	expect_true(sum(mp@data@values,na.rm=T)==nrow(data))
     d1<-data.frame(lng=c(0,0),lat=c(0,0))
-	r1<-pbdb_map_effort(d1, do.plot=F)
+	r1<-pbdb_map_occur(d1, do.plot=F)
 	expect_true(sum(r1@data@values,na.rm=T)==nrow(d1))
  	data2<-  pbdb_occurrences (limit="100", base_name="canis",show='coords')
-	mp2<- pbdb_map_effort (data, res=10, do.plot=F) 
+	mp2<- pbdb_map_occur (data, res=10, do.plot=F) 
 	expect_true(class (mp2) == 'RasterLayer')
 	expect_true(sum(mp2@data@values,na.rm=T)==nrow(data2))
 

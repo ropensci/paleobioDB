@@ -102,11 +102,11 @@ Returns a map with the species occurrences.
 ```coffee
 pbdb_map(canidae)
 ``` 
-**pbdb_map_effort**
+**pbdb_map_occur**
 Returns a map and a raster object with the sampling effort (number of fossil records per cell).
 
 ```coffee
-pbdb_map_effort (canidae, res= 2)
+pbdb_map_occur (canidae, res= 2)
 ``` 
 **pbdb_map_richness**
 Returns a map and a raster object with the number of different species, genera, family, etc. per cell.
