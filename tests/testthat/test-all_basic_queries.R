@@ -97,7 +97,7 @@ test_that("pbdb_scales output is a dataframe, and the names are characters", {
   expect_true (dim (response)[1]>=1)
 })
 
-context("pbdb_scales")
+context("pbdb_strata")
 test_that("pbdb_scales output is a dataframe, and the names are characters", {
   response<- pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=5, rank="formation")
   expect_true(is.data.frame (response))
@@ -145,9 +145,10 @@ test_that("pbdb_ref_collections output is a dataframe, and the names are charact
   expect_true (dim (response)[1]>=1)
 })
 
+
 context("pbdb_ref_taxa")
 test_that("pbdb_ref_taxa output is a dataframe, and the names are characters", {
-  response<- pbdb_ref_taxa (name="Canidae")
+  response<- pbdb_ref_taxa (name="Felidae")
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)
