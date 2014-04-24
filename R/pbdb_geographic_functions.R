@@ -148,7 +148,7 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
     stop("Invalid data input. Please, add show=c('coord') to your pbdb_occurrences query")
   }
-  data(worldMapEnv)
+
   Y <- .extract.LatLong(data)
   r<-.Raster(Y,res,col.int,col.ocean,...)
   if(do.plot==T){
@@ -258,7 +258,6 @@ pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int=
   if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
     stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")).
          See \"pbdb_map_richness\" help page" )}
-  data(worldMapEnv)
   if(rank=="species"){
     r<-.extract.rank.specie(data,res)
   }
