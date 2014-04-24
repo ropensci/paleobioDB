@@ -1,7 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 init.R
-rpbdb-Ex.R
+paleobioDB-Ex.R
 .gitignore
 .git
 

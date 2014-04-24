@@ -83,6 +83,7 @@
 #' @examples \dontrun{
 #' pbdb_occurrence (id=1001)
 #' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
+#' }
 
 pbdb_occurrence<-function(id, ...){
   l<-list(...)
