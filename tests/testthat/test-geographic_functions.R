@@ -21,7 +21,7 @@ test_that("tests on pbdb_map_occur", {
 
 	mp2<- pbdb_map_occur (data, res=10, do.plot=F) 
 	expect_true(class (mp2) == 'RasterLayer')
-	expect_true(sum(mp2@data@values,na.rm=T)==nrow(data2))
+	expect_true(sum(mp2@data@values,na.rm=T)==nrow(data))
 
 })
 
