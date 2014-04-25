@@ -66,6 +66,7 @@
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'), ...){
+    require(maps)
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
     stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\").
          See \"pbdb_map\" help page" )}
