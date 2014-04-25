@@ -150,7 +150,7 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
     stop("Invalid data input. Please, add show=c('coord') to your pbdb_occurrences query")
   }
-  data("worldMapEnv")
+#  data("worldMapEnv")
   Y <- .extract.LatLong(data)
   r<-.Raster(Y,res,col.int,col.ocean,...)
   if(do.plot==T){
