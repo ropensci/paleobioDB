@@ -79,7 +79,7 @@ pbdb_temp_range (canidae, rank="species")
 Returns a dataframe and a plot with the number of species (or genera, families, etc.) across time. You should set the temporal extent and the temporal resolution for the steps.
 
 ```coffee
-pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), resolution=1)
+pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), res=1)
 ``` 
 
 **pbdb_orig_ext**
@@ -88,10 +88,10 @@ Returns a dataframe and a plot with the number of new appearances and last appea
 
 ```coffee
 # evolutionary rates= orig_ext=1
-pbdb_orig_ext (canidae, rank="species", orig_ext=1, temporal_extent=c(0,10), resolution=1)
+pbdb_orig_ext (canidae, rank="species", orig_ext=1, temporal_extent=c(0,10), res=1)
 
 # extinction rates= orig_ext=2
-pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), resolution=1)
+pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=1)
 
 ``` 
 
