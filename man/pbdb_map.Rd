@@ -44,6 +44,7 @@ The function opens a new window for the map
 }
 \examples{
 \dontrun{
+library(plyr)
 data<- pbdb_occurrences (limit="all", vocab= "pbdb",
 base_name="Canis", show="coords")
 pbdb_map(data)

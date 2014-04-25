@@ -45,6 +45,7 @@ effort (number of fossil records per cell).
 }
 \examples{
 \dontrun{
+library(plyr)
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 show="coords")
 pbdb_map_occur (data,res=2)

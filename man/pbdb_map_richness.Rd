@@ -50,6 +50,7 @@ species, genera, families, etc. per cell.
 }
 \examples{
 \dontrun{
+library(plyr)
 data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
 show=c("phylo","coords","ident"))
 pbdb_map_richness (data,res=3,rank="genus")

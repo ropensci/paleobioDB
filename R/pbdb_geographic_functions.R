@@ -54,6 +54,7 @@
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
+#' library(plyr)
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb",
 #' base_name="Canis", show="coords")
 #' pbdb_map(data)
@@ -137,6 +138,7 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
+#' library(plyr)
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 #' show="coords")
 #' pbdb_map_occur (data,res=2)
@@ -243,6 +245,7 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
+#' library(plyr)
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
 #' show=c("phylo","coords","ident"))
 #' pbdb_map_richness (data,res=3,rank="genus")

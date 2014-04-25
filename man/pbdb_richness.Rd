@@ -2,7 +2,7 @@
 \alias{pbdb_richness}
 \title{pbdb_richness}
 \usage{
-pbdb_richness (data, rank, resolution, temporal_extent, colour, bord, do.plot)
+pbdb_richness (data, rank, res, temporal_extent, colour, bord, do.plot)
 }
 \arguments{
   \item{data}{dataframe with our query to the paleoBD
@@ -23,8 +23,8 @@ pbdb_richness (data, rank, resolution, temporal_extent, colour, bord, do.plot)
   \item{temporal_extent}{vector to set the temporal extent
   (min, max)}
 
-  \item{resolution}{numeric. to set the intervals of the
-  temporal extent}
+  \item{res}{numeric. to set the intervals of the temporal
+  extent}
 
   \item{do.plot}{TRUE/FALSE (TRUE by default).}
 }
@@ -39,7 +39,7 @@ Plots the number of the interested.
 \dontrun{
 data<-  pbdb_occurrences (limit="all", vocab="pbdb",
 base_name="Canidae", show=c("phylo", "ident"))
-pbdb_richness (data, rank="species", resolution=1, temporal_extent=c(0,3))
+pbdb_richness (data, rank="species", res=1, temporal_extent=c(0,3))
 }
 }
 
