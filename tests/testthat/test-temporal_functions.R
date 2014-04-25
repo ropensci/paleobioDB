@@ -28,7 +28,7 @@ context("pbdb_richness")
 test_that("pbdb_richness output is a dataframe, and the names are characters", {
   response<-  pbdb_richness (data, 
                              rank="family", 
-                             resolution=1, 
+                             res=1, 
                              temporal_extent=c(0,3), do.plot=F)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
