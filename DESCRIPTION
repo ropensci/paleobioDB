@@ -29,9 +29,7 @@ Imports:
     gtools,
     RCurl,
     plyr,
-    maps,
     scales,
-    raster
 Suggests:
     roxygen2,
     testthat
