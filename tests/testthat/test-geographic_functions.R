@@ -21,7 +21,7 @@ test_that("tests on pbdb_map_occur", {
 
 	mp2<- pbdb_map_occur (data, res=10, do.plot=F) 
 	expect_true(class (mp2) == 'RasterLayer')
-	expect_true(sum(mp2@data@values,na.rm=T)==nrow(data2))
+	expect_true(sum(mp2@data@values,na.rm=T)==nrow(data))
 
 })
 
@@ -36,7 +36,7 @@ test_that("tests on pbdb_map_richness", {
     data3<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis",show=c("phylo","coords","ident"))
     expect_true(class (pbdb_map_richness (data3,do.plot=F)) == 'RasterLayer')
     expect_error(pbdb_map_richness (data3,rank='Specie'))
-    sp<-letters[sample(1:26,1000,r=T)]
+    sp<-letters[sample(1:23,1000,r=T)]
     n=25
     data.teste<-data.frame(lat=rep(0,n),
                           lng=rep(0,n),

@@ -3,7 +3,7 @@
 \title{pbdb_orig_ext}
 \usage{
 pbdb_orig_ext (data, rank,
-temporal_extent, resolution, orig_ext,
+temporal_extent, res, orig_ext,
 colour="#0000FF30", bord="#0000FF", do.plot=TRUE)
 }
 \arguments{
@@ -19,8 +19,8 @@ colour="#0000FF30", bord="#0000FF", do.plot=TRUE)
   \item{temporal_extent}{vector to set the temporal extent
   (min, max)}
 
-  \item{resolution}{numeric. to set the intervals of the
-  temporal extent}
+  \item{res}{numeric. to set the intervals of the temporal
+  extent}
 
   \item{orig_ext}{1= origination, 2=extinction.}
 
@@ -48,11 +48,11 @@ base_name="Canidae", show=c("phylo", "ident"))
 
 # plot of the evolutive rates.
 pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10),
-resolution=1, orig_ext=1)
+res=1, orig_ext=1)
 
 # plot of the extinction rates.
 pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10),
-resolution=1, orig_ext=2)
+res=1, orig_ext=2)
 }
 }
 
