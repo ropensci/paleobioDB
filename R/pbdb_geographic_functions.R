@@ -69,7 +69,6 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
   if (sum((colnames(data) %in% c("lat","lng")))!=2){
     stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\").
          See \"pbdb_map\" help page" )}
-  data("worldMapEnv")
   X11(width=12, height=8)
   .add.ColOcean(col.ocean, col.int,...)
   Y <- .extract.LatLong(data)
