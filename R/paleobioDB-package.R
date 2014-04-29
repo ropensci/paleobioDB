@@ -37,7 +37,7 @@
 #'\url{http://paleobiodb.org}
 #' }
 #' 
-#' @import rjson gtools RCurl plyr maps scales raster
+#' @import rjson gtools RCurl plyr raster maps scales 
 #' 
 #'@examples \dontrun{
 #'
