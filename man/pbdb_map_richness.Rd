@@ -45,12 +45,14 @@ species, genera, families, etc. per cell.
 }
 \details{
 \strong{CAUTION!} The argument \code{show = "coords"} in
-\code{\link{pbdb_occurrences}} function is required. See
-\strong{Examples}
+\code{\link{pbdb_occurrences}} function is required. We
+recommend the use of a cairo device (\code{\link{X11}}) for
+better visualization of the graphs. See \strong{Examples}
 }
 \examples{
 \dontrun{
 library(plyr)
+X11(width=13, height=7.8)
 data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
 show=c("phylo","coords","ident"))
 pbdb_map_richness (data,res=3,rank="genus")

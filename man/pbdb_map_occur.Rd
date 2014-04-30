@@ -40,12 +40,14 @@ effort (number of fossil records per cell).
 }
 \details{
 \strong{CAUTION!} The argument \code{show = "coords"} in
-\code{\link{pbdb_occurrences}} function is required. See
-\strong{Examples}
+\code{\link{pbdb_occurrences}} function is required. We
+recommend the use of a cairo device (\code{\link{X11}}) for
+better visualization of the graphs. See \strong{Examples}
 }
 \examples{
 \dontrun{
 library(plyr)
+X11(width=13, height=7.8)
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 show="coords")
 pbdb_map_occur (data,res=2)
