@@ -46,13 +46,12 @@ better visualization of the graphs. See \strong{Examples}
 }
 \examples{
 \dontrun{
-library(plyr)
+library(maps);library(raster)
 X11(width=13, height=7.8)
 data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 show="coords")
 pbdb_map_occur (data,res=2)
 pbdb_map_occur (data,res=2,do.plot=F)
-l_ply(dev.list(),dev.off)## to close all windows graphics
 }
 }
 \seealso{

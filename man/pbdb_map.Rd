@@ -45,7 +45,7 @@ better visualization of the graphs. See \strong{Examples}
 }
 \examples{
 \dontrun{
-library(plyr)
+library(maps)
 X11(width=12, height=8)
 data<- pbdb_occurrences (limit="all", vocab= "pbdb",
 base_name="Canis", show="coords")
@@ -53,7 +53,6 @@ pbdb_map(data)
 pbdb_map(data,pch=1)
 pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
 main="canis")
-l_ply(dev.list(),dev.off)## to close all windows graphics
 }
 }
 \seealso{

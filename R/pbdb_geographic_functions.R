@@ -55,7 +55,7 @@
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' library(plyr)
+#' library(maps)
 #' X11(width=12, height=8)
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb",
 #' base_name="Canis", show="coords")
@@ -63,7 +63,6 @@
 #' pbdb_map(data,pch=1)
 #' pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
 #' main="canis")
-#' l_ply(dev.list(),dev.off)## to close all windows graphics
 #' }
 #'
 
@@ -74,7 +73,6 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
     stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\").
          See \"pbdb_map\" help page" )}
 
-  #X11(width=12, height=8)
   .add.ColOcean(col.ocean, col.int,...)
   Y <- .extract.LatLong(data)
   Y1<- .add.Points(Y,col.point, pch,...)
@@ -140,13 +138,12 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' library(plyr)
+#' library(maps);library(raster)
 #' X11(width=13, height=7.8)
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 #' show="coords")
 #' pbdb_map_occur (data,res=2)
 #' pbdb_map_occur (data,res=2,do.plot=F)
-#' l_ply(dev.list(),dev.off)## to close all windows graphics
 #'}
 #'
 
@@ -159,7 +156,7 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
   Y <- .extract.LatLong(data)
   r<-.Raster(Y,res,col.int,col.ocean,...)
   if(do.plot==T){
-    #X11(width=13, height=7.8)
+
     .plot.Raster.rich(r,col.eff,col.ocean,col.int,res,...)
     mtext("Number of records",4,line=-1,cex=2)}
   r
@@ -249,14 +246,13 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' library(plyr)
+#' library(maps);library(raster)
 #' X11(width=13, height=7.8)
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
 #' show=c("phylo","coords","ident"))
 #' pbdb_map_richness (data,res=3,rank="genus")
 #' pbdb_map_richness (data,res=8,rank="family")
 #' pbdb_map_richness (data,res=3,rank="family",do.plot=F)
-#' l_ply(dev.list(),dev.off)## to close all windows graphics
 #' }
 #'
 
@@ -278,7 +274,6 @@ pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int=
   }
   
   if(do.plot==TRUE){
-    #X11(width=13, height=7.8)
     .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
     mtext(paste("Richness of", rank),4,line=-1,cex=2)
     
