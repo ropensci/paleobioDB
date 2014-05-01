@@ -46,23 +46,23 @@ richness across time
 pbdb_richness (canidae, rank="species",
 temporal_extent=c(0,10), resolution=1)
 
-## returns a dataframe and a plot showing the evolutionary
+## returns a dataframe and a plot showing the new appearances
 and extinction rates across time
-## evolutionary rates= evo_ext=1
-pbdb_richness (canidae, rank="species", evo_ext=1,
+## to show the number of new taxa set orig_ext=1
+pbdb_orig_ext (canidae, rank="species", orig_ext=1,
 temporal_extent=c(0,10), resolution=1)
 
-## extinction rates= evo_ext=2
-pbdb_evo_ext (canidae, rank="species", evo_ext=2,
+## extinction rates: orig_ext=2
+pbdb_orig_ext (canidae, rank="species", orig_ext=2,
 temporal_extent=c(0,10), resolution=1)
 
 ## maps the fossil occurrences
 pbdb_map(canidae)
 
-## maps the sampling effort
-pbdb_map_effort (canidae, res= 2)
+## maps the number of occurrences per cell
+pbdb_map_occur (canidae, res= 2)
 
-## maps the species, genera, etc. richness
+## maps the number of different species, genera, etc. per cell
 pbdb_map_richness (data, res= 3, rank="species")
 
 }
@@ -75,8 +75,7 @@ Javier Gonzalez \email{javigzz@yahoo.es}
 Luciano Fabris Sgarbi \email{luciano.f.sgarbi@gmail.com}
 }
 \references{
-Sara Varela, Javier Gonzalez-Hernandez, Luciano Fabris
-Sgarbi, Charles Marshall, Mark D. Uhen, in prep.
+Sara Varela et. al, in prep.
 paleobioDB: an R-package for downloading, visualizing and
 processing data from the Paleobiology Database
 }
