@@ -12,11 +12,13 @@ paleobioDB
 
 **Install**
 
-Install dependencies
+Install and load dependencies
 
 
 ```coffee
 install.packages(c("rjson","plyr","gtools", "RCurl", "maps", "scales", "raster"))
+library(maps)
+library(raster)
 ```
 
 Install paleobioDB
