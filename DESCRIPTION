@@ -20,14 +20,15 @@ Maintainer: Sara Varela <svarela@paleobiogeography.org>
 BugReports: https://github.com/ropensci/paleobioDB/issues
 URL: https://github.com/ropensci/paleobioDB
 LazyData: true
-Imports:
-    maps,
+Depends:
     raster,
+    maps
+Imports:
     rjson,
     gtools,
     RCurl,
     plyr,
-    scales,
+    scales
 Suggests:
     roxygen2,
     testthat
