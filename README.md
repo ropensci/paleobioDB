@@ -12,11 +12,13 @@ paleobioDB
 
 **Install**
 
-Install dependencies
+Install and load dependencies
 
 
 ```coffee
 install.packages(c("rjson","plyr","gtools", "RCurl", "maps", "scales", "raster"))
+library(maps)
+library(raster)
 ```
 
 Install paleobioDB
@@ -112,7 +114,7 @@ pbdb_map_occur (canidae, res= 2)
 Returns a map and a raster object with the number of different species, genera, family, etc. per cell.
 
 ```coffee
-pbdb_map_richness (data, res= 3, rank="species")
+pbdb_map_richness (canidae, res= 3, rank="species")
 ``` 
 
 ## Meta
