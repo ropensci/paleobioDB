@@ -92,7 +92,60 @@ Beware of synonyms and errors, they could twist your estimations about species r
 
 For instance, when using "base_name" for downloading the information with the function pbdb_occurrences, check out the synonyms and errors that could appear in "taxon_name", "genus_name", etc. In our example, in canidae$genus_name there are errors: "Canidae" and "Caninae" appeared as genus names. If not eliminated, they will increase the richness of genera. 
 
-## Explore your downloaded data 
+
+## Map the fossil records
+
+**pbdb_map**
+
+Returns a map with the species occurrences.
+
+```coffee
+pbdb_map(canidae)
+``` 
+![plot of chunk map](figure/pbdb_map.png) 
+
+
+**pbdb_map_occur**
+Returns a map and a raster object with the sampling effort (number of fossil records per cell).
+
+```coffee
+pbdb_map_occur (canidae, res= 5)
+``` 
+```coffee
+class       : RasterLayer 
+dimensions  : 34, 74, 2516  (nrow, ncol, ncell)
+resolution  : 5, 5  (x, y)
+extent      : -179.9572, 190.0428, -86.42609, 83.57391  (xmin, ## xmax, ymin, ymax)
+coord. ref. : NA 
+data source : in memory
+names       : layer 
+values      : 1, 40  (min, max)
+``` 
+
+![plot of chunk map](figure/pbdb_map_occur.png) 
+
+
+**pbdb_map_richness**
+Returns a map and a raster object with the number of different species, genera, family, etc. per cell. The user can change the resolution of the cells. 
+
+```coffee
+pbdb_map_richness (canidae, res= 5, rank="species")
+```
+```coffee
+class       : RasterLayer 
+dimensions  : 34, 74, 2516  (nrow, ncol, ncell)
+resolution  : 5, 5  (x, y)
+extent      : -179.9572, 190.0428, -86.42609, 83.57391  (xmin, xmax, ymin, ymax)
+coord. ref. : NA 
+data source : in memory
+names       : layer 
+values      : 1, 12  (min, max)
+```
+
+![plot of chunk map](figure/pbdb_map_occur.png) 
+
+
+## Explore your fossil data 
 
 
 **pbdb_subtaxa**
@@ -225,58 +278,6 @@ pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=
 ``` 
 
 ![plot of chunk map](figure/pbdb_orig_ext_2.png)
-
-
-## Map the fossil records
-
-**pbdb_map**
-
-Returns a map with the species occurrences.
-
-```coffee
-pbdb_map(canidae)
-``` 
-![plot of chunk map](figure/pbdb_map.png) 
-
-
-**pbdb_map_occur**
-Returns a map and a raster object with the sampling effort (number of fossil records per cell).
-
-```coffee
-pbdb_map_occur (canidae, res= 5)
-``` 
-```coffee
-class       : RasterLayer 
-dimensions  : 34, 74, 2516  (nrow, ncol, ncell)
-resolution  : 5, 5  (x, y)
-extent      : -179.9572, 190.0428, -86.42609, 83.57391  (xmin, ## xmax, ymin, ymax)
-coord. ref. : NA 
-data source : in memory
-names       : layer 
-values      : 1, 40  (min, max)
-``` 
-
-![plot of chunk map](figure/pbdb_map_occur.png) 
-
-
-**pbdb_map_richness**
-Returns a map and a raster object with the number of different species, genera, family, etc. per cell. The user can change the resolution of the cells. 
-
-```coffee
-pbdb_map_richness (canidae, res= 5, rank="species")
-```
-```coffee
-class       : RasterLayer 
-dimensions  : 34, 74, 2516  (nrow, ncol, ncell)
-resolution  : 5, 5  (x, y)
-extent      : -179.9572, 190.0428, -86.42609, 83.57391  (xmin, xmax, ymin, ymax)
-coord. ref. : NA 
-data source : in memory
-names       : layer 
-values      : 1, 12  (min, max)
-```
-
-![plot of chunk map](figure/pbdb_map_occur.png) 
 
 
 ## Meta
