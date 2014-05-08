@@ -133,12 +133,26 @@ pbdb_temporal_resolution (canidae)
   
 ```
 
-**pbdb_time_span**
+**pbdb_temporal_range**
 
 Returns a dataframe and a plot with the time span of the species, genera, families, etc. in your query.
 
 ```coffee
 pbdb_temp_range (canidae, rank="species")
+``` 
+![plot of chunk map](figure/pbdb_temporal_range.png) 
+
+
+```
+##                            max    min
+## Canis brevirostris        5.3330 0.0000
+## Canis mesomelas           5.3330 0.0000
+## Alopex praeglacialis      5.3330 0.0117
+## Nyctereutes megamastoides 5.3330 0.0117
+## Vulpes atlantica          5.3330 0.0117
+## Canis latrans             4.9000 0.0000
+## ...
+
 ``` 
 
 **pbdb_richness**
@@ -147,6 +161,23 @@ Returns a dataframe and a plot with the number of species (or genera, families, 
 
 ```coffee
 pbdb_richness (canidae, rank="species", temporal_extent=c(0,10), res=1)
+```
+
+![plot of chunk map](figure/pbdb_richness.png) 
+
+``` 
+##   labels2 richness
+##      <=1       23
+##      1-2       56
+##      2-3       53
+##      3-4       19
+##      4-5       18
+##      5-6        5
+##      6-7        0
+##      7-8        0
+##      8-9        0
+##      9-10       0
+##      >10        0
 ``` 
 
 **pbdb_orig_ext**
@@ -156,11 +187,43 @@ Returns a dataframe and a plot with the number of new appearances and last appea
 ```coffee
 # evolutionary rates= orig_ext=1
 pbdb_orig_ext (canidae, rank="species", orig_ext=1, temporal_extent=c(0,10), res=1)
+```
+![plot of chunk map](figure/pbdb_orig_ext_1.png)
 
+```
+##             new ext
+## 1-2 to 0-1    0  28
+## 2-3 to 1-2   34   6
+## 3-4 to 2-3    1   0
+## 4-5 to 3-4   13   0
+## 5-6 to 4-5    5   0
+## 6-7 to 5-6    0   0
+## 7-8 to 6-7    0   0
+## 8-9 to 7-8    0   0
+## 9-10 to 8-9   0   0
+
+```
+![plot of chunk map](figure/pbdb_orig_ext_2.png)
+
+```coffee
 # extinction rates= orig_ext=2
 pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=1)
+``` 
 
 ``` 
+##             new ext
+## 1-2 to 0-1    0  28
+## 2-3 to 1-2   34   6
+## 3-4 to 2-3    1   0
+## 4-5 to 3-4   13   0
+## 5-6 to 4-5    5   0
+## 6-7 to 5-6    0   0
+## 7-8 to 6-7    0   0
+## 8-9 to 7-8    0   0
+## 9-10 to 8-9   0   0
+``` 
+
+
 ## Map the fossil records
 
 **pbdb_map**

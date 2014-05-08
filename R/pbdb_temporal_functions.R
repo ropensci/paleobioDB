@@ -250,9 +250,9 @@ pbdb_richness <- function (data, rank,
   a<- cbind (a,b)
   richness<- colSums (a+0, na.rm=T)
   labels1<- paste (time[-length (time)], time[-1], sep="-")
-  labels2<- c(labels1, paste (">", max(te), sep=""))
-  labels2[1]<- paste ("<=", time[2], sep="") 
-  richness<- data.frame (labels2, richness)
+  time_interval<- c(labels1, paste (">", max(te), sep=""))
+  time_interval[1]<- paste ("<=", time[2], sep="") 
+  richness<- data.frame (time_interval, richness)
   if (do.plot==TRUE) {
   plot.new()
   par (mar=c(5,5,1,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
@@ -267,8 +267,8 @@ pbdb_richness <- function (data, rank,
   yy = c(0, richness[,2], 0)
   polygon(xx, yy, col=colour, border=bord)
  
-  axis(1, line=1, las=2, labels=labels2, 
-       at=c(0:(length (labels2)-1)))
+  axis(1, line=1, las=2, labels=time_interval, 
+       at=c(0:(length (time_interval)-1)))
   axis(2, line=1, las=1)
   mtext("Million years before present", line=3.5, adj=1, side=1)
   mtext("Richness", line= 3.5 , adj=0, side=2)
