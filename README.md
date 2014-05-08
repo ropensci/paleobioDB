@@ -30,19 +30,60 @@ install_github("ropensci/paleobioDB")
 library(paleobioDB)
 ```
 
-**General overview***
+**General overview**
 
 `paleobioDB` version 0.1 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
 
-**Download fossil occurrences from the PaleobioDB** 
+## Download fossil occurrences from the PaleobioDB
 
-To download all the fossil data that belongs to the genus Canis, set base_name=Canis.  
+**pbdb_occurrences** 
+
+e.g., to download all the fossil data that belongs to the family Canidae, set base_name = "Canidae".  
 
 ```coffee
 canidae<-  pbdb_occurrences (limit="all",
-                               base_name="canidae", 
-                               interval="Quaternary",             
-                               show=c("coords", "phylo", "ident"))
+                             base_name="canidae", vocab="pbdb",
+                             interval="Quaternary",             
+                             show=c("coords", "phylo", "ident"))
+head(canidae)
+```
+
+```
+##      occurrence_no record_type collection_no            taxon_name taxon_rank taxon_no
+## 1:1        150070  occurrence         13293              Cuon sp.      genus    41204
+## 1:2        186572  occurrence         18320         Canis cf. sp.      genus    41198
+## 1:3        186573  occurrence         18320            Vulpes sp.      genus    41248
+## 1:4        186574  occurrence         18320        Borophagus sp.      genus    41196
+## 1:5        192926  occurrence         19617        Canis edwardii    species    44838
+## 1:6        192927  occurrence         19617 Canis armbrusteri cf.    species    44827
+##     matched_rank     early_interval    late_interval early_age late_age reference_no
+## 1:1            5 Middle Pleistocene Late Pleistocene     0.781   0.0117         4412
+## 1:2            5   Late Hemphillian          Blancan    10.300   1.8000         6086
+## 1:3            5   Late Hemphillian          Blancan    10.300   1.8000         6086
+## 1:4            5   Late Hemphillian          Blancan    10.300   1.8000         6086
+## 1:5            3            Blancan     Irvingtonian     4.900   0.3000         2673
+## 1:6            3            Blancan     Irvingtonian     4.900   0.3000         2673
+##        lng      lat  family family_no     order order_no    class class_no   phylum
+## 1:1  111.56667 22.76667 Canidae     41189 Carnivora    36905 Mammalia    36651 Chordata
+## 1:2  -85.79195 40.45444 Canidae     41189 Carnivora    36905 Mammalia    36651 Chordata
+## 1:3  -85.79195 40.45444 Canidae     41189 Carnivora    36905 Mammalia    36651 Chordata
+## 1:4  -85.79195 40.45444 Canidae     41189 Carnivora    36905 Mammalia    36651 Chordata
+## 1:5 -112.40000 35.70000 Canidae     41189 Carnivora    36905 Mammalia    36651 Chordata
+## 1:6 -112.40000 35.70000 Canidae     41189 Carnivora    36905 Mammalia    36651 Chordata
+##    phylum_no genus_name species_name genus_reso reid_no species_reso matched_name
+## 1:1     33815       Cuon          sp.       <NA>      NA         <NA>         <NA>
+## 1:2     33815      Canis          sp.        cf.      NA         <NA>         <NA>
+## 1:3     33815     Vulpes          sp.       <NA>      NA         <NA>         <NA>
+## 1:4     33815 Borophagus          sp.       <NA>      NA         <NA>         <NA>
+## 1:5     33815      Canis     edwardii       <NA>    8376         <NA>         <NA>
+## 1:6     33815      Canis  armbrusteri       <NA>    8377          cf.         <NA>
+##    subgenus_name subgenus_reso
+## 1:1          <NA>          <NA>
+## 1:2          <NA>          <NA>
+## 1:3          <NA>          <NA>
+## 1:4          <NA>          <NA>
+## 1:5          <NA>          <NA>
+## 1:6          <NA>          <NA>
 ```
 
 **CAUTION WITH THE RAW DATA**
@@ -51,22 +92,46 @@ Beware of synonyms and errors, they could twist your estimations about species r
 
 For instance, when using "base_name" for downloading the information with the function pbdb_occurrences, check out the synonyms and errors that could appear in "taxon_name", "genus_name", etc. In our example, in canidae$genus_name there are errors: "Canidae" and "Caninae" appeared as genus names. If not eliminated, they will increase the richness of genera. 
 
+## Explore your downloaded data 
 
 **pbdb_subtaxa**
 
-To know how many species, genera, families, etc. are in your data.
+Returns a plot and a dataframe with the number of species, genera, families, etc. in your dataset.
   
 ```coffee
 pbdb_subtaxa (canidae, do.plot=TRUE)         
+```
+![plot of chunk map](figure/pbdb_subtaxa.png) 
 
 ```
+##  species genera families orders classes phyla
+##     75     24        1      1       1     1
+```
+
 **pbdb_temporal_resolution**
 
-To find out about the temporal resolution of the data in your query
+Returns a plot and a dataframe with a main summary of the temporal resolution of the fossil records
 
 ```coffee
 pbdb_temporal_resolution (canidae)
 ```   
+![plot of chunk map](figure/pbdb_temporal_resolution.png) 
+
+```
+##  $summary
+##   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0117  0.1143  1.5000  1.5360  2.5760 23.0200 
+
+## $temporal_resolution
+##   [1]  0.7693  8.5000  8.5000  8.5000  4.6000
+##   [6]  4.6000  4.6000  3.1000  3.1000  3.1000
+##  [11]  3.1000  4.6000  3.1000  3.1000  3.1000
+##  [16]  3.1000  3.1000  3.1000  3.1000  3.1000
+##  [21]  3.1000  3.1000  3.1000  3.1000  3.1000
+##  [26]  3.1000  3.1000  3.1000  3.1000  3.1000
+##  ...
+  
+```
 
 **pbdb_time_span**
 
@@ -96,6 +161,7 @@ pbdb_orig_ext (canidae, rank="species", orig_ext=1, temporal_extent=c(0,10), res
 pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=1)
 
 ``` 
+## Map the fossil records
 
 **pbdb_map**
 
@@ -104,18 +170,46 @@ Returns a map with the species occurrences.
 ```coffee
 pbdb_map(canidae)
 ``` 
+![plot of chunk map](figure/pbdb_map.png) 
+
+
 **pbdb_map_occur**
 Returns a map and a raster object with the sampling effort (number of fossil records per cell).
 
 ```coffee
-pbdb_map_occur (canidae, res= 2)
+pbdb_map_occur (canidae, res= 5)
 ``` 
+![plot of chunk map](figure/pbdb_map_occur.png) 
+
+``` 
+## class       : RasterLayer 
+## dimensions  : 34, 74, 2516  (nrow, ncol, ncell)
+## resolution  : 5, 5  (x, y)
+## extent      : -179.9572, 190.0428, -86.42609, 83.57391  (xmin, ## xmax, ymin, ymax)
+## coord. ref. : NA 
+## data source : in memory
+## names       : layer 
+## values      : 1, 40  (min, max)
+``` 
+
 **pbdb_map_richness**
-Returns a map and a raster object with the number of different species, genera, family, etc. per cell.
+Returns a map and a raster object with the number of different species, genera, family, etc. per cell. The user can change the resolution of the cells. 
 
 ```coffee
-pbdb_map_richness (canidae, res= 3, rank="species")
-``` 
+pbdb_map_richness (canidae, res= 5, rank="species")
+```
+![plot of chunk map](figure/pbdb_map_occur.png) 
+
+```
+## class       : RasterLayer 
+## dimensions  : 34, 74, 2516  (nrow, ncol, ncell)
+## resolution  : 5, 5  (x, y)
+## extent      : -179.9572, 190.0428, -86.42609, 83.57391  (xmin, xmax, ymin, ymax)
+## coord. ref. : NA 
+## data source : in memory
+## names       : layer 
+## values      : 1, 12  (min, max)
+```
 
 ## Meta
 
