@@ -148,47 +148,6 @@ values      : 1, 12  (min, max)
 ## Explore your fossil data 
 
 
-**pbdb_subtaxa**
-
-Returns a plot and a dataframe with the number of species, genera, families, etc. in your dataset.
-  
-```coffee
-> pbdb_subtaxa (canidae, do.plot=TRUE)         
-```
-```coffee
-species genera families orders classes phyla
-75     24        1      1       1     1
-```
-![plot subtaxa](figure/pbdb_subtaxa.png) 
-
-
-**pbdb_temporal_resolution**
-
-Returns a plot and a dataframe with a main summary of the temporal resolution of the fossil records
-
-```coffee
-> pbdb_temporal_resolution (canidae)
-```   
-
-```coffee
-$summary
-Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-0.0117  0.1143  1.5000  1.5360  2.5760 23.0200 
-
-$temporal_resolution
-[1]  0.7693  8.5000  8.5000  8.5000  4.6000
-[6]  4.6000  4.6000  3.1000  3.1000  3.1000
-[11]  3.1000  4.6000  3.1000  3.1000  3.1000
-[16]  3.1000  3.1000  3.1000  3.1000  3.1000
-[21]  3.1000  3.1000  3.1000  3.1000  3.1000
-[26]  3.1000  3.1000  3.1000  3.1000  3.1000
-...
-  
-```
-![plot tempres](figure/pbdb_temporal_resolution.png) 
-
-
-
 **pbdb_temporal_range**
 
 Returns a dataframe and a plot with the time span of the species, genera, families, etc. in your query.
@@ -279,6 +238,44 @@ pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=
 
 ![plot of chunk map](figure/pbdb_orig_ext_2.png)
 
+**pbdb_subtaxa**
+
+Returns a plot and a dataframe with the number of species, genera, families, etc. in your dataset.
+  
+```coffee
+> pbdb_subtaxa (canidae, do.plot=TRUE)         
+```
+```coffee
+species genera families orders classes phyla
+75     24        1      1       1     1
+```
+![plot subtaxa](figure/pbdb_subtaxa.png) 
+
+
+**pbdb_temporal_resolution**
+
+Returns a plot and a dataframe with a main summary of the temporal resolution of the fossil records
+
+```coffee
+> pbdb_temporal_resolution (canidae)
+```   
+
+```coffee
+$summary
+Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.0117  0.1143  1.5000  1.5360  2.5760 23.0200 
+
+$temporal_resolution
+[1]  0.7693  8.5000  8.5000  8.5000  4.6000
+[6]  4.6000  4.6000  3.1000  3.1000  3.1000
+[11]  3.1000  4.6000  3.1000  3.1000  3.1000
+[16]  3.1000  3.1000  3.1000  3.1000  3.1000
+[21]  3.1000  3.1000  3.1000  3.1000  3.1000
+[26]  3.1000  3.1000  3.1000  3.1000  3.1000
+...
+  
+```
+![plot tempres](figure/pbdb_temporal_resolution.png) 
 
 ## Meta
 
