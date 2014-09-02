@@ -21,14 +21,14 @@ BugReports: https://github.com/ropensci/paleobioDB/issues
 URL: https://github.com/ropensci/paleobioDB
 LazyData: true
 Imports:
-    maps,
     rjson,
     gtools,
     RCurl,
     plyr,
     scales
 Depends: 
-   raster
+   raster,
+   maps
 Suggests:
     roxygen2,
     testthat

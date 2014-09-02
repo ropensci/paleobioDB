@@ -45,38 +45,39 @@
 #'interval="Quaternary", show=c("coords", "phylo", "ident"))
 #'
 #'## to explore the number of subtaxa
-#'pbdb_subtaxa (canidae, do.plot=TRUE)
+#'pbdb_subtaxa (canidae)
 #'
 #'## to explore the temporal resolution of the fossil records
 #'pbdb_temporal_resolution (canidae)
 #'
 #'## returns a dataframe and a plot with the temporal span 
 #'##  of the species, genera, etc.
-#'pbdb_time_span (canidae, rank="species")
+#'pbdb_temp_range (canidae, rank= "genus", names=FALSE)
 #'
 #'## returns a dataframe and a plot showing the species, genera, etc. 
 #'richness across time
-#'pbdb_richness (canidae, rank="species", 
-#'temporal_extent=c(0,10), resolution=1)
+#'pbdb_richness (canidae, rank= "species", 
+#'temporal_extent= c (0,10), res= 1)
 #'
 #'## returns a dataframe and a plot showing the evolutionary 
 #'and extinction rates across time
+#'
 #'## evolutionary rates= evo_ext=1
-#'pbdb_richness (canidae, rank="species", evo_ext=1, 
-#'temporal_extent=c(0,10), resolution=1)
+#'pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10),
+#'res=1, orig_ext=1)
 #'
 #'## extinction rates= evo_ext=2
-#'pbdb_evo_ext (canidae, rank="species", evo_ext=2, 
-#'temporal_extent=c(0,10), resolution=1)
+#'pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10),
+#'               res=1, orig_ext=2)
 #'
 #'## maps the fossil occurrences
-#'pbdb_map(canidae)
+#'pbdb_map (canidae, main = "Canidae", pch= 19, cex=0.7)
 #'
 #'## maps the sampling effort
-#'pbdb_map_effort (canidae, res= 2)
+#'pbdb_map_occur (canidae, res= 5)
 #'
 #'## maps the species, genera, etc. richness
-#'pbdb_map_richness (data, res= 3, rank="species")
+#'pbdb_map_richness (canidae, rank="species", res= 5)
 #'
 #' }
 #'
