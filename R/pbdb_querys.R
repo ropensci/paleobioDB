@@ -528,7 +528,7 @@ pbdb_scale<-function(id, ...){
 #'@examples \dontrun{
 #'## Get a dataframe with all the scales available in PBDB 
 #'## by setting no ids
-#'pbdb_scale ()
+#'pbdb_scales ()
 #'}
 #' 
 
@@ -682,7 +682,7 @@ pbdb_reference<-function(id, ...){
 #' 
 #' @export 
 #' @examples \dontrun{
-#' pbdb_references (author="Turner")
+#' pbdb_references (author= "Polly")
 #'}
 
 

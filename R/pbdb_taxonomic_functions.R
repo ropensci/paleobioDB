@@ -38,7 +38,7 @@ if (do.plot==TRUE){
            beside = T, horiz=F,
            col=col,
            border=F,
-           las=2)
+           las=2, ylab="Number of taxa")
 }
   return (subtaxa)
 }
