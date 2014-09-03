@@ -20,8 +20,10 @@
 #' @author Javier Gonzalez \email{javigzz@@yahoo.es}
 #' @author Luciano Fabris Sgarbi \email{luciano.f.sgarbi@@gmail.com}
 #' @references Sara Varela, Javier Gonzalez-Hernandez,
-#' Luciano Fabris Sgarbi, Charles Marshall, Mark D. Uhen, in prep. paleobioDB: 
-#' an R-package for downloading, visualizing and processing data from the Paleobiology Database
+#' Luciano Fabris Sgarbi, Charles Marshall, Mark D. Uhen, 
+#' Shanan Peters, Michael McClennen, 2014. paleobioDB: 
+#' an R-package for downloading, visualizing and processing 
+#' data from the Paleobiology Database (under review)
 #' 
 #' @keywords package
 #'

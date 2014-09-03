@@ -15,7 +15,7 @@
 #' @examples \dontrun{
 #' canidae_quat<-  pbdb_occurrences (limit="all", 
 #' base_name="Canidae",  interval="Quaternary", 
-#' show=c("coords", "phylo", "ident")
+#' show=c("coords", "phylo", "ident"))
 #' pbdb_subtaxa (canidae_quat)
 #'}
 #'

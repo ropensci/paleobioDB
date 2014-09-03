@@ -10,7 +10,7 @@
 #' (min, max, 1st and 3rd quartils, median and mean), and the temporal resolution of each fossil record (Ma).
 #' @export 
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (taxa= "Canidae", time= "Quaternary")
+#' data<- pbdb_occurrences (taxon_name= "Canidae", interval= "Quaternary")
 #' pbdb_temporal_resolution (data)
 #'}
 
@@ -57,7 +57,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @examples \dontrun{
 #' canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis", 
 #'                  interval="Quaternary", show=c("coords", "phylo", "ident"))
-#' pbdb_temp_range (canis_quaternary, rank="species", names=TRUE)
+#' pbdb_temp_range (canis_quaternary, rank="species", names=FALSE)
 #'}
   
 
@@ -372,7 +372,7 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
     axis(1, line=1, labels=labels2, at=c(1:length (labels2)))
     axis(2, line=1, las=1)
     mtext("Million years before present", line=3, adj=1, side=1)
-    mtext(paste ("Number of", rank, sep=" "), line= 3 , adj=0, side=2)
+    mtext(paste ("Number of ", rank, sep=""), line= 3 , adj=0, side=2)
     title (ifelse (orig_ext==1,"First appearences", "Last appearences"))
     }
   return (change)

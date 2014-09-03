@@ -55,10 +55,9 @@
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' library(maps)
-#' X11(width=12, height=8)
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb",
 #' base_name="Canis", show="coords")
+#' X11(width=12, height=8)
 #' pbdb_map(data)
 #' pbdb_map(data,pch=1)
 #' pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
@@ -138,12 +137,12 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' library(maps);library(raster)
-#' X11(width=13, height=7.8)
 #' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
 #' show="coords")
+#' X11(width=13, height=7.8)
 #' pbdb_map_occur (data,res=2)
-#' pbdb_map_occur (data,res=2,do.plot=F)
+#' ## to obtain the raster file without plotting it
+#' pbdb_map_occur (data,res=3,do.plot=F)
 #'}
 #'
 
@@ -246,13 +245,13 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' library(maps);library(raster)
-#' X11(width=13, height=7.8)
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
 #' show=c("phylo","coords","ident"))
-#' pbdb_map_richness (data,res=3,rank="genus")
+#' X11(width=13, height=7.8)
+#' pbdb_map_richness (data,res=8,rank="genus")
 #' pbdb_map_richness (data,res=8,rank="family")
-#' pbdb_map_richness (data,res=3,rank="family",do.plot=F)
+#' ## to obtain the raster file and not plot the map
+#' pbdb_map_richness (data,res=8,rank="family",do.plot=F)
 #' }
 #'
 
