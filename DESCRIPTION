@@ -26,9 +26,9 @@ Imports:
     RCurl,
     plyr,
     scales
-Depends: 
-   raster,
-   maps
+Depends:
+    raster,
+    maps
 Suggests:
     roxygen2,
     testthat

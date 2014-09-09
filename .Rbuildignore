@@ -4,5 +4,5 @@ init.R
 paleobioDB-Ex.R
 .gitignore
 .git
-
 ^\.travis\.yml$
+figure
