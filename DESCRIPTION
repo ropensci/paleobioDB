@@ -1,5 +1,5 @@
 Package: paleobioDB
-Description: paleobioDB version 0.1 has 19 functions to wrap each endpoint of
+Description: paleobioDB version 0.2 has 19 functions to wrap each endpoint of
     the PaleobioDB API, plus 8 functions to visualize and process the fossil
     data. The API documentation for the Paleobiology Database can be found in
     <http://paleobiodb.org/data1.1/>.
@@ -8,7 +8,7 @@ Type: Package
 License: GPL-2
 Title: paleobioDB: a package for downloading, visualizing and processing data
     from Paleobiology Database.
-Version: 0.1
+Version: 0.2
 Date: 2014-04-02
 Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     email = "svarela@paleobiogeography.org"),
