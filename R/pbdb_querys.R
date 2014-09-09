@@ -304,10 +304,10 @@ pbdb_collections_geo<-function(...){
 #'in http://paleobiodb.org/data1.1/taxa/single
 #'go to ?pbdb_taxa to see an explanation about the main 
 #'filtering parameters. 
-#'For example:  
+#'For example: 
 #'\code{name} Return information about the most fundamental 
-#'taxonomic name matching this string. 
-#'The % and _ characters may be used as wildcards.
+#'taxonomic name matching this string. The % and _ characters may be used as wildcards.
+#'
 #'
 #' @return a dataframe with information from a single taxon
 #' 
