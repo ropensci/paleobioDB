@@ -12,16 +12,14 @@ paleobioDB
 
 **Install**
 
-Install and load dependencies
-
+Install paleobioDB from CRAN
 
 ```coffee
-install.packages(c("rjson","plyr","gtools", "RCurl", "maps", "scales", "raster"))
-library(maps)
-library(raster)
+install.packages("paleobioDB")
+library(paleobioDB)
 ```
 
-Install paleobioDB
+Install paleobioDB developing version from github
 
 ```coffee
 install.packages("devtools")
@@ -32,7 +30,7 @@ library(paleobioDB)
 
 **General overview**
 
-`paleobioDB` version 0.1 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
+`paleobioDB` version 0.2 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
 
 ## Download fossil occurrences from the PaleobioDB
 
