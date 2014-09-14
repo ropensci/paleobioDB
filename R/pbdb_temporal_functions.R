@@ -220,7 +220,7 @@ pbdb_temp_range<- function (data, rank,
 #' @param temporal_extent vector to set the temporal extent (min, max)
 #' @param res numeric. to set the intervals of the temporal extent
 #' @param do.plot TRUE/FALSE (TRUE by default).
-#' 
+#' @export 
 #' @return a plot and a dataframe with the richness aggregated by the taxon rank in the specified temporal extent and resolution.
 #' 
 #' @examples \dontrun{
@@ -296,7 +296,7 @@ pbdb_richness <- function (data, rank,
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
 #' @param do.plot TRUE/FALSE (TRUE by default).
-#' 
+#' @export 
 #' @return a  dataframe with the 
 #' number of first appearances and extinctions of the selected taxon rank across time, 
 #' and a plot with the first appearances or extinctions of the selected taxon rank across time.
