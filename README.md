@@ -55,7 +55,7 @@ head(canidae)
 ## 192926  occurrence         19617        Canis edwardii    species    44838
 ## 192927  occurrence         19617 Canis armbrusteri cf.    species    44827
 ## matched_rank     early_interval    late_interval early_age late_age reference_no
-## 5 Middle Pleistocene Late Pleistocene     0.781   0.0117         4412
+## 5 Middle Pleistocene Late Pleistocene     0.81   0.0117         4412
 ## 5   Late Hemphillian          Blancan    10.300   1.8000         6086
 ## 5   Late Hemphillian          Blancan    10.300   1.8000         6086
 ## 5   Late Hemphillian          Blancan    10.300   1.8000         6086
