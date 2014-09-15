@@ -36,7 +36,6 @@ Collate:
     'network.R'
     'paleobioDB-package.R'
     'pbdb_cache.R'
-    'pbdb_export_PyRate.R'
     'pbdb_geographic_functions.R'
     'pbdb_querys.R'
     'rest_api_tools.R'

@@ -3,7 +3,6 @@
 export(pbdb_collection)
 export(pbdb_collections)
 export(pbdb_collections_geo)
-export(pbdb_export_PyRate)
 export(pbdb_interval)
 export(pbdb_intervals)
 export(pbdb_map)
