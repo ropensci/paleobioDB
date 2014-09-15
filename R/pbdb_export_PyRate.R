@@ -11,10 +11,13 @@
 #' @return a dataframe with the species, minimum and maximum age of the occurrences, and of the species is extinct or extant.
 #' 
 #' @export
+#' 
 #' @examples \dontrun{
+#' 
 #' pbdb_export_PyRate ("Hyaenidae")
+#' 
 #' }
-#'
+
 
 pbdb_export_PyRate<- function (base_name){
 
