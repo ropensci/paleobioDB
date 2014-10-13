@@ -24,7 +24,7 @@ Install paleobioDB developing version from github
 ```coffee
 install.packages("devtools")
 library(devtools)
-install_github("ropensci/paleobioDB")
+install_github("ropensci/paleobioDB", username="ropensci")
 library(paleobioDB)
 ```
 
