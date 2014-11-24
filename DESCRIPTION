@@ -8,7 +8,7 @@ Type: Package
 License: GPL-2
 Title: paleobioDB: a package for downloading, visualizing and processing data
     from Paleobiology Database.
-Version: 0.2
+Version: 0.3
 Date: 2014-04-02
 Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     email = "svarela@paleobiogeography.org"),
