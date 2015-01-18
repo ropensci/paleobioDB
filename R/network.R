@@ -106,11 +106,12 @@
 #' 
 
 .build_query_string<-function(args){
-
+  
 	qs <- ''
 
 	for (argName in names(args)) {
-		qs <- paste(qs, argName, "=", args[argName], '&', sep = "")
+	  argValue<-  URLencode(args[argName][[1]])
+		qs <- paste(qs, argName, "=", argValue, '&', sep = "")
 	}
 	qs <- substr(qs,0,nchar(qs)-1)
 
