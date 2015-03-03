@@ -169,13 +169,13 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
   r<-raster(ext)
   res(r)<-c(res,res)
   values(r)<-0
-  if (length (data$taxon_rank)!=0){
-    species<- data [data$taxon_rank=="species", ]
+  if (length (data$matched_rank)!=0){
+    species<- data [data$matched_rank=="species", ]
     S<-split(species,species$taxon_no)
   }
   
-  if (length (data$rnk)!=0){
-    species<- data [data$rnk==3, ]
+  if (length (data$mra)!=0){
+    species<- data [data$mra==3, ]
     S<-split(species,species$tid)
   }
   R<-lapply(S,function(y){
