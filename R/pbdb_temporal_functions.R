@@ -369,7 +369,7 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
     yy <- c(0, change[,orig_ext], 0)
     polygon(xx, yy, col=colour, border=bord)
     
-    axis(1, line=1, labels=labels2, at=c(temporal_extent [1]:temporal_extent [2]))
+    axis(1, line=1, labels=labels2, at=seq(temporal_extent [1], temporal_extent [2], by= res))
     axis(2, line=1, las=1)
     mtext("Million years before present", line=3, adj=1, side=1)
     mtext(paste ("Number of ", rank, sep=""), line= 3 , adj=0, side=2)
