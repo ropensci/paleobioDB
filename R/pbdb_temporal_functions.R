@@ -70,7 +70,7 @@ pbdb_temp_range<- function (data, rank,
       stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
     }
     if (rank=="species"){ 
-      selection<- data [data$taxon_rank==rank, ]
+      selection<- data [data$matched_rank==rank, ]
       max_sp<- tapply(selection$early_age, list(selection$taxon_no), max)
       min_sp<- tapply(selection$late_age, list(selection$taxon_no), min)
       temporal_range<- data.frame (max_sp, min_sp)
