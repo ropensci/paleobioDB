@@ -220,7 +220,7 @@ pbdb_richness <- function (data, rank,
     x<- (time [i +1] + time [i])/2
     means<- c(means, x)
   }
-  
+  a<- NULL
   for (i in 1:(length (time)-1)) {
     b<- temporal_range [,1]>time[i] & temporal_range [,2]<=time [i+1]
     a<- cbind (a,b)
