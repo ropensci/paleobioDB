@@ -236,7 +236,7 @@ pbdb_richness <- function (data, rank,
     plot.window(xlim=c(max (te),min(te)), xaxs="i",
                 ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
     
-    abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)
+    abline(v=seq(min(te), max(te), by=res), col="grey90", lwd=1)
     abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
                  by=(max(richness [,2])/10)), col="grey90", lwd=1)
     xx <- c(means [1], means, means [length (means)])
@@ -250,6 +250,7 @@ pbdb_richness <- function (data, rank,
   }
   return (richness)
 }
+
 
 
 #' pbdb_orig_ext
@@ -291,9 +292,9 @@ pbdb_richness <- function (data, rank,
 
 
 pbdb_orig_ext<- function (data, rank, temporal_extent, 
-                     res, orig_ext=1, 
-                     colour="#0000FF30", bord="#0000FF", 
-                     do.plot=TRUE) { 
+                          res, orig_ext=1, 
+                          colour="#0000FF30", bord="#0000FF", 
+                          do.plot=TRUE) { 
   
   temporal_range<- pbdb_temp_range (data=data, rank=rank, do.plot=FALSE)
   te<- temporal_extent
@@ -308,26 +309,37 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
   res_sp<- list ()
   for (i in 1:dim(intv)[1])
   {
-  intvv<- intv [i,]
-  sps<-temporal_range [unlist (which (intvv$max <=temporal_range$max & 
-                           intvv$min >=temporal_range$min)),]
-  res_sp[[i]]<- sps
+    intvv<- intv [i,]
+    cases1<-  which (as.numeric (temporal_range$min)>= intvv$min &
+                       as.numeric (temporal_range$min)<= intvv$max &
+                       as.numeric (temporal_range$max)>= intvv$max)
+    
+    cases2<-  which (as.numeric (temporal_range$min)<= intvv$min &
+                       as.numeric (temporal_range$max)<= intvv$max &
+                       as.numeric (temporal_range$max)>= intvv$min)
+    
+    cases3<-  which (as.numeric (temporal_range$min)<= intvv$min &
+                       as.numeric (temporal_range$max)>= intvv$max)
+    
+    cases<- unique (c(cases1, cases2, cases3))
+    sps<-temporal_range [cases,]
+    res_sp[[i]]<- sps
   }
   
   change<- data.frame ()
   for (i in length (res_sp):2)
   {
-  new<- length (setdiff (row.names (res_sp[[i-1]]), row.names (res_sp[[i]])))
-  ext<- length (setdiff (row.names (res_sp[[i]]), row.names (res_sp[[i-1]])))
-  col<- c(new, ext)
-  change<- rbind (change, col)
+    new<- length (setdiff (row.names (res_sp[[i-1]]), row.names (res_sp[[i]])))
+    ext<- length (setdiff (row.names (res_sp[[i]]), row.names (res_sp[[i-1]])))
+    col<- c(new, ext)
+    change<- rbind (change, col)
   }  
   
   names (change)<- c("new", "ext")
   change<- change[order(rev (row.names(change))),]
   row.names (change)<- labels2
   
-    if (do.plot==TRUE){
+  if (do.plot==TRUE){
     ymx<- max (change[,orig_ext])
     ymn<- min (change[,orig_ext])
     xmx<- sequence[length (sequence)-1]
@@ -336,7 +348,7 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
     par (mar=c(5,5,2,5),font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
     plot.window(xlim=c(xmx, xmn), xaxs="i",
                 ylim=c(ymn,ymx), yaxs="i")
-    abline(v=seq(xmn, xmx, by=1), col="grey90", lwd=1)
+    abline(v=seq(xmn, xmx, by=res), col="grey90", lwd=1)
     abline(h=seq(0, ymx, 
                  by=(ymx/10)), col="grey90", lwd=1)
     xx <- c(xmn,  sequence[2:(length (sequence)-1)], xmx)
@@ -348,8 +360,6 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
     mtext("Million years before present", line=3, adj=1, side=1)
     mtext(paste ("Number of ", rank, sep=""), line= 3 , adj=0, side=2)
     title (ifelse (orig_ext==1,"First appearences", "Last appearences"))
-    }
+  }
   return (change)
 }
-
-
