@@ -211,42 +211,42 @@ pbdb_richness <- function (data, rank,
                            bord="#0000FF", 
                            do.plot=TRUE){
   
- temporal_range<- pbdb_temp_range (data=data, rank=rank,do.plot=FALSE)
-  
+  temporal_range<- pbdb_temp_range (data=data, rank=rank,do.plot=FALSE)
   te<- temporal_extent
   time<- seq (from=min(te), to= (max(te)), by=res)
   
-  a<- temporal_range [,2]<=min(te)
-  for (i in 2:(length (time)-1)) {
+  means<- NULL
+  for (i in 1:length (time)-1){
+    x<- (time [i +1] + time [i])/2
+    means<- c(means, x)
+  }
+  
+  for (i in 1:(length (time)-1)) {
     b<- temporal_range [,1]>time[i] & temporal_range [,2]<=time [i+1]
     a<- cbind (a,b)
   }
-  b<- temporal_range [,1] > max(te)
-  a<- cbind (a,b)
+  
   richness<- colSums (a+0, na.rm=T)
   labels1<- paste (time[-length (time)], time[-1], sep="-")
-  time_interval<- c(labels1, paste (">", max(te), sep=""))
-  time_interval[1]<- paste ("<=", time[2], sep="") 
-  richness<- data.frame (time_interval, richness)
+  richness<- data.frame (labels1, richness)
   if (do.plot==TRUE) {
-  plot.new()
-  par (mar=c(5,5,1,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
-       cex.axis=0.8)
-  plot.window(xlim=c(max (te),min(te)), xaxs="i",
-              ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
-  
-  abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)
-  abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
-               by=(max(richness [,2])/10)), col="grey90", lwd=1)
-  xx = c(min(te), time, max(te))
-  yy = c(0, richness[,2], 0)
-  polygon(xx, yy, col=colour, border=bord)
- 
-  axis(1, line=1, las=2, labels=time_interval, 
-       at=c(0:(length (time_interval)-1)))
-  axis(2, line=1, las=1)
-  mtext("Million years before present", line=3.5, adj=1, side=1)
-  mtext("Richness", line= 3.5 , adj=0, side=2)
+    plot.new()
+    par (mar=c(5,5,1,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
+         cex.axis=0.8)
+    plot.window(xlim=c(max (te),min(te)), xaxs="i",
+                ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
+    
+    abline(v=seq(min(te), max(te), by=1), col="grey90", lwd=1)
+    abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
+                 by=(max(richness [,2])/10)), col="grey90", lwd=1)
+    xx <- c(means [1], means, means [length (means)])
+    yy <- c(0, richness[,2], 0)
+    polygon(xx, yy, col=colour, border=bord)
+    axis(1, line=1, las=2, labels=labels1, 
+         at=means)
+    axis(2, line=1, las=1)
+    mtext("Million years before present", line=3.5, adj=1, side=1)
+    mtext("Richness", line= 3.5 , adj=0, side=2)
   }
   return (richness)
 }
