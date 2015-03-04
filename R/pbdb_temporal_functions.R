@@ -71,48 +71,36 @@ pbdb_temp_range<- function (data, rank,
     }
     if (rank=="species"){ 
       selection<- data [data$matched_rank==rank, ]
-      max_sp<- tapply(selection$early_age, list(selection$taxon_no), max)
-      min_sp<- tapply(selection$late_age, list(selection$taxon_no), min)
+      max_sp<- tapply(selection$early_age, as.character (selection$matched_name), max)
+      min_sp<- tapply(selection$late_age, as.character (selection$matched_name), min)
       temporal_range<- data.frame (max_sp, min_sp)
-      sp_names<- paste (selection$genus_name[match (row.names (temporal_range), 
-                        selection$taxon_no)], 
-                        selection$species_name [match (row.names (temporal_range), 
-                        selection$taxon_no)])
-      if (anyDuplicated(sp_names)){
-        sp<-   toString (unlist (sp_names [which (duplicated (sp_names))]))
-        stop ("The Paleobiology Database has duplicated ids (taxon_no) identyfing 
-              the names of the following species: ",  sp,
-              ". Please, debug your query personally to choose what to do with the problematic data 
-              and re-run the function again.")
-      }
-      row.names (temporal_range)<- sp_names
     }
     
     if (rank=="genus"){
-      max_sp<- tapply(data$early_age, list(data$genus_name), max)
-      min_sp<- tapply(data$late_age, list(data$genus_name), min)
+      max_sp<- tapply(data$early_age, as.character (data$genus), max)
+      min_sp<- tapply(data$late_age, as.character (data$genus), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     
     if (rank=="family"){ 
-      max_sp<- tapply(data$early_age, list(data$family), max)
-      min_sp<- tapply(data$late_age, list(data$family), min)
+      max_sp<- tapply(data$early_age, as.character (data$family), max)
+      min_sp<- tapply(data$late_age, as.character (data$family), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     if (rank=="order"){ 
-      max_sp<- tapply(data$early_age, list(data$order), max)
-      min_sp<- tapply(data$late_age, list(data$order), min)
+      max_sp<- tapply(data$early_age, as.character (data$order), max)
+      min_sp<- tapply(data$late_age, as.character (data$order), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     if (rank=="class"){ 
-      max_sp<- tapply(data$early_age, list(data$class), max)
-      min_sp<- tapply(data$late_age, list(data$class), min)
+      max_sp<- tapply(data$early_age, as.character (data$class), max)
+      min_sp<- tapply(data$late_age, as.character (data$class), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     
     if (rank=="phylum"){ 
-      max_sp<- tapply(data$early_age, list(data$phylum), max)
-      min_sp<- tapply(data$late_age, list(data$phylum), min)
+      max_sp<- tapply(data$early_age, as.character (data$phylum), max)
+      min_sp<- tapply(data$late_age, as.character (data$phylum), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     
@@ -124,50 +112,36 @@ pbdb_temp_range<- function (data, rank,
     }
     if (rank=="species"){ 
       selection<- data [data$mra==3, ]
-      max_sp<- tapply(selection$eag, list(selection$tid), max)
-      min_sp<- tapply(selection$lag, list(selection$tid), min)
+      max_sp<- tapply(selection$eag, as.character (selection$mna), max)
+      min_sp<- tapply(selection$lag, as.character (selection$mna), min)
       temporal_range<- data.frame (max_sp, min_sp)
-      sp_names<- paste (selection$idt[match (row.names (temporal_range), 
-                                                               selection$tid)], 
-                                          selection$ids [match (row.names (temporal_range), 
-                                                                selection$tid)])
-   
-      if (anyDuplicated(sp_names)){
-        sp<- toString (unlist (sp_names [which (duplicated (sp_names))]))
-        stop ("The Paleobiology Database has duplicated ids (taxon_no) identyfing 
-              the names of the following species: ",  
-                    sp,
-                    ". Please, debug your query personally to choose what to do with the problematic data 
-              and re-run the function again.")
-      }
-      row.names (temporal_range)<- sp_names
     }
     
     if (rank=="genus"){
-      max_sp<- tapply(data$eag, list(data$idt), max)
-      min_sp<- tapply(data$lag, list(data$idt), min)
+      max_sp<- tapply(data$eag,as.character (data$gnl), max)
+      min_sp<- tapply(data$lag, as.character (data$gnl), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     
     if (rank=="family"){ 
-      max_sp<- tapply(data$eag, list(data$fml), max)
-      min_sp<- tapply(data$lag, list(data$fml), min)
+      max_sp<- tapply(data$eag, as.character (data$fml), max)
+      min_sp<- tapply(data$lag, as.character (data$fml), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     if (rank=="order"){ 
-      max_sp<- tapply(data$eag, list(data$odl), max)
-      min_sp<- tapply(data$lag, list(data$odl), min)
+      max_sp<- tapply(data$eag, as.character (data$odl), max)
+      min_sp<- tapply(data$lag, as.character (data$odl), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     if (rank=="class"){ 
-      max_sp<- tapply(data$eag, list(data$cll), max)
-      min_sp<- tapply(data$lag, list(data$cll), min)
+      max_sp<- tapply(data$eag, as.character (data$cll), max)
+      min_sp<- tapply(data$lag, as.character (data$cll), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     
     if (rank=="phylum"){ 
-      max_sp<- tapply(data$eag, list(data$phl), max)
-      min_sp<- tapply(data$lag, list(data$phl), min)
+      max_sp<- tapply(data$eag, as.character (data$phl), max)
+      min_sp<- tapply(data$lag, as.character (data$phl), min)
       temporal_range<- data.frame (max_sp, min_sp)
     }
     
