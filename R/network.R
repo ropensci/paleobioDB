@@ -10,7 +10,7 @@
 
 .get_data_from_uri<-function(uri){
 
-	response <- RCurl::getURL(uri, header = TRUE)
+	response <- RCurl::getURL(uri, header = TRUE, ssl.verifypeer = FALSE)
 	raw_data <- .extract_response_body(response)
 
 	df<-.parse_raw_data(raw_data)
