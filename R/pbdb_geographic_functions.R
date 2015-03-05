@@ -171,12 +171,12 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
   values(r)<-0
   if (length (data$matched_rank)!=0){
     species<- data [data$matched_rank=="species", ]
-    S<-split(species,species$taxon_no)
+    S<-split(species,species$matched_no)
   }
   
   if (length (data$mra)!=0){
     species<- data [data$mra==3, ]
-    S<-split(species,species$tid)
+    S<-split(species,species$mid)
   }
   R<-lapply(S,function(y){
     s<-split(y,paste(y$lng,y$lat))
@@ -198,10 +198,10 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
   res(r)<-c(res,res)
   values(r)<-0
   ranks<-data.frame(rank=c("genus","family","order","class","phylum"),
-                    taxon_rank=c("genus_name","family","order","class","phylum"),
-                    rnk=c("idt","fmn","odl","cll","phl") )
-  if (length (data$taxon_rank)!=0){
-    f<-paste(data[,paste(ranks$taxon_rank[ranks$rank==rank])])
+                    matched_rank=c("genus","family","order","class","phylum"),
+                    rnk=c("gnl","fml","odl","cll","phl") )
+  if (length (data$matched_rank)!=0){
+    f<-paste(data[,paste(ranks$matched_rank[ranks$rank==rank])])
     S<-split(data,f)
   }
   
@@ -260,7 +260,7 @@ pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int=
   if(!any(rank==c("species", "genus","family","order","class","phylum"))){
     stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".
          See \"pbdb_map_richness\" help page" )}
-  if (sum(colnames(data) %in% c("lat","lng","genus_name","family","order","class","phylum","idt","fmn","odl","cll","phl"))!=7){
+  if (sum(colnames(data) %in% c("lat","lng","genus","family","order","class","phylum","mid","fml","odl","cll","phl"))!=7){
     stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")).
          See \"pbdb_map_richness\" help page" )}
 
@@ -275,7 +275,6 @@ pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int=
   if(do.plot==TRUE){
     .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
     mtext(paste("Richness of", rank),4,line=-1,cex=2)
-    
     
   }
   r
