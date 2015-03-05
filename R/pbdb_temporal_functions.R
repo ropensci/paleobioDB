@@ -227,8 +227,8 @@ pbdb_richness <- function (data, rank,
   }
   
   richness<- colSums (a+0, na.rm=T)
-  labels1<- paste (time[-length (time)], time[-1], sep="-")
-  richness<- data.frame (labels1, richness)
+  temporal_intervals<- paste (time[-length (time)], time[-1], sep="-")
+  richness<- data.frame (temporal_intervals, richness)
   if (do.plot==TRUE) {
     plot.new()
     par (mar=c(5,5,1,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
@@ -242,7 +242,7 @@ pbdb_richness <- function (data, rank,
     xx <- c(means [1], means, means [length (means)])
     yy <- c(0, richness[,2], 0)
     polygon(xx, yy, col=colour, border=bord)
-    axis(1, line=1, las=2, labels=labels1, 
+    axis(1, line=1, las=2, labels=temporal_intervals, 
          at=means)
     axis(2, line=1, las=1)
     mtext("Million years before present", line=3.5, adj=1, side=1)
@@ -329,14 +329,14 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
   change<- data.frame ()
   for (i in length (res_sp):2)
   {
-    new<- length (setdiff (row.names (res_sp[[i-1]]), row.names (res_sp[[i]])))
+    new_taxa<- length (setdiff (row.names (res_sp[[i-1]]), row.names (res_sp[[i]])))
     ext<- length (setdiff (row.names (res_sp[[i]]), row.names (res_sp[[i-1]])))
-    col<- c(new, ext)
+    col<- c(new_taxa, ext)
     change<- rbind (change, col)
   }  
   
   names (change)<- c("new", "ext")
-  change<- change[order(rev (row.names(change))),]
+  change<- change[rev(as.numeric (row.names(change))),]
   row.names (change)<- labels2
   
   if (do.plot==TRUE){
