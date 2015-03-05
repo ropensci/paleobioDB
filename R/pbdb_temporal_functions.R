@@ -17,8 +17,8 @@
 
 pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   if('eag' %in% colnames(data)) {
-  tr<- list (summary=summary (data$eag - data$lag), 
-             temporal_resolution=(data$eag - data$lag))
+    tr<- list (summary=summary (data$eag - data$lag), 
+               temporal_resolution=(data$eag - data$lag))
   }
   
   if('early_age' %in% colnames(data)) {
@@ -28,11 +28,11 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   }
   
   if (do.plot ==TRUE) {
-
-  hist (unlist (tr [[2]]), freq=T, col="#0000FF", border=F, 
-        xlim= c(max(unlist (tr [[2]])), 0),
-        breaks= 50, xlab="Temporal resolution of the data (Ma)", 
-        main="", col.lab="grey30", col.axis="grey30", cex.axis=0.8)
+    
+    hist (unlist (tr [[2]]), freq=T, col="#0000FF", border=F, 
+          xlim= c(max(unlist (tr [[2]]), na.rm = TRUE), 0),
+          breaks= 50, xlab="Temporal resolution of the data (Ma)", 
+          main="", col.lab="grey30", col.axis="grey30", cex.axis=0.8)
   }
   return (tr)
 }
