@@ -6,3 +6,4 @@ paleobioDB-Ex.R
 .git
 ^\.travis\.yml$
 figure
+NEWS.md
