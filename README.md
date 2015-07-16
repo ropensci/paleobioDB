@@ -1,5 +1,11 @@
 [![Build Status](https://travis-ci.org/ropensci/paleobioDB.svg)](https://travis-ci.org/ropensci/paleobioDB)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/jili6du1ssi4ktbg/branch/master)](https://ci.appveyor.com/project/sckott/rgbif/branch/master)
+[![Coverage Status](https://coveralls.io/repos/ropensci/paleobioDB.svg)](https://coveralls.io/r/ropensci/paleobioDB)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/metacran/cranlogs.app)
+[![cran version](http://www.r-pkg.org/badges/version/paleobioDB)](http://cran.rstudio.com/web/packages/paleobioDB)
+
+
 paleobioDB
 =======
 
