@@ -7,48 +7,62 @@
 pbdb_occurrences (...)
 }
 \arguments{
-\item{...}{documentation for all the parameters is available
-in http://paleobiodb.org/data1.1/occs/list
-Below, we describe the most common filters that
-paleontologists and ecologists might use.
-\code{limit} set limit to "all" to download all the occurrences.
-By defauls the limit is 500.
-\code{taxon_name} Return only records associated with the
+\item{...}{see http://paleobiodb.org/data1.1/occs/single for additional filters}
+
+\item{limit}{set limit to "all" to download all the occurrences.
+By defauls the limit is 500.}
+
+\item{taxon_name}{Return only records associated with the
 specified taxonomic name(s).
-You may specify multiple names, separated by commas.
-\code{base_name}  Return records associated with the specified
+You may specify multiple names, separated by commas.}
+
+\item{base_name}{Return records associated with the specified
 taxonomic name(s)
-and any of their children (e.g. base_name="Canis" will
-\code{lngmin} numeric. The longitude boundaries will be normalized
+and any of their children (e.g. base_name="Canis" will}
+
+\item{lngmin}{numeric. The longitude boundaries will be normalized
 to fall between -180 and 180. (Note that if you specify
 lngmin then you must also specify lngmax).
 Return only records whose geographic location falls
 within the given bounding box (defined by lngmin, lngmax,
 latmin, latmax).
 It generate two adjacent bounding boxes if the range crosses
-the antimeridian.
-\code{lngmax} numeric. The longitude boundaries will be normalized
-to fall between -180 and 180.
-\code{latmin} numeric. between -90 and 90.
-(Note that if you specify latmin then you must also specify latmax)
-\code{latmax} numeric. between -90 and 90.
-\code{min_ma} return only records whose temporal
-locality is at least this old, specified in Ma.
-\code{max_ma} return only records whose temporal
-locality is at most this old, specified in Ma.
-\code{interval} return only records whose temporal
+the antimeridian.}
+
+\item{lngmax}{numeric. The longitude boundaries will be normalized
+to fall between -180 and 180.}
+
+\item{latmin}{numeric. between -90 and 90.
+(Note that if you specify latmin then you must also specify latmax)}
+
+\item{latmax}{numeric. between -90 and 90.}
+
+\item{min_ma}{return only records whose temporal
+locality is at least this old, specified in Ma.}
+
+\item{max_ma}{return only records whose temporal
+locality is at most this old, specified in Ma.}
+
+\item{interval}{return only records whose temporal
 locality falls within the named geologic time interval
-(e.g. "Miocene").
-\code{continent} return only records whose geographic
-location falls within the specified continent(s).
-\code{show} to show extra variables (e.g. coords, phylo, ident)}
+(e.g. "Miocene").}
+
+\item{continent}{return only records whose geographic
+location falls within the specified continent(s).}
+
+\item{show}{to show extra variables (e.g. coords, phylo, ident)}
 }
 \value{
 a dataframe with the species occurrences
 }
 \description{
-Returns information about species occurrence records
-stored in the Paleobiology Database.
+Returns information about species occurrence records stored in the
+Paleobiology Database.
+}
+\details{
+Documentation for all the parameters is available
+at http://paleobiodb.org/data1.1/occs/list. We describe the most common
+filters that paleontologists and ecologists might use in the parameter list above.
 }
 \examples{
 \dontrun{

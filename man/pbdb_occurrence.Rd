@@ -10,21 +10,25 @@ pbdb_occurrence (id, ...)
 \item{id}{identifier of the occurrence. This parameter is
 required.}
 
-\item{...}{documentation for all the parameters is available
-in http://paleobiodb.org/data1.1/occs/single
-Below, we describe the most common filters that
-paleontologists and ecologists might use.
-\code{vocab} set vocab="pbdb" to show the complete name
-of the variables
-(by default variables have short 3-letter names)
-\code{show} to show extra variables (e.g. coords)}
+\item{...}{see http://paleobiodb.org/data1.1/occs/single for additional filters}
+
+\item{vocab}{set vocab="pbdb" to show the complete name
+of the variables (by default variables have short 3-letter names)}
+
+\item{show}{to show extra variables (e.g. coords)}
 }
 \value{
 a dataframe with a single occurrence
 }
 \description{
-Returns information about a single occurrence record
-from the Paleobiology Database.
+Returns information about a single occurrence record from the Paleobiology
+Database.
+}
+\details{
+Documentation for all the parameters is available at
+http://paleobiodb.org/data1.1/occs/single. In the parameter list above, we
+describe the most common filters that paleontologists and ecologists might
+use.
 }
 \examples{
 \dontrun{

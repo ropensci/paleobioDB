@@ -24,8 +24,8 @@ occurrences in their geographic, temporal and taxonomic dimensions.
 \tabular{ll}{
 Package: \tab paleobioDB\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2014-04-04\cr
+Version: \tab 0.4\cr
+Date: \tab 2015-07-16\cr
 License: \tab GPL-2\cr
 }
 }
