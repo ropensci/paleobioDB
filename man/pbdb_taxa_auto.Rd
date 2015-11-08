@@ -7,13 +7,13 @@
 pbdb_taxa_auto (...)
 }
 \arguments{
-\item{...}{see all paramenters:
-http://paleobiodb.org/data1.1/taxa/auto_doc.html
-For example: \code{name} A partial name or prefix.
-It must have at least 3 significant characters,
-and may include both a genus (possibly abbreviated)
-and a species.
-\code{limit} set the limit to the number of matches}
+\item{...}{see all paramenters at http://paleobiodb.org/data1.1/taxa/auto_doc.html}
+
+\item{name}{A partial name or prefix.
+It must have at least 3 significant characters, and may include both a genus
+(possibly abbreviated) and a species.}
+
+\item{limit}{set the limit to the number of matches}
 }
 \value{
 a dataframe with information about the matches
@@ -21,6 +21,10 @@ a dataframe with information about the matches
 }
 \description{
 Returns a list of names matching the given prefix or partial name.
+}
+\details{
+See all paramenters at:
+http://paleobiodb.org/data1.1/taxa/auto_doc.html
 }
 \examples{
 \dontrun{
