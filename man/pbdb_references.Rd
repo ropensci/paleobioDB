@@ -7,12 +7,15 @@
 pbdb_references (...)
 }
 \arguments{
-\item{...}{documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list.
-For example:
-\code{author} Select only references for which any of the authors matches the specified name
-\code{year} Select only references published in the specified year
-\code{pubtitle} Select only references that involve the specified publication
-\code{order} Specifies the order in which the results are
+\item{...}{documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list.}
+
+\item{author}{Select only references for which any of the authors matches the specified name}
+
+\item{year}{Select only references published in the specified year}
+
+\item{pubtitle}{Select only references that involve the specified publication}
+
+\item{order}{Specifies the order in which the results are
 returned. You can specify multiple values separated by commas,
 and each value may be appended with .asc or .desc.  Accepted values are:
 author, year, pubtitle, created, modified, rank.}

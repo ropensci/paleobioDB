@@ -60,21 +60,21 @@
 
 #' pbdb_occurrence 
 #' 
-#' Returns information about a single occurrence record 
-#' from the Paleobiology Database.
+#' Returns information about a single occurrence record from the Paleobiology 
+#' Database.
+#' 
+#' Documentation for all the parameters is available at 
+#' http://paleobiodb.org/data1.1/occs/single. In the parameter list above, we
+#' describe the most common filters that paleontologists and ecologists might
+#' use.
 #' 
 #' @usage pbdb_occurrence (id, ...)
-#' 
+#' @param ... see http://paleobiodb.org/data1.1/occs/single for additional filters 
 #' @param id identifier of the occurrence. This parameter is 
 #' required.
-#' @param ... documentation for all the parameters is available 
-#' in http://paleobiodb.org/data1.1/occs/single
-#' Below, we describe the most common filters that 
-#' paleontologists and ecologists might use.
-#' \code{vocab} set vocab="pbdb" to show the complete name 
-#' of the variables
-#' (by default variables have short 3-letter names)
-#' \code{show} to show extra variables (e.g. coords)
+#' @param vocab set vocab="pbdb" to show the complete name 
+#' of the variables (by default variables have short 3-letter names)
+#' @param show to show extra variables (e.g. coords)
 #'
 #' @return a dataframe with a single occurrence 
 #' 
@@ -94,25 +94,26 @@ pbdb_occurrence<-function(id, ...){
 
 #'pbdb_occurrences
 #'
-#'Returns information about species occurrence records 
-#'stored in the Paleobiology Database.
+#'Returns information about species occurrence records stored in the
+#'Paleobiology Database.
 #'
+#' Documentation for all the parameters is available 
+#' at http://paleobiodb.org/data1.1/occs/list. We describe the most common
+#' filters that paleontologists and ecologists might use in the parameter list above.
+#' 
 #'@usage pbdb_occurrences (...)
 #'
-#'@param ... documentation for all the parameters is available 
-#'in http://paleobiodb.org/data1.1/occs/list
-#' Below, we describe the most common filters that 
-#' paleontologists and ecologists might use.
-#' \code{limit} set limit to "all" to download all the occurrences. 
+#' @param ... see http://paleobiodb.org/data1.1/occs/single for additional filters 
+#' @param limit set limit to "all" to download all the occurrences. 
 #' By defauls the limit is 500. 
-#'\code{taxon_name} Return only records associated with the 
+#' @param taxon_name Return only records associated with the 
 #'specified taxonomic name(s). 
 #'You may specify multiple names, separated by commas.
-#'\code{base_name}  Return records associated with the specified 
+#' @param base_name  Return records associated with the specified 
 #'taxonomic name(s) 
 #'and any of their children (e.g. base_name="Canis" will 
 # return "Canis", "Canis lupus", "Canis mosbachensis", etc.)
-#'\code{lngmin} numeric. The longitude boundaries will be normalized 
+#' @param lngmin numeric. The longitude boundaries will be normalized 
 #'to fall between -180 and 180. (Note that if you specify 
 #'lngmin then you must also specify lngmax). 
 #'Return only records whose geographic location falls 
@@ -120,21 +121,21 @@ pbdb_occurrence<-function(id, ...){
 #'latmin, latmax).
 #'It generate two adjacent bounding boxes if the range crosses
 #' the antimeridian. 
-#'\code{lngmax} numeric. The longitude boundaries will be normalized 
+#' @param lngmax numeric. The longitude boundaries will be normalized 
 #'to fall between -180 and 180.
-#'\code{latmin} numeric. between -90 and 90. 
+#' @param latmin numeric. between -90 and 90. 
 #'(Note that if you specify latmin then you must also specify latmax)
-#'\code{latmax} numeric. between -90 and 90.
-#'\code{min_ma} return only records whose temporal 
+#' @param latmax numeric. between -90 and 90.
+#' @param min_ma return only records whose temporal 
 #'locality is at least this old, specified in Ma.
-#'\code{max_ma} return only records whose temporal 
+#' @param max_ma return only records whose temporal 
 #'locality is at most this old, specified in Ma.
-#'\code{interval} return only records whose temporal 
+#' @param interval return only records whose temporal 
 #'locality falls within the named geologic time interval 
 #'(e.g. "Miocene").
-#'\code{continent} return only records whose geographic 
+#' @param continent return only records whose geographic 
 #'location falls within the specified continent(s). 
-#'\code{show} to show extra variables (e.g. coords, phylo, ident)
+#' @param show to show extra variables (e.g. coords, phylo, ident)
 #' 
 #' @return a dataframe with the species occurrences 
 #' 
@@ -161,24 +162,23 @@ pbdb_occurrences<-function(...){
 #'Returns information about the bibliographic references 
 #'associated with fossil occurrences from the database.
 #'
-#' @usage pbdb_ref_occurrences (...)
-#'
-#' @param ... documentation for all the parameters is available 
+#' Documentation for all the parameters is available 
 #' in http://paleobiodb.org/data1.1/occs/refs
 #' go to ?pbdb_occurrences to see an explanation about the main 
 #' filtering parameters. 
-#' For example:
-#'\code{author} Select only references for which any of the authors 
-#'matches the specified name
-#'\code{year} Select only references published in the specified year
-#'\code{pubtitle} Select only references that involve the specified 
-#'publication
-#'\code{order} Specifies the order in which the results are 
-#' returned. You can specify multiple values separated by commas, 
-#' and each value may be appended with .asc or .desc.  
-#' Accepted values are:
-#' author, year, pubtitle, created, modified, rank. 
-#' (see documentation in http://paleobiodb.org/data1.1/occs/refs)
+#'
+#' @usage pbdb_ref_occurrences (...)
+#'
+#' @param ... see http://paleobiodb.org/data1.1/occs/refs for additional filters 
+#' @param author Select only references for which any of the authors 
+#' matches the specified name
+#' @param year Select only references published in the specified year
+#' @param pubtitle Select only references that involve the specified 
+#' publication
+#' @param order Specifies the order in which the results are returned. You can
+#' specify multiple values separated by commas, and each value may be appended
+#' with .asc or .desc.  Accepted values are: author, year, pubtitle, created,
+#' modified, rank. 
 #' @return a dataframe with the information about the references 
 #' that match the query
 #' 
@@ -202,18 +202,18 @@ pbdb_ref_occurrences<-function(...){
 #'Returns information about a single collection record from 
 #'the Paleobiology Database.
 #' 
+#'Documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/colls/single 
+#'go to ?pbdb_occurrences to see an explanation about 
+#'the main filtering parameters.
+#' 
 #'@usage pbdb_collection (id, ...)
 #' 
 #'@param id identifier of the collection. This parameter is required.
-#'@param ... documentation for all the parameters 
-#'is available in http://paleobiodb.org/data1.1/colls/single 
-#'go to ?pbdb_occurrences to see an explanation about 
-#'the main filtering parameters 
 #'For example: 
-#'\code{vocab} set vocab="pbdb" to show the complete name of 
-#'the variables
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
-#'\code{show} to show extra variables (e.g. "loc" to show 
+#'@param show to show extra variables (e.g. "loc" to show 
 #'additional information about the geographic locality 
 #'of the collection)
 #'
@@ -303,7 +303,7 @@ pbdb_collections_geo<-function(...){
 #'@param ... documentation for all the parameters is available 
 #'in http://paleobiodb.org/data1.1/taxa/single
 #'go to ?pbdb_taxa to see an explanation about the main filtering parameters. For example: 
-#'\code{name} Return information about the most fundamental 
+#'@param name Return information about the most fundamental 
 #'taxonomic name matching this string. The \% and _ characters may be used as wildcards.
 #'
 #' @return a dataframe with information from a single taxon
@@ -326,38 +326,36 @@ pbdb_taxon<-function(...){
 
 #' pbdb_taxa
 #' 
-#'Returns information about multiple taxonomic names. 
-#'This function can be used to query for 
-#'all of the children or parents of a given taxon, 
-#'among other operations.
+#'Returns information about multiple taxonomic names.  This function can be
+#'used to query for all of the children or parents of a given taxon, among
+#'other operations.
 #'
 #'@usage pbdb_taxa (...)
 #'
 #'@param ... documentation for all the parameters is 
 #'available in http://paleobiodb.org/data1.1/taxa/list
-#'For example: 
-#'\code{name} Return information about the most fundamental 
+#'@param name Return information about the most fundamental 
 #'taxonomic name matching this string. 
-#' The % and _ characters may be used as wildcards.
-#'\code{id} Return information about the taxonomic name 
+#' The \% and _ characters may be used as wildcards.
+#'@param id Return information about the taxonomic name 
 #'corresponding to this identifier. You may not specify both 
 #'name and id in the same query.
-#'\code{exact} if this parameter is specified, then the taxon exactly 
+#'@param exact if this parameter is specified, then the taxon exactly 
 #'matching the specified name or identifier is selected, 
 #'rather than the senior synonym which is the default.
-#'\code{show} to show extra variables: attr 
+#'@param show to show extra variables: attr 
 #'(The attribution of this taxon (author and year)), 
 #'app (The age of first and last appearance of this taxon 
 #'from the occurrences recorded in this database), 
 #'size (The number of subtaxa appearing in this database), 
 #'nav (Additional information for the PBDB Navigator taxon browser)
-#'\code{rel} set rel="synonyms" to select all synonyms of 
+#'@param rel set rel="synonyms" to select all synonyms of 
 #'the base taxon or taxa; 
 #'rel="children" to select the taxa immediately contained 
 #'within the base taxon or taxa; 
 #'rel="common_ancestor" to select the most specific taxon 
 #'that contains all of the base taxa.
-#'\code{extant} TRUE/FALSE to select extant/extinct taxa.
+#'@param extant TRUE/FALSE to select extant/extinct taxa.
 #'
 #'
 #' @return a dataframe with information from a list of taxa
@@ -385,14 +383,15 @@ pbdb_taxa<-function(...){
 #' 
 #' Returns a list of names matching the given prefix or partial name. 
 #' 
-#' @usage pbdb_taxa_auto (...)
-#' @param ... see all paramenters: 
+#' See all paramenters at:
 #' http://paleobiodb.org/data1.1/taxa/auto_doc.html
-#'For example: \code{name} A partial name or prefix. 
-#'It must have at least 3 significant characters,
-#' and may include both a genus (possibly abbreviated) 
-#' and a species.
-#' \code{limit} set the limit to the number of matches
+#' 
+#' @usage pbdb_taxa_auto (...)
+#' @param ... see all paramenters at http://paleobiodb.org/data1.1/taxa/auto_doc.html
+#' @param name A partial name or prefix. 
+#' It must have at least 3 significant characters, and may include both a genus
+#' (possibly abbreviated) and a species.
+#' @param limit set the limit to the number of matches
 
 #' @return a dataframe with information about the matches 
 #' (taxon rank and number of occurrences in the database)
@@ -418,14 +417,11 @@ pbdb_taxa_auto<-function(...){
 #'
 #'@usage pbdb_interval (id, ...) 
 #'
-#'@param id identifier of the temporal interval. 
-#'This parameter is required.
+#'@param id identifier of the temporal interval. This parameter is required.
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/intervals/single
-#'
-#'\code{vocab} set vocab="pbdb" to show the complete 
-#'name of the variables
-#'(by default variables have short 3-letter names)
+#'@param vocab set vocab="pbdb" to show the complete name of the variables (by
+#'default variables have short 3-letter names)
 
 #' @return a dataframe with information from a single 
 #' temporal interval
@@ -453,14 +449,12 @@ pbdb_interval<-function(id, ...){
 #'
 #'@param ... documentation for all the parameters 
 #'is available in http://paleobiodb.org/data1.1/intervals/lists. 
-#'For example: 
-#'\code{min_ma}  return only intervals that are at least this old
-#'\code{max_ma} return only intervals that are at most this old
-#'\code{order} return the intervals in order starting as specified. 
+#'@param min_ma return only intervals that are at least this old
+#'@param max_ma return only intervals that are at most this old
+#'@param order return the intervals in order starting as specified. 
 #'Possible values include older, younger. Defaults to younger.
-#'\code{vocab} set vocab="pbdb" to show the complete name of 
-#'the variables
-#'(by default variables have short 3-letter names)
+#'@param vocab set vocab="pbdb" to show the complete name of the variables (by
+#'default variables have short 3-letter names)
 
 #'@return a dataframe with information from several temporal intervals
 #' 
@@ -486,10 +480,9 @@ pbdb_intervals<-function(...){
 #'@usage pbdb_scale (id, ...)
 #'@param id identifier of the temporal interval. 
 #'This parameter is required.
-#'@param ... documentation for all the parameters 
-#'is available in http://paleobiodb.org/data1.1/scales/single.
-#'For example:
-#'\code{vocab} set vocab="pbdb" to show the complete name 
+#'@param ... documentation for all the parameters is available in
+#'http://paleobiodb.org/data1.1/scales/single.
+#'@param vocab set vocab="pbdb" to show the complete name 
 #'of the variables
 #'(by default variables have short 3-letter names)
 #'
@@ -512,12 +505,10 @@ pbdb_scale<-function(id, ...){
 #' 
 #'Returns information about multiple time scales.
 #'
-#'@param ... documentation for all the parameters 
-#'is available in http://paleobiodb.org/data1.1/scales/list. 
-#'For instance: 
-#'\code{vocab} set vocab="pbdb" to show the complete name of 
-#'the variables
-#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters is available in
+#'http://paleobiodb.org/data1.1/scales/list. 
+#'@param vocab set vocab="pbdb" to show the complete name of the variables (by
+#'default variables have short 3-letter names)
 #'
 #'@return a dataframe with information from the selected scales
 #' 
@@ -545,30 +536,27 @@ pbdb_scales<-function(...){
 #' 
 #'@usage pbdb_strata (...)
 #'
-#'@param ... documentation for all the parameters 
-#'is available in http://paleobiodb.org/data1.1/strata/list
-#'For example: 
-#'\code{name} A full or partial name. You can use % 
-#'and _ as wildcards, 
-#'but the query will be very slow if you put a wildcard 
-#'at the beginning
-#'\code{rank} Return only strata of the specified rank: 
-#'formation, group or member.
-#'\code{lngmin} numeric. The longitude boundaries will be normalized 
-#'to fall between -180 and 180. (Note that if you specify 
-#'lngmin then you must also specify lngmax). 
-#'Return only records whose geographic location falls 
-#'within the given bounding box (defined by lngmin, lngmax, latmin, latmax).
-#'It generate two adjacent bounding boxes if the range crosses the antimeridian. 
-#'\code{lngmax} numeric. The longitude boundaries will be normalized 
-#'to fall between -180 and 180.
-#'\code{latmin} numeric. between -90 and 90. 
-#'(Note that if you specify latmin then you must also specify latmax)
-#'\code{latmax} numeric. between -90 and 90.
-#'\code{loc} Return only strata associated with some occurrence whose geographic 
-#'location falls within the specified geometry, specified in WKT format.
-#'\code{vocab} set vocab="pbdb" to show the complete name of the variables
-#'(by default variables have short 3-letter names)
+#'@param ... documentation for all the parameters is available in
+#'http://paleobiodb.org/data1.1/strata/list For example: 
+#'@param name A full or partial name. You can use \% and _ as wildcards, but the
+#'query will be very slow if you put a wildcard at the beginning
+#'@param rank Return only strata of the specified rank: formation, group or
+#'member.
+#'@param lngmin numeric. The longitude boundaries will be normalized to fall
+#'between -180 and 180. (Note that if you specify lngmin then you must also
+#'specify lngmax).  Return only records whose geographic location falls within
+#'the given bounding box (defined by lngmin, lngmax, latmin, latmax).  It
+#'generate two adjacent bounding boxes if the range crosses the antimeridian. 
+#'@param lngmax numeric. The longitude boundaries will be normalized to fall
+#'between -180 and 180.
+#'@param latmin numeric. between -90 and 90.  (Note that if you specify latmin
+#'then you must also specify latmax)
+#'@param latmax numeric. between -90 and 90.
+#'@param loc Return only strata associated with some occurrence whose
+#'geographic location falls within the specified geometry, specified in WKT
+#'format.
+#'@param vocab set vocab="pbdb" to show the complete name of the variables (by
+#'default variables have short 3-letter names)
 #'
 #' @return a dataframe with information from the selected strata
 #' 
@@ -595,23 +583,23 @@ pbdb_strata<-function(...){
 #'
 #'@usage pbdb_strata_auto (...)
 #'
-#'@param ... documentation for all the parameters 
-#'is available in http://paleobiodb.org/data1.1/strata/auto. For instance:
-#'\code{name} A full or partial name. You can use % and _ as wildcards, 
+#'@param ... documentation for all the parameters is available in
+#'http://paleobiodb.org/data1.1/strata/auto.
+#'@param name A full or partial name. You can use \% and _ as wildcards, 
 #'but the query will be very slow if you put a wildcard at the beginning
-#'\code{rank} Return only strata of the specified rank: formation, group or member.
-#'\code{lngmin} numeric. The longitude boundaries will be normalized 
+#'@param rank Return only strata of the specified rank: formation, group or member.
+#'@param lngmin numeric. The longitude boundaries will be normalized 
 #'to fall between -180 and 180. (Note that if you specify lngmin then you must also specify lngmax). 
 #'Return only records whose geographic location falls 
 #'within the given bounding box (defined by lngmin, lngmax, latmin, latmax).
 #'It generate two adjacent bounding boxes if the range crosses the antimeridian. 
-#'\code{lngmax} numeric. The longitude boundaries will be normalized 
+#'@param lngmax numeric. The longitude boundaries will be normalized 
 #'to fall between -180 and 180.
-#'\code{latmin} numeric. between -90 and 90. (Note that if you specify latmin then you must also specify latmax)
-#'\code{latmax} numeric. between -90 and 90.
-#'\code{loc} Return only strata associated with some occurrence whose geographic 
+#'@param latmin numeric. between -90 and 90. (Note that if you specify latmin then you must also specify latmax)
+#'@param latmax numeric. between -90 and 90.
+#'@param loc Return only strata associated with some occurrence whose geographic 
 #'location falls within the specified geometry, specified in WKT format.
-#'\code{vocab} set vocab="pbdb" to show the complete name of the variables
+#'@param vocab set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 #'
 #' @return a dataframe with information from the strata that matches our letters.
@@ -634,14 +622,16 @@ pbdb_strata_auto<-function(...){
 #'
 #'Returns information about a single reference, selected by identifier
 #'
+#'@param ... documentation for all the parameters 
+#'is available in http://paleobiodb.org/data1.1/refs/single
+#'go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
+#'
 #'@usage pbdb_reference (id, ...)
 #'
 #'@param id identifier of the reference. This parameter is required.
-#'#'@param ... documentation for all the parameters 
-#'is available in http://paleobiodb.org/data1.1/refs/single
-#'go to ?pbdb_occurrences to see an explanation about the main filtering parameters 
-#' For example:
-#' \code{vocab} set vocab="pbdb" to show the complete name of the variables
+#'@param ... documentation for all the parameters 
+#'is available at http://paleobiodb.org/data1.1/refs/single
+#' @param vocab set vocab="pbdb" to show the complete name of the variables
 #'(by default variables have short 3-letter names)
 
 #'@return a dataframe with a single reference 
@@ -667,11 +657,10 @@ pbdb_reference<-function(id, ...){
 #'@usage pbdb_references (...)
 #'
 #'@param ... documentation for all the parameters is available in http://paleobiodb.org/data1.1/refs/list. 
-#' For example: 
-#'\code{author} Select only references for which any of the authors matches the specified name
-#'\code{year} Select only references published in the specified year
-#'\code{pubtitle} Select only references that involve the specified publication
-#'\code{order} Specifies the order in which the results are 
+#'@param author Select only references for which any of the authors matches the specified name
+#'@param year Select only references published in the specified year
+#'@param pubtitle Select only references that involve the specified publication
+#'@param order Specifies the order in which the results are 
 #' returned. You can specify multiple values separated by commas, 
 #' and each value may be appended with .asc or .desc.  Accepted values are:
 #' author, year, pubtitle, created, modified, rank. 
@@ -699,12 +688,11 @@ pbdb_references<-function(...){
 #'
 #'@param ... documentation for all the parameters is available 
 #'in \url{http://paleobiodb.org/data1.1/colls/refs}.
-#' For example: 
-#' \code{id} A comma-separated list of collection identifiers.
-#' \code{author} Select only references for which any of the authors matches the specified name
-#' \code{year} Select only references published in the specified year
-#' \code{pubtitle} Select only references that involve the specified publication
-#' \code{order} Specifies the order in which the results are 
+#' @param id A comma-separated list of collection identifiers.
+#' @param author Select only references for which any of the authors matches the specified name
+#' @param year Select only references published in the specified year
+#' @param pubtitle Select only references that involve the specified publication
+#' @param order Specifies the order in which the results are 
 #' returned. You can specify multiple values separated by commas, 
 #' and each value may be appended with .asc or .desc.  Accepted values are:
 #' author, year, pubtitle, created, modified, rank.
@@ -734,22 +722,22 @@ pbdb_ref_collections <-function(...){
 #'
 #'@usage pbdb_ref_taxa (...)
 #'
-#'@param ... documentation for all the parameters is available.
-#'in http://paleobiodb.org/data1.1/taxa/refs. For instance:
-#'
-#'\code{name} Return information about the most fundamental taxonomic name matching this string. 
-#' The % and _ characters may be used as wildcards.
-#'\code{id} Return information about the taxonomic name 
-#'corresponding to this identifier. You may not specify both 
-#'name and id in the same query.
-#'\code{exact} if this parameter is specified, then the taxon exactly 
-#'matching the specified name or identifier is selected, 
-#'rather than the senior synonym which is the default.
-#'\code{show} to show extra variables (see documentation for show in http://paleobiodb.org/data1.1/taxa/refs)
-#'\code{rel} set rel="synonyms" to select all synonyms of the base taxon or taxa; 
-#'rel="children" to select the taxa immediately contained within the base taxon or taxa; 
-#'rel="common_ancestor" to select the most specific taxon that contains all of the base taxa.
-#'\code{extant} TRUE/FALSE to select extinct/extant taxa.
+#'@param ... documentation for all the parameters is available.  in
+#'http://paleobiodb.org/data1.1/taxa/refs.
+#'@param name Return information about the most fundamental taxonomic name
+#'matching this string.  The \% and _ characters may be used as wildcards.
+#'@param id Return information about the taxonomic name corresponding to this
+#'identifier. You may not specify both name and id in the same query.
+#'@param exact if this parameter is specified, then the taxon exactly matching
+#'the specified name or identifier is selected, rather than the senior synonym
+#'which is the default.
+#'@param show to show extra variables (see documentation for show in
+#'http://paleobiodb.org/data1.1/taxa/refs)
+#'@param rel set rel="synonyms" to select all synonyms of the base taxon or
+#'taxa; rel="children" to select the taxa immediately contained within the base
+#'taxon or taxa; rel="common_ancestor" to select the most specific taxon that
+#'contains all of the base taxa.
+#'@param extant TRUE/FALSE to select extinct/extant taxa.
 #'
 #' @return a dataframe with references from a list of taxa
 #' 
