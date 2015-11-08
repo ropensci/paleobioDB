@@ -157,6 +157,7 @@ pbdb_occurrences<-function(...){
 
 }
 
+
 #'pbdb_ref_occurrences
 #'
 #'Returns information about the bibliographic references 
@@ -185,7 +186,7 @@ pbdb_occurrences<-function(...){
 #' @export 
 #' @examples \dontrun{
 #' pbdb_ref_occurrences (vocab="pbdb", 
-#' taxon_name="Canis", year=2000)
+#' base_name="Canis", year=2000)
 #'}
 
 

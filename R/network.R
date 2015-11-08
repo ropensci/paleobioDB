@@ -114,8 +114,9 @@
 	qs <- ''
 
 	for (argName in names(args)) {
-	  argValue<-  URLencode(args[argName][[1]])
-		qs <- paste(qs, argName, "=", argValue, '&', sep = "")
+    strArgValue <- as.character(args[argName][[1]])
+	  encodedArgValue<-  URLencode(strArgValue)
+		qs <- paste(qs, argName, "=", encodedArgValue, '&', sep = "")
 	}
 	qs <- substr(qs,0,nchar(qs)-1)
 

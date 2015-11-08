@@ -8,13 +8,17 @@ test_that("pbdb_occurrence output is a dataframe, and the names are characters",
   expect_true (dim (response)[1]==1)
 })
 
-
 context("pbdb_occurrences")
 test_that("pbdb_occurrences output is a dataframe, and the names are characters", {
   response<- pbdb_occurrences (id=c(10, 11)) 
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)
+})
+
+test_that("pbdb_occurrences number of returned records according to limit set", {
+  response<- pbdb_occurrences (base_name="Mammalia", limit=2)
+  expect_true (dim (response)[1]==2)
 })
 
 context("pbdb_collection")
@@ -131,7 +135,7 @@ test_that("pbdb_reference output is a dataframe, and the names are characters", 
 
 context("pbdb_ref_occurrences")
 test_that("pbdb_ref_occurrences output is a dataframe, and the names are characters", {
-  response<- pbdb_ref_occurrences (taxon_name="Canis", year=2000)
+  response<- pbdb_ref_occurrences (base_name="Canis", year=2000)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)
