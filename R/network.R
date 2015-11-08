@@ -12,10 +12,8 @@
 
 	response <- RCurl::getURL(uri, header = TRUE)
 	raw_data <- .extract_response_body(response)
-
-	df<-.parse_raw_data(raw_data)
-
-	df
+	df<-.parse_raw_data(raw_data)  
+  df
 }
 
 
@@ -56,9 +54,9 @@
 
 	data_list <- fromJSON(raw_data)
 	df <- .make_data_frame(data_list[[1]])
-
 	df	
 }
+
 
 #' .make_data_frame
 #' 
@@ -69,26 +67,32 @@
 #'
 
 .make_data_frame<-function(reg_list){
+  
+  reg_count <- length(reg_list)
+  first_line <- TRUE
+  
+  for (reg in reg_list) {
 
-	df<-as.data.frame(reg_list[1])
+    reg <- lapply(reg, .collapse_array_columns_map)
 
-	len <- length(reg_list)
-
-	if(len < 2){
-		return (df)
-	}
-
-	# TODO: fix warning thrown when different types of data found for a column. smartbind
-	# converts to character and throws warning. see: pbdb_ref_taxa (name="Canidae")
-	# fix: - convert certain columns to character on the fly
-
-	for (reg in reg_list[2:len]){
-	    # smartbind from gtools let us bind rows with different
-	    # names to the dataframe
-	    df<-smartbind(df, reg)
-	}
-
-	df
+    if (first_line) {
+      df<- as.data.frame(reg)
+    } else {
+      df<- smartbind(df, reg)
+    }
+    
+    first_line <- FALSE
+  }
+  
+  df_count <- nrow(df)
+  
+  if (reg_count != df_count) {
+    stop(sprintf('The length of the response dataframe (%d rows) is different than the original ammount of 
+      results returned by the paleobioDB API (%d rows).\r\n
+      Please report this bug to the maintainer of rpbdb package', df_count, reg_count))
+  }
+  
+  df
 }
 
 
@@ -117,3 +121,24 @@
 
 	qs
 }
+
+
+#' .collapse_array_columns_map
+#' 
+#' Maps multivalue elements to comma separated strings 
+#'
+#' @param reg_list data rows as a list of lists
+#' @return dataframe
+#'
+
+.collapse_array_columns_map<- function (element){  
+  if (length (element) > 1){
+    mapped<- paste (element, collapse=";")
+  }else {
+    mapped<- element
+  }
+  
+  mapped
+}
+
+
