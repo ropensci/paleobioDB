@@ -53,7 +53,7 @@
 .parse_raw_data<-function(raw_data){
 
 	data_list <- fromJSON(raw_data)
-	df <- .make_data_frame(data_list[[1]])
+	df <- .make_data_frame(data_list[[2]])
 	df	
 }
 
