@@ -9,7 +9,6 @@
 #' }
 
 .get_data_from_uri<-function(uri){
-
 	response <- RCurl::getURL(uri, header = TRUE)
 	raw_data <- .extract_response_body(response)
 	df<-.parse_raw_data(raw_data)  
@@ -53,7 +52,7 @@
 .parse_raw_data<-function(raw_data){
 
 	data_list <- fromJSON(raw_data)
-	df <- .make_data_frame(data_list[[1]])
+	df <- .make_data_frame(data_list[["records"]])
 	df	
 }
 

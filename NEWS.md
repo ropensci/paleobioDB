@@ -1,4 +1,12 @@
-paleobioDB 0.4
+paleobioDB 0.5.0
+===============
+
+BUG FIXES
+
+* Fix bug after JSON responses from the API started including the "elapsed_time" before the "records" element.
+
+
+paleobioDB 0.4.0
 ===============
 
 MINOR IMPROVEMENTS
