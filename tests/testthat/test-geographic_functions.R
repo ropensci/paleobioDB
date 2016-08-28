@@ -17,6 +17,4 @@ test_that("tests on pbdb_map_richness", {
     ##missing coordinates
     data<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis")
     expect_error(pbdb_map_richness (data))
-    data2<-  pbdb_occurrences (limit="100", vocab="pbdb", base_name="canis",show=c("phylo","coords"))
-    expect_error(pbdb_map_richness (data2))
 })
