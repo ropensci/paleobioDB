@@ -40,6 +40,9 @@
 #' }
 #' 
 #' @import rjson gtools RCurl plyr raster maps scales 
+#' @importFrom grDevices colorRampPalette
+#' @importFrom graphics abline axis legend mtext par plot.new plot.window points polygon rect segments title
+#' @importFrom utils URLencode
 #' 
 #'@examples \dontrun{
 #'
