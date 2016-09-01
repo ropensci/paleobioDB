@@ -18,7 +18,6 @@
 #' 
 
 .pbdb_query<-function(endpoint, query = list()){
-
   query <- lapply(query, .implode_to_string)
   uri <- .build_uri(endpoint, query = query)
 
