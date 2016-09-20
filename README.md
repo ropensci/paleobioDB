@@ -34,7 +34,7 @@ library(paleobioDB)
 
 **General overview**
 
-`paleobioDB` version 0.4 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
+`paleobioDB` version 0.5 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
 
 ## Download fossil occurrences from the PaleobioDB
 
@@ -290,7 +290,7 @@ To cite package `paleobioDB` in publications use:
 ```coffee
 To cite package `paleobioDB` in publications use:
 
-Sara Varela, Javier Gonzalez-Hernandez and Luciano Fabris Sgarbi (2014). paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database. R package version 0.1. https://github.com/ropensci/paleobioDB
+Sara Varela, Javier Gonzalez-Hernandez and Luciano Fabris Sgarbi (2016). paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database. R package version 0.5. https://github.com/ropensci/paleobioDB
 
 A BibTeX entry for LaTeX users is
 
@@ -298,7 +298,7 @@ A BibTeX entry for LaTeX users is
     title = {paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database},
     author = {{Sara Varela} and {Javier Gonzalez-Hernandez} and {Luciano Fabris Sgarbi}},
     year = {2014},
-    note = {R package version 0.1},
+    note = {R package version 0.5},
     base = {https://github.com/ropensci/paleobioDB},
   }
 ```
