@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/ropensci/paleobioDB.svg)](https://travis-ci.org/ropensci/paleobioDB)
-
+[![codecov.io](https://codecov.io/github/ropensci/paleobioDB/coverage.svg?branch=master)](https://codecov.io/github/ropensci/paleobioDB?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/paleobioDB)](https://cran.r-project.org/web/packages/paleobioDB/)
 
