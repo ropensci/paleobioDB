@@ -7,12 +7,12 @@ Encoding: UTF-8
 Type: Package
 License: GPL-2
 Title: Download and Process Data from the Paleobiology Database
-Version: 0.5.0
-Date: 2016-08-25
+Version: 0.6.0
+Date: 2019-02-23
 Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     email = "svarela@paleobiogeography.org"),
     person("Javier", "González Hernández", role = "aut",
-    email = "javigzz@yahoo.es"),
+    email = "javier.gon@protonmail.com"),
     person("Luciano", "Fabris Sgarbi", role = "aut",
     email = "luciano.f.sgarbi@gmail.com"))
 Maintainer: Sara Varela <svarela@paleobiogeography.org>
