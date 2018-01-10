@@ -26,7 +26,7 @@
 
 .extract_response_body<-function(response){
 	
-	sp<-strsplit(response, '\r\n\r\n')[[1]]
+	sp<-strsplit(response, '\r\n\r\n', fixed=TRUE)[[1]]
 	header<-sp[[1]]
 	status <- substring(header, 10, 12)
   
