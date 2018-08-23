@@ -77,7 +77,7 @@
     if (first_line) {
       df<- as.data.frame(reg)
     } else {
-      df<- smartbind(df, reg)
+      df<- smartbind(df, as.data.frame(reg))
     }
     
     first_line <- FALSE
