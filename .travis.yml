@@ -2,6 +2,23 @@ language: r
 sudo: false
 cache: packages
 
+r_github_packages:
+  - r-lib/covr
+
+# The script phase is overridden in order to run the tests outside the 'CRAN check'. This is motivated by the majority
+# of the tests depending on performing actual calls to the PaleobioDB API.
+# Tests of functions not exposed, which requires sourcing the files
+script:
+  - |
+    R CMD build .
+    R CMD check paleobioDB*tar.gz --as-cran --no-tests
+    R CMD INSTALL paleobioDB*tar.gz
+    Rscript -e 'library(testthat); library(paleobioDB); test_dir("tests/testthat")'
+    cd build && Rscript test-internal-functions.R && cd ..
+
+after_success:
+  - Rscript -e 'covr::codecov(token = "9b1bd09b-9035-4144-8529-8fec93ceff7f")'
+
 notifications:
   email:
     on_success: change

@@ -98,6 +98,9 @@ pbdb_occurrence<-function(id, ...){
 #' Documentation for all the parameters is available 
 #' at \url{http://paleobiodb.org/data1.1/occs/list}. We describe the most common
 #' filters that paleontologists and ecologists might use in the parameter list above.
+#'
+#' Be aware that depending on the query, some columns may not be returned by the API
+#' if those are empty across all the rows.
 #' 
 #' @param ... arguments passed to the API. See all available arguments in
 #'   \url{http://paleobiodb.org/data1.1/occs/list}

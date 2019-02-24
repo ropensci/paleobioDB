@@ -20,7 +20,7 @@ test_that("pbdb_temp_range output is a dataframe, and the names are characters",
   response<-  pbdb_temp_range (data, rank="species", do.plot=F)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
-  expect_more_than(nrow(response), 0)
+  expect_gt(nrow(response), 0)
 })
 
 
@@ -32,7 +32,7 @@ test_that("pbdb_richness output is a dataframe, and the names are characters", {
                              temporal_extent=c(0,3), do.plot=F)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
-  expect_more_than (nrow(response), 0)
+  expect_gt (nrow(response), 0)
 })
 
 context("pbdb_orig_ext")
@@ -42,7 +42,7 @@ test_that("pbdb_orig_ext output is a dataframe, and the names are characters", {
                              , do.plot=F,temporal_extent=c(0,10))
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
-  expect_more_than(nrow(response), 0)
+  expect_gt(nrow(response), 0)
  
 })
 

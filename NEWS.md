@@ -1,3 +1,18 @@
+paleobioDB 0.6.0
+================
+
+MINOR IMPROVEMENTS
+
+* Integrates codecov
+* Adds tests execution to travis. Tests are not part of the CRAN check for this
+package since they rely on calling to the PaleobioDB API.
+* Improves error reporting in pbdb_temp_range. [issue 28](https://github.com/ropensci/paleobioDB/issues/28)
+
+BUG FIXES
+
+* Fix error in pbdb_occurrences under R 3.5.
+
+
 paleobioDB 0.5.0
 ===============
 
