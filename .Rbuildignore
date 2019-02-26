@@ -5,5 +5,4 @@ paleobioDB-Ex.R
 .gitignore
 .git
 ^\.travis\.yml$
-figure
 NEWS.md
