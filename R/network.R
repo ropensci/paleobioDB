@@ -4,15 +4,16 @@
 #'
 #' @param uri Public internet address of the data
 #' @return dataframe with rows of data
+#' @param dataframe_factory function used to transform the rows of data into dataframe rows
 #' @examples \dontrun{
 #' .get_data_from_uri("http://api.example.com/ecologydata")
 #' }
 
-.get_data_from_uri<-function(uri){
+.get_data_from_uri<-function(uri, dataframe_factory = as.data.frame){
 	response <- RCurl::getURL(uri, header = TRUE)
 	raw_data <- .extract_response_body(response)
-	df<-.parse_raw_data(raw_data)  
-  df
+	df <- .parse_raw_data(raw_data, dataframe_factory)
+	df
 }
 
 
@@ -41,19 +42,20 @@
 	body
 }
 
+
 #' .parse_raw_data
-#' 
+#'
 #' Parse raw json string as a dataframe
-#' 
+#'
 #' @param raw_data json encoded data
+#' @param dataframe_factory function used to transform the rows of data into dataframe rows
 #' @return dataframe
-#' 
+#'
 
-.parse_raw_data<-function(raw_data){
-
-	data_list <- fromJSON(raw_data)
-	df <- .make_data_frame(data_list[["records"]])
-	df	
+.parse_raw_data <- function(raw_data, dataframe_factory = as.data.frame){
+    data_list <- fromJSON(raw_data)
+    df <- .make_data_frame(data_list[["records"]], dataframe_factory)
+    df
 }
 
 
@@ -62,10 +64,11 @@
 #' Makes a dataframe from a list of lists
 #'
 #' @param reg_list data rows as a list of lists
+#' @param dataframe_factory function used to transform the rows of data into dataframe rows
 #' @return dataframe
 #'
 
-.make_data_frame<-function(reg_list){
+.make_data_frame<-function(reg_list, dataframe_factory){
   
   reg_count <- length(reg_list)
   first_line <- TRUE
@@ -75,9 +78,9 @@
     reg <- lapply(reg, .collapse_array_columns_map)
 
     if (first_line) {
-      df<- as.data.frame(reg)
+      df<- dataframe_factory(reg)
     } else {
-      df<- smartbind(df, as.data.frame(reg))
+      df<- smartbind(df, dataframe_factory(reg))
     }
     
     first_line <- FALSE

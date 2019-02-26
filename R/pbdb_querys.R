@@ -11,18 +11,17 @@
 #' This endpoint must have been previously configured
 #' @param query List of filter parameters for the api. The values provided to the parameters
 #' may be a single string or a list of strings.
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return dataframe
 #' @examples \dontrun{
 #' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "phylo", "ident")))
 #' }
 #' 
 
-.pbdb_query<-function(endpoint, query = list()){
+.pbdb_query<-function(endpoint, query = list(), df_factory = as.data.frame){
   query <- lapply(query, .implode_to_string)
   uri <- .build_uri(endpoint, query = query)
-
-  df <- .get_data_from_uri(uri)
-
+  df <- .get_data_from_uri(uri, df_factory)
   df
 }
 
@@ -74,6 +73,7 @@
 #'    \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'      default variables have short 3-letter names)
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with a single occurrence 
 #' 
 #' @export 
@@ -83,10 +83,9 @@
 #' pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
 #' }
 
-pbdb_occurrence<-function(id, ...){
+pbdb_occurrence<-function(id, ..., df_factory = as.data.frame){
   l<-list(...)
-  # todo: merge lists properly  
-  .pbdb_query('occs/single', query = c(list(id = id), l))
+  .pbdb_query('occs/single', query = c(list(id = id), l), df_factory = df_factory)
 }
 
 
@@ -137,6 +136,7 @@ pbdb_occurrence<-function(id, ...){
 #'       location falls within the specified continent(s). 
 #'     \item \emph{show}: to show extra variables (e.g. coords, phylo, ident)
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with the species occurrences 
 #' 
 #' @export 
@@ -150,10 +150,10 @@ pbdb_occurrence<-function(id, ...){
 #' }
 
 
-pbdb_occurrences<-function(...){
+pbdb_occurrences<-function(..., df_factory = as.data.frame){
 
   l<-list(...)
-	.pbdb_query('occs/list', query = l)
+	.pbdb_query('occs/list', query = l, df_factory = df_factory)
 
 }
 
@@ -181,6 +181,7 @@ pbdb_occurrences<-function(...){
 #'       with .asc or .desc. Accepted values are: author, year, pubtitle, created,
 #'       modified, rank.
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with the information about the references 
 #' that match the query
 #' 
@@ -191,10 +192,10 @@ pbdb_occurrences<-function(...){
 #'}
 
 
-pbdb_ref_occurrences<-function(...){
+pbdb_ref_occurrences<-function(..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('occs/refs', query = l)
+  .pbdb_query('occs/refs', query = l, df_factory = df_factory)
   
 }
 
@@ -218,7 +219,7 @@ pbdb_ref_occurrences<-function(...){
 #'     \item \emph{show}: show extra variables
 #'     \item ...
 #'   }
-#'
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with a single occurrence 
 #' 
 #' @export 
@@ -227,12 +228,9 @@ pbdb_ref_occurrences<-function(...){
 #' 
 #'}
 
-
-pbdb_collection<-function(id, ...){
+pbdb_collection<-function(id, ..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('colls/single', query = c(list(id = id), l))
+  .pbdb_query('colls/single', query = c(list(id = id), l), df_factory = df_factory)
 }
 
 #'pbdb_collections
@@ -255,10 +253,10 @@ pbdb_collection<-function(id, ...){
 #'}
 
 
-pbdb_collections<-function(...){
+pbdb_collections<-function(..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('colls/list', query = l)
+  .pbdb_query('colls/list', query = l, df_factory = df_factory)
   
 }
 
@@ -278,6 +276,7 @@ pbdb_collections<-function(...){
 #'available in http://paleobiodb.org/data1.1/colls/summary
 #' go to \code{\link{pbdb_occurrences}} to see an explanation about 
 #' the main filtering parameters 
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' 
 #' @return a dataframe with the collections that match the query
 #' 
@@ -288,10 +287,10 @@ pbdb_collections<-function(...){
 #'}
 
 
-pbdb_collections_geo<-function(...){
+pbdb_collections_geo<-function(..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('colls/summary', query = l)
+  .pbdb_query('colls/summary', query = l, df_factory = df_factory)
   
 }
 
@@ -310,6 +309,7 @@ pbdb_collections_geo<-function(...){
 #'      The \% and _ characters may be used as wildcards.
 #'    \item ...
 #'  }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with information from a single taxon
 #' 
 #' @export 
@@ -320,11 +320,9 @@ pbdb_collections_geo<-function(...){
 #'}
 
 
-pbdb_taxon<-function(...){
+pbdb_taxon<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('taxa/single', query = l)
+  .pbdb_query('taxa/single', query = l, df_factory = df_factory)
 }
 
 
@@ -360,7 +358,7 @@ pbdb_taxon<-function(...){
 #'      that contains all of the base taxa.
 #'    \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 #'  }
-
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with information from a list of taxa
 #' 
 #' @export 
@@ -374,11 +372,9 @@ pbdb_taxon<-function(...){
 #'}
 
 
-pbdb_taxa<-function(...){
+pbdb_taxa<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('taxa/list', query = l)
+  .pbdb_query('taxa/list', query = l, df_factory = df_factory)
 }
 
 
@@ -398,7 +394,8 @@ pbdb_taxa<-function(...){
 #'     \item \emph{limit}: set the limit to the number of matches
 #'     \item ...
 #'   }
-
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with information about the matches 
 #' (taxon rank and number of occurrences in the database)
 #' 
@@ -408,11 +405,9 @@ pbdb_taxa<-function(...){
 #'}
 
 
-pbdb_taxa_auto<-function(...){
+pbdb_taxa_auto<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('taxa/auto', query = l)
+  .pbdb_query('taxa/auto', query = l, df_factory = df_factory)
 }
 
 
@@ -431,7 +426,8 @@ pbdb_taxa_auto<-function(...){
 #'    \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'      default variables have short 3-letter names)
 #'  }
-
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with information from a single 
 #' temporal interval
 #' 
@@ -440,11 +436,9 @@ pbdb_taxa_auto<-function(...){
 #' pbdb_interval (id=1, vocab="pbdb")
 #'}
 
-pbdb_interval<-function(id, ...){
+pbdb_interval<-function(id, ..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('intervals/single', query = c(list(id = id), l))
+  .pbdb_query('intervals/single', query = c(list(id = id), l), df_factory = df_factory)
 }
 
 
@@ -469,8 +463,9 @@ pbdb_interval<-function(id, ...){
 #'      default variables have short 3-letter names)
 #'    \item ...
 #'  }
-
-#'@return a dataframe with information from several temporal intervals
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
+#' @return a dataframe with information from several temporal intervals
 #' 
 #' @export 
 #' @examples \dontrun{
@@ -478,11 +473,9 @@ pbdb_interval<-function(id, ...){
 #'}
  
 
-pbdb_intervals<-function(...){
+pbdb_intervals<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('intervals/list', query = l)
+  .pbdb_query('intervals/list', query = l, df_factory = df_factory)
 }
 
 
@@ -501,6 +494,8 @@ pbdb_intervals<-function(...){
 #'       default variables have short 3-letter names)
 #'     \item ...
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with information from a single scale
 #' 
 #' @export 
@@ -509,11 +504,9 @@ pbdb_intervals<-function(...){
 #' }
  
 
-pbdb_scale<-function(id, ...){
+pbdb_scale<-function(id, ..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('scales/single', query = c(list(id = id), l))
+  .pbdb_query('scales/single', query = c(list(id = id), l), df_factory = df_factory)
 }
 
 #' pbdb_scales
@@ -528,7 +521,8 @@ pbdb_scale<-function(id, ...){
 #'       default variables have short 3-letter names)
 #'     \item ...
 #'   }
-
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with information from the selected scales
 #'  
 #' @export 
@@ -539,11 +533,9 @@ pbdb_scale<-function(id, ...){
 #' }
 #' 
 
-pbdb_scales<-function(...){
+pbdb_scales<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('scales/list', query = l)
+  .pbdb_query('scales/list', query = l, df_factory = df_factory)
 }
 
 
@@ -580,6 +572,8 @@ pbdb_scales<-function(...){
 #'       default variables have short 3-letter names)
 #'     \item ...
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with information from the selected strata
 #' 
 #' @export 
@@ -588,11 +582,9 @@ pbdb_scales<-function(...){
 #'}
 
 
-pbdb_strata<-function(...){
+pbdb_strata<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('strata/list', query = l)
+  .pbdb_query('strata/list', query = l, df_factory = df_factory)
 }
 
 
@@ -631,6 +623,8 @@ pbdb_strata<-function(...){
 #'       default variables have short 3-letter names)
 #'     \item ...
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with information from the strata that matches our letters.
 #' 
 #' @export 
@@ -639,11 +633,9 @@ pbdb_strata<-function(...){
 #'}
 
 
-pbdb_strata_auto<-function(...){
+pbdb_strata_auto<-function(..., df_factory = as.data.frame){
   l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('strata/auto', query = l)
+  .pbdb_query('strata/auto', query = l, df_factory = df_factory)
 }
 
 
@@ -663,6 +655,8 @@ pbdb_strata_auto<-function(...){
 #'       default variables have short 3-letter names)
 #'     \item ...
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with a single reference 
 #' @export 
 #' @examples \dontrun{
@@ -670,10 +664,10 @@ pbdb_strata_auto<-function(...){
 #' }
 
  
-pbdb_reference<-function(id, ...){
+pbdb_reference<-function(id, ..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('refs/single', query = c(list(id = id), l))
+  .pbdb_query('refs/single', query = c(list(id = id), l), df_factory = df_factory)
   
 }
 
@@ -700,6 +694,7 @@ pbdb_reference<-function(id, ...){
 #'       modified, rank.
 #'     \item ...
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
 #' @return a dataframe with the information about the references that match the query
 #'  
 #' @export 
@@ -708,10 +703,10 @@ pbdb_reference<-function(id, ...){
 #' }
 
 
-pbdb_references<-function(...){
+pbdb_references<-function(..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('refs/list', query = l)
+  .pbdb_query('refs/list', query = l, df_factory = df_factory)
   
 }
 
@@ -737,6 +732,8 @@ pbdb_references<-function(...){
 #'       modified, rank.
 #'     \item ...
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with the information about the references that match the query
 #' 
 #' @export 
@@ -745,10 +742,10 @@ pbdb_references<-function(...){
 #'}
 
 
-pbdb_ref_collections <-function(...){
+pbdb_ref_collections <-function(..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('colls/refs', query = l)
+  .pbdb_query('colls/refs', query = l, df_factory = df_factory)
   
 }
 
@@ -782,6 +779,8 @@ pbdb_ref_collections <-function(...){
 #'       that contains all of the base taxa.
 #'     \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 #'   }
+#' @param df_factory function used to transform the underlying rows of data into dataframe rows
+#' 
 #' @return a dataframe with references from a list of taxa
 #'  
 #' @export 
@@ -790,9 +789,9 @@ pbdb_ref_collections <-function(...){
 #' }
 
 
-pbdb_ref_taxa <-function(...){
+pbdb_ref_taxa <-function(..., df_factory = as.data.frame){
   
   l<-list(...)
-  .pbdb_query('taxa/refs', query = l)
+  .pbdb_query('taxa/refs', query = l, df_factory = df_factory)
   
 }
