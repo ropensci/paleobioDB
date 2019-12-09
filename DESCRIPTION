@@ -17,7 +17,7 @@ Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     email = "luciano.f.sgarbi@gmail.com"))
 Maintainer: Sara Varela <svarela@paleobiogeography.org>
 BugReports: https://github.com/ropensci/paleobioDB/issues
-URL: https://github.com/ropensci/paleobioDB
+URL: https://docs.ropensci.org/paleobioDB, https://github.com/ropensci/paleobioDB
 LazyData: true
 Imports:
     rjson,
