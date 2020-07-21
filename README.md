@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ropensci/paleobioDB.svg)](https://travis-ci.org/ropensci/paleobioDB)
+[![Build Status](https://travis-ci.org/ropensci/paleobioDB.svg?branch=master)](https://travis-ci.org/ropensci/paleobioDB)
 [![codecov.io](https://codecov.io/github/ropensci/paleobioDB/coverage.svg?branch=master)](https://codecov.io/github/ropensci/paleobioDB?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/metacran/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/paleobioDB)](https://cran.r-project.org/web/packages/paleobioDB/)
@@ -298,7 +298,7 @@ A BibTeX entry for LaTeX users is
     title = {paleobioDB: an R-package for downloading, visualizing and processing data from the Paleobiology Database},
     author = {{Sara Varela} and {Javier Gonzalez-Hernandez} and {Luciano Fabris Sgarbi}},
     year = {2014},
-    note = {R package version 0.5},
+    note = {R package version 0.7},
     base = {https://github.com/ropensci/paleobioDB},
   }
 ```

@@ -13,8 +13,9 @@ script:
     R CMD build .
     R CMD check paleobioDB*tar.gz --as-cran --no-tests
     R CMD INSTALL paleobioDB*tar.gz
-    Rscript -e 'library(testthat); library(paleobioDB); test_dir("tests/testthat")'
-    cd build && Rscript test-internal-functions.R && cd ..
+    Rscript -e 'library(testthat); library(paleobioDB); test_dir("tests/testthat", stop_on_failure = TRUE)'
+    if [ $? -ne 0 ]; then exit 1; fi
+    cd build && Rscript test-internal-functions.R
 
 after_success:
   - Rscript -e 'covr::codecov(token = "9b1bd09b-9035-4144-8529-8fec93ceff7f")'

@@ -99,7 +99,7 @@
 
 # Initialize configuration of package API
 .pbdb_setup<-function(){
-	.set_api_base('http://paleobiodb.org/data1.1')
+	.set_api_base('https://paleobiodb.org/data1.1')
 	.pbdb_set_up_endpoints()
 	.package_cache_set('api_format', 'json')
 }
