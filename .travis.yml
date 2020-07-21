@@ -15,6 +15,7 @@ script:
     R CMD INSTALL paleobioDB*tar.gz
     Rscript -e 'library(testthat); library(paleobioDB); test_dir("tests/testthat")'
     cd build && Rscript test-internal-functions.R && cd ..
+  - [[ $(grep "WARNING" "paleobioDB.Rcheck/00check.log" | wc -l) -gt 0 ]] && exit 1
 
 after_success:
   - Rscript -e 'covr::codecov(token = "9b1bd09b-9035-4144-8529-8fec93ceff7f")'
