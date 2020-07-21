@@ -5,6 +5,8 @@ data<-  pbdb_occurrences (limit="100", vocab="pbdb",
                           base_name="Canidae",  interval="Quaternary", 
                           show=c("phylo", "ident"))
 
+# TODO: replace `data` in all this tests for a mocked response of `pbdb_occurrences` (make tests independent of API)
+
 context("pbdb_temporal_resolution")
 test_that("pbdb_temporal_resolution output is a dataframe, and the names are characters", {
  
@@ -45,4 +47,3 @@ test_that("pbdb_orig_ext output is a dataframe, and the names are characters", {
   expect_gt(nrow(response), 0)
  
 })
-

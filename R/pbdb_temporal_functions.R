@@ -17,13 +17,13 @@
 
 pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
   if('eag' %in% colnames(data)) {
-    tr<- list (summary=summary (data$eag - data$lag), 
-               temporal_resolution=(data$eag - data$lag))
+    diff <- .numeric_age(data$eag) - .numeric_age(data$lag)
+    tr<- list (summary=summary (diff), temporal_resolution=diff)
   }
   
   if('early_age' %in% colnames(data)) {
-    tr<- list (summary=summary (data$early_age - data$late_age), 
-               temporal_resolution=(data$early_age - data$late_age))
+    diff <- .numeric_age(data$early_age) - .numeric_age(data$late_age)
+    tr<- list (summary=summary (diff), temporal_resolution=diff)
     
   }
   
@@ -96,56 +96,51 @@ pbdb_temp_range<- function (data, rank,
 
 .extract_temporal_range <- function (data, rank) {
 
-  if('taxon_rank' %in% colnames(data) && 'genus_name' %in% colnames(data)) {
-    if (rank=="species"){
-      selection<- data [data$matched_rank==rank, ]
-      max_sp<- tapply(selection$early_age, as.character (selection$matched_name), max)
-      min_sp<- tapply(selection$late_age, as.character (selection$matched_name), min)
-    } else if (rank=="genus"){
-      max_sp<- tapply(data$early_age, as.character (data$genus), max)
-      min_sp<- tapply(data$late_age, as.character (data$genus), min)
-    } else if (rank=="family"){
-      max_sp<- tapply(data$early_age, as.character (data$family), max)
-      min_sp<- tapply(data$late_age, as.character (data$family), min)
-    } else if (rank=="order"){
-      max_sp<- tapply(data$early_age, as.character (data$order), max)
-      min_sp<- tapply(data$late_age, as.character (data$order), min)
-    } else if (rank=="class"){
-      max_sp<- tapply(data$early_age, as.character (data$class), max)
-      min_sp<- tapply(data$late_age, as.character (data$class), min)
-    } else if (rank=="phylum"){
-      max_sp<- tapply(data$early_age, as.character (data$phylum), max)
-      min_sp<- tapply(data$late_age, as.character (data$phylum), min)
-    } else {
-      stop(paste("Unknown rank", rank))
-    }
-
-  } else if ('rnk' %in% colnames(data) && 'idt' %in% colnames(data)) {
-
-    if (rank=="species"){
-      selection<- data [data$mra==3, ]
-      max_sp<- tapply(selection$eag, as.character (selection$mna), max)
-      min_sp<- tapply(selection$lag, as.character (selection$mna), min)
-    } else if (rank=="genus"){
-      max_sp<- tapply(data$eag,as.character (data$gnl), max)
-      min_sp<- tapply(data$lag, as.character (data$gnl), min)
-    } else if (rank=="family"){
-      max_sp<- tapply(data$eag, as.character (data$fml), max)
-      min_sp<- tapply(data$lag, as.character (data$fml), min)
-    } else if (rank=="order"){
-      max_sp<- tapply(data$eag, as.character (data$odl), max)
-      min_sp<- tapply(data$lag, as.character (data$odl), min)
-    } else if (rank=="class"){
-      max_sp<- tapply(data$eag, as.character (data$cll), max)
-      min_sp<- tapply(data$lag, as.character (data$cll), min)
-    } else if (rank=="phylum"){
-      max_sp<- tapply(data$eag, as.character (data$phl), max)
-      min_sp<- tapply(data$lag, as.character (data$phl), min)
-    } else {
-      stop(paste("Unknown rank", rank))
-    }
+  if ('taxon_rank' %in% colnames(data)) {
+    long_names <- TRUE
+  } else if ('rnk' %in% colnames(data)) {
+    long_names <- FALSE
   } else {
     stop("Cannot extract temporal range from data. Please add show=c('phylo', 'ident') to your pbdb_occurrences query")
+  }
+  
+  early_age_col <- if (long_names) 'early_age' else 'eag'
+  late_age_col <- if (long_names) 'late_age' else 'lag'
+  matched_rank_col <- if (long_names) 'matched_rank' else 'mra'
+  matched_name_col <- if (long_names) 'matched_name' else 'mna'
+  genus_col <- if (long_names) 'genus' else 'gnl'
+  family_col <- if (long_names) 'family' else 'fml'
+  order_col <- if (long_names) 'order' else 'odl'
+  class_col <- if (long_names) 'class' else 'cll'
+  phylum_col <- if (long_names) 'phylum' else 'phl'
+  
+  if (rank=="species"){
+    selection<- data [data[, matched_rank_col]==rank, ]
+    max_sp<- tapply(.numeric_age(selection[, early_age_col]), as.character (selection[, matched_name_col]), max)
+    min_sp<- tapply(.numeric_age(selection[, late_age_col]), as.character (selection[, matched_name_col]), min)
+  } else {
+    
+    early_age = .numeric_age(data[, early_age_col])
+    late_age = .numeric_age(data[, late_age_col])
+    
+    if (rank=="genus"){
+      max_sp<- tapply(early_age, as.character (data[, genus_col]), max)
+      min_sp<- tapply(late_age, as.character (data[, genus_col]), min)
+    } else if (rank=="family"){
+      max_sp<- tapply(early_age, as.character (data[, family_col]), max)
+      min_sp<- tapply(late_age, as.character (data[, family_col]), min)
+    } else if (rank=="order"){
+      max_sp<- tapply(early_age, as.character (data[, order_col]), max)
+      min_sp<- tapply(late_age, as.character (data[, order_col]), min)
+    } else if (rank=="class"){
+      max_sp<- tapply(early_age, as.character (data[, class_col]), max)
+      min_sp<- tapply(late_age, as.character (data[, class_col]), min)
+    } else if (rank=="phylum"){
+      max_sp<- tapply(early_age, as.character (data[, phylum_col]), max)
+      min_sp<- tapply(late_age, as.character (data[, phylum_col]), min)
+    } else {
+      stop(paste("Unknown rank", rank))
+    }
   }
 
   temporal_range<- data.frame (max_sp, min_sp)
@@ -154,6 +149,8 @@ pbdb_temp_range<- function (data, rank,
 
   return (temporal_range)
 }
+
+.numeric_age <- function (f) { as.numeric(as.character(f)) }
 
 #' pbdb_richness
 #' 

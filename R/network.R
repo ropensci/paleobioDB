@@ -34,7 +34,7 @@
 
 	if(status != '200'){
 		stop(sprintf('Error in API response. The server returned a status %s, which indicates that 
-			something went wrong with your request. \r\nIn order to debug the problem you may find
+			something went wrong with your request. In order to debug the problem you may find
 			usefull information in the following server response:\r\n%s', status, body))
 	}
 

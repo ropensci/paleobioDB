@@ -1,3 +1,16 @@
+paleobioDB 0.7.0
+================
+
+MINOR IMPROVEMENTS
+
+* Ensures travis fails on either API or internal tests failure
+
+BUG FIXES
+
+* Fix [issue 45](https://github.com/ropensci/paleobioDB/issues/45) about wrong API endpoint.
+* Fix errors in several functions in `rpbdb_temporal_functions.R`
+
+
 paleobioDB 0.6.0
 ================
 
