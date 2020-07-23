@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/ropensci/paleobioDB.svg?branch=master)](https://travis-ci.org/ropensci/paleobioDB)
 [![codecov.io](https://codecov.io/github/ropensci/paleobioDB/coverage.svg?branch=master)](https://codecov.io/github/ropensci/paleobioDB?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/metacran/cranlogs.app)
-[![cran version](https://www.r-pkg.org/badges/version/paleobioDB)](https://cran.r-project.org/web/packages/paleobioDB/)
+[![cran version](https://www.r-pkg.org/badges/version/paleobioDB)](https://CRAN.R-project.org/package=paleobioDB)
 
 
 paleobioDB
@@ -34,7 +34,7 @@ library(paleobioDB)
 
 **General overview**
 
-`paleobioDB` version 0.5 has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
+`paleobioDB` has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
 
 ## Download fossil occurrences from the PaleobioDB
 
@@ -278,6 +278,40 @@ Returns a plot and a dataframe with a main summary of the temporal resolution of
   
 ```
 ![plot tempres](man/figure/pbdb_temporal_resolution.png)
+
+## Docker
+
+We are including a Dockerfile to ease working on the package as it fulfills all the system dependencies of the
+package.
+
+How to load the package with Docker:
+
+1. Install Docker. Reference here: https://docs.docker.com/get-started
+2. Build the *docker image*: from the root folder of this repository. Type:
+```coffee
+docker build -t rpbdb Docker
+```
+This command will create a *docker image* in your system based on some of the [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse/) images.
+You can see the new image with ```docker image ls```.
+3. Start a container for this image. Type the following command picking some *<password>* of your choice.
+```coffee
+docker run -d --rm -p 8787:8787 -e PASSWORD=<password> -v $PWD:/home/rstudio rpbdb
+```
+This will start a container with access to your current folder where all the code of the package is.
+Inside the container, the code will be located in */home/rstudio*. It also exposes the port 8787 of the container so you may access
+to the RStudio web application which is bundled in the *rocker* base image.
+4. Navigate to http://localhost:8787. Enter with user=*rstudio* and the password you used in the command above.
+5. You may enter to the container via console with:
+```coffeef
+docker exec -ti ravis bash
+```
+Either from RStudio or from within the container you can install the package out of the code with:
+```coffee
+cd /home/rstudio
+R
+library(devtools)
+install.packages(".", repos=NULL, type = "source")
+```
 
 ## Meta
 

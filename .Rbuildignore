@@ -6,3 +6,6 @@ paleobioDB-Ex.R
 .git
 ^\.travis\.yml$
 NEWS.md
+build
+Docker
+.*\.tar\.gz$
