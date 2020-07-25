@@ -7,6 +7,7 @@ pbdb.Rproj
 paleobioDB.Rproj
 .Rproj
 paleobioDB-Ex.R
+paleobioDB.Rcheck
 Rplots.pdf
 core
-paleobioDB_*.tar.gz
+*.tar.gz
