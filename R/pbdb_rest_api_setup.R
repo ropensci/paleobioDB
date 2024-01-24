@@ -1,4 +1,4 @@
-# Functions and variables for setting up and managing the comunication 
+# Functions and variables for setting up and managing the communication
 # with the paleobiodb.org REST API
 
 #' .pbdb_uri_builder
