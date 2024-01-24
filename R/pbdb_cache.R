@@ -5,6 +5,7 @@
 #' .private_pk_cache
 #' 
 #' Environment for the runtime variables of the package
+#' @noRd
 
 .private_pk_cache <- new.env()
 
@@ -24,7 +25,7 @@
 #' })
 #' }
 #' @return value of the cached variable
-#'
+#' @noRd
 
 .package_cache_return_or_setup<-function(varname, setupfun)
 {
@@ -54,7 +55,7 @@
 #' 
 #' @param varname Name of the variable
 #' @return boolean 
-#'
+#' @noRd
 
 .package_cache_has<-function(varname)
 {
@@ -75,7 +76,7 @@
 #' 
 #' @param varname Name of the variable
 #' @return value of the variable
-#'
+#' @noRd
 
 .package_cache_get<-function(varname)
 {
@@ -117,9 +118,9 @@
 }
 
 #' .package_cache_empty
-#' 
-#' Empty the cache
 #'
+#' Empty the cache
+#' @noRd
 
 .package_cache_empty<-function()
 {

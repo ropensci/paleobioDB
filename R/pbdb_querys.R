@@ -15,7 +15,7 @@
 #' @examples \dontrun{
 #' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "phylo", "ident")))
 #' }
-#' 
+#' @noRd
 
 .pbdb_query<-function(endpoint, query = list()){
   query <- lapply(query, .implode_to_string)
@@ -36,6 +36,7 @@
 #' @examples \dontrun{
 #' .implode_to_string(list("categoryA","categoryB","categoryC"))
 #' }
+#' @noRd
 
 .implode_to_string<-function(params){
   

@@ -8,6 +8,7 @@
 #' @param api_base_url Base url for the API
 #' @param config Configuration of the endpoint
 #' @param querystring compiled querystring
+#' @noRd
 
 .pbdb_uri_builder <- function(api_base_url, config, querystring = ''){
 	
@@ -27,7 +28,7 @@
 #' .pbdb_set_up_endpoints
 #'
 #' This function registers all the endpoints available from the paleobiodb.org REST API
-#'
+#' @noRd
 .pbdb_set_up_endpoints<-function(){
 
 	# single occurrencies
