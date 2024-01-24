@@ -1,16 +1,13 @@
-#' @include rest_api_tools.R
-
 # Functions and variables for setting up and managing the comunication 
 # with the paleobiodb.org REST API
 
 #' .pbdb_uri_builder
-#' 
+#'
 #' Function that generates the URIs for the paleobiodb.org API
-#' 
-#' @param api_base_url Base url for the 
+#'
+#' @param api_base_url Base url for the API
 #' @param config Configuration of the endpoint
 #' @param querystring compiled querystring
-#'
 
 .pbdb_uri_builder <- function(api_base_url, config, querystring = ''){
 	

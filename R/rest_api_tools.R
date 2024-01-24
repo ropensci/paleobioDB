@@ -14,7 +14,8 @@
 #' ould be the api_base
 #' @param ... Custom parameters passed to the uri_builder callback when generating the URIs
 #' @param uri_builder Function that generates the URIs to the API
-#' 
+#' @param query_params Query parameters (currently unused)
+#' @noRd
 .setup_api_endpoint<-function(name, endpoint_base, ..., uri_builder = .default_uri_builder, 
 	query_params = list()){
 
@@ -103,9 +104,10 @@
 }
 
 #' .set_api_base
-#' 
+#'
 #' Wrapper to set up the base address of the api
-#' 
+#' @param api_base the API base URL
+#' @noRd
 
 .set_api_base<-function(api_base){
 	.package_cache_set('api_base', api_base)

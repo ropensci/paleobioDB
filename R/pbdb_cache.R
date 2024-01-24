@@ -83,16 +83,18 @@
 }
 
 #' .package_cache_set
-#' 
+#'
 #' Sets a variable value in cache
-#' 
+#'
 #' @usage .package_cache_set(varname, value)
-#' 
+#'
 #' @param varname Name of the variable
+#' @param value the value to be assigned to the variable
 #' @return value of the variable
 #' @examples \dontrun{
 #' .package_cache_set("specieslist", list("dog", "cat", "chupacabra"))
 #' }
+#' @noRd
 
 .package_cache_set<-function(varname, value)
 {
@@ -104,6 +106,9 @@
 #' Delete a variable from cache environment
 #' 
 #' @usage .package_cache_delete(varname)
+#'
+#' @param varname the variable to delete
+#' @noRd
 .package_cache_delete<-function(varname)
 {
 	assign(varname, NULL, envir = .private_pk_cache)

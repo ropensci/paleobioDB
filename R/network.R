@@ -124,12 +124,14 @@
 
 
 #' .collapse_array_columns_map
-#' 
-#' Maps multivalue elements to comma separated strings 
 #'
-#' @param reg_list data rows as a list of lists
-#' @return dataframe
+#' Maps multivalue elements to semicolon separated strings
 #'
+#' @param element a vector representing some data field
+#' @return a string with the elements of the provided vector separated
+#'   by semicolons if it has more than one element or the vector as it
+#'   was passed to the function if it has length one
+#' @noRd
 
 .collapse_array_columns_map<- function (element){  
   if (length (element) > 1){
