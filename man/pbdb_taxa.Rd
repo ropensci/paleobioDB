@@ -51,4 +51,3 @@ pbdb_taxa (id =c(10, 11), vocab="pbdb",
 show=c("attr", "app", "size", "nav"), rel="common_ancestor")
 }
 }
-

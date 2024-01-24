@@ -34,4 +34,3 @@ Returns information about multiple references, selected according to the paramet
   pbdb_references (author= "Polly")
 }
 }
-

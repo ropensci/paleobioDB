@@ -22,12 +22,11 @@ LazyData: true
 Imports:
     rjson,
     gtools,
+    maps,
     RCurl,
     plyr,
-    scales
-Depends:
-    raster,
-    maps
+    scales,
+    terra
 Suggests:
     roxygen2,
     testthat
@@ -41,4 +40,4 @@ Collate:
     'pbdb_rest_api_setup.R'
     'pbdb_taxonomic_functions.R'
     'pbdb_temporal_functions.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 7.2.3

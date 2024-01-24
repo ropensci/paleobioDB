@@ -24,4 +24,3 @@ data<- pbdb_occurrences (taxon_name= "Canidae", interval= "Quaternary")
 pbdb_temporal_resolution (data)
 }
 }
-

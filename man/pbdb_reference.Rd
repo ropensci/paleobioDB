@@ -30,4 +30,3 @@ Go to \code{\link{pbdb_occurrences}} to see an explanation about the main filter
 pbdb_collection (id=1003, vocab="pbdb", show="loc")
 }
 }
-

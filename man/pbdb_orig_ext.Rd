@@ -49,4 +49,3 @@ pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10),
 res=1, orig_ext=2) 
 }
 }
-

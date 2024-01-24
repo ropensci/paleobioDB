@@ -35,4 +35,3 @@ Returns information about the references from which the selected collection data
   pbdb_ref_collections (id=1)
 }
 }
-

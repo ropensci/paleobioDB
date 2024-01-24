@@ -39,10 +39,14 @@
 #'\url{http://paleobiodb.org}
 #' }
 #' 
-#' @import rjson gtools RCurl plyr raster maps scales 
+#' @import rjson gtools RCurl plyr scales
 #' @importFrom grDevices colorRampPalette
-#' @importFrom graphics abline axis legend mtext par plot.new plot.window points polygon rect segments title
+#' @importFrom graphics abline axis barplot hist legend mtext par
+#'   plot.new plot.window points polygon rect segments text title
+#' @importFrom maps map
 #' @importFrom utils URLencode
+#' @importFrom terra ext rast rasterize res res<- values values<-
+#' @importMethodsFrom terra plot
 #' 
 #'@examples \dontrun{
 #'

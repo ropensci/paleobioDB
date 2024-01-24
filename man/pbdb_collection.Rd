@@ -35,4 +35,3 @@ pbdb_collection (id=1003, vocab="pbdb", show="loc")
 
 }
 }
-

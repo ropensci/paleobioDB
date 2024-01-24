@@ -34,4 +34,3 @@ canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis",
 pbdb_temp_range (canis_quaternary, rank="species", names=FALSE)
 }
 }
-

@@ -31,4 +31,3 @@ Returns a list of names matching the given prefix or partial name.
 pbdb_taxa_auto (name="Cani", limit=10) 
 }
 }
-

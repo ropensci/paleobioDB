@@ -73,13 +73,6 @@ pbdb_map_richness (canidae, rank="species", res= 5)
 }
 
 }
-\author{
-Sara Varela \email{svarela@paleobiogeography.org}
-
-Javier Gonzalez \email{javigzz@yahoo.es}
-
-Luciano Fabris Sgarbi \email{luciano.f.sgarbi@gmail.com}
-}
 \references{
 Sara Varela, Javier Gonzalez-Hernandez,
 Luciano Fabris Sgarbi, Charles Marshall, Mark D. Uhen, 
@@ -92,5 +85,11 @@ data from the Paleobiology Database (under review)
 \url{http://paleobiodb.org}
 }
 }
-\keyword{package}
+\author{
+Sara Varela \email{svarela@paleobiogeography.org}
 
+Javier Gonzalez \email{javigzz@yahoo.es}
+
+Luciano Fabris Sgarbi \email{luciano.f.sgarbi@gmail.com}
+}
+\keyword{package}

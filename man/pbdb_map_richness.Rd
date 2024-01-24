@@ -13,9 +13,9 @@ col.rich=c("light blue","blue"),...)
 
 \item{rank}{To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")}
 
-\item{do.plot}{Logical; \code{TRUE} the function returns a RasterLayer and a plot.}
+\item{do.plot}{Logical; \code{TRUE} the function returns a SpatRaster and a plot.}
 
-\item{res}{The resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}}}
+\item{res}{The resolution of the SpatRaster object (in decimal degrees). See: \code{\link{terra}}}
 
 \item{col.int}{The colour of the mainland}
 
@@ -26,11 +26,11 @@ col.rich=c("light blue","blue"),...)
 \item{...}{Others parameters. See \code{\link{par}} and \code{\link{map}}}
 }
 \value{
-A RasterLayer object and a plot with richness of species, genera, families, etc. per cell. This RasterLayer object have the resolution controlled by
+A SpatRaster object and a plot with richness of species, genera, families, etc. per cell. This SpatRaster object have the resolution controlled by
 the argument \code{res}. The default is \code{res=1}.
 }
 \description{
-Creates a RasterLayer object and a plot with richness of species, genera, families, etc. per cell.
+Creates a SpatRaster object and a plot with richness of species, genera, families, etc. per cell.
 }
 \details{
 \strong{CAUTION!} The argument \code{show = "coords"} in \code{\link{pbdb_occurrences}} function is required. 
@@ -51,4 +51,3 @@ pbdb_map_richness (data,res=8,rank="family",do.plot=F)
 \seealso{
 See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 }
-

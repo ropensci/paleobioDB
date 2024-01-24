@@ -29,4 +29,3 @@ Returns information about a single interval, selected by identifier.
 pbdb_interval (id=1, vocab="pbdb")
 }
 }
-

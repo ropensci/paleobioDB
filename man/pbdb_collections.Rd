@@ -24,4 +24,3 @@ according to the parameters you provide.
 pbdb_collections (base_name="Cetacea", interval="Miocene")
 }
 }
-

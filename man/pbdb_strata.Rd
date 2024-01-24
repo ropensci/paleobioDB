@@ -46,4 +46,3 @@ selected by name, rank, and/or geographic location.
 pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb") 
 }
 }
-

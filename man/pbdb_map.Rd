@@ -50,4 +50,3 @@ main="canis")
 \seealso{
 See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 }
-

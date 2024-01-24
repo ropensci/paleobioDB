@@ -47,4 +47,3 @@ and can be limited by geographic location if desired.
 pbdb_strata_auto (name= "Pin", vocab="pbdb") 
 }
 }
-

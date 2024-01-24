@@ -37,4 +37,3 @@ base_name="Canidae", show=c("phylo", "ident"))
 pbdb_richness (data, rank="species", res=1, temporal_extent=c(0,3))
 }
 }
-
