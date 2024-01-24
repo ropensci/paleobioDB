@@ -7,7 +7,7 @@ Encoding: UTF-8
 Type: Package
 License: GPL-2
 Title: Download and Process Data from the Paleobiology Database
-Version: 0.7.0
+Version: 0.7.0.9000
 Date: 2020-07-22
 Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     email = "svarela@paleobiogeography.org"),
