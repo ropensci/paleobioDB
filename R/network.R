@@ -85,6 +85,8 @@
     first_line <- FALSE
   }
   
+  df <- .convert_data_frame_columns(df)
+
   df_count <- nrow(df)
   
   if (reg_count != df_count) {
@@ -143,4 +145,31 @@
   }
   
   mapped
+}
+
+
+#' .convert_data_frame_columns
+#'
+#' Converts some columns (lng, lat) from character to numeric.  This
+#' conversion is needed because the paleobiodb API returns these
+#' fields as strings, but the map plotting functions in this package
+#' expect longitude and latitude to be numeric.
+#'
+#' @param df a data frame
+#' @return a data frame with its "lng" and "lat" columns converted to
+#'   numeric
+#'
+#' @noRd
+.convert_data_frame_columns <- function(df) {
+  column_conversion_funs <- c("lng" = as.numeric, "lat" = as.numeric)
+
+  columns_to_convert <- colnames(df)[
+    colnames(df) %in% names(column_conversion_funs)
+  ]
+
+  for (column in columns_to_convert) {
+    df[[column]] <- column_conversion_funs[[column]](df[[column]])
+  }
+
+  df
 }

@@ -1,3 +1,18 @@
+paleobioDB 0.7.0.9000
+=====================
+
+MINOR IMPROVEMENTS
+
+* Update to API version 1.2 (see
+  [issue 57](https://github.com/ropensci/paleobioDB/issues/57))
+
+BUG FIXES
+
+* Fix [issue 50](https://github.com/ropensci/paleobioDB/issues/50)
+  caused by latitude and longitude values being returned as strings by
+  the API.
+
+
 paleobioDB 0.7.0
 ================
 
