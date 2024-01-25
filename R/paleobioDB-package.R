@@ -16,7 +16,7 @@
 #' @aliases paleobioDB-package
 #' @docType package
 #' @title paleobioDB: An R-package for downloading, visualizing and processing data from the Paleobiology Database
-#' @author Sara Varela \email{svarela@@paleobiogeography.org}
+#' @author Sara Varela \email{sara.varela@@uvigo.gal}
 #' @author Javier Gonzalez \email{javigzz@@yahoo.es}
 #' @author Luciano Fabris Sgarbi \email{luciano.f.sgarbi@@gmail.com}
 #' @references Sara Varela, Javier Gonzalez-Hernandez,
