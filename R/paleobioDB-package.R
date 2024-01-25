@@ -6,7 +6,7 @@
 #'
 #'We programmed two different groups of functions. 
 #'First, we developed a set of general and flexible functions to wrap the 
-#'\href{http://paleobiodb.org/data1.1/}{PaleobioDB API}.
+#'\href{https://paleobiodb.org/data1.2/}{PaleobioDB API}.
 #'These functions connect R with each of the endpoints of the PaleobioDB API. 
 #'Second, based on these base functions, we programmed a second set of functions 
 #'intended to explore and visualize the fossil 
@@ -51,7 +51,7 @@
 #'@examples \dontrun{
 #'
 #'canidae<-  pbdb_occurrences (limit="all", base_name="canidae", 
-#'interval="Quaternary", show=c("coords", "phylo", "ident"))
+#'interval="Quaternary", show=c("coords", "classext", "ident"))
 #'
 #'## to explore the number of subtaxa
 #'pbdb_subtaxa (canidae)

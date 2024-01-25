@@ -9,7 +9,7 @@ pbdb_scales(...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/scales/list}. Eg:
+\url{https://paleobiodb.org/data1.2/scales/list}. Eg:
 \itemize{
   \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
     default variables have short 3-letter names)

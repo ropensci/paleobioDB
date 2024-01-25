@@ -8,7 +8,7 @@ pbdb_occurrences(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
-\url{http://paleobiodb.org/data1.1/occs/list}
+\url{https://paleobiodb.org/data1.2/occs/list}
 \itemize{
   \item \emph{limit}: sets limit to "all" to download all the occurrences. 
     By default the limit is 500. 
@@ -51,7 +51,7 @@ Paleobiology Database.
 }
 \details{
 Documentation for all the parameters is available 
-at \url{http://paleobiodb.org/data1.1/occs/list}. We describe the most common
+at \url{https://paleobiodb.org/data1.2/occs/list}. We describe the most common
 filters that paleontologists and ecologists might use in the parameter list above.
 
 Be aware that depending on the query, some columns may not be returned by the API
@@ -59,10 +59,10 @@ if those are empty across all the rows.
 }
 \examples{
 \dontrun{
-pbdb_occurrences (id=c(10, 11), show=c("coords", "phylo", "ident")) 
+pbdb_occurrences (id=c(10, 11), show=c("coords", "classext", "ident"))
 pbdb_occurrences (limit="all", vocab= "pbdb", 
-taxon_name="Canis", show=c("coords", "phylo", "ident"))
+taxon_name="Canis", show=c("coords", "classext", "ident"))
 pbdb_occurrences (limit="all", vocab= "pbdb", 
-base_name="Canidae", show=c("coords", "phylo", "ident"))
+base_name="Canidae", show=c("coords", "classext", "ident"))
 }
 }

@@ -9,7 +9,7 @@ pbdb_intervals (...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/intervals/list}. Eg:
+\url{https://paleobiodb.org/data1.2/intervals/list}. Eg:
 \itemize{
   \item \emph{min_ma}: return only intervals that are at least this old
   \item \emph{max_ma}: return only intervals that are at most this old

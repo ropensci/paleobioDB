@@ -11,7 +11,7 @@ names = TRUE, do.plot =TRUE)
 \item{data}{dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 to do that
-set: show=c("phylo", "ident") (see example).}
+set: show=c("classext", "ident") (see example).}
 
 \item{rank}{to set which taxon rank you are interested.}
 
@@ -30,7 +30,7 @@ constructs a plot and a dataframe with the temporal range of the taxa (species, 
 \examples{
 \dontrun{
 canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis", 
-                 interval="Quaternary", show=c("coords", "phylo", "ident"))
+                 interval="Quaternary", show=c("coords", "classext", "ident"))
 pbdb_temp_range (canis_quaternary, rank="species", names=FALSE)
 }
 }

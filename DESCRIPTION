@@ -2,7 +2,7 @@ Package: paleobioDB
 Description: Includes 19 functions to wrap each endpoint of
     the PaleobioDB API, plus 8 functions to visualize and process the fossil
     data. The API documentation for the Paleobiology Database can be found in
-    <http://paleobiodb.org/data1.1/>.
+    <https://paleobiodb.org/data1.2/>.
 Encoding: UTF-8
 Type: Package
 License: GPL-2

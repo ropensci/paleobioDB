@@ -9,7 +9,7 @@ pbdb_references (...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/refs/list}. Eg:
+\url{https://paleobiodb.org/data1.2/refs/list}. Eg:
 \itemize{
   \item \emph{author} select only references for which any of the authors 
     matches the specified name

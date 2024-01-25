@@ -21,8 +21,8 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
     tr<- list (summary=summary (diff), temporal_resolution=diff)
   }
   
-  if('early_age' %in% colnames(data)) {
-    diff <- .numeric_age(data$early_age) - .numeric_age(data$late_age)
+  if('max_ma' %in% colnames(data)) {
+    diff <- .numeric_age(data$max_ma) - .numeric_age(data$min_ma)
     tr<- list (summary=summary (diff), temporal_resolution=diff)
     
   }
@@ -47,7 +47,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 #' to do that
-#' set: show=c("phylo", "ident") (see example).
+#' set: show=c("classext", "ident") (see example).
 #' @param rank to set which taxon rank you are interested.
 #' @param col to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param names TRUE/FALSE (TRUE by default). To include or not the name of the taxa in the plot 
@@ -56,7 +56,7 @@ pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
 #' @export 
 #' @examples \dontrun{
 #' canis_quaternary<- pbdb_occurrences (limit="all", base_name="Canis", 
-#'                  interval="Quaternary", show=c("coords", "phylo", "ident"))
+#'                  interval="Quaternary", show=c("coords", "classext", "ident"))
 #' pbdb_temp_range (canis_quaternary, rank="species", names=FALSE)
 #'}
   
@@ -96,18 +96,18 @@ pbdb_temp_range<- function (data, rank,
 
 .extract_temporal_range <- function (data, rank) {
 
-  if ('taxon_rank' %in% colnames(data)) {
+  if ("identified_rank" %in% colnames(data)) {
     long_names <- TRUE
-  } else if ('rnk' %in% colnames(data)) {
+  } else if ("idr" %in% colnames(data)) {
     long_names <- FALSE
   } else {
-    stop("Cannot extract temporal range from data. Please add show=c('phylo', 'ident') to your pbdb_occurrences query")
+    stop("Cannot extract temporal range from data. Please add show=c(\"classext\", \"ident\") to your pbdb_occurrences query")
   }
   
-  early_age_col <- if (long_names) 'early_age' else 'eag'
-  late_age_col <- if (long_names) 'late_age' else 'lag'
-  matched_rank_col <- if (long_names) 'matched_rank' else 'mra'
-  matched_name_col <- if (long_names) 'matched_name' else 'mna'
+  early_age_col <- if (long_names) 'max_ma' else 'eag'
+  late_age_col <- if (long_names) 'min_ma' else 'lag'
+  accepted_rank_col <- if (long_names) 'accepted_rank' else 'rnk'
+  accepted_name_col <- if (long_names) 'accepted_name' else 'tna'
   genus_col <- if (long_names) 'genus' else 'gnl'
   family_col <- if (long_names) 'family' else 'fml'
   order_col <- if (long_names) 'order' else 'odl'
@@ -115,9 +115,9 @@ pbdb_temp_range<- function (data, rank,
   phylum_col <- if (long_names) 'phylum' else 'phl'
   
   if (rank=="species"){
-    selection<- data [data[, matched_rank_col]==rank, ]
-    max_sp<- tapply(.numeric_age(selection[, early_age_col]), as.character (selection[, matched_name_col]), max)
-    min_sp<- tapply(.numeric_age(selection[, late_age_col]), as.character (selection[, matched_name_col]), min)
+    selection<- data [data[, accepted_rank_col]==rank, ]
+    max_sp<- tapply(.numeric_age(selection[, early_age_col]), as.character (selection[, accepted_name_col]), max)
+    min_sp<- tapply(.numeric_age(selection[, late_age_col]), as.character (selection[, accepted_name_col]), min)
   } else {
     
     early_age = .numeric_age(data[, early_age_col])
@@ -161,7 +161,7 @@ pbdb_temp_range<- function (data, rank,
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 #' to do that
-#' set: show=c("phylo", "ident") (see example).
+#' set: show=c("classext", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param colour to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param bord to set the colour of the border of the polygon
@@ -173,7 +173,7 @@ pbdb_temp_range<- function (data, rank,
 #' 
 #' @examples \dontrun{
 #' data<-  pbdb_occurrences (limit="all", vocab="pbdb",
-#' base_name="Canidae", show=c("phylo", "ident"))
+#' base_name="Canidae", show=c("classext", "ident"))
 #' pbdb_richness (data, rank="species", res=1, temporal_extent=c(0,3))
 #'}
  
@@ -237,7 +237,7 @@ pbdb_richness <- function (data, rank,
 #' 
 #' @param data dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 #' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
-#' to do that set: show=c("phylo", "ident") (see example).
+#' to do that set: show=c("classext", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param temporal_extent vector to set the temporal extent (min, max)
 #' @param res numeric. to set the intervals of the temporal extent
@@ -252,7 +252,7 @@ pbdb_richness <- function (data, rank,
 #' 
 #' @examples \dontrun{
 #' canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
-#' base_name="Canidae", show=c("phylo", "ident"))
+#' base_name="Canidae", show=c("classext", "ident"))
 #' 
 #' # plot of the evolutive rates.
 #' pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), 

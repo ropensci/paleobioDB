@@ -169,10 +169,10 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
     r<-rast(ext)
     res(r)<-c(res,res)
     values(r)<-0
-    if (length (data$matched_rank)!=0){
-        identified<-data [!is.na(data$matched_rank), ]
-        species<- identified [identified$matched_rank=="species", ]
-        S<-split(species,species$matched_no)
+    if (length (data$accepted_rank)!=0){
+        identified<-data [!is.na(data$accepted_rank), ]
+        species<- identified [identified$accepted_rank=="species", ]
+        S<-split(species,species$accepted_no)
     }
     
     if (length (data$mra)!=0){
@@ -200,11 +200,11 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
     res(r)<-c(res,res)
     values(r)<-0
     ranks<-data.frame(rank=c("genus","family","order","class","phylum"),
-                      matched_rank=c("genus_no","family_no","order_no","class_no","phylum_no"),
+                      accepted_rank=c("genus_no","family_no","order_no","class_no","phylum_no"),
                       mra=c("gnn","fmn","odn","cln","phn") )
-    if (length (data$matched_rank)!=0){
-        identified<-data [!is.na(data$matched_rank), ]
-        col<-paste(ranks$matched_rank[ranks$rank==rank])
+    if (length (data$accepted_rank)!=0){
+        identified<-data [!is.na(data$accepted_rank), ]
+        col<-paste(ranks$accepted_rank[ranks$rank==rank])
         ident<-identified[!is.na(identified[,col]),]
         f<-paste(ident[,col])
         S<-split(ident,f)
@@ -238,7 +238,7 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #' col.int="white", col.ocean="black",
 #' col.rich=c("light blue","blue"),...)
 #'
-#' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("phylo", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}
+#' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("classext", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}
 #' @param rank To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")
 #' @param do.plot Logical; \code{TRUE} the function returns a SpatRaster and a plot.
 #' @param res The resolution of the SpatRaster object (in decimal degrees). See: \code{\link{terra}}
@@ -254,7 +254,7 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #' @export
 #' @examples \dontrun{
 #' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
-#' show=c("phylo","coords","ident"))
+#' show=c("classext","coords","ident"))
 #' X11(width=13, height=7.8)
 #' pbdb_map_richness (data,res=8,rank="genus")
 #' pbdb_map_richness (data,res=8,rank="family")
@@ -269,7 +269,7 @@ pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int=
         stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".
              See \"pbdb_map_richness\" help page" )}
     if (sum(colnames(data) %in% c("lat","lng","genus","family","order","class","phylum","mid","fml","odl","cll","phl"))!=7){
-        stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=c(\"phylo\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"phylo\",\"coords\",\"ident\")).
+        stop("Invalid data input. In the \"pbdb_occurrences\" function, use the following argument: show=c(\"classext\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"classext\",\"coords\",\"ident\")).
              See \"pbdb_map_richness\" help page" )}
     
     if(rank=="species"){

@@ -9,7 +9,7 @@ col.int="white", col.ocean="black",
 col.rich=c("light blue","blue"),...)
 }
 \arguments{
-\item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("phylo", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}}
+\item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("classext", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}}
 
 \item{rank}{To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")}
 
@@ -39,7 +39,7 @@ We recommend the use of a cairo device (\code{\link{X11}}) for better visualizat
 \examples{
 \dontrun{
 data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
-show=c("phylo","coords","ident"))
+show=c("classext","coords","ident"))
 X11(width=13, height=7.8)
 pbdb_map_richness (data,res=8,rank="genus")
 pbdb_map_richness (data,res=8,rank="family")

@@ -9,7 +9,7 @@ pbdb_ref_collections (...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/colls/refs}. Eg:
+\url{https://paleobiodb.org/data1.2/colls/refs}. Eg:
 \itemize{
   \item \emph{id} comma-separated list of collection identifiers
   \item \emph{author} select only references for which any of the authors 

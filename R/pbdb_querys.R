@@ -13,7 +13,7 @@
 #' may be a single string or a list of strings.
 #' @return dataframe
 #' @examples \dontrun{
-#' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "phylo", "ident")))
+#' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "classext", "ident")))
 #' }
 #' @noRd
 
@@ -63,14 +63,14 @@
 #' Database.
 #' 
 #' Documentation for all the parameters is available at 
-#' http://paleobiodb.org/data1.1/occs/single. In the parameter list above, we
+#' https://paleobiodb.org/data1.2/occs/single. In the parameter list above, we
 #' describe the most common filters that paleontologists and ecologists might
 #' use.
 #' 
 #' @usage pbdb_occurrence (id, ...)
 #' @param id identifier of the occurrence. This parameter is required
 #' @param ... arguments passed to the API. See all available arguments in
-#'   \url{http://paleobiodb.org/data1.1/occs/single}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/occs/single}. Eg:
 #'   \itemize{
 #'    \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'      default variables have short 3-letter names)
@@ -97,14 +97,14 @@ pbdb_occurrence<-function(id, ...){
 #' Paleobiology Database.
 #'
 #' Documentation for all the parameters is available 
-#' at \url{http://paleobiodb.org/data1.1/occs/list}. We describe the most common
+#' at \url{https://paleobiodb.org/data1.2/occs/list}. We describe the most common
 #' filters that paleontologists and ecologists might use in the parameter list above.
 #'
 #' Be aware that depending on the query, some columns may not be returned by the API
 #' if those are empty across all the rows.
 #' 
 #' @param ... arguments passed to the API. See all available arguments in
-#'   \url{http://paleobiodb.org/data1.1/occs/list}
+#'   \url{https://paleobiodb.org/data1.2/occs/list}
 #'   \itemize{
 #'     \item \emph{limit}: sets limit to "all" to download all the occurrences. 
 #'       By default the limit is 500. 
@@ -143,11 +143,11 @@ pbdb_occurrence<-function(id, ...){
 #' @export 
 #' 
 #' @examples \dontrun{
-#' pbdb_occurrences (id=c(10, 11), show=c("coords", "phylo", "ident")) 
+#' pbdb_occurrences (id=c(10, 11), show=c("coords", "classext", "ident"))
 #' pbdb_occurrences (limit="all", vocab= "pbdb", 
-#' taxon_name="Canis", show=c("coords", "phylo", "ident"))
+#' taxon_name="Canis", show=c("coords", "classext", "ident"))
 #' pbdb_occurrences (limit="all", vocab= "pbdb", 
-#' base_name="Canidae", show=c("coords", "phylo", "ident"))
+#' base_name="Canidae", show=c("coords", "classext", "ident"))
 #' }
 
 
@@ -170,7 +170,7 @@ pbdb_occurrences<-function(...){
 #' @usage pbdb_ref_occurrences (...)
 #'
 #' @param ... arguments passed to the API. See all available arguments in
-#'   \url{http://paleobiodb.org/data1.1/occs/refs}
+#'   \url{https://paleobiodb.org/data1.2/occs/refs}
 #'   \itemize{
 #'     \item \emph{author} select only references for which any of the authors 
 #'       matches the specified name
@@ -212,7 +212,7 @@ pbdb_ref_occurrences<-function(...){
 #'  
 #' @param id identifier of the collection. This parameter is required.
 #' @param ... additional arguments passed to the API. See all available arguments in
-#'   \url{http://paleobiodb.org/data1.1/colls/single}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/colls/single}. Eg:
 #'   \itemize{
 #'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'       default variables have short 3-letter names)
@@ -244,7 +244,7 @@ pbdb_collection<-function(id, ...){
 #'@usage pbdb_collections (...)
 #'
 #'@param ... documentation for all the parameters is available 
-#'in http://paleobiodb.org/data1.1/colls/list
+#'in https://paleobiodb.org/data1.2/colls/list
 #' go to \code{\link{pbdb_occurrences}} to see an explanation about 
 #' the main filtering parameters 
 #' 
@@ -270,13 +270,13 @@ pbdb_collections<-function(...){
 #'These clusters are defined in order to facilitate the 
 #'generation of maps at low resolutions. 
 #'You can make a config request via 
-#'http://paleobiodb.org/data1.1/config
+#'https://paleobiodb.org/data1.2/config
 #'in order to get a list of the available summary levels.
 #'
 #'@usage pbdb_collections_geo (...)
 #'
 #'@param ... documentation for all the parameters is 
-#'available in http://paleobiodb.org/data1.1/colls/summary
+#'available in https://paleobiodb.org/data1.2/colls/summary
 #' go to \code{\link{pbdb_occurrences}} to see an explanation about 
 #' the main filtering parameters 
 #' 
@@ -304,7 +304,7 @@ pbdb_collections_geo<-function(...){
 #'@usage pbdb_taxon (...)
 #'@param ... arguments passed to the API. See
 #'  documentation for accepted parameters in
-#'  \url{http://paleobiodb.org/data1.1/taxa/single}. Eg:
+#'  \url{https://paleobiodb.org/data1.2/taxa/single}. Eg:
 #'  \itemize{
 #'    \item \emph{name}: returns information about the most fundamental 
 #'      taxonomic name matching this string. 
@@ -337,7 +337,7 @@ pbdb_taxon<-function(...){
 #'
 #'@usage pbdb_taxa (...)
 #'@param ... arguments passed to the API. See all available arguments in
-#'  \url{http://paleobiodb.org/data1.1/taxa/list}
+#'  \url{https://paleobiodb.org/data1.2/taxa/list}
 #'  \itemize{
 #'    \item \emph{name}: returns information about the most fundamental 
 #'      taxonomic name matching this string. 
@@ -390,7 +390,7 @@ pbdb_taxa<-function(...){
 #' @usage pbdb_taxa_auto (...)
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/taxa/auto_doc.html}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/taxa/auto_doc.html}. Eg:
 #'   \itemize{
 #'     \item \emph{name}: a partial name or prefix. 
 #'       It must have at least 3 significant characters,
@@ -427,7 +427,7 @@ pbdb_taxa_auto<-function(...){
 #'@param id identifier of the temporal interval. This parameter is required.
 #'@param ... additional arguments passed to the API. See
 #'  documentation for accepted parameters in
-#'  \url{http://paleobiodb.org/data1.1/intervals/single}. Eg:
+#'  \url{https://paleobiodb.org/data1.2/intervals/single}. Eg:
 #'  \itemize{
 #'    \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'      default variables have short 3-letter names)
@@ -459,7 +459,7 @@ pbdb_interval<-function(id, ...){
 #'
 #'@param ... arguments passed to the API. See
 #'  documentation for accepted parameters in
-#'  \url{http://paleobiodb.org/data1.1/intervals/list}. Eg:
+#'  \url{https://paleobiodb.org/data1.2/intervals/list}. Eg:
 #'  \itemize{
 #'    \item \emph{min_ma}: return only intervals that are at least this old
 #'    \item \emph{max_ma}: return only intervals that are at most this old
@@ -496,7 +496,7 @@ pbdb_intervals<-function(...){
 #' @param id identifier of the temporal interval. This parameter is required.
 #' @param ... additional arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/scales/single}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/scales/single}. Eg:
 #'   \itemize{
 #'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'       default variables have short 3-letter names)
@@ -523,7 +523,7 @@ pbdb_scale<-function(id, ...){
 #'
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/scales/list}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/scales/list}. Eg:
 #'   \itemize{
 #'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'       default variables have short 3-letter names)
@@ -557,7 +557,7 @@ pbdb_scales<-function(...){
 #'@usage pbdb_strata (...)
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/strata/list}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/strata/list}. Eg:
 #'   \itemize{
 #'     \item \emph{name}: a full or partial name. You can
 #'       use \% and _ as wildcards, but the
@@ -608,7 +608,7 @@ pbdb_strata<-function(...){
 #'
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/strata/auto}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/strata/auto}. Eg:
 #'   \itemize{
 #'     \item \emph{name}: a full or partial name. You can
 #'       use \% and _ as wildcards, but the
@@ -658,7 +658,7 @@ pbdb_strata_auto<-function(...){
 #' @param id identifier of the reference. This parameter is required.
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/refs/single}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/refs/single}. Eg:
 #'   \itemize{
 #'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
 #'       default variables have short 3-letter names)
@@ -688,7 +688,7 @@ pbdb_reference<-function(id, ...){
 #' 
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/refs/list}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/refs/list}. Eg:
 #'   \itemize{
 #'     \item \emph{author} select only references for which any of the authors 
 #'       matches the specified name
@@ -724,7 +724,7 @@ pbdb_references<-function(...){
 #' @usage pbdb_ref_collections (...)
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
-#'   \url{http://paleobiodb.org/data1.1/colls/refs}. Eg:
+#'   \url{https://paleobiodb.org/data1.2/colls/refs}. Eg:
 #'   \itemize{
 #'     \item \emph{id} comma-separated list of collection identifiers
 #'     \item \emph{author} select only references for which any of the authors 
@@ -764,7 +764,7 @@ pbdb_ref_collections <-function(...){
 #' 
 #' @usage pbdb_ref_taxa (...)
 #' @param ... arguments passed to the API. See all available arguments in
-#'   \url{http://paleobiodb.org/data1.1/taxa/refs}
+#'   \url{https://paleobiodb.org/data1.2/taxa/refs}
 #'   \itemize{
 #'     \item \emph{name}: returns information about the most fundamental 
 #'       taxonomic name matching this string. 

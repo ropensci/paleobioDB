@@ -11,7 +11,7 @@ pbdb_scale (id, ...)
 
 \item{...}{additional arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/scales/single}. Eg:
+\url{https://paleobiodb.org/data1.2/scales/single}. Eg:
 \itemize{
   \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
     default variables have short 3-letter names)

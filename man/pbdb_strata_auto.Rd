@@ -9,7 +9,7 @@ pbdb_strata_auto (...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/strata/auto}. Eg:
+\url{https://paleobiodb.org/data1.2/strata/auto}. Eg:
 \itemize{
   \item \emph{name}: a full or partial name. You can
     use \% and _ as wildcards, but the

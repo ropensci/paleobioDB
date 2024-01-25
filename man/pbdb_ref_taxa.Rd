@@ -8,7 +8,7 @@ pbdb_ref_taxa (...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
-\url{http://paleobiodb.org/data1.1/taxa/refs}
+\url{https://paleobiodb.org/data1.2/taxa/refs}
 \itemize{
   \item \emph{name}: returns information about the most fundamental 
     taxonomic name matching this string. 

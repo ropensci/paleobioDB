@@ -8,7 +8,7 @@ pbdb_collections (...)
 }
 \arguments{
 \item{...}{documentation for all the parameters is available 
-in http://paleobiodb.org/data1.1/colls/list
+in https://paleobiodb.org/data1.2/colls/list
 go to \code{\link{pbdb_occurrences}} to see an explanation about 
 the main filtering parameters}
 }

@@ -26,7 +26,7 @@ e.g. number of species within a genus.
 \dontrun{
 canidae_quat<-  pbdb_occurrences (limit="all", 
 base_name="Canidae",  interval="Quaternary", 
-show=c("coords", "phylo", "ident"))
+show=c("coords", "classext", "ident"))
 pbdb_subtaxa (canidae_quat)
 }
 

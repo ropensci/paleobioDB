@@ -9,7 +9,7 @@ pbdb_taxa_auto (...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/taxa/auto_doc.html}. Eg:
+\url{https://paleobiodb.org/data1.2/taxa/auto_doc.html}. Eg:
 \itemize{
   \item \emph{name}: a partial name or prefix. 
     It must have at least 3 significant characters,

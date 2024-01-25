@@ -9,7 +9,7 @@ pbdb_taxon (...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/taxa/single}. Eg:
+\url{https://paleobiodb.org/data1.2/taxa/single}. Eg:
 \itemize{
   \item \emph{name}: returns information about the most fundamental 
     taxonomic name matching this string. 

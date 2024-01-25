@@ -10,7 +10,7 @@ pbdb_richness (data, rank, res, temporal_extent, colour, bord, do.plot)
 \item{data}{dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 Important, it is required to show the name of the families, orders, etc. in the dataframe, 
 to do that
-set: show=c("phylo", "ident") (see example).}
+set: show=c("classext", "ident") (see example).}
 
 \item{rank}{to set which taxon rank you are interested. By default rank= "species"}
 
@@ -33,7 +33,7 @@ Plots the number of the interested.
 \examples{
 \dontrun{
 data<-  pbdb_occurrences (limit="all", vocab="pbdb",
-base_name="Canidae", show=c("phylo", "ident"))
+base_name="Canidae", show=c("classext", "ident"))
 pbdb_richness (data, rank="species", res=1, temporal_extent=c(0,3))
 }
 }

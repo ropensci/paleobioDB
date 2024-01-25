@@ -11,7 +11,7 @@ colour="#0000FF30", bord="#0000FF", do.plot=TRUE)
 \arguments{
 \item{data}{dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
 Important, it is required to show the name of the families, orders, etc. in the dataframe, 
-to do that set: show=c("phylo", "ident") (see example).}
+to do that set: show=c("classext", "ident") (see example).}
 
 \item{rank}{to set which taxon rank you are interested. By default rank= "species"}
 
@@ -38,7 +38,7 @@ Plots the appearance of new taxa across time.
 \examples{
 \dontrun{
 canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
-base_name="Canidae", show=c("phylo", "ident"))
+base_name="Canidae", show=c("classext", "ident"))
 
 # plot of the evolutive rates.
 pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), 

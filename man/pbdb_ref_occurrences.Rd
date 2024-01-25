@@ -8,7 +8,7 @@ pbdb_ref_occurrences (...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
-\url{http://paleobiodb.org/data1.1/occs/refs}
+\url{https://paleobiodb.org/data1.2/occs/refs}
 \itemize{
   \item \emph{author} select only references for which any of the authors 
     matches the specified name
