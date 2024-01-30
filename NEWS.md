@@ -1,10 +1,18 @@
 paleobioDB 0.7.0.9000
 =====================
 
-MINOR IMPROVEMENTS
+MAJOR CHANGES
 
 * Update to API version 1.2 (see
   [issue 57](https://github.com/ropensci/paleobioDB/issues/57))
+
+* Update documentation to reflect parameter name changes in version
+  1.2 of the API.
+
+MINOR IMPROVEMENTS
+
+* Use methods from package `terra` instead of `raster` in functions
+  that plot and return raster objects.
 
 BUG FIXES
 
