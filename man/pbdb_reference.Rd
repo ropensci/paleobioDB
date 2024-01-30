@@ -4,14 +4,14 @@
 \alias{pbdb_reference}
 \title{pbdb_reference}
 \usage{
-pbdb_reference (id, ...)
+pbdb_reference(id, ...)
 }
 \arguments{
 \item{id}{identifier of the reference. This parameter is required.}
 
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/refs/single}. Eg:
+\url{https://paleobiodb.org/data1.2/refs/single}. E.g.:
 \itemize{
   \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
     default variables have short 3-letter names)
@@ -27,6 +27,6 @@ Go to \code{\link{pbdb_occurrences}} to see an explanation about the main filter
 }
 \examples{
 \dontrun{
-pbdb_collection (id=1003, vocab="pbdb", show="loc")
+  pbdb_collection(id = 1003, vocab = "pbdb", show = "loc")
 }
 }

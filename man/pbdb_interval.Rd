@@ -4,28 +4,29 @@
 \alias{pbdb_interval}
 \title{pbdb_interval}
 \usage{
-pbdb_interval (id, ...)
+pbdb_interval(id, ...)
 }
 \arguments{
 \item{id}{identifier of the temporal interval. This parameter is required.}
 
 \item{...}{additional arguments passed to the API. See
 documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/intervals/single}. Eg:
+\url{https://paleobiodb.org/data1.2/intervals/single}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+    of the variables (by default variables have short 3-letter
+    names)
 }}
 }
 \value{
-a dataframe with information from a single 
-temporal interval
+a dataframe with information from a single temporal
+  interval
 }
 \description{
 Returns information about a single interval, selected by identifier.
 }
 \examples{
 \dontrun{
-pbdb_interval (id=1, vocab="pbdb")
+  pbdb_interval(id = 1, vocab = "pbdb")
 }
 }

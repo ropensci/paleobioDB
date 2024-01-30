@@ -9,7 +9,7 @@ pbdb_scales(...)
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/scales/list}. Eg:
+\url{https://paleobiodb.org/data1.2/scales/list}. E.g.:
 \itemize{
   \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
     default variables have short 3-letter names)
@@ -24,9 +24,9 @@ Returns information about multiple time scales.
 }
 \examples{
 \dontrun{
-## Get a dataframe with all the scales available in PBDB 
-## by setting no ids
-pbdb_scales ()
+  ## Get a dataframe with all the scales available in PBDB
+  ## by setting no ids
+  pbdb_scales()
 }
 
 }

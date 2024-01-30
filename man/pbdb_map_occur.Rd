@@ -34,14 +34,14 @@ We recommend the use of a cairo device (\code{\link{X11}}) for better visualizat
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
-show="coords")
-X11(width=13, height=7.8)
-pbdb_map_occur (data,res=2)
-## to obtain the raster file without plotting it
-pbdb_map_occur (data,res=3,do.plot=F)
+  data <- pbdb_occurrences(
+    limit = "all", vocab = "pbdb", base_name = "Canis", show = "coords"
+  )
+  X11(width = 13, height = 7.8)
+  pbdb_map_occur(data, res = 2)
+  ## to obtain the raster object without plotting it
+  pbdb_map_occur(data, res = 3, do.plot = FALSE)
 }
-
 }
 \seealso{
 See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages

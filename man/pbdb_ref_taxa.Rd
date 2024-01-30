@@ -4,7 +4,7 @@
 \alias{pbdb_ref_taxa}
 \title{pbdb_ref_taxa}
 \usage{
-pbdb_ref_taxa (...)
+pbdb_ref_taxa(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
@@ -16,15 +16,14 @@ pbdb_ref_taxa (...)
   \item \emph{id}: returns information about the taxonomic name 
     corresponding to this identifier. You may not specify both 
     name and id in the same query.
-  \item \emph{exact}: if this parameter is specified, then the taxon exactly 
-    matching the specified name or identifier is selected, 
-    rather than the senior synonym which is the default.
   \item \emph{show}: show extra variables
-  \item \emph{rel}: set rel="synonyms" to select all synonyms of 
-    the base taxon or taxa; rel="children" to select the 
-    taxa immediately contained within the base taxon or taxa; 
-    rel="common_ancestor" to select the most specific taxon 
-    that contains all of the base taxa.
+  \item \emph{rel}: set rel = "synonyms" to select all synonyms
+    of the base taxon or taxa; rel = "children" to select the
+    taxa immediately contained within the base taxon or taxa; rel
+    = "all_children" to select all taxa contained within each
+    matching taxon and within all synonymous taxa; rel =
+    "all_parents" to select all taxa that contain any of the
+    matching taxa.
   \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 }}
 }
@@ -40,6 +39,8 @@ even if it is associated with multiple taxa.
 }
 \examples{
 \dontrun{
-  pbdb_ref_taxa (name="Canidae", vocab="pbdb", show=c("attr", "app", "size", "nav")) 
+  pbdb_ref_taxa(
+    name = "Canidae", vocab = "pbdb", show = c("attr", "app", "size", "nav")
+  )
 }
 }

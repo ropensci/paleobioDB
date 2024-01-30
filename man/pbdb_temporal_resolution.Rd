@@ -4,23 +4,23 @@
 \alias{pbdb_temporal_resolution}
 \title{pbdb_temporal_resolution}
 \usage{
-pbdb_temporal_resolution (data, do.plot=TRUE)
+pbdb_temporal_resolution(data, do.plot = TRUE)
 }
 \arguments{
-\item{data}{dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}}
+\item{data}{dataframe with our query to the paleobiodb \code{\link{pbdb_occurrences}}}
 
 \item{do.plot}{TRUE/FALSE. To show a frequency plot of the data (TRUE by default).}
 }
 \value{
 a plot and a list with a summary of the temporal resolution of the data 
-(min, max, 1st and 3rd quartils, median and mean), and the temporal resolution of each fossil record (Ma).
+(min, max, 1st and 3rd quartiles, median and mean), and the temporal resolution of each fossil record (Ma).
 }
 \description{
 to show the temporal resolution of the fossil data
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (taxon_name= "Canidae", interval= "Quaternary")
-pbdb_temporal_resolution (data)
+  data <- pbdb_occurrences(taxon_name = "Canidae", interval = "Quaternary")
+  pbdb_temporal_resolution(data)
 }
 }

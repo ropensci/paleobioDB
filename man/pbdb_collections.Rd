@@ -4,23 +4,23 @@
 \alias{pbdb_collections}
 \title{pbdb_collections}
 \usage{
-pbdb_collections (...)
+pbdb_collections(...)
 }
 \arguments{
-\item{...}{documentation for all the parameters is available 
-in https://paleobiodb.org/data1.2/colls/list
-go to \code{\link{pbdb_occurrences}} to see an explanation about 
-the main filtering parameters}
+\item{...}{documentation for all the parameters is available in
+https://paleobiodb.org/data1.2/colls/list go to
+\code{\link{pbdb_occurrences}} to see an explanation about the
+main filtering parameters}
 }
 \value{
 a dataframe with the collections that match the query
 }
 \description{
-Returns information about multiple collections, selected 
-according to the parameters you provide.
+Returns information about multiple collections, selected according
+to the parameters you provide.
 }
 \examples{
 \dontrun{
-pbdb_collections (base_name="Cetacea", interval="Miocene")
+  pbdb_collections(base_name = "Cetacea", interval = "Miocene")
 }
 }

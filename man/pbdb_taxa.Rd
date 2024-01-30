@@ -16,20 +16,16 @@ pbdb_taxa (...)
   \item \emph{id}: return information about the taxonomic name 
     corresponding to this identifier. You may not specify both 
     name and id in the same query.
-  \item \emph{exact}: if this parameter is specified, then the taxon exactly 
-    matching the specified name or identifier is selected, 
-    rather than the senior synonym which is the default.
-  \item \emph{show}: to show extra variables: \emph{attr} 
-    the attribution of this taxon (author and year); 
-    \emph{app} the age of first and last appearance of this taxon 
-    from the occurrences recorded in this database; 
-    \emph{size} the number of subtaxa appearing in this database; 
-    \emph{nav} additional information for the PBDB Navigator taxon browser
-  \item \emph{rel}: set rel="synonyms" to select all synonyms of 
-    the base taxon or taxa; rel="children" to select the 
-    taxa immediately contained within the base taxon or taxa; 
-    rel="common_ancestor" to select the most specific taxon 
-    that contains all of the base taxa.
+  \item \emph{show}: to show extra variables. Some examples
+    include: \emph{attr} the attribution of this taxon (author and
+    year); \emph{app} the age of first and last appearance of this
+    taxon from the occurrences recorded in this database;
+    \emph{size} the number of subtaxa appearing in this database.
+  \item \emph{rel}: set rel = "synonyms" to select all synonyms of
+    the base taxon or taxa; rel = "children" to select the taxa
+    immediately contained within the base taxon or taxa; rel =
+    "common" to select the most specific taxon that contains all
+    of the base taxa.
   \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 }}
 }
@@ -43,11 +39,11 @@ other operations.
 }
 \examples{
 \dontrun{
-pbdb_taxa (name="Canidae", vocab="pbdb", 
-show=c("attr", "app", "size", "nav"))
-pbdb_taxa (id =c(10, 11), vocab="pbdb", 
-show=c("attr", "app", "size", "nav"))
-pbdb_taxa (id =c(10, 11), vocab="pbdb", 
-show=c("attr", "app", "size", "nav"), rel="common_ancestor")
+  pbdb_taxa(name = "Canidae", vocab = "pbdb", show = c("attr", "app", "size", "nav"))
+  pbdb_taxa(id = c(10, 11), vocab = "pbdb", show = c("attr", "app", "size", "nav"))
+  pbdb_taxa(
+    id = c(10, 11), vocab = "pbdb",
+    show = c("attr", "app", "size", "nav"), rel = "common"
+  )
 }
 }

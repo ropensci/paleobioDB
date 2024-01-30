@@ -4,12 +4,12 @@
 \alias{pbdb_strata}
 \title{pbdb_strata}
 \usage{
-pbdb_strata (...)
+pbdb_strata(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/strata/list}. Eg:
+\url{https://paleobiodb.org/data1.2/strata/list}. E.g.:
 \itemize{
   \item \emph{name}: a full or partial name. You can
     use \% and _ as wildcards, but the
@@ -20,7 +20,7 @@ documentation for accepted parameters in
     between -180 and 180. Note that if you specify lngmin then you must also
     specify lngmax. Returns only records whose geographic location falls within
     the given bounding box (defined by lngmin, lngmax, latmin, latmax). It
-    generate two adjacent bounding boxes if the range crosses the antimeridian. 
+    generate two adjacent bounding boxes if the range crosses the antimeridian.
   \item \emph{lngmax}: numeric. The longitude boundaries will be normalized to fall
     between -180 and 180.
   \item \emph{latmin}: numeric. between -90 and 90. Note that if you specify latmin
@@ -29,8 +29,9 @@ documentation for accepted parameters in
   \item \emph{loc}: Return only strata associated with some occurrence whose
     geographic location falls within the specified geometry, specified in WKT
     format.
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete
+    name of the variables (by default variables have short
+    3-letter names)
   \item ...
 }}
 }
@@ -43,6 +44,9 @@ selected by name, rank, and/or geographic location.
 }
 \examples{
 \dontrun{
-pbdb_strata (lngmin=0, lngmax=15, latmin=0, latmax=15, rank="formation", vocab="pbdb") 
+  pbdb_strata(
+    lngmin = 0, lngmax = 15, latmin = 0, latmax = 15,
+    rank = "formation", vocab = "pbdb"
+  )
 }
 }

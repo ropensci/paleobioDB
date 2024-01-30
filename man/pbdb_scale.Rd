@@ -4,14 +4,14 @@
 \alias{pbdb_scale}
 \title{pbdb_scale}
 \usage{
-pbdb_scale (id, ...)
+pbdb_scale(id, ...)
 }
 \arguments{
 \item{id}{identifier of the temporal interval. This parameter is required.}
 
 \item{...}{additional arguments passed to the API. See
 documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/scales/single}. Eg:
+\url{https://paleobiodb.org/data1.2/scales/single}. E.g.:
 \itemize{
   \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
     default variables have short 3-letter names)
@@ -27,6 +27,6 @@ identifier.
 }
 \examples{
 \dontrun{
-  pbdb_scale (id=1, vocab="pbdb")
+  pbdb_scale(id = 1, vocab = "pbdb")
 }
 }

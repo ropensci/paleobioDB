@@ -15,8 +15,10 @@ pbdb_occurrences(...)
   \item \emph{taxon_name}: Return only records associated with the 
     specified taxonomic name(s). 
     You may specify multiple names, separated by commas.
-  \item \emph{base_name}:  Return records associated with the specified 
-    taxonomic name(s) and any of their children (e.g. base_name="Canis" will 
+  \item \emph{base_name}: Return records associated with the
+    specified taxonomic name(s) and any of their children
+    (e.g. base_name = "Canis" will return "Canis", "Canis lupus",
+    "Canis mosbachensis", etc.)
   \item \emph{lngmin}: numeric. The longitude boundaries will be normalized 
     to fall between -180 and 180. Note that if you specify 
     lngmin then you must also specify lngmax. 
@@ -39,7 +41,7 @@ pbdb_occurrences(...)
     (e.g. "Miocene").
   \item \emph{continent}: return only records whose geographic 
     location falls within the specified continent(s). 
-  \item \emph{show}: to show extra variables (e.g. coords, phylo, ident)
+  \item \emph{show}: to show extra variables (e.g. coords, classext, ident)
 }}
 }
 \value{
@@ -59,10 +61,14 @@ if those are empty across all the rows.
 }
 \examples{
 \dontrun{
-pbdb_occurrences (id=c(10, 11), show=c("coords", "classext", "ident"))
-pbdb_occurrences (limit="all", vocab= "pbdb", 
-taxon_name="Canis", show=c("coords", "classext", "ident"))
-pbdb_occurrences (limit="all", vocab= "pbdb", 
-base_name="Canidae", show=c("coords", "classext", "ident"))
+  pbdb_occurrences(id = c(10, 11), show = c("coords", "classext", "ident"))
+  pbdb_occurrences(
+    limit = "all", vocab = "pbdb", taxon_name = "Canis",
+    show = c("coords", "classext", "ident")
+  )
+  pbdb_occurrences(
+    limit = "all", vocab = "pbdb", base_name = "Canidae",
+    show = c("coords", "classext", "ident")
+  )
 }
 }

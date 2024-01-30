@@ -4,22 +4,23 @@
 \alias{pbdb_references}
 \title{pbdb_references}
 \usage{
-pbdb_references (...)
+pbdb_references(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See
 documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/refs/list}. Eg:
+\url{https://paleobiodb.org/data1.2/refs/list}. E.g.:
 \itemize{
-  \item \emph{author} select only references for which any of the authors 
+  \item \emph{ref_author} select only references for which any of the authors
     matches the specified name
-  \item \emph{year} select only references published in the specified year
-  \item \emph{pubtitle} select only references that involve the specified 
+  \item \emph{ref_pubyr} select only references published in the specified year
+  \item \emph{pub_title} select only references that involve the specified
     publication
-  \item \emph{order} specifies the order in which the results are returned. You can
-    specify multiple values separated by commas, and each value may be appended
-    with .asc or .desc. Accepted values are: author, year, pubtitle, created,
-    modified, rank.
+  \item \emph{order} specifies the order in which the results are
+    returned. You can specify multiple values separated by
+    commas, and each value may be appended with .asc or
+    .desc. Accepted values are: author, pubyr, reftitle,
+    pubtitle, pubtype, created, modified, rank.
   \item ...
 }}
 }
@@ -31,6 +32,6 @@ Returns information about multiple references, selected according to the paramet
 }
 \examples{
 \dontrun{
-  pbdb_references (author= "Polly")
+  pbdb_references(ref_author = "Polly")
 }
 }

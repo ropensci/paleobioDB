@@ -4,9 +4,9 @@
 \alias{pbdb_map_richness}
 \title{pbdb_map_richness}
 \usage{
-pbdb_map_richness (data, rank="species", do.plot=TRUE, res=5,
-col.int="white", col.ocean="black",
-col.rich=c("light blue","blue"),...)
+pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
+                  col.int = "white", col.ocean = "black",
+                  col.rich = c("light blue", "blue"), ...)
 }
 \arguments{
 \item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("classext", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}}
@@ -38,15 +38,16 @@ We recommend the use of a cairo device (\code{\link{X11}}) for better visualizat
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
-show=c("classext","coords","ident"))
-X11(width=13, height=7.8)
-pbdb_map_richness (data,res=8,rank="genus")
-pbdb_map_richness (data,res=8,rank="family")
-## to obtain the raster file and not plot the map
-pbdb_map_richness (data,res=8,rank="family",do.plot=F)
+  data <- pbdb_occurrences(
+    limit = 1000, vocab = "pbdb", base_name = "mammalia",
+    show = c("classext", "coords", "ident")
+  )
+  X11(width = 13, height = 7.8)
+  pbdb_map_richness(data, res = 8, rank = "genus")
+  pbdb_map_richness(data, res = 8, rank = "family")
+  ## to obtain the raster object without plotting the map
+  pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 }
-
 }
 \seealso{
 See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages

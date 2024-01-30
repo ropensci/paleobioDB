@@ -38,8 +38,9 @@
 #'
 #' The function opens a new window for the map
 #'
-#' @usage pbdb_map (data, col.int="white" ,pch=19, col.ocean="black", main=NULL,
-#' col.point=c("light blue","blue"), ...)
+#' @usage
+#' pbdb_map(data, col.int = "white", pch = 19, col.ocean = "black",
+#'          main = NULL, col.point = c("light blue", "blue"), ...)
 #'
 #' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the
 #' argument: \code{show = "coords"}. See too: \strong{Details} and \strong{Examples}
@@ -48,22 +49,25 @@
 #' @param col.ocean The colour of the ocean.
 #' @param main To set the title of the map. See: \code{\link{par}}
 #' @param col.point Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map
-#' @param ... Others parameters. See \code{\link{par}} and \code{\link{map}}
+#' @param ... Other parameters. See \code{\link{par}} and \code{\link{map}}
 #' @details \strong{CAUTION!} The argument \code{show = "coords"} in \code{\link{pbdb_occurrences}} function is required. 
 #' We recommend the use of a cairo device (\code{\link{X11}}) for better visualization of the graphs. See \strong{Examples}
 #' @return A map showing the distribution of the fossil records, with the points with a color gradient, according to the number of occurrences per cell.
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit="all", vocab= "pbdb",
-#' base_name="Canis", show="coords")
-#' X11(width=12, height=8)
-#' pbdb_map(data)
-#' pbdb_map(data,pch=1)
-#' pbdb_map(data,pch=19,col.point=c("pink","red"), col.ocean="light blue",
-#' main="canis")
+#'   data <- pbdb_occurrences(
+#'     limit = "all", vocab = "pbdb", base_name = "Canis", show = "coords"
+#'   )
+#'   X11(width = 12, height = 8)
+#'   pbdb_map(data)
+#'   pbdb_map(data, pch = 1)
+#'   pbdb_map(
+#'     data,
+#'     pch = 19, col.point = c("pink", "red"), col.ocean = "light blue",
+#'     main = "Canis"
+#'   )
 #' }
-#'
 
 pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
                      main=NULL, col.point=c('light blue','blue'), ...){
@@ -104,16 +108,16 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 }
 
 .plot.Raster.rich<-function(r,col.eff,col.ocean,col.int,res,...){
-    par(oma=c(4,0,2,2),...)
-    e<-map(type="n",...)
-    ext<-ext(e$range)
-    r2<-rast(ext)
-    res(r2)<-c(res,res)
-    values(r2)<-NA
-    plot(r2,xaxt="n",yaxt="n")
-    .add.ColOcean2 (col.ocean,col.int,...)
-    map(col=col.int,fill=T,add=T,...)
-    .add.pattern(r,col.eff,...)
+  par(oma=c(4,0,2,2),...)
+  e<-map(type="n",...)
+  ext<-ext(e$range)
+  r2<-rast(ext)
+  res(r2)<-c(res,res)
+  values(r2)<-NA
+  plot(r2,xaxt="n",yaxt="n")
+  .add.ColOcean2 (col.ocean,col.int,...)
+  map(col=col.int,fill=T,add=T,...)
+  .add.pattern(r,col.eff,...)
 }
 
 
@@ -137,14 +141,14 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit="all", vocab= "pbdb", base_name="Canis",
-#' show="coords")
-#' X11(width=13, height=7.8)
-#' pbdb_map_occur (data,res=2)
-#' ## to obtain the raster file without plotting it
-#' pbdb_map_occur (data,res=3,do.plot=F)
-#'}
-#'
+#'   data <- pbdb_occurrences(
+#'     limit = "all", vocab = "pbdb", base_name = "Canis", show = "coords"
+#'   )
+#'   X11(width = 13, height = 7.8)
+#'   pbdb_map_occur(data, res = 2)
+#'   ## to obtain the raster object without plotting it
+#'   pbdb_map_occur(data, res = 3, do.plot = FALSE)
+#' }
 
 pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
                            col.eff=c("light blue","blue"), do.plot=TRUE, ...){
@@ -234,9 +238,10 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #'
 #' Creates a SpatRaster object and a plot with richness of species, genera, families, etc. per cell.
 #'
-#' @usage pbdb_map_richness (data, rank="species", do.plot=TRUE, res=5,
-#' col.int="white", col.ocean="black",
-#' col.rich=c("light blue","blue"),...)
+#' @usage
+#' pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
+#'                   col.int = "white", col.ocean = "black",
+#'                   col.rich = c("light blue", "blue"), ...)
 #'
 #' @param data Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("classext", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}
 #' @param rank To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")
@@ -253,15 +258,16 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 #' @export
 #' @examples \dontrun{
-#' data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
-#' show=c("classext","coords","ident"))
-#' X11(width=13, height=7.8)
-#' pbdb_map_richness (data,res=8,rank="genus")
-#' pbdb_map_richness (data,res=8,rank="family")
-#' ## to obtain the raster file and not plot the map
-#' pbdb_map_richness (data,res=8,rank="family",do.plot=F)
+#'   data <- pbdb_occurrences(
+#'     limit = 1000, vocab = "pbdb", base_name = "mammalia",
+#'     show = c("classext", "coords", "ident")
+#'   )
+#'   X11(width = 13, height = 7.8)
+#'   pbdb_map_richness(data, res = 8, rank = "genus")
+#'   pbdb_map_richness(data, res = 8, rank = "family")
+#'   ## to obtain the raster object without plotting the map
+#'   pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 #' }
-#'
 
 pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int="white", col.ocean="black",
                               col.rich=c("light blue","blue"),...){

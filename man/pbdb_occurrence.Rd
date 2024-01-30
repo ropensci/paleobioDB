@@ -4,13 +4,13 @@
 \alias{pbdb_occurrence}
 \title{pbdb_occurrence}
 \usage{
-pbdb_occurrence (id, ...)
+pbdb_occurrence(id, ...)
 }
 \arguments{
 \item{id}{identifier of the occurrence. This parameter is required}
 
 \item{...}{arguments passed to the API. See all available arguments in
-\url{https://paleobiodb.org/data1.2/occs/single}. Eg:
+\url{https://paleobiodb.org/data1.2/occs/single}. E.g.:
 \itemize{
  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
    default variables have short 3-letter names)
@@ -31,7 +31,7 @@ use.
 }
 \examples{
 \dontrun{
-pbdb_occurrence (id=1001)
-pbdb_occurrence (id=1001, vocab="pbdb", show="coords")
+  pbdb_occurrence(id = 1001)
+  pbdb_occurrence(id = 1001, vocab = "pbdb", show = "coords")
 }
 }
