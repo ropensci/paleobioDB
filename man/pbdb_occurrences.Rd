@@ -10,8 +10,8 @@ pbdb_occurrences(...)
 \item{...}{arguments passed to the API. See all available arguments in
 \url{https://paleobiodb.org/data1.2/occs/list}
 \itemize{
-  \item \emph{limit}: sets limit to "all" to download all the occurrences. 
-    By default the limit is 500. 
+  \item \emph{limit}: Limits the number of records returned. The
+    value may be a positive integer, zero, or "all".
   \item \emph{taxon_name}: Return only records associated with the 
     specified taxonomic name(s). 
     You may specify multiple names, separated by commas.
