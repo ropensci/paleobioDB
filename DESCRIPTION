@@ -14,7 +14,9 @@ Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
     person("Javier", "González Hernández", role = "aut",
     email = "javier.gon@protonmail.com"),
     person("Luciano", "Fabris Sgarbi", role = "aut",
-    email = "luciano.f.sgarbi@gmail.com"))
+    email = "luciano.f.sgarbi@gmail.com"),
+    person("Adrián", "Castro Insua", role = "ctb",
+    email = "adrian.castro.insua@uvigo.gal"))
 Maintainer: Sara Varela <sara.varela@uvigo.gal>
 BugReports: https://github.com/ropensci/paleobioDB/issues
 URL: https://docs.ropensci.org/paleobioDB, https://github.com/ropensci/paleobioDB
