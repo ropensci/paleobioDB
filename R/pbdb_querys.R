@@ -252,23 +252,19 @@ pbdb_collection<-function(id, ...){
 #' @usage pbdb_collections(...)
 #'
 #' @param ... documentation for all the parameters is available in
-#'   https://paleobiodb.org/data1.2/colls/list go to
+#'   \url{https://paleobiodb.org/data1.2/colls/list}. Go to
 #'   \code{\link{pbdb_occurrences}} to see an explanation about the
-#'   main filtering parameters
-#' 
+#'   main filtering parameters.
+#'
 #' @return a dataframe with the collections that match the query
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_collections(base_name = "Cetacea", interval = "Miocene")
 #' }
-
-
-pbdb_collections<-function(...){
-  
-  l<-list(...)
-  .pbdb_query('colls/list', query = l)
-  
+pbdb_collections <- function(...) {
+  l <- list(...)
+  .pbdb_query("colls/list", query = l)
 }
 
 #' pbdb_collections_geo

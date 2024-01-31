@@ -8,9 +8,9 @@ pbdb_collections(...)
 }
 \arguments{
 \item{...}{documentation for all the parameters is available in
-https://paleobiodb.org/data1.2/colls/list go to
+\url{https://paleobiodb.org/data1.2/colls/list}. Go to
 \code{\link{pbdb_occurrences}} to see an explanation about the
-main filtering parameters}
+main filtering parameters.}
 }
 \value{
 a dataframe with the collections that match the query
