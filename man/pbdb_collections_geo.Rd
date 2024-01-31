@@ -8,9 +8,13 @@ pbdb_collections_geo(...)
 }
 \arguments{
 \item{...}{documentation for all the parameters is available in
-https://paleobiodb.org/data1.2/colls/summary go to
+\url{https://paleobiodb.org/data1.2/colls/summary}. Go to
 \code{\link{pbdb_occurrences}} to see an explanation about the
-main filtering parameters}
+main filtering parameters.}
+
+\item{level}{an integer specifying a cluster level. Refer to
+\url{https://paleobiodb.org/data1.2/config.txt?show=clusters} for
+a list of available resolution levels ("cluster_level" column).}
 }
 \value{
 a dataframe with the collections that match the query

@@ -283,13 +283,16 @@ pbdb_collections<-function(...){
 #' @usage pbdb_collections_geo(...)
 #'
 #' @param ... documentation for all the parameters is available in
-#'   https://paleobiodb.org/data1.2/colls/summary go to
+#'   \url{https://paleobiodb.org/data1.2/colls/summary}. Go to
 #'   \code{\link{pbdb_occurrences}} to see an explanation about the
-#'   main filtering parameters
-#' 
+#'   main filtering parameters.
+#' @param level an integer specifying a cluster level. Refer to
+#'   \url{https://paleobiodb.org/data1.2/config.txt?show=clusters} for
+#'   a list of available resolution levels ("cluster_level" column).
+#'
 #' @return a dataframe with the collections that match the query
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_collections_geo(
 #'     vocab = "pbdb",
@@ -297,13 +300,20 @@ pbdb_collections<-function(...){
 #'     level = 2
 #'   )
 #' }
+pbdb_collections_geo <- function(..., level) {
+  if (missing(level)) {
+    err_msg <- strwrap(
+      paste(
+        "Parameter \"level\" is required. Refer to",
+        "https://paleobiodb.org/data1.2/config.txt?show=clusters",
+        "for a list of possible values."
+      )
+    )
+    stop(paste(err_msg, collapse = "\n"))
+  }
 
-
-pbdb_collections_geo<-function(...){
-  
-  l<-list(...)
-  .pbdb_query('colls/summary', query = l)
-  
+  l <- list(..., level = level)
+  .pbdb_query("colls/summary", query = l)
 }
 
 #' pbdb_taxon
