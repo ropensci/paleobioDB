@@ -27,6 +27,6 @@ Go to \code{\link{pbdb_occurrences}} to see an explanation about the main filter
 }
 \examples{
 \dontrun{
-  pbdb_collection(id = 1003, vocab = "pbdb", show = "loc")
+  pbdb_reference(id = 1003, vocab = "pbdb", show = "both")
 }
 }

@@ -681,7 +681,7 @@ pbdb_strata_auto<-function(...){
 #' @return a dataframe with a single reference 
 #' @export 
 #' @examples \dontrun{
-#'   pbdb_collection(id = 1003, vocab = "pbdb", show = "loc")
+#'   pbdb_reference(id = 1003, vocab = "pbdb", show = "both")
 #' }
 
  
