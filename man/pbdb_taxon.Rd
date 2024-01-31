@@ -7,14 +7,18 @@
 pbdb_taxon(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/taxa/single}. E.g.:
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
+\url{https://paleobiodb.org/data1.2/taxa/single}. One of the
+following parameters must be specified (but not both):
 \itemize{
   \item \emph{name}: returns information about the most fundamental
     taxonomic name matching this string.
     The \% and _ characters may be used as wildcards.
-  \item ...
+  \item \emph{id}: returns information about the taxonomic name
+    corresponding to the specified identifier. The value can have
+    different forms (see the API documentation in the link
+    above).
 }}
 }
 \value{
