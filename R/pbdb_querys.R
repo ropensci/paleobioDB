@@ -269,7 +269,7 @@ pbdb_collections <- function(...) {
 #' https://paleobiodb.org/data1.2/config in order to get a list of the
 #' available summary levels.
 #'
-#' @usage pbdb_collections_geo(...)
+#' @usage pbdb_collections_geo(..., level)
 #'
 #' @param ... documentation for all the parameters is available in
 #'   \url{https://paleobiodb.org/data1.2/colls/summary}. Go to
@@ -410,10 +410,10 @@ pbdb_taxa_auto <- function(...) {
 }
 
 #' pbdb_interval
-#' 
+#'
 #' Returns information about a single interval, selected by identifier.
 #'
-#' @usage pbdb_interval(id, ...)
+#' @usage pbdb_interval(...)
 #'
 #' @param ... additional arguments passed to the API. See
 #'  documentation for accepted parameters at
