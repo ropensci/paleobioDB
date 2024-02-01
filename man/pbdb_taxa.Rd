@@ -39,11 +39,11 @@ other operations.
 }
 \examples{
 \dontrun{
-  pbdb_taxa(name = "Canidae", vocab = "pbdb", show = c("attr", "app", "size", "nav"))
-  pbdb_taxa(id = c(10, 11), vocab = "pbdb", show = c("attr", "app", "size", "nav"))
+  pbdb_taxa(name = "Canidae", vocab = "pbdb", show = c("attr", "app", "size", "class"))
+  pbdb_taxa(id = c(10, 11), vocab = "pbdb", show = c("attr", "app", "size", "class"))
   pbdb_taxa(
     id = c(10, 11), vocab = "pbdb",
-    show = c("attr", "app", "size", "nav"), rel = "common"
+    show = c("attr", "app", "size", "class"), rel = "common"
   )
 }
 }
