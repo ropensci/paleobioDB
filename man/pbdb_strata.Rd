@@ -14,7 +14,7 @@ documentation for accepted parameters in
   \item \emph{name}: a full or partial name. You can
     use \% and _ as wildcards, but the
     query will be very slow if you put a wildcard at the beginning
-  \item \emph{rank}: returns only strata of the specified 
+  \item \emph{rank}: returns only strata of the specified
     rank: formation, group or member.
   \item \emph{lngmin}: numeric. The longitude boundaries will be normalized to fall
     between -180 and 180. Note that if you specify lngmin then you must also
@@ -39,7 +39,7 @@ documentation for accepted parameters in
 a dataframe with information from the selected strata
 }
 \description{
-Returns information about geological strata, 
+Returns information about geological strata,
 selected by name, rank, and/or geographic location.
 }
 \examples{

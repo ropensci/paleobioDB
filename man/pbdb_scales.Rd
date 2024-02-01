@@ -28,5 +28,4 @@ Returns information about multiple time scales.
   ## by setting no ids
   pbdb_scales()
 }
-
 }

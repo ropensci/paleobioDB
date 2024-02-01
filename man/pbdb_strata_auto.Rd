@@ -38,8 +38,8 @@ a dataframe with information from the strata that matches
   the \code{name} parameter.
 }
 \description{
-Returns a list of strata matching the given prefix or partial name. 
-This can be used to implement auto-completion for strata names, 
+Returns a list of strata matching the given prefix or partial name.
+This can be used to implement auto-completion for strata names,
 and can be limited by geographic location if desired.
 }
 \examples{

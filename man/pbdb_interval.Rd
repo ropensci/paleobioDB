@@ -4,7 +4,7 @@
 \alias{pbdb_interval}
 \title{pbdb_interval}
 \usage{
-pbdb_interval(id, ...)
+pbdb_interval(...)
 }
 \arguments{
 \item{...}{additional arguments passed to the API. See

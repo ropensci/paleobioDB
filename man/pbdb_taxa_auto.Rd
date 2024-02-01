@@ -11,7 +11,7 @@ pbdb_taxa_auto(...)
 documentation for accepted parameters in
 \url{https://paleobiodb.org/data1.2/taxa/auto}. E.g.:
 \itemize{
-  \item \emph{name}: a partial name or prefix. 
+  \item \emph{name}: a partial name or prefix.
     It must have at least 3 significant characters,
     and may include both a genus
     (possibly abbreviated) and a species.
@@ -20,7 +20,7 @@ documentation for accepted parameters in
 }}
 }
 \value{
-a dataframe with information about the matches 
+a dataframe with information about the matches
 (taxon rank and number of occurrences in the database)
 }
 \description{
