@@ -2,32 +2,33 @@ Package: paleobioDB
 Description: Includes 19 functions to wrap each endpoint of
     the PaleobioDB API, plus 8 functions to visualize and process the fossil
     data. The API documentation for the Paleobiology Database can be found in
-    <http://paleobiodb.org/data1.1/>.
+    <https://paleobiodb.org/data1.2/>.
 Encoding: UTF-8
 Type: Package
 License: GPL-2
 Title: Download and Process Data from the Paleobiology Database
-Version: 0.7.0
+Version: 0.7.0.9000
 Date: 2020-07-22
 Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
-    email = "svarela@paleobiogeography.org"),
+    email = "sara.varela@uvigo.gal"),
     person("Javier", "González Hernández", role = "aut",
     email = "javier.gon@protonmail.com"),
     person("Luciano", "Fabris Sgarbi", role = "aut",
-    email = "luciano.f.sgarbi@gmail.com"))
-Maintainer: Sara Varela <svarela@paleobiogeography.org>
+    email = "luciano.f.sgarbi@gmail.com"),
+    person("Adrián", "Castro Insua", role = "ctb",
+    email = "adrian.castro.insua@uvigo.gal"))
+Maintainer: Sara Varela <sara.varela@uvigo.gal>
 BugReports: https://github.com/ropensci/paleobioDB/issues
 URL: https://docs.ropensci.org/paleobioDB, https://github.com/ropensci/paleobioDB
 LazyData: true
 Imports:
     rjson,
     gtools,
+    maps,
     RCurl,
     plyr,
-    scales
-Depends:
-    raster,
-    maps
+    scales,
+    terra
 Suggests:
     roxygen2,
     testthat
@@ -41,4 +42,4 @@ Collate:
     'pbdb_rest_api_setup.R'
     'pbdb_taxonomic_functions.R'
     'pbdb_temporal_functions.R'
-RoxygenNote: 5.0.1
+RoxygenNote: 7.2.3

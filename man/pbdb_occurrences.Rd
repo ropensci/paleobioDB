@@ -8,38 +8,40 @@ pbdb_occurrences(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
-\url{http://paleobiodb.org/data1.1/occs/list}
+\url{https://paleobiodb.org/data1.2/occs/list}
 \itemize{
-  \item \emph{limit}: sets limit to "all" to download all the occurrences. 
-    By default the limit is 500. 
-  \item \emph{taxon_name}: Return only records associated with the 
-    specified taxonomic name(s). 
-    You may specify multiple names, separated by commas.
-  \item \emph{base_name}:  Return records associated with the specified 
-    taxonomic name(s) and any of their children (e.g. base_name="Canis" will 
-  \item \emph{lngmin}: numeric. The longitude boundaries will be normalized 
-    to fall between -180 and 180. Note that if you specify 
-    lngmin then you must also specify lngmax. 
-    Returns only records whose geographic location falls 
-    within the given bounding box (defined by lngmin, lngmax, 
-    latmin, latmax).
-    It generates two adjacent bounding boxes if the range crosses
-    the antimeridian. 
-  \item \emph{lngmax}: numeric. The longitude boundaries will be normalized 
-    to fall between -180 and 180.
-  \item \emph{latmin}: numeric. between -90 and 90. 
-    Note that if you specify latmin then you must also specify latmax.
+  \item \emph{limit}: Limits the number of records returned. The
+    value may be a positive integer, zero, or "all".
+  \item \emph{taxon_name}: Return only records associated with
+    the specified taxonomic name(s).  You may specify multiple
+    names, separated by commas.
+  \item \emph{base_name}: Return records associated with the
+    specified taxonomic name(s) and any of their children
+    (e.g. base_name = "Canis" will return "Canis", "Canis lupus",
+    "Canis mosbachensis", etc.)
+  \item \emph{lngmin}: numeric. The longitude boundaries will be
+    normalized to fall between -180 and 180. Note that if you
+    specify lngmin then you must also specify lngmax.  Returns
+    only records whose geographic location falls within the given
+    bounding box (defined by lngmin, lngmax, latmin, latmax).  It
+    generates two adjacent bounding boxes if the range crosses
+    the antimeridian.
+  \item \emph{lngmax}: numeric. The longitude boundaries will be
+    normalized to fall between -180 and 180.
+  \item \emph{latmin}: numeric. between -90 and 90.  Note that if
+    you specify latmin then you must also specify latmax.
   \item \emph{latmax}: numeric. between -90 and 90.
-  \item \emph{min_ma}: return only records whose temporal 
+  \item \emph{min_ma}: return only records whose temporal
     locality is at least this old, specified in Ma.
-  \item \emph{max_ma}: return only records whose temporal 
+  \item \emph{max_ma}: return only records whose temporal
     locality is at most this old, specified in Ma.
-  \item \emph{interval}: return only records whose temporal 
-    locality falls within the named geologic time interval 
+  \item \emph{interval}: return only records whose temporal
+    locality falls within the named geologic time interval
     (e.g. "Miocene").
-  \item \emph{continent}: return only records whose geographic 
-    location falls within the specified continent(s). 
-  \item \emph{show}: to show extra variables (e.g. coords, phylo, ident)
+  \item \emph{continent}: return only records whose geographic
+    location falls within the specified continent(s).
+  \item \emph{show}: to show extra variables (e.g. coords,
+    classext, ident)
 }}
 }
 \value{
@@ -50,17 +52,24 @@ Returns information about species occurrence records stored in the
 Paleobiology Database.
 }
 \details{
-Documentation for all the parameters is available 
-at \url{http://paleobiodb.org/data1.1/occs/list}. We describe the most common
-filters that paleontologists and ecologists might use in the parameter list above.
+Documentation for all the parameters is available at
+\url{https://paleobiodb.org/data1.2/occs/list}. We describe the
+most common filters that paleontologists and ecologists might use
+in the parameter list above.
+
+Be aware that depending on the query, some columns may not be
+returned by the API if those are empty across all the rows.
 }
 \examples{
 \dontrun{
-pbdb_occurrences (id=c(10, 11), show=c("coords", "phylo", "ident")) 
-pbdb_occurrences (limit="all", vocab= "pbdb", 
-taxon_name="Canis", show=c("coords", "phylo", "ident"))
-pbdb_occurrences (limit="all", vocab= "pbdb", 
-base_name="Canidae", show=c("coords", "phylo", "ident"))
+  pbdb_occurrences(id = c(10, 11), show = c("coords", "classext", "ident"))
+  pbdb_occurrences(
+    limit = "all", vocab = "pbdb", taxon_name = "Canis",
+    show = c("coords", "classext", "ident")
+  )
+  pbdb_occurrences(
+    limit = "all", vocab = "pbdb", base_name = "Canidae",
+    show = c("coords", "classext", "ident")
+  )
 }
 }
-

@@ -4,17 +4,18 @@
 \alias{pbdb_reference}
 \title{pbdb_reference}
 \usage{
-pbdb_reference (id, ...)
+pbdb_reference(id, ...)
 }
 \arguments{
 \item{id}{identifier of the reference. This parameter is required.}
 
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/refs/single}. Eg:
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
+\url{https://paleobiodb.org/data1.2/refs/single}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete
+    name of the variables (by default variables have short
+    3-letter names).
   \item ...
 }}
 }
@@ -22,12 +23,11 @@ documentation for accepted parameters in
 a dataframe with a single reference
 }
 \description{
-Returns information about a single reference, selected by identifier.
-Go to \code{\link{pbdb_occurrences}} to see an explanation about the main filtering parameters
+Returns information about a single reference, selected by
+identifier.
 }
 \examples{
 \dontrun{
-pbdb_collection (id=1003, vocab="pbdb", show="loc")
+  pbdb_reference(id = 1003, vocab = "pbdb", show = "both")
 }
 }
-

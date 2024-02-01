@@ -4,31 +4,33 @@
 \alias{pbdb_taxon}
 \title{pbdb_taxon}
 \usage{
-pbdb_taxon (...)
+pbdb_taxon(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/taxa/single}. Eg:
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
+\url{https://paleobiodb.org/data1.2/taxa/single}. One of the
+following parameters must be specified (but not both):
 \itemize{
-  \item \emph{name}: returns information about the most fundamental 
-    taxonomic name matching this string. 
+  \item \emph{name}: returns information about the most fundamental
+    taxonomic name matching this string.
     The \% and _ characters may be used as wildcards.
-  \item ...
+  \item \emph{id}: returns information about the taxonomic name
+    corresponding to the specified identifier. The value can have
+    different forms (see the API documentation in the link
+    above).
 }}
 }
 \value{
 a dataframe with information from a single taxon
 }
 \description{
-Returns information about a single taxonomic name, 
-identified either by name or by identifier.
+Returns information about a single taxonomic name, identified
+either by name or by identifier.
 }
 \examples{
 \dontrun{
-pbdb_taxon (name="Canis", vocab="pbdb", 
-show=c("attr", "app", "size"))
-
+  pbdb_taxon(name = "Canis", vocab = "pbdb",
+             show = c("attr", "app", "size"))
 }
 }
-

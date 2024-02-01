@@ -4,31 +4,29 @@
 \alias{pbdb_taxa_auto}
 \title{pbdb_taxa_auto}
 \usage{
-pbdb_taxa_auto (...)
+pbdb_taxa_auto(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/taxa/auto_doc.html}. Eg:
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
+\url{https://paleobiodb.org/data1.2/taxa/auto}. E.g.:
 \itemize{
-  \item \emph{name}: a partial name or prefix. 
-    It must have at least 3 significant characters,
-    and may include both a genus
+  \item \emph{name}: a partial name or prefix.  It must have at
+    least 3 significant characters, and may include both a genus
     (possibly abbreviated) and a species.
   \item \emph{limit}: set the limit to the number of matches
   \item ...
 }}
 }
 \value{
-a dataframe with information about the matches 
-(taxon rank and number of occurrences in the database)
+a dataframe with information about the matches (taxon rank
+  and number of occurrences in the database)
 }
 \description{
 Returns a list of names matching the given prefix or partial name.
 }
 \examples{
 \dontrun{
-pbdb_taxa_auto (name="Cani", limit=10) 
+  pbdb_taxa_auto(name = "Cani", limit = 10)
 }
 }
-

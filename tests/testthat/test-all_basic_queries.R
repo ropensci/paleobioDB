@@ -135,7 +135,7 @@ test_that("pbdb_reference output is a dataframe, and the names are characters", 
 
 context("pbdb_ref_occurrences")
 test_that("pbdb_ref_occurrences output is a dataframe, and the names are characters", {
-  response<- pbdb_ref_occurrences (base_name="Canis", year=2000)
+  response <- pbdb_ref_occurrences(base_name = "Canis", min_ma = 5)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]>=1)

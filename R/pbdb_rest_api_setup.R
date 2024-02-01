@@ -1,16 +1,14 @@
-#' @include rest_api_tools.R
-
-# Functions and variables for setting up and managing the comunication 
+# Functions and variables for setting up and managing the communication
 # with the paleobiodb.org REST API
 
 #' .pbdb_uri_builder
-#' 
+#'
 #' Function that generates the URIs for the paleobiodb.org API
-#' 
-#' @param api_base_url Base url for the 
+#'
+#' @param api_base_url Base url for the API
 #' @param config Configuration of the endpoint
 #' @param querystring compiled querystring
-#'
+#' @noRd
 
 .pbdb_uri_builder <- function(api_base_url, config, querystring = ''){
 	
@@ -30,7 +28,7 @@
 #' .pbdb_set_up_endpoints
 #'
 #' This function registers all the endpoints available from the paleobiodb.org REST API
-#'
+#' @noRd
 .pbdb_set_up_endpoints<-function(){
 
 	# single occurrencies
@@ -99,9 +97,9 @@
 
 # Initialize configuration of package API
 .pbdb_setup<-function(){
-	.set_api_base('https://paleobiodb.org/data1.1')
+	.set_api_base("https://paleobiodb.org/data1.2")
 	.pbdb_set_up_endpoints()
-	.package_cache_set('api_format', 'json')
+	.package_cache_set("api_format", "json")
 }
 
 .pbdb_setup()

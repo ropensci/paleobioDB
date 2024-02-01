@@ -4,11 +4,11 @@
 \alias{pbdb_subtaxa}
 \title{pbdb_subtaxa}
 \usage{
-pbdb_subtaxa (data, do.plot, col)
+pbdb_subtaxa(data, do.plot, col)
 }
 \arguments{
 \item{data}{dataframe with our query to the 
-paleoBD \code{\link{pbdb_occurrences}}}
+paleobiodb \code{\link{pbdb_occurrences}}}
 
 \item{do.plot}{by default this function make a plot to 
 visualize the distribution of taxa. Set to FALSE to skip the plot.}
@@ -19,16 +19,16 @@ visualize the distribution of taxa. Set to FALSE to skip the plot.}
 a plot and a dataframe with the number of subtaxa in the data.
 }
 \description{
-count the number of subtaxa within a given taxa. 
-e.g. number of species within a genus.
+Count the number of taxa (species, genera, families, orders,
+classes, and phyla) in an occurrence dataframe.
 }
 \examples{
 \dontrun{
-canidae_quat<-  pbdb_occurrences (limit="all", 
-base_name="Canidae",  interval="Quaternary", 
-show=c("coords", "phylo", "ident"))
-pbdb_subtaxa (canidae_quat)
+  canidae_quat <- pbdb_occurrences(
+    limit = "all", base_name = "Canidae",  interval = "Quaternary",
+    show = c("coords", "classext", "ident"), vocab = "pbdb"
+  )
+  pbdb_subtaxa(canidae_quat)
 }
 
 }
-

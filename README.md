@@ -34,7 +34,7 @@ library(paleobioDB)
 
 **General overview**
 
-`paleobioDB` has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](http://paleobiodb.org/data1.1/).
+`paleobioDB` has 19 functions to wrap each endpoint of the PaleobioDB API, plus 8 functions to visualize and process the fossil data. The API documentation for the Paleobiology Database can be found [here](https://paleobiodb.org/data1.2/).
 
 ## Download fossil occurrences from the PaleobioDB
 

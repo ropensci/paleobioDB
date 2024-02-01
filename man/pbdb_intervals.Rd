@@ -4,20 +4,20 @@
 \alias{pbdb_intervals}
 \title{pbdb_intervals}
 \usage{
-pbdb_intervals (...)
+pbdb_intervals(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/intervals/list}. Eg:
+\item{...}{arguments passed to the API. See documentation for
+ accepted parameters in
+ \url{https://paleobiodb.org/data1.2/intervals/list}. E.g.:
 \itemize{
-  \item \emph{min_ma}: return only intervals that are at least this old
-  \item \emph{max_ma}: return only intervals that are at most this old
-  \item \emph{order}: return the intervals in order starting as specified. 
-    Possible values include older, younger. Defaults to younger
-  \item \emph{vocab}: set vocab="pbdb" to show 
-    the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{min_ma}: return only intervals that are at least this old.
+  \item \emph{max_ma}: return only intervals that are at most this old.
+  \item \emph{order}: return the intervals in order starting as specified.
+    Possible values include age, name. Defaults to age.
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+    of the variables (by default variables have short 3-letter
+    names).
   \item ...
 }}
 }
@@ -25,12 +25,11 @@ documentation for accepted parameters in
 a dataframe with information from several temporal intervals
 }
 \description{
-Returns information about multiple intervals, 
-selected according to the parameters you provide.
+Returns information about multiple intervals, selected according to
+the parameters you provide.
 }
 \examples{
 \dontrun{
-pbdb_intervals (min_ma= 0, max_ma=2, vocab="pbdb") 
+  pbdb_intervals(min_ma = 0, max_ma = 2, vocab = "pbdb")
 }
 }
-

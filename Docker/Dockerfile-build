@@ -4,4 +4,4 @@ RUN apt update && \
   apt install -y libgdal-dev && \
   apt install -y pandoc
 
-RUN Rscript -e 'install.packages(c("RCurl", "rjson", "maps", "gtools", "raster", "plyr", "scales","roxygen2", "testthat"))'
+RUN Rscript -e 'install.packages(c("RCurl", "rjson", "maps", "gtools", "terra", "plyr", "scales","roxygen2", "testthat"))'

@@ -4,32 +4,28 @@
 \alias{pbdb_taxa}
 \title{pbdb_taxa}
 \usage{
-pbdb_taxa (...)
+pbdb_taxa(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See all available arguments in
-\url{http://paleobiodb.org/data1.1/taxa/list}
+\item{...}{arguments passed to the API. See all available arguments
+in \url{https://paleobiodb.org/data1.2/taxa/list}
 \itemize{
-  \item \emph{name}: returns information about the most fundamental 
-    taxonomic name matching this string. 
-    The \% and _ characters may be used as wildcards.
-  \item \emph{id}: return information about the taxonomic name 
-    corresponding to this identifier. You may not specify both 
+  \item \emph{name}: returns information about the most
+    fundamental taxonomic name matching this string.  The \% and
+    _ characters may be used as wildcards.
+  \item \emph{id}: return information about the taxonomic name
+    corresponding to this identifier. You may not specify both
     name and id in the same query.
-  \item \emph{exact}: if this parameter is specified, then the taxon exactly 
-    matching the specified name or identifier is selected, 
-    rather than the senior synonym which is the default.
-  \item \emph{show}: to show extra variables: \emph{attr} 
-    the attribution of this taxon (author and year); 
-    \emph{app} the age of first and last appearance of this taxon 
-    from the occurrences recorded in this database; 
-    \emph{size} the number of subtaxa appearing in this database; 
-    \emph{nav} additional information for the PBDB Navigator taxon browser
-  \item \emph{rel}: set rel="synonyms" to select all synonyms of 
-    the base taxon or taxa; rel="children" to select the 
-    taxa immediately contained within the base taxon or taxa; 
-    rel="common_ancestor" to select the most specific taxon 
-    that contains all of the base taxa.
+  \item \emph{show}: to show extra variables. Some examples
+    include: \emph{attr} the attribution of this taxon (author
+    and year); \emph{app} the age of first and last appearance of
+    this taxon from the occurrences recorded in this database;
+    \emph{size} the number of subtaxa appearing in this database.
+  \item \emph{rel}: set rel = "synonyms" to select all synonyms
+    of the base taxon or taxa; rel = "children" to select the
+    taxa immediately contained within the base taxon or taxa; rel
+    = "common" to select the most specific taxon that contains
+    all of the base taxa.
   \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 }}
 }
@@ -37,18 +33,19 @@ pbdb_taxa (...)
 a dataframe with information from a list of taxa
 }
 \description{
-Returns information about multiple taxonomic names.  This function can be
-used to query for all of the children or parents of a given taxon, among
-other operations.
+Returns information about multiple taxonomic names.  This function
+can be used to query for all of the children or parents of a given
+taxon, among other operations.
 }
 \examples{
 \dontrun{
-pbdb_taxa (name="Canidae", vocab="pbdb", 
-show=c("attr", "app", "size", "nav"))
-pbdb_taxa (id =c(10, 11), vocab="pbdb", 
-show=c("attr", "app", "size", "nav"))
-pbdb_taxa (id =c(10, 11), vocab="pbdb", 
-show=c("attr", "app", "size", "nav"), rel="common_ancestor")
+  pbdb_taxa(name = "Canidae", vocab = "pbdb",
+            show = c("attr", "app", "size", "class"))
+  pbdb_taxa(id = c(10, 11), vocab = "pbdb",
+            show = c("attr", "app", "size", "class"))
+  pbdb_taxa(
+    id = c(10, 11), vocab = "pbdb",
+    show = c("attr", "app", "size", "class"), rel = "common"
+  )
 }
 }
-

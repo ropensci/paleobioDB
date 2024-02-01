@@ -3,7 +3,7 @@
 
 data<-  pbdb_occurrences (limit="100", vocab="pbdb",
                           base_name="Canidae",  interval="Quaternary", 
-                          show=c("phylo", "ident"))
+                          show=c("classext", "ident"))
 
 # TODO: replace `data` in all this tests for a mocked response of `pbdb_occurrences` (make tests independent of API)
 

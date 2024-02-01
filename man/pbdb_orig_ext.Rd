@@ -4,14 +4,13 @@
 \alias{pbdb_orig_ext}
 \title{pbdb_orig_ext}
 \usage{
-pbdb_orig_ext (data, rank, 
-temporal_extent, res, orig_ext,  
-colour="#0000FF30", bord="#0000FF", do.plot=TRUE)
+pbdb_orig_ext(data, rank, temporal_extent, res, orig_ext,
+              colour = "#0000FF30", bord = "#0000FF", do.plot = TRUE)
 }
 \arguments{
-\item{data}{dataframe with our query to the paleoBD \code{\link{pbdb_occurrences}}. 
+\item{data}{dataframe with our query to paleobiodb \code{\link{pbdb_occurrences}}.
 Important, it is required to show the name of the families, orders, etc. in the dataframe, 
-to do that set: show=c("phylo", "ident") (see example).}
+to do that set: show=c("classext", "ident") (see example).}
 
 \item{rank}{to set which taxon rank you are interested. By default rank= "species"}
 
@@ -19,7 +18,7 @@ to do that set: show=c("phylo", "ident") (see example).}
 
 \item{res}{numeric. to set the intervals of the temporal extent}
 
-\item{orig_ext}{1= origination, 2=extinction.}
+\item{orig_ext}{1 = origination, 2 = extinction.}
 
 \item{colour}{to change the colour of the bars in the plot, skyblue2 by default.}
 
@@ -37,16 +36,19 @@ Plots the appearance of new taxa across time.
 }
 \examples{
 \dontrun{
-canidae<-  pbdb_occurrences (limit="all", vocab="pbdb",
-base_name="Canidae", show=c("phylo", "ident"))
+  canidae <- pbdb_occurrences(
+    limit = "all", vocab = "pbdb",
+    base_name = "Canidae", show = c("classext", "ident")
+  )
 
-# plot of the evolutive rates.
-pbdb_orig_ext (canidae, rank="genus", temporal_extent=c(0, 10), 
-res=1, orig_ext=1) 
+  # Plot of the evolutionary rates
+  pbdb_orig_ext(
+    canidae, rank = "genus", temporal_extent = c(0, 10), res = 1, orig_ext = 1
+  )
 
-# plot of the extinction rates.
-pbdb_orig_ext (canidae, rank="species", temporal_extent=c(0, 10), 
-res=1, orig_ext=2) 
+  # Plot of the extinction rates
+  pbdb_orig_ext(
+    canidae, rank = "species", temporal_extent = c(0, 10), res = 1, orig_ext = 2
+  )
 }
 }
-

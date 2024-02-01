@@ -4,39 +4,29 @@
 \alias{pbdb_ref_occurrences}
 \title{pbdb_ref_occurrences}
 \usage{
-pbdb_ref_occurrences (...)
+pbdb_ref_occurrences(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
-\url{http://paleobiodb.org/data1.1/occs/refs}
-\itemize{
-  \item \emph{author} select only references for which any of the authors 
-    matches the specified name
-  \item \emph{year} select only references published in the specified year
-  \item \emph{pubtitle} select only references that involve the specified 
-    publication
-  \item \emph{order} specifies the order in which the results are returned. You can
-    specify multiple values separated by commas, and each value may be appended
-    with .asc or .desc. Accepted values are: author, year, pubtitle, created,
-    modified, rank.
-}}
+\url{https://paleobiodb.org/data1.2/occs/refs}}
 }
 \value{
-a dataframe with the information about the references 
-that match the query
+a dataframe with the information about the references that
+  match the query
 }
 \description{
-Returns information about the bibliographic references 
-associated with fossil occurrences from the database.
+Returns information about the bibliographic references associated
+with fossil occurrences from the database.
 }
 \details{
-Go to \code{\link{pbdb_occurrences}} to see an explanation about the main 
-filtering parameters.
+Go to \code{\link{pbdb_occurrences}} to see an explanation about
+the main filtering parameters.
 }
 \examples{
 \dontrun{
-pbdb_ref_occurrences (vocab="pbdb", 
-base_name="Canis", year=2000)
+  pbdb_ref_occurrences(
+    vocab = "pbdb", base_name = "Canis",
+    latmin = 0, latmax = 35, lngmin = 0, lngmax = 35
+  )
 }
 }
-

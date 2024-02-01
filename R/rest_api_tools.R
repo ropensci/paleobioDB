@@ -14,7 +14,8 @@
 #' ould be the api_base
 #' @param ... Custom parameters passed to the uri_builder callback when generating the URIs
 #' @param uri_builder Function that generates the URIs to the API
-#' 
+#' @param query_params Query parameters (currently unused)
+#' @noRd
 .setup_api_endpoint<-function(name, endpoint_base, ..., uri_builder = .default_uri_builder, 
 	query_params = list()){
 
@@ -38,7 +39,7 @@
 #' .default_uri_builder
 #' 
 #' Default uri builder
-#' 
+#' @noRd
 
 .default_uri_builder<-function(api_base_uri, config, ..., querystring = ''){
 
@@ -63,7 +64,7 @@
 #' @param query URI parameters for the query string passed as a named list
 #' @param api_base API base for this URI, no matter if global value was defined
 #' @return character
-#'
+#' @noRd
 
 .build_uri<-function(endpoint, ..., query = list(), api_base = NULL){
 
@@ -103,9 +104,10 @@
 }
 
 #' .set_api_base
-#' 
+#'
 #' Wrapper to set up the base address of the api
-#' 
+#' @param api_base the API base URL
+#' @noRd
 
 .set_api_base<-function(api_base){
 	.package_cache_set('api_base', api_base)
@@ -116,7 +118,7 @@
 #' Throws error if a compulsory parameter is not found in query
 #' @param compulsory_params list of compulsory
 #' @param query list of query name/value pairs
-#'
+#' @noRd
 .stop_on_missing_param<-function(compulsory_params, query){
 
 	q_params <- names(query)

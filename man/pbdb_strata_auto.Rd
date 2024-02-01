@@ -4,47 +4,49 @@
 \alias{pbdb_strata_auto}
 \title{pbdb_strata_auto}
 \usage{
-pbdb_strata_auto (...)
+pbdb_strata_auto(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/strata/auto}. Eg:
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
+\url{https://paleobiodb.org/data1.2/strata/auto}. E.g.:
 \itemize{
-  \item \emph{name}: a full or partial name. You can
-    use \% and _ as wildcards, but the
-    query will be very slow if you put a wildcard at the beginning
-  \item \emph{rank}: returns only strata of the specified 
-    rank: formation, group or member.
-  \item \emph{lngmin}: numeric. The longitude boundaries will be normalized to fall
-    between -180 and 180. Note that if you specify lngmin then you must also
-    specify lngmax. Returns only records whose geographic location falls within
-    the given bounding box (defined by lngmin, lngmax, latmin, latmax). It
-    generate two adjacent bounding boxes if the range crosses the antimeridian. 
-  \item \emph{lngmax}: numeric. The longitude boundaries will be normalized to fall
-    between -180 and 180.
-  \item \emph{latmin}: numeric. between -90 and 90. Note that if you specify latmin
-    then you must also specify latmax.
+  \item \emph{name}: a full or partial name. It must have at
+  least 3 significant characters, and may end in a space followed
+  by either 'g' or 'f' to indicate that you are looking for a
+  group or formation.
+  \item \emph{rank}: return only strata of the specified rank:
+  formation or group. This may be overridden by a suffix on the
+  value of name.
+  \item \emph{lngmin}: numeric. The longitude boundaries will be
+    normalized to fall between -180 and 180. Note that if you
+    specify lngmin then you must also specify lngmax. Returns
+    only records whose geographic location falls within the given
+    bounding box (defined by lngmin, lngmax, latmin, latmax). It
+    generates two adjacent bounding boxes if the range crosses
+    the antimeridian.
+  \item \emph{lngmax}: numeric. The longitude boundaries will be
+    normalized to fall between -180 and 180.
+  \item \emph{latmin}: numeric. between -90 and 90. Note that if
+    you specify latmin then you must also specify latmax.
   \item \emph{latmax}: numeric. between -90 and 90.
-  \item \emph{loc}: Return only strata associated with some occurrence whose
-    geographic location falls within the specified geometry, specified in WKT
-    format.
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete
+    name of the variables (by default variables have short
+    3-letter names).
   \item ...
 }}
 }
 \value{
-a dataframe with information from the strata that matches our letters.
+a dataframe with information from the strata that matches
+  the \code{name} parameter.
 }
 \description{
-Returns a list of strata matching the given prefix or partial name. 
-This can be used to implement auto-completion for strata names, 
-and can be limited by geographic location if desired.
+Returns a list of strata matching the given prefix or partial name.
+This can be used to implement auto-completion for strata names, and
+can be limited by geographic location if desired.
 }
 \examples{
 \dontrun{
-pbdb_strata_auto (name= "Pin", vocab="pbdb") 
+  pbdb_strata_auto(name = "Pin", vocab = "pbdb")
 }
 }
-

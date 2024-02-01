@@ -1,12 +1,14 @@
 #' .get_data_from_uri
-#' 
-#' Grabs data as dataframe from a URI. Expects the response data to be in JSON format
+#'
+#' Grabs data as dataframe from a URI. Expects the response data to be
+#' in JSON format
 #'
 #' @param uri Public internet address of the data
 #' @return dataframe with rows of data
 #' @examples \dontrun{
 #' .get_data_from_uri("http://api.example.com/ecologydata")
 #' }
+#' @noRd
 
 .get_data_from_uri<-function(uri){
 	response <- RCurl::getURL(uri, header = TRUE)
@@ -22,7 +24,7 @@
 #
 #' @param response Raw http response
 #' @return character
-#'
+#' @noRd
 
 .extract_response_body<-function(response){
 	
@@ -47,7 +49,7 @@
 #' 
 #' @param raw_data json encoded data
 #' @return dataframe
-#' 
+#' @noRd
 
 .parse_raw_data<-function(raw_data){
 
@@ -63,7 +65,7 @@
 #'
 #' @param reg_list data rows as a list of lists
 #' @return dataframe
-#'
+#' @noRd
 
 .make_data_frame<-function(reg_list){
   
@@ -83,6 +85,8 @@
     first_line <- FALSE
   }
   
+  df <- .convert_data_frame_columns(df)
+
   df_count <- nrow(df)
   
   if (reg_count != df_count) {
@@ -106,7 +110,7 @@
 #' @examples \dontrun{
 #' .build_query_string(list(name="Bob", city="Berlin"))
 #' }
-#' 
+#' @noRd
 
 .build_query_string<-function(args){
   
@@ -124,12 +128,14 @@
 
 
 #' .collapse_array_columns_map
-#' 
-#' Maps multivalue elements to comma separated strings 
 #'
-#' @param reg_list data rows as a list of lists
-#' @return dataframe
+#' Maps multivalue elements to semicolon separated strings
 #'
+#' @param element a vector representing some data field
+#' @return a string with the elements of the provided vector separated
+#'   by semicolons if it has more than one element or the vector as it
+#'   was passed to the function if it has length one
+#' @noRd
 
 .collapse_array_columns_map<- function (element){  
   if (length (element) > 1){
@@ -142,3 +148,28 @@
 }
 
 
+#' .convert_data_frame_columns
+#'
+#' Converts some columns (lng, lat) from character to numeric.  This
+#' conversion is needed because the paleobiodb API returns these
+#' fields as strings, but the map plotting functions in this package
+#' expect longitude and latitude to be numeric.
+#'
+#' @param df a data frame
+#' @return a data frame with its "lng" and "lat" columns converted to
+#'   numeric
+#'
+#' @noRd
+.convert_data_frame_columns <- function(df) {
+  column_conversion_funs <- c("lng" = as.numeric, "lat" = as.numeric)
+
+  columns_to_convert <- colnames(df)[
+    colnames(df) %in% names(column_conversion_funs)
+  ]
+
+  for (column in columns_to_convert) {
+    df[[column]] <- column_conversion_funs[[column]](df[[column]])
+  }
+
+  df
+}

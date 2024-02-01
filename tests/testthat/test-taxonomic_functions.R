@@ -3,7 +3,7 @@
 context("pbdb_subtaxa")
 test_that("pbdb_subtaxa output is a dataframe, and the names are characters", {
   data<-  pbdb_occurrences (limit="100", vocab="pbdb",
-                            base_name="Canidae", show=c('phylo', 'ident') )
+                            base_name="Canidae", show=c('classext', 'ident') )
   
   response<- pbdb_subtaxa (data, do.plot=F)
   expect_true(is.data.frame (response))

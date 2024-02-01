@@ -5,6 +5,7 @@
 #' .private_pk_cache
 #' 
 #' Environment for the runtime variables of the package
+#' @noRd
 
 .private_pk_cache <- new.env()
 
@@ -24,7 +25,7 @@
 #' })
 #' }
 #' @return value of the cached variable
-#'
+#' @noRd
 
 .package_cache_return_or_setup<-function(varname, setupfun)
 {
@@ -54,7 +55,7 @@
 #' 
 #' @param varname Name of the variable
 #' @return boolean 
-#'
+#' @noRd
 
 .package_cache_has<-function(varname)
 {
@@ -75,7 +76,7 @@
 #' 
 #' @param varname Name of the variable
 #' @return value of the variable
-#'
+#' @noRd
 
 .package_cache_get<-function(varname)
 {
@@ -83,16 +84,18 @@
 }
 
 #' .package_cache_set
-#' 
+#'
 #' Sets a variable value in cache
-#' 
+#'
 #' @usage .package_cache_set(varname, value)
-#' 
+#'
 #' @param varname Name of the variable
+#' @param value the value to be assigned to the variable
 #' @return value of the variable
 #' @examples \dontrun{
 #' .package_cache_set("specieslist", list("dog", "cat", "chupacabra"))
 #' }
+#' @noRd
 
 .package_cache_set<-function(varname, value)
 {
@@ -104,6 +107,9 @@
 #' Delete a variable from cache environment
 #' 
 #' @usage .package_cache_delete(varname)
+#'
+#' @param varname the variable to delete
+#' @noRd
 .package_cache_delete<-function(varname)
 {
 	assign(varname, NULL, envir = .private_pk_cache)
@@ -112,9 +118,9 @@
 }
 
 #' .package_cache_empty
-#' 
-#' Empty the cache
 #'
+#' Empty the cache
+#' @noRd
 
 .package_cache_empty<-function()
 {

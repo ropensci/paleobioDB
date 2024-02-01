@@ -4,18 +4,18 @@
 \alias{pbdb_map_richness}
 \title{pbdb_map_richness}
 \usage{
-pbdb_map_richness (data, rank="species", do.plot=TRUE, res=5,
-col.int="white", col.ocean="black",
-col.rich=c("light blue","blue"),...)
+pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
+                  col.int = "white", col.ocean = "black",
+                  col.rich = c("light blue", "blue"), ...)
 }
 \arguments{
-\item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("phylo", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}}
+\item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("classext", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}}
 
 \item{rank}{To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")}
 
-\item{do.plot}{Logical; \code{TRUE} the function returns a RasterLayer and a plot.}
+\item{do.plot}{Logical; \code{TRUE} the function returns a SpatRaster and a plot.}
 
-\item{res}{The resolution of the RasterLayer object (in decimal degrees). See: \code{\link{raster}}}
+\item{res}{The resolution of the SpatRaster object (in decimal degrees). See: \code{\link{terra}}}
 
 \item{col.int}{The colour of the mainland}
 
@@ -26,11 +26,11 @@ col.rich=c("light blue","blue"),...)
 \item{...}{Others parameters. See \code{\link{par}} and \code{\link{map}}}
 }
 \value{
-A RasterLayer object and a plot with richness of species, genera, families, etc. per cell. This RasterLayer object have the resolution controlled by
+A SpatRaster object and a plot with richness of species, genera, families, etc. per cell. This SpatRaster object have the resolution controlled by
 the argument \code{res}. The default is \code{res=1}.
 }
 \description{
-Creates a RasterLayer object and a plot with richness of species, genera, families, etc. per cell.
+Creates a SpatRaster object and a plot with richness of species, genera, families, etc. per cell.
 }
 \details{
 \strong{CAUTION!} The argument \code{show = "coords"} in \code{\link{pbdb_occurrences}} function is required. 
@@ -38,17 +38,17 @@ We recommend the use of a cairo device (\code{\link{X11}}) for better visualizat
 }
 \examples{
 \dontrun{
-data<- pbdb_occurrences (limit=1000, vocab= "pbdb", base_name="mammalia",
-show=c("phylo","coords","ident"))
-X11(width=13, height=7.8)
-pbdb_map_richness (data,res=8,rank="genus")
-pbdb_map_richness (data,res=8,rank="family")
-## to obtain the raster file and not plot the map
-pbdb_map_richness (data,res=8,rank="family",do.plot=F)
+  data <- pbdb_occurrences(
+    limit = 1000, vocab = "pbdb", base_name = "mammalia",
+    show = c("classext", "coords", "ident")
+  )
+  X11(width = 13, height = 7.8)
+  pbdb_map_richness(data, res = 8, rank = "genus")
+  pbdb_map_richness(data, res = 8, rank = "family")
+  ## to obtain the raster object without plotting the map
+  pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 }
-
 }
 \seealso{
 See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
 }
-

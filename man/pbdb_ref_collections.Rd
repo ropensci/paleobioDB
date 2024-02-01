@@ -4,35 +4,38 @@
 \alias{pbdb_ref_collections}
 \title{pbdb_ref_collections}
 \usage{
-pbdb_ref_collections (...)
+pbdb_ref_collections(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
-\url{http://paleobiodb.org/data1.1/colls/refs}. Eg:
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
+\url{https://paleobiodb.org/data1.2/colls/refs}. E.g.:
 \itemize{
-  \item \emph{id} comma-separated list of collection identifiers
-  \item \emph{author} select only references for which any of the authors 
-    matches the specified name
-  \item \emph{year} select only references published in the specified year
-  \item \emph{pubtitle} select only references that involve the specified 
-    publication
-  \item \emph{order} specifies the order in which the results are returned. You can
-    specify multiple values separated by commas, and each value may be appended
-    with .asc or .desc. Accepted values are: author, year, pubtitle, created,
-    modified, rank.
+  \item \emph{id} comma-separated list of collection identifiers.
+  \item \emph{ref_author} select only references for which any of
+    the authors matches the specified name.
+  \item \emph{ref_pubyr} select only references published in the
+    specified year.
+  \item \emph{pub_title} select only references that involve the
+    specified publication.
+  \item \emph{order} specifies the order in which the results are
+    returned. You can specify multiple values separated by
+    commas, and each value may be appended with .asc or
+    .desc. Accepted values are: author, pubyr, reftitle,
+    pubtitle, pubtype, created, modified, rank.
   \item ...
 }}
 }
 \value{
-a dataframe with the information about the references that match the query
+a dataframe with the information about the references that
+  match the query
 }
 \description{
-Returns information about the references from which the selected collection data were entered.
+Returns information about the references from which the selected
+collection data were entered.
 }
 \examples{
 \dontrun{
-  pbdb_ref_collections (id=1)
+  pbdb_ref_collections(id = 1)
 }
 }
-
