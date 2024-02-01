@@ -7,16 +7,20 @@
 pbdb_interval(id, ...)
 }
 \arguments{
-\item{id}{identifier of the temporal interval. This parameter is required.}
-
 \item{...}{additional arguments passed to the API. See
-documentation for accepted parameters in
-\url{https://paleobiodb.org/data1.2/intervals/single}. E.g.:
-\itemize{
-  \item \emph{vocab}: set vocab = "pbdb" to show the complete name
-    of the variables (by default variables have short 3-letter
-    names)
-}}
+documentation for accepted parameters at
+\url{https://paleobiodb.org/data1.2/intervals/single}. Either
+ \code{name} or \code{id} must be specified, but both cannot be
+ used in the same query:
+ \itemize{
+   \item \emph{name}: returns the interval with the specified
+     name.
+   \item \emph{id}: returns the interval corresponding to the
+     specified identifier.
+   \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+     of the variables (by default variables have short 3-letter
+     names)
+ }}
 }
 \value{
 a dataframe with information from a single temporal
