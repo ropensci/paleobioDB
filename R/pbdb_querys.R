@@ -325,20 +325,15 @@ pbdb_collections_geo <- function(..., level) {
 #'       above).
 #'   }
 #' @return a dataframe with information from a single taxon
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_taxon(name = "Canis", vocab = "pbdb", show = c("attr", "app", "size"))
 #' }
-
-
-pbdb_taxon<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('taxa/single', query = l)
+pbdb_taxon <- function(...) {
+  l <- list(...)
+  .pbdb_query("taxa/single", query = l)
 }
-
 
 #' pbdb_taxa
 #' 
@@ -380,26 +375,21 @@ pbdb_taxon<-function(...){
 #'     show = c("attr", "app", "size", "nav"), rel = "common"
 #'   )
 #'}
-
-
-pbdb_taxa<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('taxa/list', query = l)
+pbdb_taxa <- function(...) {
+  l <- list(...)
+  .pbdb_query("taxa/list", query = l)
 }
 
-
 #' pbdb_taxa_auto
-#' 
-#' Returns a list of names matching the given prefix or partial name. 
-#' 
+#'
+#' Returns a list of names matching the given prefix or partial name.
+#'
 #' @usage pbdb_taxa_auto(...)
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/taxa/auto}. E.g.:
 #'   \itemize{
-#'     \item \emph{name}: a partial name or prefix. 
+#'     \item \emph{name}: a partial name or prefix.
 #'       It must have at least 3 significant characters,
 #'       and may include both a genus
 #'       (possibly abbreviated) and a species.
@@ -407,22 +397,17 @@ pbdb_taxa<-function(...){
 #'     \item ...
 #'   }
 
-#' @return a dataframe with information about the matches 
+#' @return a dataframe with information about the matches
 #' (taxon rank and number of occurrences in the database)
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_taxa_auto(name = "Cani", limit = 10)
 #' }
-
-pbdb_taxa_auto<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('taxa/auto', query = l)
+pbdb_taxa_auto <- function(...) {
+  l <- list(...)
+  .pbdb_query("taxa/auto", query = l)
 }
-
-
 
 #' pbdb_interval
 #' 
@@ -446,19 +431,19 @@ pbdb_taxa_auto<-function(...){
 #'   }
 #' @return a dataframe with information from a single temporal
 #'   interval
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_interval(id = 1, vocab = "pbdb")
 #' }
 pbdb_interval <- function(...) {
   l <- list(...)
-  
+
   .pbdb_query("intervals/single", query = l)
 }
 
 #' pbdb_intervals
-#' 
+#'
 #' Returns information about multiple intervals, selected according to
 #' the parameters you provide.
 #'
@@ -470,29 +455,24 @@ pbdb_interval <- function(...) {
 #'  \itemize{
 #'    \item \emph{min_ma}: return only intervals that are at least this old
 #'    \item \emph{max_ma}: return only intervals that are at most this old
-#'    \item \emph{order}: return the intervals in order starting as specified. 
+#'    \item \emph{order}: return the intervals in order starting as specified.
 #'      Possible values include age, name. Defaults to age
-#'    \item \emph{vocab}: set vocab="pbdb" to show 
+#'    \item \emph{vocab}: set vocab="pbdb" to show
 #'      the complete name of the variables (by
 #'      default variables have short 3-letter names)
 #'    \item ...
 #'  }
 #'
 #' @return a dataframe with information from several temporal intervals
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_intervals(min_ma = 0, max_ma = 2, vocab = "pbdb")
 #' }
- 
-
-pbdb_intervals<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('intervals/list', query = l)
+pbdb_intervals <- function(...) {
+  l <- list(...)
+  .pbdb_query("intervals/list", query = l)
 }
-
 
 #' pbdb_scale
 #' 
@@ -541,22 +521,16 @@ pbdb_scale <- function(id, ...) {
 #'   ## by setting no ids
 #'   pbdb_scales()
 #' }
-#' 
-
-pbdb_scales<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('scales/list', query = l)
+pbdb_scales <- function(...) {
+  l <- list(...)
+  .pbdb_query("scales/list", query = l)
 }
 
-
-
 #'pbdb_strata
-#' 
-#' Returns information about geological strata, 
+#'
+#' Returns information about geological strata,
 #' selected by name, rank, and/or geographic location.
-#' 
+#'
 #' @usage pbdb_strata(...)
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
@@ -565,7 +539,7 @@ pbdb_scales<-function(...){
 #'     \item \emph{name}: a full or partial name. You can
 #'       use \% and _ as wildcards, but the
 #'       query will be very slow if you put a wildcard at the beginning
-#'     \item \emph{rank}: returns only strata of the specified 
+#'     \item \emph{rank}: returns only strata of the specified
 #'       rank: formation, group or member.
 #'     \item \emph{lngmin}: numeric. The longitude boundaries will be normalized to fall
 #'       between -180 and 180. Note that if you specify lngmin then you must also
@@ -586,29 +560,23 @@ pbdb_scales<-function(...){
 #'     \item ...
 #'   }
 #' @return a dataframe with information from the selected strata
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_strata(
 #'     lngmin = 0, lngmax = 15, latmin = 0, latmax = 15,
 #'     rank = "formation", vocab = "pbdb"
 #'   )
 #' }
-
-
-pbdb_strata<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('strata/list', query = l)
+pbdb_strata <- function(...) {
+  l <- list(...)
+  .pbdb_query("strata/list", query = l)
 }
 
-
-
 #' pbdb_strata_auto
-#' 
-#' Returns a list of strata matching the given prefix or partial name. 
-#' This can be used to implement auto-completion for strata names, 
+#'
+#' Returns a list of strata matching the given prefix or partial name.
+#' This can be used to implement auto-completion for strata names,
 #' and can be limited by geographic location if desired.
 #'
 #' @usage pbdb_strata_auto(...)
@@ -640,20 +608,15 @@ pbdb_strata<-function(...){
 #'   }
 #' @return a dataframe with information from the strata that matches
 #'   the \code{name} parameter.
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_strata_auto(name = "Pin", vocab = "pbdb")
 #' }
-
-
-pbdb_strata_auto<-function(...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('strata/auto', query = l)
+pbdb_strata_auto <- function(...) {
+  l <- list(...)
+  .pbdb_query("strata/auto", query = l)
 }
-
 
 #' pbdb_reference
 #' 
@@ -680,8 +643,6 @@ pbdb_reference <- function(id, ...) {
   l <- list(id = id, ...)
   .pbdb_query("refs/single", query = l)
 }
-
-
 
 #' pbdb_references
 #' 
