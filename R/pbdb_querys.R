@@ -83,13 +83,10 @@
 #'   pbdb_occurrence(id = 1001)
 #'   pbdb_occurrence(id = 1001, vocab = "pbdb", show = "coords")
 #' }
-
-pbdb_occurrence<-function(id, ...){
-  l<-list(...)
-  # todo: merge lists properly  
-  .pbdb_query('occs/single', query = c(list(id = id), l))
+pbdb_occurrence <- function(id, ...) {
+  l <- list(id = id, ...)
+  .pbdb_query("occs/single", query = l)
 }
-
 
 #' pbdb_occurrences
 #'
@@ -235,13 +232,9 @@ pbdb_ref_occurrences<-function(...){
 #' @examples \dontrun{
 #'   pbdb_collection(id = 1003, vocab = "pbdb", show = "loc")
 #' }
-
-
-pbdb_collection<-function(id, ...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('colls/single', query = c(list(id = id), l))
+pbdb_collection <- function(id, ...) {
+  l <- list(id = id, ...)
+  .pbdb_query("colls/single", query = l)
 }
 
 #' pbdb_collections
@@ -522,13 +515,9 @@ pbdb_intervals<-function(...){
 #' @examples \dontrun{
 #'   pbdb_scale(id = 1, vocab = "pbdb")
 #' }
- 
-
-pbdb_scale<-function(id, ...){
-  l<-list(...)
-  
-  # todo: merge lists properly  
-  .pbdb_query('scales/single', query = c(list(id = id), l))
+pbdb_scale <- function(id, ...) {
+  l <- list(id = id, ...)
+  .pbdb_query("scales/single", query = l)
 }
 
 #' pbdb_scales
@@ -687,13 +676,9 @@ pbdb_strata_auto<-function(...){
 #' @examples \dontrun{
 #'   pbdb_reference(id = 1003, vocab = "pbdb", show = "both")
 #' }
-
- 
-pbdb_reference<-function(id, ...){
-  
-  l<-list(...)
-  .pbdb_query('refs/single', query = c(list(id = id), l))
-  
+pbdb_reference <- function(id, ...) {
+  l <- list(id = id, ...)
+  .pbdb_query("refs/single", query = l)
 }
 
 
