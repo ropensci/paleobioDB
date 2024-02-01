@@ -13,8 +13,9 @@ pbdb_scale(id, ...)
 documentation for accepted parameters in
 \url{https://paleobiodb.org/data1.2/scales/single}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete
+    name of the variables (by default variables have short
+    3-letter names).
   \item ...
 }}
 }
@@ -22,7 +23,7 @@ documentation for accepted parameters in
 a dataframe with information from a single scale
 }
 \description{
-Returns information about a single time scale, selected by 
+Returns information about a single time scale, selected by
 identifier.
 }
 \examples{

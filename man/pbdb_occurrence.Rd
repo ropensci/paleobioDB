@@ -12,22 +12,23 @@ pbdb_occurrence(id, ...)
 \item{...}{arguments passed to the API. See all available arguments in
 \url{https://paleobiodb.org/data1.2/occs/single}. E.g.:
 \itemize{
- \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-   default variables have short 3-letter names)
+ \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+   of the variables (by default variables have short 3-letter
+   names).
 }}
 }
 \value{
 a dataframe with a single occurrence
 }
 \description{
-Returns information about a single occurrence record from the Paleobiology 
+Returns information about a single occurrence record from the Paleobiology
 Database.
 }
 \details{
-Documentation for all the parameters is available at 
-https://paleobiodb.org/data1.2/occs/single. In the parameter list above, we
-describe the most common filters that paleontologists and ecologists might
-use.
+Documentation for all the parameters is available at
+\url{https://paleobiodb.org/data1.2/occs/single}. In the parameter
+list above, we describe the most common filters that
+paleontologists and ecologists might use.
 }
 \examples{
 \dontrun{

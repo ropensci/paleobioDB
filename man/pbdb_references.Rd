@@ -7,15 +7,16 @@
 pbdb_references(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
 \url{https://paleobiodb.org/data1.2/refs/list}. E.g.:
 \itemize{
-  \item \emph{ref_author} select only references for which any of the authors
-    matches the specified name
-  \item \emph{ref_pubyr} select only references published in the specified year
-  \item \emph{pub_title} select only references that involve the specified
-    publication
+  \item \emph{ref_author} select only references for which any of
+    the authors matches the specified name.
+  \item \emph{ref_pubyr} select only references published in the
+    specified year.
+  \item \emph{pub_title} select only references that involve the
+    specified publication.
   \item \emph{order} specifies the order in which the results are
     returned. You can specify multiple values separated by
     commas, and each value may be appended with .asc or
@@ -25,10 +26,12 @@ documentation for accepted parameters in
 }}
 }
 \value{
-a dataframe with the information about the references that match the query
+a dataframe with the information about the references that
+  match the query
 }
 \description{
-Returns information about multiple references, selected according to the parameters you provide.
+Returns information about multiple references, selected according
+to the parameters you provide.
 }
 \examples{
 \dontrun{

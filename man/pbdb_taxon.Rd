@@ -30,6 +30,7 @@ either by name or by identifier.
 }
 \examples{
 \dontrun{
-  pbdb_taxon(name = "Canis", vocab = "pbdb", show = c("attr", "app", "size"))
+  pbdb_taxon(name = "Canis", vocab = "pbdb",
+             show = c("attr", "app", "size"))
 }
 }

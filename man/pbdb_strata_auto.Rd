@@ -7,8 +7,8 @@
 pbdb_strata_auto(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
+\item{...}{arguments passed to the API. See documentation for
+accepted parameters in
 \url{https://paleobiodb.org/data1.2/strata/auto}. E.g.:
 \itemize{
   \item \emph{name}: a full or partial name. It must have at
@@ -18,18 +18,21 @@ documentation for accepted parameters in
   \item \emph{rank}: return only strata of the specified rank:
   formation or group. This may be overridden by a suffix on the
   value of name.
-  \item \emph{lngmin}: numeric. The longitude boundaries will be normalized to fall
-    between -180 and 180. Note that if you specify lngmin then you must also
-    specify lngmax. Returns only records whose geographic location falls within
-    the given bounding box (defined by lngmin, lngmax, latmin, latmax). It
-    generates two adjacent bounding boxes if the range crosses the antimeridian.
-  \item \emph{lngmax}: numeric. The longitude boundaries will be normalized to fall
-    between -180 and 180.
-  \item \emph{latmin}: numeric. between -90 and 90. Note that if you specify latmin
-    then you must also specify latmax.
+  \item \emph{lngmin}: numeric. The longitude boundaries will be
+    normalized to fall between -180 and 180. Note that if you
+    specify lngmin then you must also specify lngmax. Returns
+    only records whose geographic location falls within the given
+    bounding box (defined by lngmin, lngmax, latmin, latmax). It
+    generates two adjacent bounding boxes if the range crosses
+    the antimeridian.
+  \item \emph{lngmax}: numeric. The longitude boundaries will be
+    normalized to fall between -180 and 180.
+  \item \emph{latmin}: numeric. between -90 and 90. Note that if
+    you specify latmin then you must also specify latmax.
   \item \emph{latmax}: numeric. between -90 and 90.
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete
+    name of the variables (by default variables have short
+    3-letter names).
   \item ...
 }}
 }
@@ -39,8 +42,8 @@ a dataframe with information from the strata that matches
 }
 \description{
 Returns a list of strata matching the given prefix or partial name.
-This can be used to implement auto-completion for strata names,
-and can be limited by geographic location if desired.
+This can be used to implement auto-completion for strata names, and
+can be limited by geographic location if desired.
 }
 \examples{
 \dontrun{

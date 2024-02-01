@@ -11,8 +11,9 @@ pbdb_scales(...)
 documentation for accepted parameters in
 \url{https://paleobiodb.org/data1.2/scales/list}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-    default variables have short 3-letter names)
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete
+    name of the variables (by default variables have short
+    3-letter names).
   \item ...
 }}
 }

@@ -19,7 +19,7 @@ documentation for accepted parameters at
      specified identifier.
    \item \emph{vocab}: set vocab = "pbdb" to show the complete name
      of the variables (by default variables have short 3-letter
-     names)
+     names).
  }}
 }
 \value{

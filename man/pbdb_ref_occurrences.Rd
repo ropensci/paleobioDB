@@ -4,7 +4,7 @@
 \alias{pbdb_ref_occurrences}
 \title{pbdb_ref_occurrences}
 \usage{
-pbdb_ref_occurrences (...)
+pbdb_ref_occurrences(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
@@ -15,12 +15,12 @@ a dataframe with the information about the references that
   match the query
 }
 \description{
-Returns information about the bibliographic references 
-associated with fossil occurrences from the database.
+Returns information about the bibliographic references associated
+with fossil occurrences from the database.
 }
 \details{
-Go to \code{\link{pbdb_occurrences}} to see an explanation about the main 
-filtering parameters.
+Go to \code{\link{pbdb_occurrences}} to see an explanation about
+the main filtering parameters.
 }
 \examples{
 \dontrun{

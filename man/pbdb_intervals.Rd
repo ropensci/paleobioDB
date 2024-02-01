@@ -11,13 +11,13 @@ pbdb_intervals(...)
  accepted parameters in
  \url{https://paleobiodb.org/data1.2/intervals/list}. E.g.:
 \itemize{
-  \item \emph{min_ma}: return only intervals that are at least this old
-  \item \emph{max_ma}: return only intervals that are at most this old
+  \item \emph{min_ma}: return only intervals that are at least this old.
+  \item \emph{max_ma}: return only intervals that are at most this old.
   \item \emph{order}: return the intervals in order starting as specified.
-    Possible values include age, name. Defaults to age
-  \item \emph{vocab}: set vocab="pbdb" to show
-    the complete name of the variables (by
-    default variables have short 3-letter names)
+    Possible values include age, name. Defaults to age.
+  \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+    of the variables (by default variables have short 3-letter
+    names).
   \item ...
 }}
 }

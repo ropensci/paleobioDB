@@ -21,7 +21,7 @@ a dataframe with the collections that match the query
 }
 \description{
 This path returns information about geographic clusters of
-collections from the Paleobiology Database.  These clusters are
+collections from the Paleobiology Database. These clusters are
 defined in order to facilitate the generation of maps at low
 resolutions. You can make a config request via
 https://paleobiodb.org/data1.2/config in order to get a list of the

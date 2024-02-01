@@ -30,21 +30,19 @@
 #' .implode_to_string
 #'
 #' Converts a list of strings in a single comma separated string
-#' 
+#'
 #' @param params list of strings
 #' @return character
 #' @examples \dontrun{
-#' .implode_to_string(list("categoryA","categoryB","categoryC"))
+#' .implode_to_string(list("categoryA", "categoryB", "categoryC"))
 #' }
 #' @noRd
-
-.implode_to_string<-function(params){
-  
-  if(!(is.vector(params))){
+.implode_to_string <- function(params) {
+  if (!(is.vector(params))) {
     stop("Vector expected")
   }
-  
-  if(length(params) > 1){
+
+  if (length(params) > 1) {
     str <- params[[1]]
     for (p in params[2:length(params)]) {
       str <- paste(str, ",", p, sep = "")
@@ -52,33 +50,33 @@
   } else {
     str <- params
   }
-  
-  return (str)
+
+  return(str)
 }
 
-
-#' pbdb_occurrence 
-#' 
-#' Returns information about a single occurrence record from the Paleobiology 
+#' pbdb_occurrence
+#'
+#' Returns information about a single occurrence record from the Paleobiology
 #' Database.
-#' 
-#' Documentation for all the parameters is available at 
-#' https://paleobiodb.org/data1.2/occs/single. In the parameter list above, we
-#' describe the most common filters that paleontologists and ecologists might
-#' use.
-#' 
+#'
+#' Documentation for all the parameters is available at
+#' \url{https://paleobiodb.org/data1.2/occs/single}. In the parameter
+#' list above, we describe the most common filters that
+#' paleontologists and ecologists might use.
+#'
 #' @usage pbdb_occurrence(id, ...)
 #' @param id identifier of the occurrence. This parameter is required
 #' @param ... arguments passed to the API. See all available arguments in
 #'   \url{https://paleobiodb.org/data1.2/occs/single}. E.g.:
 #'   \itemize{
-#'    \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-#'      default variables have short 3-letter names)
+#'    \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+#'      of the variables (by default variables have short 3-letter
+#'      names).
 #'   }
-#' @return a dataframe with a single occurrence 
-#' 
-#' @export 
-#' 
+#' @return a dataframe with a single occurrence
+#
+#' @export
+#'
 #' @examples \dontrun{
 #'   pbdb_occurrence(id = 1001)
 #'   pbdb_occurrence(id = 1001, vocab = "pbdb", show = "coords")
@@ -93,53 +91,54 @@ pbdb_occurrence <- function(id, ...) {
 #' Returns information about species occurrence records stored in the
 #' Paleobiology Database.
 #'
-#' Documentation for all the parameters is available 
-#' at \url{https://paleobiodb.org/data1.2/occs/list}. We describe the most common
-#' filters that paleontologists and ecologists might use in the parameter list above.
+#' Documentation for all the parameters is available at
+#' \url{https://paleobiodb.org/data1.2/occs/list}. We describe the
+#' most common filters that paleontologists and ecologists might use
+#' in the parameter list above.
 #'
-#' Be aware that depending on the query, some columns may not be returned by the API
-#' if those are empty across all the rows.
-#' 
+#' Be aware that depending on the query, some columns may not be
+#' returned by the API if those are empty across all the rows.
+#'
 #' @param ... arguments passed to the API. See all available arguments in
 #'   \url{https://paleobiodb.org/data1.2/occs/list}
 #'   \itemize{
 #'     \item \emph{limit}: Limits the number of records returned. The
 #'       value may be a positive integer, zero, or "all".
-#'     \item \emph{taxon_name}: Return only records associated with the 
-#'       specified taxonomic name(s). 
-#'       You may specify multiple names, separated by commas.
+#'     \item \emph{taxon_name}: Return only records associated with
+#'       the specified taxonomic name(s).  You may specify multiple
+#'       names, separated by commas.
 #'     \item \emph{base_name}: Return records associated with the
 #'       specified taxonomic name(s) and any of their children
 #'       (e.g. base_name = "Canis" will return "Canis", "Canis lupus",
 #'       "Canis mosbachensis", etc.)
-#'     \item \emph{lngmin}: numeric. The longitude boundaries will be normalized 
-#'       to fall between -180 and 180. Note that if you specify 
-#'       lngmin then you must also specify lngmax. 
-#'       Returns only records whose geographic location falls 
-#'       within the given bounding box (defined by lngmin, lngmax, 
-#'       latmin, latmax).
-#'       It generates two adjacent bounding boxes if the range crosses
-#'       the antimeridian. 
-#'     \item \emph{lngmax}: numeric. The longitude boundaries will be normalized 
-#'       to fall between -180 and 180.
-#'     \item \emph{latmin}: numeric. between -90 and 90. 
-#'       Note that if you specify latmin then you must also specify latmax.
+#'     \item \emph{lngmin}: numeric. The longitude boundaries will be
+#'       normalized to fall between -180 and 180. Note that if you
+#'       specify lngmin then you must also specify lngmax.  Returns
+#'       only records whose geographic location falls within the given
+#'       bounding box (defined by lngmin, lngmax, latmin, latmax).  It
+#'       generates two adjacent bounding boxes if the range crosses
+#'       the antimeridian.
+#'     \item \emph{lngmax}: numeric. The longitude boundaries will be
+#'       normalized to fall between -180 and 180.
+#'     \item \emph{latmin}: numeric. between -90 and 90.  Note that if
+#'       you specify latmin then you must also specify latmax.
 #'     \item \emph{latmax}: numeric. between -90 and 90.
-#'     \item \emph{min_ma}: return only records whose temporal 
+#'     \item \emph{min_ma}: return only records whose temporal
 #'       locality is at least this old, specified in Ma.
-#'     \item \emph{max_ma}: return only records whose temporal 
+#'     \item \emph{max_ma}: return only records whose temporal
 #'       locality is at most this old, specified in Ma.
-#'     \item \emph{interval}: return only records whose temporal 
-#'       locality falls within the named geologic time interval 
+#'     \item \emph{interval}: return only records whose temporal
+#'       locality falls within the named geologic time interval
 #'       (e.g. "Miocene").
-#'     \item \emph{continent}: return only records whose geographic 
-#'       location falls within the specified continent(s). 
-#'     \item \emph{show}: to show extra variables (e.g. coords, classext, ident)
+#'     \item \emph{continent}: return only records whose geographic
+#'       location falls within the specified continent(s).
+#'     \item \emph{show}: to show extra variables (e.g. coords,
+#'       classext, ident)
 #'   }
-#' @return a dataframe with the species occurrences 
-#' 
-#' @export 
-#' 
+#' @return a dataframe with the species occurrences
+#'
+#' @export
+#'
 #' @examples \dontrun{
 #'   pbdb_occurrences(id = c(10, 11), show = c("coords", "classext", "ident"))
 #'   pbdb_occurrences(
@@ -151,25 +150,20 @@ pbdb_occurrence <- function(id, ...) {
 #'     show = c("coords", "classext", "ident")
 #'   )
 #' }
-
-
-pbdb_occurrences<-function(...){
-
-  l<-list(...)
-	.pbdb_query('occs/list', query = l)
-
+pbdb_occurrences <- function(...) {
+  l <- list(...)
+  .pbdb_query("occs/list", query = l)
 }
 
-
 #' pbdb_ref_occurrences
-#' 
-#' Returns information about the bibliographic references 
-#' associated with fossil occurrences from the database.
 #'
-#' Go to \code{\link{pbdb_occurrences}} to see an explanation about the main 
-#' filtering parameters. 
+#' Returns information about the bibliographic references associated
+#' with fossil occurrences from the database.
 #'
-#' @usage pbdb_ref_occurrences (...)
+#' Go to \code{\link{pbdb_occurrences}} to see an explanation about
+#' the main filtering parameters.
+#'
+#' @usage pbdb_ref_occurrences(...)
 #'
 #' @param ... arguments passed to the API. See all available arguments in
 #'   \url{https://paleobiodb.org/data1.2/occs/refs}
@@ -188,47 +182,44 @@ pbdb_occurrences<-function(...){
 
 #' @return a dataframe with the information about the references that
 #'   match the query
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_ref_occurrences(
 #'     vocab = "pbdb", base_name = "Canis",
 #'     latmin = 0, latmax = 35, lngmin = 0, lngmax = 35
 #'   )
 #'}
-
-
-pbdb_ref_occurrences<-function(...){
-  
-  l<-list(...)
-  .pbdb_query('occs/refs', query = l)
-  
+pbdb_ref_occurrences <- function(...) {
+  l <- list(...)
+  .pbdb_query("occs/refs", query = l)
 }
 
-
-#' pbdb_collection 
-#' 
-#' Returns information about a single collection record from 
+#' pbdb_collection
+#'
+#' Returns information about a single collection record from
 #' the Paleobiology Database.
-#' 
-#' Go to \code{\link{pbdb_occurrences}} to see an explanation about 
-#' the main filtering parameters.
-#' 
+#'
+#' Go to \code{\link{pbdb_occurrences}} to see an explanation about
+#' the main parameters.
+#'
 #' @usage pbdb_collection(id, ...)
-#'  
+#'
 #' @param id identifier of the collection. This parameter is required.
-#' @param ... additional arguments passed to the API. See all available arguments in
+#' @param ... additional arguments passed to the API. See all
+#'   available arguments in
 #'   \url{https://paleobiodb.org/data1.2/colls/single}. E.g.:
 #'   \itemize{
-#'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-#'       default variables have short 3-letter names)
-#'     \item \emph{show}: show extra variables
+#'     \item \emph{vocab}: set vocab = "pbdb" to show the complete
+#'       name of the variables (by default variables have short
+#'       3-letter names).
+#'     \item \emph{show}: show extra variables.
 #'     \item ...
 #'   }
 #'
-#' @return a dataframe with a single occurrence 
-#' 
-#' @export 
+#' @return a dataframe with a single occurrence
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_collection(id = 1003, vocab = "pbdb", show = "loc")
 #' }
@@ -263,7 +254,7 @@ pbdb_collections <- function(...) {
 #' pbdb_collections_geo
 #'
 #' This path returns information about geographic clusters of
-#' collections from the Paleobiology Database.  These clusters are
+#' collections from the Paleobiology Database. These clusters are
 #' defined in order to facilitate the generation of maps at low
 #' resolutions. You can make a config request via
 #' https://paleobiodb.org/data1.2/config in order to get a list of the
@@ -328,7 +319,8 @@ pbdb_collections_geo <- function(..., level) {
 #'
 #' @export
 #' @examples \dontrun{
-#'   pbdb_taxon(name = "Canis", vocab = "pbdb", show = c("attr", "app", "size"))
+#'   pbdb_taxon(name = "Canis", vocab = "pbdb",
+#'              show = c("attr", "app", "size"))
 #' }
 pbdb_taxon <- function(...) {
   l <- list(...)
@@ -337,39 +329,40 @@ pbdb_taxon <- function(...) {
 
 #' pbdb_taxa
 #' 
-#'Returns information about multiple taxonomic names.  This function can be
-#'used to query for all of the children or parents of a given taxon, among
-#'other operations.
+#' Returns information about multiple taxonomic names.  This function
+#' can be used to query for all of the children or parents of a given
+#' taxon, among other operations.
 #'
-#'@usage pbdb_taxa (...)
-#'@param ... arguments passed to the API. See all available arguments in
-#'  \url{https://paleobiodb.org/data1.2/taxa/list}
-#'  \itemize{
-#'    \item \emph{name}: returns information about the most fundamental 
-#'      taxonomic name matching this string. 
-#'      The \% and _ characters may be used as wildcards.
-#'    \item \emph{id}: return information about the taxonomic name 
-#'      corresponding to this identifier. You may not specify both 
-#'      name and id in the same query.
-#'    \item \emph{show}: to show extra variables. Some examples
-#'      include: \emph{attr} the attribution of this taxon (author and
-#'      year); \emph{app} the age of first and last appearance of this
-#'      taxon from the occurrences recorded in this database;
-#'      \emph{size} the number of subtaxa appearing in this database.
-#'    \item \emph{rel}: set rel = "synonyms" to select all synonyms of
-#'      the base taxon or taxa; rel = "children" to select the taxa
-#'      immediately contained within the base taxon or taxa; rel =
-#'      "common" to select the most specific taxon that contains all
-#'      of the base taxa.
-#'    \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
-#'  }
-
+#' @usage pbdb_taxa(...)
+#' @param ... arguments passed to the API. See all available arguments
+#'   in \url{https://paleobiodb.org/data1.2/taxa/list}
+#'   \itemize{
+#'     \item \emph{name}: returns information about the most
+#'       fundamental taxonomic name matching this string.  The \% and
+#'       _ characters may be used as wildcards.
+#'     \item \emph{id}: return information about the taxonomic name
+#'       corresponding to this identifier. You may not specify both
+#'       name and id in the same query.
+#'     \item \emph{show}: to show extra variables. Some examples
+#'       include: \emph{attr} the attribution of this taxon (author
+#'       and year); \emph{app} the age of first and last appearance of
+#'       this taxon from the occurrences recorded in this database;
+#'       \emph{size} the number of subtaxa appearing in this database.
+#'     \item \emph{rel}: set rel = "synonyms" to select all synonyms
+#'       of the base taxon or taxa; rel = "children" to select the
+#'       taxa immediately contained within the base taxon or taxa; rel
+#'       = "common" to select the most specific taxon that contains
+#'       all of the base taxa.
+#'     \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
+#'   }
 #' @return a dataframe with information from a list of taxa
 #' 
 #' @export 
 #' @examples \dontrun{
-#'   pbdb_taxa(name = "Canidae", vocab = "pbdb", show = c("attr", "app", "size", "class"))
-#'   pbdb_taxa(id = c(10, 11), vocab = "pbdb", show = c("attr", "app", "size", "class"))
+#'   pbdb_taxa(name = "Canidae", vocab = "pbdb",
+#'             show = c("attr", "app", "size", "class"))
+#'   pbdb_taxa(id = c(10, 11), vocab = "pbdb",
+#'             show = c("attr", "app", "size", "class"))
 #'   pbdb_taxa(
 #'     id = c(10, 11), vocab = "pbdb",
 #'     show = c("attr", "app", "size", "class"), rel = "common"
@@ -385,20 +378,18 @@ pbdb_taxa <- function(...) {
 #' Returns a list of names matching the given prefix or partial name.
 #'
 #' @usage pbdb_taxa_auto(...)
-#' @param ... arguments passed to the API. See
-#'   documentation for accepted parameters in
+#' @param ... arguments passed to the API. See documentation for
+#'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/taxa/auto}. E.g.:
 #'   \itemize{
-#'     \item \emph{name}: a partial name or prefix.
-#'       It must have at least 3 significant characters,
-#'       and may include both a genus
+#'     \item \emph{name}: a partial name or prefix.  It must have at
+#'       least 3 significant characters, and may include both a genus
 #'       (possibly abbreviated) and a species.
 #'     \item \emph{limit}: set the limit to the number of matches
 #'     \item ...
 #'   }
-
-#' @return a dataframe with information about the matches
-#' (taxon rank and number of occurrences in the database)
+#' @return a dataframe with information about the matches (taxon rank
+#'   and number of occurrences in the database)
 #'
 #' @export
 #' @examples \dontrun{
@@ -427,7 +418,7 @@ pbdb_taxa_auto <- function(...) {
 #'       specified identifier.
 #'     \item \emph{vocab}: set vocab = "pbdb" to show the complete name
 #'       of the variables (by default variables have short 3-letter
-#'       names)
+#'       names).
 #'   }
 #' @return a dataframe with information from a single temporal
 #'   interval
@@ -438,7 +429,6 @@ pbdb_taxa_auto <- function(...) {
 #' }
 pbdb_interval <- function(...) {
   l <- list(...)
-
   .pbdb_query("intervals/single", query = l)
 }
 
@@ -453,13 +443,13 @@ pbdb_interval <- function(...) {
 #'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/intervals/list}. E.g.:
 #'  \itemize{
-#'    \item \emph{min_ma}: return only intervals that are at least this old
-#'    \item \emph{max_ma}: return only intervals that are at most this old
+#'    \item \emph{min_ma}: return only intervals that are at least this old.
+#'    \item \emph{max_ma}: return only intervals that are at most this old.
 #'    \item \emph{order}: return the intervals in order starting as specified.
-#'      Possible values include age, name. Defaults to age
-#'    \item \emph{vocab}: set vocab="pbdb" to show
-#'      the complete name of the variables (by
-#'      default variables have short 3-letter names)
+#'      Possible values include age, name. Defaults to age.
+#'    \item \emph{vocab}: set vocab = "pbdb" to show the complete name
+#'      of the variables (by default variables have short 3-letter
+#'      names).
 #'    \item ...
 #'  }
 #'
@@ -475,8 +465,8 @@ pbdb_intervals <- function(...) {
 }
 
 #' pbdb_scale
-#' 
-#' Returns information about a single time scale, selected by 
+#'
+#' Returns information about a single time scale, selected by
 #' identifier.
 #'
 #' @usage pbdb_scale(id, ...)
@@ -485,13 +475,14 @@ pbdb_intervals <- function(...) {
 #'   documentation for accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/scales/single}. E.g.:
 #'   \itemize{
-#'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-#'       default variables have short 3-letter names)
+#'     \item \emph{vocab}: set vocab = "pbdb" to show the complete
+#'       name of the variables (by default variables have short
+#'       3-letter names).
 #'     \item ...
 #'   }
 #' @return a dataframe with information from a single scale
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_scale(id = 1, vocab = "pbdb")
 #' }
@@ -501,21 +492,22 @@ pbdb_scale <- function(id, ...) {
 }
 
 #' pbdb_scales
-#' 
+#'
 #' Returns information about multiple time scales.
 #'
 #' @param ... arguments passed to the API. See
 #'   documentation for accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/scales/list}. E.g.:
 #'   \itemize{
-#'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-#'       default variables have short 3-letter names)
+#'     \item \emph{vocab}: set vocab = "pbdb" to show the complete
+#'       name of the variables (by default variables have short
+#'       3-letter names).
 #'     \item ...
 #'   }
 
 #' @return a dataframe with information from the selected scales
-#'  
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   ## Get a dataframe with all the scales available in PBDB
 #'   ## by setting no ids
@@ -526,37 +518,39 @@ pbdb_scales <- function(...) {
   .pbdb_query("scales/list", query = l)
 }
 
-#'pbdb_strata
+#' pbdb_strata
 #'
-#' Returns information about geological strata,
-#' selected by name, rank, and/or geographic location.
+#' Returns information about geological strata, selected by name,
+#' rank, and/or geographic location.
 #'
 #' @usage pbdb_strata(...)
-#' @param ... arguments passed to the API. See
-#'   documentation for accepted parameters in
+#' @param ... arguments passed to the API. See documentation for
+#'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/strata/list}. E.g.:
 #'   \itemize{
-#'     \item \emph{name}: a full or partial name. You can
-#'       use \% and _ as wildcards, but the
-#'       query will be very slow if you put a wildcard at the beginning
-#'     \item \emph{rank}: returns only strata of the specified
-#'       rank: formation, group or member.
-#'     \item \emph{lngmin}: numeric. The longitude boundaries will be normalized to fall
-#'       between -180 and 180. Note that if you specify lngmin then you must also
-#'       specify lngmax. Returns only records whose geographic location falls within
-#'       the given bounding box (defined by lngmin, lngmax, latmin, latmax). It
-#'       generate two adjacent bounding boxes if the range crosses the antimeridian.
-#'     \item \emph{lngmax}: numeric. The longitude boundaries will be normalized to fall
-#'       between -180 and 180.
-#'     \item \emph{latmin}: numeric. between -90 and 90. Note that if you specify latmin
-#'       then you must also specify latmax.
+#'     \item \emph{name}: a full or partial name. You can use \% and _
+#'       as wildcards, but the query will be very slow if you put a
+#'       wildcard at the beginning.
+#'     \item \emph{rank}: returns only strata of the specified rank:
+#'       formation, group or member.
+#'     \item \emph{lngmin}: numeric. The longitude boundaries will be
+#'       normalized to fall between -180 and 180. Note that if you
+#'       specify lngmin then you must also specify lngmax. Returns
+#'       only records whose geographic location falls within the given
+#'       bounding box (defined by lngmin, lngmax, latmin, latmax). It
+#'       generate two adjacent bounding boxes if the range crosses the
+#'       antimeridian.
+#'     \item \emph{lngmax}: numeric. The longitude boundaries will be
+#'       normalized to fall between -180 and 180.
+#'     \item \emph{latmin}: numeric. between -90 and 90. Note that if
+#'       you specify latmin then you must also specify latmax.
 #'     \item \emph{latmax}: numeric. between -90 and 90.
-#'     \item \emph{loc}: Return only strata associated with some occurrence whose
-#'       geographic location falls within the specified geometry, specified in WKT
-#'       format.
+#'     \item \emph{loc}: Return only strata associated with some
+#'       occurrence whose geographic location falls within the
+#'       specified geometry, specified in WKT format.
 #'     \item \emph{vocab}: set vocab = "pbdb" to show the complete
 #'       name of the variables (by default variables have short
-#'       3-letter names)
+#'       3-letter names).
 #'     \item ...
 #'   }
 #' @return a dataframe with information from the selected strata
@@ -576,13 +570,13 @@ pbdb_strata <- function(...) {
 #' pbdb_strata_auto
 #'
 #' Returns a list of strata matching the given prefix or partial name.
-#' This can be used to implement auto-completion for strata names,
-#' and can be limited by geographic location if desired.
+#' This can be used to implement auto-completion for strata names, and
+#' can be limited by geographic location if desired.
 #'
 #' @usage pbdb_strata_auto(...)
 #'
-#' @param ... arguments passed to the API. See
-#'   documentation for accepted parameters in
+#' @param ... arguments passed to the API. See documentation for
+#'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/strata/auto}. E.g.:
 #'   \itemize{
 #'     \item \emph{name}: a full or partial name. It must have at
@@ -592,18 +586,21 @@ pbdb_strata <- function(...) {
 #'     \item \emph{rank}: return only strata of the specified rank:
 #'     formation or group. This may be overridden by a suffix on the
 #'     value of name.
-#'     \item \emph{lngmin}: numeric. The longitude boundaries will be normalized to fall
-#'       between -180 and 180. Note that if you specify lngmin then you must also
-#'       specify lngmax. Returns only records whose geographic location falls within
-#'       the given bounding box (defined by lngmin, lngmax, latmin, latmax). It
-#'       generates two adjacent bounding boxes if the range crosses the antimeridian.
-#'     \item \emph{lngmax}: numeric. The longitude boundaries will be normalized to fall
-#'       between -180 and 180.
-#'     \item \emph{latmin}: numeric. between -90 and 90. Note that if you specify latmin
-#'       then you must also specify latmax.
+#'     \item \emph{lngmin}: numeric. The longitude boundaries will be
+#'       normalized to fall between -180 and 180. Note that if you
+#'       specify lngmin then you must also specify lngmax. Returns
+#'       only records whose geographic location falls within the given
+#'       bounding box (defined by lngmin, lngmax, latmin, latmax). It
+#'       generates two adjacent bounding boxes if the range crosses
+#'       the antimeridian.
+#'     \item \emph{lngmax}: numeric. The longitude boundaries will be
+#'       normalized to fall between -180 and 180.
+#'     \item \emph{latmin}: numeric. between -90 and 90. Note that if
+#'       you specify latmin then you must also specify latmax.
 #'     \item \emph{latmax}: numeric. between -90 and 90.
-#'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-#'       default variables have short 3-letter names)
+#'     \item \emph{vocab}: set vocab = "pbdb" to show the complete
+#'       name of the variables (by default variables have short
+#'       3-letter names).
 #'     \item ...
 #'   }
 #' @return a dataframe with information from the strata that matches
@@ -619,23 +616,24 @@ pbdb_strata_auto <- function(...) {
 }
 
 #' pbdb_reference
-#' 
-#' Returns information about a single reference, selected by identifier.
-#' Go to \code{\link{pbdb_occurrences}} to see an explanation about the main filtering parameters 
-#' 
+#'
+#' Returns information about a single reference, selected by
+#' identifier.
+#'
 #' @usage pbdb_reference(id, ...)
-#' 
+#'
 #' @param id identifier of the reference. This parameter is required.
-#' @param ... arguments passed to the API. See
-#'   documentation for accepted parameters in
+#' @param ... arguments passed to the API. See documentation for
+#'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/refs/single}. E.g.:
 #'   \itemize{
-#'     \item \emph{vocab}: set vocab="pbdb" to show the complete name of the variables (by
-#'       default variables have short 3-letter names)
+#'     \item \emph{vocab}: set vocab = "pbdb" to show the complete
+#'       name of the variables (by default variables have short
+#'       3-letter names).
 #'     \item ...
 #'   }
-#' @return a dataframe with a single reference 
-#' @export 
+#' @return a dataframe with a single reference
+#' @export
 #' @examples \dontrun{
 #'   pbdb_reference(id = 1003, vocab = "pbdb", show = "both")
 #' }
@@ -645,20 +643,22 @@ pbdb_reference <- function(id, ...) {
 }
 
 #' pbdb_references
-#' 
-#' Returns information about multiple references, selected according to the parameters you provide.
-#' 
+#'
+#' Returns information about multiple references, selected according
+#' to the parameters you provide.
+#'
 #' @usage pbdb_references(...)
-#' 
-#' @param ... arguments passed to the API. See
-#'   documentation for accepted parameters in
+#'
+#' @param ... arguments passed to the API. See documentation for
+#'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/refs/list}. E.g.:
 #'   \itemize{
-#'     \item \emph{ref_author} select only references for which any of the authors
-#'       matches the specified name
-#'     \item \emph{ref_pubyr} select only references published in the specified year
-#'     \item \emph{pub_title} select only references that involve the specified
-#'       publication
+#'     \item \emph{ref_author} select only references for which any of
+#'       the authors matches the specified name.
+#'     \item \emph{ref_pubyr} select only references published in the
+#'       specified year.
+#'     \item \emph{pub_title} select only references that involve the
+#'       specified publication.
 #'     \item \emph{order} specifies the order in which the results are
 #'       returned. You can specify multiple values separated by
 #'       commas, and each value may be appended with .asc or
@@ -666,37 +666,35 @@ pbdb_reference <- function(id, ...) {
 #'       pubtitle, pubtype, created, modified, rank.
 #'     \item ...
 #'   }
-#' @return a dataframe with the information about the references that match the query
-#'  
+#' @return a dataframe with the information about the references that
+#'   match the query
+#'
 #' @export
 #' @examples \dontrun{
 #'   pbdb_references(ref_author = "Polly")
 #' }
-
-
-pbdb_references<-function(...){
-  
-  l<-list(...)
-  .pbdb_query('refs/list', query = l)
-  
+pbdb_references <- function(...) {
+  l <- list(...)
+  .pbdb_query("refs/list", query = l)
 }
 
-
 #' pbdb_ref_collections
-#' 
-#' Returns information about the references from which the selected collection data were entered.
-#' 
+#'
+#' Returns information about the references from which the selected
+#' collection data were entered.
+#'
 #' @usage pbdb_ref_collections(...)
-#' @param ... arguments passed to the API. See
-#'   documentation for accepted parameters in
+#' @param ... arguments passed to the API. See documentation for
+#'   accepted parameters in
 #'   \url{https://paleobiodb.org/data1.2/colls/refs}. E.g.:
 #'   \itemize{
-#'     \item \emph{id} comma-separated list of collection identifiers
-#'     \item \emph{ref_author} select only references for which any of the authors
-#'       matches the specified name
-#'     \item \emph{ref_pubyr} select only references published in the specified year
-#'     \item \emph{pub_title} select only references that involve the specified
-#'       publication
+#'     \item \emph{id} comma-separated list of collection identifiers.
+#'     \item \emph{ref_author} select only references for which any of
+#'       the authors matches the specified name.
+#'     \item \emph{ref_pubyr} select only references published in the
+#'       specified year.
+#'     \item \emph{pub_title} select only references that involve the
+#'       specified publication.
 #'     \item \emph{order} specifies the order in which the results are
 #'       returned. You can specify multiple values separated by
 #'       commas, and each value may be appended with .asc or
@@ -704,21 +702,17 @@ pbdb_references<-function(...){
 #'       pubtitle, pubtype, created, modified, rank.
 #'     \item ...
 #'   }
-#' @return a dataframe with the information about the references that match the query
-#' 
-#' @export 
+#' @return a dataframe with the information about the references that
+#'   match the query
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_ref_collections(id = 1)
 #' }
-
-
-pbdb_ref_collections <-function(...){
-  
-  l<-list(...)
-  .pbdb_query('colls/refs', query = l)
-  
+pbdb_ref_collections <- function(...) {
+  l <- list(...)
+  .pbdb_query("colls/refs", query = l)
 }
-
 
 #' pbdb_ref_taxa
 #'
