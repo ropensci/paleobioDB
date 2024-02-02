@@ -60,44 +60,26 @@
 
 
 #' .make_data_frame
-#' 
+#'
 #' Makes a dataframe from a list of lists
 #'
 #' @param reg_list data rows as a list of lists
 #' @return dataframe
 #' @noRd
-
-.make_data_frame<-function(reg_list){
-  
-  reg_count <- length(reg_list)
-  first_line <- TRUE
-  
-  for (reg in reg_list) {
-
-    reg <- lapply(reg, .collapse_array_columns_map)
-
-    if (first_line) {
-      df<- as.data.frame(reg)
-    } else {
-      df<- smartbind(df, as.data.frame(reg))
-    }
-    
-    first_line <- FALSE
+.make_data_frame <- function(reg_list) {
+  if (length(reg_list) == 0) {
+    warning("The PBDB API returned no records for this query.", call. = FALSE)
+    return(data.frame())
   }
-  
-  df <- .convert_data_frame_columns(df)
 
-  df_count <- nrow(df)
-  
-  if (reg_count != df_count) {
-    stop(sprintf('The length of the response dataframe (%d rows) is different than the original ammount of 
-      results returned by the paleobioDB API (%d rows).\r\n
-      Please report this bug to the maintainer of rpbdb package', df_count, reg_count))
-  }
-  
-  df
+  dfr_rows <- lapply(reg_list, function(reg) {
+    as.data.frame(lapply(reg, .collapse_array_columns_map))
+  })
+
+  dfr <- do.call(gtools::smartbind, dfr_rows)
+  dfr <- .convert_data_frame_columns(dfr)
+  dfr
 }
-
 
 #' .build_query_string
 #' 
