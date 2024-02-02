@@ -20,42 +20,54 @@
 
 #' .extract_response_body
 #'
-#' Extracts de body from a HTTP response or throws error if not 200 status
+#' Extracts the body from a HTTP response or throws error if not 200 status
 #
 #' @param response Raw http response
 #' @return character
 #' @noRd
+.extract_response_body <- function(response) {
+  sp <- strsplit(response, "\r\n\r\n", fixed = TRUE)[[1]]
+  header <- sp[[1]]
+  status <- substring(header, 10, 12)
 
-.extract_response_body<-function(response){
-	
-	sp<-strsplit(response, '\r\n\r\n', fixed=TRUE)[[1]]
-	header<-sp[[1]]
-	status <- substring(header, 10, 12)
-  
-	body<-sp[[2]]
+  body <- sp[[2]]
 
-	if(status != '200'){
-		stop(sprintf('Error in API response. The server returned a status %s, which indicates that 
-			something went wrong with your request. In order to debug the problem you may find
-			usefull information in the following server response:\r\n%s', status, body))
-	}
+  if (status != "200") {
+    stop(sprintf("Error in API response. The server returned a status %s, which indicates that
+something went wrong with your request. In order to debug the problem you may find
+useful information in the following server response:\r\n%s", status, body))
+  }
 
-	body
+  body
 }
 
 #' .parse_raw_data
-#' 
+#'
 #' Parse raw json string as a dataframe
-#' 
+#'
 #' @param raw_data json encoded data
 #' @return dataframe
 #' @noRd
+.parse_raw_data <- function(raw_data) {
+  data_list <- fromJSON(raw_data)
 
-.parse_raw_data<-function(raw_data){
+  if ("warnings" %in% names(data_list)) {
+    # Enumerate warnings that were returned by the PBDB API
+    warn_list <- paste(
+      paste(paste0(seq_along(data_list$warnings), "."), data_list$warnings),
+      collapse = "\n"
+    )
+    warning(
+      paste0(
+        "Your query to the PBDB API generated the following warnings:\n",
+        warn_list
+      ),
+      call. = FALSE
+    )
+  }
 
-	data_list <- fromJSON(raw_data)
-	df <- .make_data_frame(data_list[["records"]])
-	df	
+  df <- .make_data_frame(data_list$records)
+  df
 }
 
 
