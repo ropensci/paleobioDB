@@ -37,7 +37,7 @@ Collate:
     'paleobioDB-package.R'
     'pbdb_cache.R'
     'pbdb_geographic_functions.R'
-    'pbdb_querys.R'
+    'pbdb_queries.R'
     'rest_api_tools.R'
     'pbdb_rest_api_setup.R'
     'pbdb_taxonomic_functions.R'
