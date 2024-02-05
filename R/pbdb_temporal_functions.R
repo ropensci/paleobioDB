@@ -97,63 +97,61 @@ pbdb_temp_range<- function (data, rank,
   return (temporal_range)
 }
 
-.extract_temporal_range <- function (data, rank) {
+.extract_temporal_range <- function(data, rank) {
+  rank_lc <- tolower(rank)
 
-  if ("identified_rank" %in% colnames(data)) {
-    long_names <- TRUE
-  } else if ("idr" %in% colnames(data)) {
-    long_names <- FALSE
-  } else {
-    stop("Cannot extract temporal range from data. Please add show=c(\"classext\", \"ident\") to your pbdb_occurrences query")
+  col_abbr <- c(
+    accepted_name = "tna", genus = "gnl", family = "fml",
+    order = "odl", class = "cll", phylum = "phl"
+  )
+
+  if (!("phylum" %in% names(data) || "phl" %in% names(data))) {
+    stop(
+      paste(
+        "Cannot extract temporal range for rank from data without rank",
+        "information. Please add 'show = c(\"classext\")' or",
+        "'show = c(\"class\")' to your pbdb_occurrences query."
+      )
+    )
   }
-  
-  early_age_col <- if (long_names) 'max_ma' else 'eag'
-  late_age_col <- if (long_names) 'min_ma' else 'lag'
-  accepted_rank_col <- if (long_names) 'accepted_rank' else 'rnk'
-  accepted_name_col <- if (long_names) 'accepted_name' else 'tna'
-  genus_col <- if (long_names) 'genus' else 'gnl'
-  family_col <- if (long_names) 'family' else 'fml'
-  order_col <- if (long_names) 'order' else 'odl'
-  class_col <- if (long_names) 'class' else 'cll'
-  phylum_col <- if (long_names) 'phylum' else 'phl'
-  
-  if (rank=="species"){
-    selection<- data [data[, accepted_rank_col]==rank, ]
-    max_sp<- tapply(.numeric_age(selection[, early_age_col]), as.character (selection[, accepted_name_col]), max)
-    min_sp<- tapply(.numeric_age(selection[, late_age_col]), as.character (selection[, accepted_name_col]), min)
-  } else {
-    
-    early_age = .numeric_age(data[, early_age_col])
-    late_age = .numeric_age(data[, late_age_col])
-    
-    if (rank=="genus"){
-      max_sp<- tapply(early_age, as.character (data[, genus_col]), max)
-      min_sp<- tapply(late_age, as.character (data[, genus_col]), min)
-    } else if (rank=="family"){
-      max_sp<- tapply(early_age, as.character (data[, family_col]), max)
-      min_sp<- tapply(late_age, as.character (data[, family_col]), min)
-    } else if (rank=="order"){
-      max_sp<- tapply(early_age, as.character (data[, order_col]), max)
-      min_sp<- tapply(late_age, as.character (data[, order_col]), min)
-    } else if (rank=="class"){
-      max_sp<- tapply(early_age, as.character (data[, class_col]), max)
-      min_sp<- tapply(late_age, as.character (data[, class_col]), min)
-    } else if (rank=="phylum"){
-      max_sp<- tapply(early_age, as.character (data[, phylum_col]), max)
-      min_sp<- tapply(late_age, as.character (data[, phylum_col]), min)
+
+  long_names <- "phylum" %in% names(data)
+
+  rank_col <- rank_lc
+
+  if (rank_lc == "species") {
+    # This is the corresponding column for the species name in the
+    # data.frame
+    rank_col <- "accepted_name"
+
+    # Only select records with an accepted name of species rank
+    if (long_names) {
+      data <- data[data$accepted_rank == "species", ]
     } else {
-      stop(paste("Unknown rank", rank))
+      # See <https://paleobiodb.org/data1.2/config.txt?show=ranks>
+      data <- data[data$rnk == 3, ]
     }
   }
 
-  temporal_range<- data.frame (max_sp, min_sp)
-  colnames (temporal_range)<- c("max", "min")
-  temporal_range<- temporal_range[with(temporal_range, order(-max, min)), ]
+  if (!(rank_col %in% names(col_abbr))) {
+    stop(paste("Unknown rank", rank))
+  }
+  rank_col <- if (long_names) rank_col else col_abbr[[rank_col]]
+  early_age_col <- if (long_names) "max_ma" else "eag"
+  late_age_col <- if (long_names) "min_ma" else "lag"
 
-  return (temporal_range)
+  early_age <- as.numeric(data[[early_age_col]])
+  late_age <- as.numeric(data[[late_age_col]])
+
+  max_sp <- tapply(early_age, as.character(data[[rank_col]]), max)
+  min_sp <- tapply(late_age, as.character(data[[rank_col]]), min)
+
+  temporal_range <- data.frame(max_sp, min_sp)
+  colnames(temporal_range) <- c("max", "min")
+  temporal_range <- temporal_range[with(temporal_range, order(-max, min)), ]
+
+  temporal_range
 }
-
-.numeric_age <- function (f) { as.numeric(as.character(f)) }
 
 #' pbdb_richness
 #' 
