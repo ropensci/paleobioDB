@@ -7,16 +7,19 @@
 pbdb_temporal_resolution(data, do.plot = TRUE)
 }
 \arguments{
-\item{data}{dataframe with our query to the paleobiodb \code{\link{pbdb_occurrences}}}
+\item{data}{data.frame with our query to the paleobiodb
+\code{\link{pbdb_occurrences}}}
 
-\item{do.plot}{TRUE/FALSE. To show a frequency plot of the data (TRUE by default).}
+\item{do.plot}{logical. If \code{TRUE}, the function creates a
+frequency plot of the data.}
 }
 \value{
-a plot and a list with a summary of the temporal resolution of the data 
-(min, max, 1st and 3rd quartiles, median and mean), and the temporal resolution of each fossil record (Ma).
+a plot and a list with a summary of the temporal resolution
+  of the data (min, max, 1st and 3rd quartiles, median and mean),
+  and the temporal resolution of each fossil record (Ma).
 }
 \description{
-to show the temporal resolution of the fossil data
+Shows the temporal resolution of the fossil data.
 }
 \examples{
 \dontrun{

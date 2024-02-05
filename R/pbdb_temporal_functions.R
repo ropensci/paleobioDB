@@ -1,40 +1,47 @@
 #' pbdb_temporal_resolution
-#' 
-#' to show the temporal resolution of the fossil data
-#' 
+#'
+#' Shows the temporal resolution of the fossil data.
+#'
 #' @usage pbdb_temporal_resolution(data, do.plot = TRUE)
-#' 
-#' @param data dataframe with our query to the paleobiodb \code{\link{pbdb_occurrences}}
-#' @param do.plot TRUE/FALSE. To show a frequency plot of the data (TRUE by default).
-#' @return a plot and a list with a summary of the temporal resolution of the data 
-#' (min, max, 1st and 3rd quartiles, median and mean), and the temporal resolution of each fossil record (Ma).
-#' @export 
+#'
+#' @param data data.frame with our query to the paleobiodb
+#'   \code{\link{pbdb_occurrences}}
+#' @param do.plot logical. If \code{TRUE}, the function creates a
+#'   frequency plot of the data.
+#' @return a plot and a list with a summary of the temporal resolution
+#'   of the data (min, max, 1st and 3rd quartiles, median and mean),
+#'   and the temporal resolution of each fossil record (Ma).
+#' @export
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(taxon_name = "Canidae", interval = "Quaternary")
 #'   pbdb_temporal_resolution(data)
 #' }
+pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
+  if (!any(c("eag", "max_ma") %in% names(data))) {
+    err_msg <- strwrap(
+      paste(
+        "No temporal information found in the provided data.frame.",
+        "Make sure that it has a \"max_ma\" and a \"min_ma\" column",
+        "(or \"eag\" and \"lag\" in compact form)."
+      )
+    )
+    stop(paste(err_msg, collapse = "\n"))
+  }
 
+  early_age_col <- if ("eag" %in% names(data)) "eag" else "max_ma"
+  late_age_col <- if ("lag" %in% names(data)) "lag" else "min_ma"
 
-pbdb_temporal_resolution<- function (data, do.plot=TRUE) {
-  if('eag' %in% colnames(data)) {
-    diff <- .numeric_age(data$eag) - .numeric_age(data$lag)
-    tr<- list (summary=summary (diff), temporal_resolution=diff)
+  diff <- as.numeric(data[[early_age_col]]) - as.numeric(data[[late_age_col]])
+  tr <- list(summary = summary(diff), temporal_resolution = diff)
+
+  if (do.plot) {
+    hist(unlist(tr[[2]]), freq = TRUE, col = "#0000FF", border = FALSE,
+         xlim = c(max(unlist(tr[[2]]), na.rm = TRUE), 0),
+         breaks = 50, xlab = "Temporal resolution of the data (Ma)",
+         main = "", col.lab = "grey30", col.axis = "grey30", cex.axis = 0.8)
   }
-  
-  if('max_ma' %in% colnames(data)) {
-    diff <- .numeric_age(data$max_ma) - .numeric_age(data$min_ma)
-    tr<- list (summary=summary (diff), temporal_resolution=diff)
-    
-  }
-  
-  if (do.plot ==TRUE) {
-    
-    hist (unlist (tr [[2]]), freq=T, col="#0000FF", border=F, 
-          xlim= c(max(unlist (tr [[2]]), na.rm = TRUE), 0),
-          breaks= 50, xlab="Temporal resolution of the data (Ma)", 
-          main="", col.lab="grey30", col.axis="grey30", cex.axis=0.8)
-  }
-  return (tr)
+
+  tr
 }
 
 #' pbdb_temp_range
