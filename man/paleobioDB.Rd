@@ -4,7 +4,8 @@
 \name{paleobioDB}
 \alias{paleobioDB}
 \alias{paleobioDB-package}
-\title{paleobioDB: An R-package for downloading, visualizing and processing data from the Paleobiology Database}
+\title{paleobioDB: An R-package for downloading, visualizing and
+  processing data from the Paleobiology Database}
 \description{
 We have developed paleobioDB, an R-package designed to make easy and flexible queries 
 of the Paleobiology Database, as well as to visualize and download selected data. 
@@ -20,14 +21,6 @@ These functions connect R with each of the endpoints of the PaleobioDB API.
 Second, based on these base functions, we programmed a second set of functions 
 intended to explore and visualize the fossil 
 occurrences in their geographic, temporal and taxonomic dimensions.
-
-\tabular{ll}{
-Package: \tab paleobioDB\cr
-Type: \tab Package\cr
-Version: \tab 0.4\cr
-Date: \tab 2015-07-16\cr
-License: \tab GPL-2\cr
-}
 }
 \examples{
 \dontrun{
@@ -83,11 +76,12 @@ pbdb_map_richness(canidae, rank = "species", res = 5)
 
 }
 \references{
-Sara Varela, Javier Gonzalez-Hernandez,
-Luciano Fabris Sgarbi, Charles Marshall, Mark D. Uhen, 
-Shanan Peters, Michael McClennen, 2014. paleobioDB: 
-an R-package for downloading, visualizing and processing 
-data from the Paleobiology Database (under review)
+Sara Varela, Javier González-Hernández, Luciano Fabris
+  Sgarbi, Charles Marshall, Mark D. Uhen, Shanan Peters, Michael
+  McClennen, 2015. paleobioDB: an R package for downloading,
+  visualizing and processing data from the Paleobiology
+  Database. Ecography, 38:
+  419-425. \url{https://doi.org/10.1111/ecog.01154}
 }
 \seealso{
 {
@@ -101,4 +95,4 @@ Javier Gonzalez \email{javigzz@yahoo.es}
 
 Luciano Fabris Sgarbi \email{luciano.f.sgarbi@gmail.com}
 }
-\keyword{package}
+\keyword{internal}

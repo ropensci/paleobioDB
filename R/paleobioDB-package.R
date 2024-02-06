@@ -15,25 +15,19 @@
 #' @name paleobioDB
 #' @aliases paleobioDB-package
 #' @docType package
-#' @title paleobioDB: An R-package for downloading, visualizing and processing data from the Paleobiology Database
+#' @title paleobioDB: An R-package for downloading, visualizing and
+#'   processing data from the Paleobiology Database
 #' @author Sara Varela \email{sara.varela@@uvigo.gal}
 #' @author Javier Gonzalez \email{javigzz@@yahoo.es}
 #' @author Luciano Fabris Sgarbi \email{luciano.f.sgarbi@@gmail.com}
-#' @references Sara Varela, Javier Gonzalez-Hernandez,
-#' Luciano Fabris Sgarbi, Charles Marshall, Mark D. Uhen, 
-#' Shanan Peters, Michael McClennen, 2014. paleobioDB: 
-#' an R-package for downloading, visualizing and processing 
-#' data from the Paleobiology Database (under review)
+#' @references Sara Varela, Javier González-Hernández, Luciano Fabris
+#'   Sgarbi, Charles Marshall, Mark D. Uhen, Shanan Peters, Michael
+#'   McClennen, 2015. paleobioDB: an R package for downloading,
+#'   visualizing and processing data from the Paleobiology
+#'   Database. Ecography, 38:
+#'   419-425. \url{https://doi.org/10.1111/ecog.01154}
 #' 
-#' @keywords package
-#'
-#' @details \tabular{ll}{
-#' Package: \tab paleobioDB\cr
-#' Type: \tab Package\cr
-#' Version: \tab 0.4\cr
-#' Date: \tab 2015-07-16\cr
-#' License: \tab GPL-2\cr
-#' }
+#' @keywords internal
 #'
 #' @seealso {
 #' \url{https://paleobiodb.org}
@@ -99,4 +93,4 @@
 #'
 #' }
 #'
-NULL
+"_PACKAGE"
