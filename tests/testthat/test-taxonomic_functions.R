@@ -2,6 +2,7 @@
 
 context("pbdb_subtaxa")
 test_that("pbdb_subtaxa output is a dataframe, and the names are characters", {
+  skip_if_offline("paleobiodb.org")
   data<-  pbdb_occurrences (limit="100", vocab="pbdb",
                             base_name="Canidae", show=c('classext', 'ident') )
   

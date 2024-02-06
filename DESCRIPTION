@@ -30,6 +30,7 @@ Imports:
     scales,
     terra
 Suggests:
+    curl,
     roxygen2,
     testthat
 Collate:
