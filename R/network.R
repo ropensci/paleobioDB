@@ -9,14 +9,16 @@
 #' .get_data_from_uri("http://api.example.com/ecologydata")
 #' }
 #' @noRd
-
-.get_data_from_uri<-function(uri){
-	response <- RCurl::getURL(uri, header = TRUE)
-	raw_data <- .extract_response_body(response)
-	df<-.parse_raw_data(raw_data)  
+.get_data_from_uri <- function(uri) {
+  response <- RCurl::getURL(
+    uri,
+    header = TRUE,
+    cainfo = system.file("CurlSSL/cacert.pem", package = "RCurl")
+  )
+  raw_data <- .extract_response_body(response)
+  df <- .parse_raw_data(raw_data)
   df
 }
-
 
 #' .extract_response_body
 #'
