@@ -1,11 +1,5 @@
 # test for the temporal functions
-
-
-data<-  pbdb_occurrences (limit="100", vocab="pbdb",
-                          base_name="Canidae",  interval="Quaternary", 
-                          show=c("classext", "ident"))
-
-# TODO: replace `data` in all this tests for a mocked response of `pbdb_occurrences` (make tests independent of API)
+data <- readRDS(test_path("fixtures", "canidae_quat_df.rds"))
 
 context("pbdb_temporal_resolution")
 test_that("pbdb_temporal_resolution output is a dataframe, and the names are characters", {
