@@ -104,7 +104,7 @@ Returns a map with the species occurrences.
 ```coffee
 > pbdb_map(canidae)
 ``` 
-![plot of chunk map](man/figure/pbdb_map.png)
+![plot of chunk map](man/figures/pbdb_map.png)
 
 
 **pbdb_map_occur**
@@ -124,7 +124,7 @@ Returns a map and a raster object with the sampling effort (number of fossil rec
 ## values      : 1, 40  (min, max)
 ``` 
 
-![plot of chunk map](man/figure/pbdb_map_occur.png)
+![plot of chunk map](man/figures/pbdb_map_occur.png)
 
 
 **pbdb_map_richness**
@@ -144,7 +144,7 @@ Returns a map and a raster object with the number of different species, genera, 
 ## values      : 1, 12  (min, max)
 ```
 
-![plot of chunk map](man/figure/pbdb_map_occur.png)
+![plot of chunk map](man/figures/pbdb_map_occur.png)
 
 
 ## Explore your fossil data 
@@ -168,7 +168,7 @@ Returns a dataframe and a plot with the time span of the species, genera, famili
 ...
 
 ``` 
-![plot temprange](man/figure/pbdb_temporal_range.png)
+![plot temprange](man/figures/pbdb_temporal_range.png)
 
 
 
@@ -194,7 +194,7 @@ Returns a dataframe and a plot with the number of species (or genera, families, 
 ## 9-10       0
 ## >10        0
 ``` 
-![plot richness](man/figure/pbdb_richness.png)
+![plot richness](man/figures/pbdb_richness.png)
 
 
 **pbdb_orig_ext**
@@ -218,7 +218,7 @@ Returns a dataframe and a plot with the number of new appearances and last appea
 ## 9-10 to 8-9   0   0
 ```
 
-![plot of chunk map](man/figure/pbdb_orig_ext_1.png)
+![plot of chunk map](man/figures/pbdb_orig_ext_1.png)
 
 
 ```coffee
@@ -238,7 +238,7 @@ pbdb_orig_ext(canidae, rank="species", orig_ext=2, temporal_extent=c(0,10), res=
 ## 9-10 to 8-9   0   0
 ``` 
 
-![plot of chunk map](man/figure/pbdb_orig_ext_2.png)
+![plot of chunk map](man/figures/pbdb_orig_ext_2.png)
 
 **pbdb_subtaxa**
 
@@ -251,7 +251,7 @@ Returns a plot and a dataframe with the number of species, genera, families, etc
 ## species genera families orders classes phyla
 ## 75     24        1      1       1     1
 ```
-![plot subtaxa](man/figure/pbdb_subtaxa.png)
+![plot subtaxa](man/figures/pbdb_subtaxa.png)
 
 
 **pbdb_temporal_resolution**
@@ -277,7 +277,7 @@ Returns a plot and a dataframe with a main summary of the temporal resolution of
 ...
   
 ```
-![plot tempres](man/figure/pbdb_temporal_resolution.png)
+![plot tempres](man/figures/pbdb_temporal_resolution.png)
 
 ## Docker
 
