@@ -1,6 +1,9 @@
 # Functions and variables for setting up and managing the communication
 # with the paleobiodb.org REST API
 
+#' @include rest_api_tools.R
+NULL
+
 #' .pbdb_uri_builder
 #'
 #' Function that generates the URIs for the paleobiodb.org API
