@@ -1,9 +1,9 @@
-.extract.LatLong <- function (data){
-    latlong <- data.frame(lng = data$lng, 
-                          lat = data$lat)
-    counts<- ddply(latlong,.(latlong$lng,latlong$lat),nrow)
-    colnames (counts)<- c("lng", "lat", "Occur")
-    counts
+.extract.LatLong <- function(data) {
+  latlong <- data.frame(lng = data$lng, lat = data$lat)
+  spl_df <- split(latlong, list(latlong$lng, latlong$lat), drop = TRUE)
+  spl_count <- lapply(spl_df, function(x) cbind(x[1, ], Occur = nrow(x)))
+  counts <- do.call(rbind, spl_count)
+  counts
 }
 
 .add.ColOcean <-function(col.ocean,col.int,...){
@@ -13,12 +13,13 @@
     map(col=col.int,fill=T,add=T,...)
 }
 
-.add.Points <-function(Y,col.point,pch,...){
-    Pal <- colorRampPalette(col.point)
-    Y$n<-as.numeric(cut(Y$Occur,breaks = 5))
-    Y$Col <- Pal(5)[Y$n]
-    points(Y[,1:2], col=alpha(Y$Col,0.8),pch=pch,...)
-    Y
+#' @importFrom grDevices adjustcolor
+.add.Points <- function(Y, col.point, pch, ...) {
+  Pal <- colorRampPalette(col.point)
+  Y$n <- as.numeric(cut(Y$Occur, breaks = 5))
+  Y$Col <- Pal(5)[Y$n]
+  points(Y[, 1:2], col = adjustcolor(Y$Col, alpha.f = 0.8), pch = pch, ...)
+  Y
 }
 
 
@@ -102,9 +103,10 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
     r
 }
 
-.add.pattern<-function(r,col.eff,...){
-    Pal <- colorRampPalette(col.eff)
-    plot(r,col=alpha(Pal(5),0.8),add=T,...)
+#' @importFrom grDevices adjustcolor
+.add.pattern <- function(r, col.eff, ...) {
+  Pal <- colorRampPalette(col.eff)
+  plot(r, col = adjustcolor(Pal(5), alpha.f = 0.8), add = TRUE, ...)
 }
 
 .plot.Raster.rich<-function(r,col.eff,col.ocean,col.int,res,...){

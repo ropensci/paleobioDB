@@ -33,7 +33,7 @@
 #' \url{https://paleobiodb.org}
 #' }
 #'
-#' @import rjson gtools RCurl plyr scales
+#' @import rjson gtools RCurl
 #' @importFrom grDevices colorRampPalette
 #' @importFrom graphics abline axis barplot hist legend mtext par
 #'   plot.new plot.window points polygon rect segments text title

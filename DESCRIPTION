@@ -26,8 +26,6 @@ Imports:
     gtools,
     maps,
     RCurl,
-    plyr,
-    scales,
     terra
 Suggests:
     curl,
