@@ -1,6 +1,6 @@
-FROM rocker/tidyverse:3.5.1
+FROM rocker/tidyverse:4
 
-RUN apt update && \
-    apt install -y libgdal-dev
+RUN apt-get update && \
+    apt-get install -y libgdal-dev
 
 RUN Rscript -e 'install.packages(c("RCurl", "rjson", "maps", "gtools", "terra"))'
