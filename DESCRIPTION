@@ -20,7 +20,6 @@ Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
 Maintainer: Sara Varela <sara.varela@uvigo.gal>
 BugReports: https://github.com/ropensci/paleobioDB/issues
 URL: https://docs.ropensci.org/paleobioDB, https://github.com/ropensci/paleobioDB
-LazyData: true
 Imports:
     rjson,
     gtools,
