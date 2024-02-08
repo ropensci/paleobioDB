@@ -1,35 +1,34 @@
-Package: paleobioDB
-Description: Includes 19 functions to wrap each endpoint of
-    the PaleobioDB API, plus 8 functions to visualize and process the fossil
-    data. The API documentation for the Paleobiology Database can be found in
-    <https://paleobiodb.org/data1.2/>.
-Encoding: UTF-8
 Type: Package
-License: GPL-2
+Package: paleobioDB
 Title: Download and Process Data from the Paleobiology Database
 Version: 0.7.0.9000
-Date: 2020-07-22
-Authors@R: c(person("Sara", "Varela", role = c("aut", "cre"),
-    email = "sara.varela@uvigo.gal"),
-    person("Javier", "González Hernández", role = "aut",
-    email = "javier.gon@protonmail.com"),
-    person("Luciano", "Fabris Sgarbi", role = "aut",
-    email = "luciano.f.sgarbi@gmail.com"),
-    person("Adrián", "Castro Insua", role = "ctb",
-    email = "adrian.castro.insua@uvigo.gal"))
+Authors@R: c(
+    person("Sara", "Varela", , "sara.varela@uvigo.gal", role = c("aut", "cre")),
+    person("Javier", "González Hernández", , "javier.gon@protonmail.com", role = "aut"),
+    person("Luciano", "Fabris Sgarbi", , "luciano.f.sgarbi@gmail.com", role = "aut"),
+    person("Adrián", "Castro Insua", , "adrian.castro.insua@uvigo.gal", role = "ctb")
+  )
 Maintainer: Sara Varela <sara.varela@uvigo.gal>
+Description: Includes functions to wrap each endpoint of the 'PaleobioDB'
+    API and functions to visualize and process the fossil data. The API
+    documentation for the Paleobiology Database can be found at
+    <https://paleobiodb.org/data1.2/>.
+License: GPL-2
+URL: https://docs.ropensci.org/paleobioDB,
+    https://github.com/ropensci/paleobioDB
 BugReports: https://github.com/ropensci/paleobioDB/issues
-URL: https://docs.ropensci.org/paleobioDB, https://github.com/ropensci/paleobioDB
 Imports:
-    rjson,
     gtools,
     maps,
     RCurl,
+    rjson,
     terra
 Suggests:
     curl,
     roxygen2,
     testthat
+Encoding: UTF-8
+RoxygenNote: 7.3.1
 Collate:
     'network.R'
     'paleobioDB-package.R'
@@ -40,4 +39,3 @@ Collate:
     'pbdb_rest_api_setup.R'
     'pbdb_taxonomic_functions.R'
     'pbdb_temporal_functions.R'
-RoxygenNote: 7.3.1
