@@ -18,6 +18,8 @@ URL: https://docs.ropensci.org/paleobioDB,
     https://github.com/ropensci/paleobioDB
 BugReports: https://github.com/ropensci/paleobioDB/issues
 Imports:
+    graphics,
+    grDevices,
     gtools,
     maps,
     RCurl,

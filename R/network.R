@@ -51,7 +51,7 @@ useful information in the following server response:\r\n%s", status, body))
 #' @return dataframe
 #' @noRd
 .parse_raw_data <- function(raw_data) {
-  data_list <- fromJSON(raw_data)
+  data_list <- rjson::fromJSON(raw_data)
 
   if ("warnings" %in% names(data_list)) {
     # Enumerate warnings that were returned by the PBDB API
@@ -96,8 +96,9 @@ useful information in the following server response:\r\n%s", status, body))
 }
 
 #' .build_query_string
-#' 
-#' Builds a query string ready for been added to a url, from a list of name/value parameters
+#'
+#' Builds a query string ready for been added to a url, from a list of
+#' name/value parameters
 #'
 #' @usage .build_query_string(args)
 #'
@@ -107,21 +108,18 @@ useful information in the following server response:\r\n%s", status, body))
 #' .build_query_string(list(name="Bob", city="Berlin"))
 #' }
 #' @noRd
+.build_query_string <- function(args) {
+  qs <- ""
 
-.build_query_string<-function(args){
-  
-	qs <- ''
-
-	for (argName in names(args)) {
+  for (argName in names(args)) {
     strArgValue <- as.character(args[argName][[1]])
-	  encodedArgValue<-  URLencode(strArgValue)
-		qs <- paste(qs, argName, "=", encodedArgValue, '&', sep = "")
-	}
-	qs <- substr(qs,0,nchar(qs)-1)
+    encodedArgValue <- utils::URLencode(strArgValue)
+    qs <- paste(qs, argName, "=", encodedArgValue, "&", sep = "")
+  }
+  qs <- substr(qs, 0, nchar(qs) - 1)
 
-	qs
+  qs
 }
-
 
 #' .collapse_array_columns_map
 #'

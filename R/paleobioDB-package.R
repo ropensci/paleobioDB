@@ -1,16 +1,17 @@
-#'We have developed paleobioDB, an R-package designed to make easy and flexible queries 
-#'of the Paleobiology Database, as well as to visualize and download selected data. 
-#'This package will make it easy to access paleontological data in a way that should 
-#'allow those data to be further analyzed, 
-#'including via packages and libraries available in R.
+#' We have developed paleobioDB, an R-package designed to make easy
+#' and flexible queries of the Paleobiology Database, as well as to
+#' visualize and download selected data. This package will make it
+#' easy to access paleontological data in a way that should allow
+#' those data to be further analyzed, including via packages and
+#' libraries available in R.
 #'
-#'We programmed two different groups of functions. 
-#'First, we developed a set of general and flexible functions to wrap the 
-#'\href{https://paleobiodb.org/data1.2/}{PaleobioDB API}.
-#'These functions connect R with each of the endpoints of the PaleobioDB API. 
-#'Second, based on these base functions, we programmed a second set of functions 
-#'intended to explore and visualize the fossil 
-#'occurrences in their geographic, temporal and taxonomic dimensions.
+#' We programmed two different groups of functions. First, we
+#' developed a set of general and flexible functions to wrap the
+#' \href{https://paleobiodb.org/data1.2/}{PaleobioDB API}. These
+#' functions connect R with each of the endpoints of the PaleobioDB
+#' API. Second, based on these base functions, we programmed a second
+#' set of functions intended to explore and visualize the fossil
+#' occurrences in their geographic, temporal and taxonomic dimensions.
 #'
 #' @name paleobioDB
 #' @aliases paleobioDB-package
@@ -26,21 +27,12 @@
 #'   visualizing and processing data from the Paleobiology
 #'   Database. Ecography, 38:
 #'   419-425. \url{https://doi.org/10.1111/ecog.01154}
-#' 
+#'
 #' @keywords internal
 #'
 #' @seealso {
 #' \url{https://paleobiodb.org}
 #' }
-#'
-#' @import rjson gtools RCurl
-#' @importFrom grDevices colorRampPalette
-#' @importFrom graphics abline axis barplot hist legend mtext par
-#'   plot.new plot.window points polygon rect segments text title
-#' @importFrom maps map
-#' @importFrom utils URLencode
-#' @importFrom terra ext rast rasterize res res<- values values<-
-#' @importMethodsFrom terra plot
 #'
 #' @examples \dontrun{
 #' canidae <- pbdb_occurrences(
@@ -94,3 +86,30 @@
 #' }
 #'
 "_PACKAGE"
+
+## usethis namespace: start
+#' @importFrom graphics abline
+#' @importFrom graphics axis
+#' @importFrom graphics barplot
+#' @importFrom graphics hist
+#' @importFrom graphics legend
+#' @importFrom graphics mtext
+#' @importFrom graphics par
+#' @importFrom graphics plot.new
+#' @importFrom graphics plot.window
+#' @importFrom graphics points
+#' @importFrom graphics polygon
+#' @importFrom graphics rect
+#' @importFrom graphics segments
+#' @importFrom graphics text
+#' @importFrom graphics title
+#' @importFrom terra ext
+#' @importFrom terra rast
+#' @importFrom terra rasterize
+#' @importFrom terra res
+#' @importFrom terra res<-
+#' @importFrom terra values
+#' @importFrom terra values<-
+#' @importMethodsFrom terra plot
+## usethis namespace: end
+NULL

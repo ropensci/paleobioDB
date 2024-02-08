@@ -6,14 +6,17 @@
   counts
 }
 
-.add.ColOcean <-function(col.ocean,col.int,...){
-    par(mar=c(0,0,0,0),xpd=TRUE,...)
-    map(type="n",...)
-    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
-    map(col=col.int,fill=T,add=T,...)
+.add.ColOcean <- function(col.ocean, col.int, ...) {
+  par(mar = c(0, 0, 0, 0), xpd = TRUE, ...)
+  maps::map(type = "n", ...)
+  rect(
+    par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4],
+    col = col.ocean
+  )
+  maps::map(col = col.int, fill = TRUE, add = TRUE, ...)
 }
 
-#' @importFrom grDevices adjustcolor
+#' @importFrom grDevices adjustcolor colorRampPalette
 .add.Points <- function(Y, col.point, pch, ...) {
   Pal <- colorRampPalette(col.point)
   Y$n <- as.numeric(cut(Y$Occur, breaks = 5))
@@ -86,42 +89,44 @@ pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
 
 #-------------------------------------------------
 
-.add.ColOcean2 <-function(col.ocean,col.int,...){
-    par(mar=c(0,0,0,0),...)
-    map(type='n',add=T,...)
-    rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr") [4], col = col.ocean)
-    map(col=col.int,fill=T,add=T,...)
+.add.ColOcean2 <- function(col.ocean, col.int, ...) {
+  par(mar = c(0, 0, 0, 0), ...)
+  maps::map(type = "n", add = TRUE, ...)
+  rect(
+    par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4],
+    col = col.ocean
+  )
+  maps::map(col = col.int, fill = TRUE, add = TRUE, ...)
 }
 
-.Raster<-function(Y,res,col.int,col.ocean,...){
-    e<-map(plot=F,...)
-    ext<-ext(e$range)
-    r<-rast(ext)
-    res(r)<-c(res,res)
-    values(r)<-NA
-    r<-rasterize(Y[,1:2],r,Y[,3],fun=sum)
-    r
+.Raster <- function(Y, res, col.int, col.ocean, ...) {
+  e <- maps::map(plot = FALSE, ...)
+  ext <- ext(e$range)
+  r <- rast(ext)
+  res(r) <- c(res, res)
+  values(r) <- NA
+  r <- rasterize(Y[, 1:2], r, Y[, 3], fun = sum)
+  r
 }
 
-#' @importFrom grDevices adjustcolor
+#' @importFrom grDevices adjustcolor colorRampPalette
 .add.pattern <- function(r, col.eff, ...) {
   Pal <- colorRampPalette(col.eff)
   plot(r, col = adjustcolor(Pal(5), alpha.f = 0.8), add = TRUE, ...)
 }
 
-.plot.Raster.rich<-function(r,col.eff,col.ocean,col.int,res,...){
-  par(oma=c(4,0,2,2),...)
-  e<-map(type="n",...)
-  ext<-ext(e$range)
-  r2<-rast(ext)
-  res(r2)<-c(res,res)
-  values(r2)<-NA
-  plot(r2,xaxt="n",yaxt="n")
-  .add.ColOcean2 (col.ocean,col.int,...)
-  map(col=col.int,fill=T,add=T,...)
-  .add.pattern(r,col.eff,...)
+.plot.Raster.rich <- function(r, col.eff, col.ocean, col.int, res, ...) {
+  par(oma = c(4, 0, 2, 2), ...)
+  e <- maps::map(type = "n", ...)
+  ext <- ext(e$range)
+  r2 <- rast(ext)
+  res(r2) <- c(res, res)
+  values(r2) <- NA
+  plot(r2, xaxt = "n", yaxt = "n")
+  .add.ColOcean2(col.ocean, col.int, ...)
+  maps::map(col = col.int, fill = TRUE, add = TRUE, ...)
+  .add.pattern(r, col.eff, ...)
 }
-
 
 #' pbdb_map_occur
 #'
@@ -169,71 +174,77 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 
 #-------------------------------------------------
 
-.extract.rank.specie<-function(data,res=res){
-    e<-map(plot=F)
-    ext<-ext(e$range)
-    r<-rast(ext)
-    res(r)<-c(res,res)
-    values(r)<-0
-    if (length (data$accepted_rank)!=0){
-        identified<-data [!is.na(data$accepted_rank), ]
-        species<- identified [identified$accepted_rank=="species", ]
-        S<-split(species,species$accepted_no)
-    }
-    
-    if (length (data$mra)!=0){
-        identified<-data [!is.na(data$mra), ]
-        species<- identified [identified$mra==3, ]
-        S<-split(species,species$mid)
-    }
-    R<-lapply(S,function(y){
-        s<-split(y,paste(y$lng,y$lat))
-        X<-as.matrix(do.call(rbind,lapply(s,function(x)c(x$lng[1],x$lat[1],1))))
-        X<-rbind(X[1,],X)
-        r2<-rasterize(X[,1:2],r,X[,3])
-    }
+.extract.rank.specie <- function(data, res = res) {
+  e <- maps::map(plot = FALSE)
+  ext <- ext(e$range)
+  r <- rast(ext)
+  res(r) <- c(res, res)
+  values(r) <- 0
+  if (length(data$accepted_rank) != 0) {
+    identified <- data[!is.na(data$accepted_rank), ]
+    species <- identified[identified$accepted_rank == "species", ]
+    S <- split(species, species$accepted_no)
+  }
+
+  if (length(data$mra) != 0) {
+    identified <- data[!is.na(data$mra), ]
+    species <- identified[identified$mra == 3, ]
+    S <- split(species, species$mid)
+  }
+  R <- lapply(S, function(y) {
+    s <- split(y, paste(y$lng, y$lat))
+    X <- as.matrix(
+      do.call(rbind, lapply(s, function(x) c(x$lng[1], x$lat[1], 1)))
     )
-    names(R)==NULL
-    all <- sum(rast(R), na.rm = TRUE)
-    values(all)[values(all)==0]<-NA
-    all
+    X <- rbind(X[1, ], X)
+    rasterize(X[, 1:2], r, X[, 3])
+  })
+  names(R) == NULL
+  all <- sum(rast(R), na.rm = TRUE)
+  values(all)[values(all) == 0] <- NA
+  all
 }
 
-.extract.rank.all<-function(data, res=res, rank="genus"){
-    e<-map(plot=F)
-    ext<-ext(e$range)
-    r<-rast(ext)
-    res(r)<-c(res,res)
-    values(r)<-0
-    ranks<-data.frame(rank=c("genus","family","order","class","phylum"),
-                      accepted_rank=c("genus_no","family_no","order_no","class_no","phylum_no"),
-                      mra=c("gnn","fmn","odn","cln","phn") )
-    if (length (data$accepted_rank)!=0){
-        identified<-data [!is.na(data$accepted_rank), ]
-        col<-paste(ranks$accepted_rank[ranks$rank==rank])
-        ident<-identified[!is.na(identified[,col]),]
-        f<-paste(ident[,col])
-        S<-split(ident,f)
-    }
-    
-    if (length (data$mra)!=0){
-        identified<-data [!is.na(data$mra), ]
-        col<-paste(ranks$mra[ranks$rank==rank])
-        ident<-identified[!is.na(identified[,col]),]
-        f<-paste(ident[,col])
-        S<-split(ident,f)
-    }
-    R<-lapply(S,function(y){
-        s<-split(y,paste(y$lng,y$lat))
-        X<-as.matrix(do.call(rbind,lapply(s,function(x)c(x$lng[1],x$lat[1],1))))
-        X<-rbind(X[1,],X)
-        r2<-rasterize(X[,1:2],r,X[,3])
-    }
+.extract.rank.all <- function(data, res = res, rank = "genus") {
+  e <- maps::map(plot = FALSE)
+  ext <- ext(e$range)
+  r <- rast(ext)
+  res(r) <- c(res, res)
+  values(r) <- 0
+  ranks <- data.frame(
+    rank = c("genus", "family", "order", "class", "phylum"),
+    accepted_rank = c(
+      "genus_no", "family_no", "order_no", "class_no", "phylum_no"
+    ),
+    mra = c("gnn", "fmn", "odn", "cln", "phn")
+  )
+  if (length(data$accepted_rank) != 0) {
+    identified <- data[!is.na(data$accepted_rank), ]
+    col <- paste(ranks$accepted_rank[ranks$rank == rank])
+    ident <- identified[!is.na(identified[, col]), ]
+    f <- paste(ident[, col])
+    S <- split(ident, f)
+  }
+
+  if (length(data$mra) != 0) {
+    identified <- data[!is.na(data$mra), ]
+    col <- paste(ranks$mra[ranks$rank == rank])
+    ident <- identified[!is.na(identified[, col]), ]
+    f <- paste(ident[, col])
+    S <- split(ident, f)
+  }
+  R <- lapply(S, function(y) {
+    s <- split(y, paste(y$lng, y$lat))
+    X <- as.matrix(
+      do.call(rbind, lapply(s, function(x) c(x$lng[1], x$lat[1], 1)))
     )
-    names(R)=NULL
-    all <- sum(rast(R), na.rm = TRUE)
-    values(all)[values(all)==0]<-NA
-    all
+    X <- rbind(X[1, ], X)
+    rasterize(X[, 1:2], r, X[, 3])
+  })
+  names(R) <- NULL
+  all <- sum(rast(R), na.rm = TRUE)
+  values(all)[values(all) == 0] <- NA
+  all
 }
 
 #' pbdb_map_richness

@@ -7,19 +7,20 @@
 \title{paleobioDB: An R-package for downloading, visualizing and
   processing data from the Paleobiology Database}
 \description{
-We have developed paleobioDB, an R-package designed to make easy and flexible queries 
-of the Paleobiology Database, as well as to visualize and download selected data. 
-This package will make it easy to access paleontological data in a way that should 
-allow those data to be further analyzed, 
-including via packages and libraries available in R.
+We have developed paleobioDB, an R-package designed to make easy
+and flexible queries of the Paleobiology Database, as well as to
+visualize and download selected data. This package will make it
+easy to access paleontological data in a way that should allow
+those data to be further analyzed, including via packages and
+libraries available in R.
 }
 \details{
-We programmed two different groups of functions. 
-First, we developed a set of general and flexible functions to wrap the 
-\href{https://paleobiodb.org/data1.2/}{PaleobioDB API}.
-These functions connect R with each of the endpoints of the PaleobioDB API. 
-Second, based on these base functions, we programmed a second set of functions 
-intended to explore and visualize the fossil 
+We programmed two different groups of functions. First, we
+developed a set of general and flexible functions to wrap the
+\href{https://paleobiodb.org/data1.2/}{PaleobioDB API}. These
+functions connect R with each of the endpoints of the PaleobioDB
+API. Second, based on these base functions, we programmed a second
+set of functions intended to explore and visualize the fossil
 occurrences in their geographic, temporal and taxonomic dimensions.
 }
 \examples{
