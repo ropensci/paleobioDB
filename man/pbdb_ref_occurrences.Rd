@@ -8,7 +8,15 @@ pbdb_ref_occurrences(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See all available arguments in
-\url{https://paleobiodb.org/data1.2/occs/refs}}
+\url{https://paleobiodb.org/data1.2/occs/refs}
+\itemize{
+  \item \emph{ref_author}: select only references for which any
+    of the authors matches the specified name.
+  \item \emph{ref_pubyr}: select only references published in the
+    specified year.
+  \item \emph{pub_title}: select only references that involve the
+    specified publication.
+}}
 }
 \value{
 a dataframe with the information about the references that
@@ -24,9 +32,6 @@ the main filtering parameters.
 }
 \examples{
 \dontrun{
-  pbdb_ref_occurrences(
-    vocab = "pbdb", base_name = "Canis",
-    latmin = 0, latmax = 35, lngmin = 0, lngmax = 35
-  )
+  pbdb_ref_occurrences(vocab = "pbdb", base_name = "Canis", ref_pubyr = 2000)
 }
 }

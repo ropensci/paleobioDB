@@ -16,7 +16,7 @@ pbdb_ref_taxa(...)
   \item \emph{id}: returns information about the taxonomic name
     corresponding to this identifier. You may not specify both
     name and id in the same query.
-  \item \emph{show}: show extra variables
+  \item \emph{show}: show extra variables.
   \item \emph{rel}: set rel = "synonyms" to select all synonyms
     of the base taxon or taxa; rel = "children" to select the
     taxa immediately contained within the base taxon or taxa; rel

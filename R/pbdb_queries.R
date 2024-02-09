@@ -133,7 +133,7 @@ pbdb_occurrence <- function(id, ...) {
 #'     \item \emph{continent}: return only records whose geographic
 #'       location falls within the specified continent(s).
 #'     \item \emph{show}: to show extra variables (e.g. coords,
-#'       classext, ident)
+#'       classext, ident).
 #'   }
 #' @return a dataframe with the species occurrences
 #'
@@ -167,29 +167,21 @@ pbdb_occurrences <- function(...) {
 #'
 #' @param ... arguments passed to the API. See all available arguments in
 #'   \url{https://paleobiodb.org/data1.2/occs/refs}
-
-## For now these parameters will be removed from the documentation
-## because they produce an internal server error in this specific
-## endpoint
-
-# #'   \itemize{
-# #'     \item \emph{ref_author} select only references for which any of the authors
-# #'       matches the specified name
-# #'     \item \emph{ref_pubyr} select only references published in the specified year
-# #'     \item \emph{pub_title} select only references that involve the specified
-# #'       publication
-# #'   }
-
+#'   \itemize{
+#'     \item \emph{ref_author}: select only references for which any
+#'       of the authors matches the specified name.
+#'     \item \emph{ref_pubyr}: select only references published in the
+#'       specified year.
+#'     \item \emph{pub_title}: select only references that involve the
+#'       specified publication.
+#'   }
 #' @return a dataframe with the information about the references that
 #'   match the query
 #'
 #' @export
 #' @examples \dontrun{
-#'   pbdb_ref_occurrences(
-#'     vocab = "pbdb", base_name = "Canis",
-#'     latmin = 0, latmax = 35, lngmin = 0, lngmax = 35
-#'   )
-#'}
+#'   pbdb_ref_occurrences(vocab = "pbdb", base_name = "Canis", ref_pubyr = 2000)
+#' }
 pbdb_ref_occurrences <- function(...) {
   l <- list(...)
   .pbdb_query("occs/refs", query = l)
@@ -385,7 +377,7 @@ pbdb_taxa <- function(...) {
 #'     \item \emph{name}: a partial name or prefix.  It must have at
 #'       least 3 significant characters, and may include both a genus
 #'       (possibly abbreviated) and a species.
-#'     \item \emph{limit}: set the limit to the number of matches
+#'     \item \emph{limit}: set the limit to the number of matches.
 #'     \item ...
 #'   }
 #' @return a dataframe with information about the matches (taxon rank
@@ -732,7 +724,7 @@ pbdb_ref_collections <- function(...) {
 #'     \item \emph{id}: returns information about the taxonomic name
 #'       corresponding to this identifier. You may not specify both
 #'       name and id in the same query.
-#'     \item \emph{show}: show extra variables
+#'     \item \emph{show}: show extra variables.
 #'     \item \emph{rel}: set rel = "synonyms" to select all synonyms
 #'       of the base taxon or taxa; rel = "children" to select the
 #'       taxa immediately contained within the base taxon or taxa; rel

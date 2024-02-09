@@ -41,7 +41,7 @@ pbdb_occurrences(...)
   \item \emph{continent}: return only records whose geographic
     location falls within the specified continent(s).
   \item \emph{show}: to show extra variables (e.g. coords,
-    classext, ident)
+    classext, ident).
 }}
 }
 \value{

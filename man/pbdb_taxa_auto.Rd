@@ -14,7 +14,7 @@ accepted parameters in
   \item \emph{name}: a partial name or prefix.  It must have at
     least 3 significant characters, and may include both a genus
     (possibly abbreviated) and a species.
-  \item \emph{limit}: set the limit to the number of matches
+  \item \emph{limit}: set the limit to the number of matches.
   \item ...
 }}
 }
