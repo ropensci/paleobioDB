@@ -72,19 +72,25 @@
 #'     main = "Canis"
 #'   )
 #' }
+pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
+                     main = NULL, col.point = c("light blue", "blue"), ...) {
+  if (!all(c("lat", "lng") %in% names(data))) {
+    err_msg <- strwrap(
+      paste(
+        "Invalid data input. Use the argument 'show = \"coords\"' in the",
+        "\"pbdb_occurrences\" function, e.g. pbdb_occurrences(...,",
+        "show = \"coords\").\n\nSee \"pbdb_map\" help page."
+      )
+    )
+    stop(paste(err_msg, collapse = "\n"))
+  }
 
-pbdb_map <- function(data, col.int='white' ,pch=19, col.ocean='black',
-                     main=NULL, col.point=c('light blue','blue'), ...){
-    
-    if (sum((colnames(data) %in% c("lat","lng")))!=2){
-        stop("Invalid data input. Use in \"pbdb_occurrences\" function the argument: show=\"coords\". e.g. pbdb_occurrences(..., show=\"coords\").
-             See \"pbdb_map\" help page" )}
-    
-    .add.ColOcean(col.ocean, col.int,...)
-    Y <- .extract.LatLong(data)
-    Y1<- .add.Points(Y,col.point, pch,...)
-    title(main=main,line=1,...)
-    .add.Legend(Y1, col.int, pch,...)
+  .add.ColOcean(col.ocean, col.int, ...)
+  Y <- .extract.LatLong(data)
+  Y1 <- .add.Points(Y, col.point, pch, ...)
+  title(main = main, line = 1, ...)
+  .add.Legend(Y1, col.int, pch, ...)
+  invisible()
 }
 
 #-------------------------------------------------
