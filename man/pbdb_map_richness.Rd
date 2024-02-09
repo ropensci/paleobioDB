@@ -9,32 +9,47 @@ pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
                   col.rich = c("light blue", "blue"), ...)
 }
 \arguments{
-\item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show = c("classext", "coords", "ident")}. See too: \strong{Details} and \strong{Examples}}
+\item{data}{input dataframe. This dataframe is the output of the
+\code{\link{pbdb_occurrences}} function using the argument
+\code{show = c("coords", "classext")}. See also Details and
+Examples.}
 
-\item{rank}{To set which taxon rank you are interested for calculate richness. The options are: "species", "genus", "family", "order", "class" or "phylum")}
+\item{rank}{taxon rank for which richness is calculated. The
+options are: "species", "genus", "family", "order", "class" or
+"phylum".}
 
-\item{do.plot}{Logical; \code{TRUE} the function returns a SpatRaster and a plot.}
+\item{do.plot}{logical. If \code{TRUE}, the function produces a
+plot in addition to returning a SpatRaster.}
 
-\item{res}{The resolution of the SpatRaster object (in decimal degrees). See: \code{\link{terra}}}
+\item{res}{the resolution of the SpatRaster object (in decimal
+degrees). See \code{\link{terra}}.}
 
-\item{col.int}{The colour of the mainland}
+\item{col.int}{the colour of the mainland.}
 
-\item{col.ocean}{The colour of the ocean}
+\item{col.ocean}{the colour of the ocean.}
 
-\item{col.rich}{Two or more colours. To generate the colour gradient used to show the richness per cell in map}
+\item{col.rich}{two or more colours that are used to generate the
+colour gradient showing the richness per cell in the map.}
 
-\item{...}{Others parameters. See \code{\link{par}} and \code{\link{map}}}
+\item{...}{other parameters. See \code{\link{par}} and
+\code{\link{map}}.}
 }
 \value{
-A SpatRaster object and a plot with richness of species, genera, families, etc. per cell. This SpatRaster object have the resolution controlled by
-the argument \code{res}. The default is \code{res=1}.
+A SpatRaster object with the richness of the specified
+  taxon rank per cell. This SpatRaster object has the resolution
+  that was specified in the \code{res} argument. The default is
+  \code{res = 5}. Users that wish to work with objects of this type
+  should load package \code{terra}.
 }
 \description{
-Creates a SpatRaster object and a plot with richness of species, genera, families, etc. per cell.
+Creates a SpatRaster object and a plot with richness of species,
+genera, families, etc. per cell.
 }
 \details{
-\strong{CAUTION!} The argument \code{show = "coords"} in \code{\link{pbdb_occurrences}} function is required. 
-We recommend the use of a cairo device (\code{\link{X11}}) for better visualization of the graphs. See \strong{Examples}
+The argument \code{show = c("coords", "classext")} in the
+  \code{\link{pbdb_occurrences}} function is required. We recommend
+  the use of a cairo device (\code{\link{X11}}) for better
+  visualization of the graphs. See Examples.
 }
 \examples{
 \dontrun{
@@ -50,5 +65,6 @@ We recommend the use of a cairo device (\code{\link{X11}}) for better visualizat
 }
 }
 \seealso{
-See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
+See \code{\link{pbdb_occurrences}}, \code{\link{map}},
+  \code{\link{par}} and \code{\link{colors}} help pages.
 }

@@ -4,33 +4,47 @@
 \alias{pbdb_map_occur}
 \title{pbdb_map_occur}
 \usage{
-pbdb_map_occur (data, res=5, col.int="white", col.ocean="black",
-col.eff=c("light blue","blue"), do.plot=TRUE, ...)
+pbdb_map_occur(data, res = 5, col.int = "white", col.ocean = "black",
+               col.eff = c("light blue", "blue"), do.plot = TRUE, ...)
 }
 \arguments{
-\item{data}{Input dataframe. This dataframe is the output of \code{\link{pbdb_occurrences}} function using the argument: \code{show="coords"}. See too: \strong{Details} and \strong{Examples}}
+\item{data}{input dataframe. This dataframe is the output of the
+\code{\link{pbdb_occurrences}} function using the argument
+\code{show = "coords"}. See also Details and Examples.}
 
-\item{res}{the resolution of the SpatRaster object (in decimal degrees). See: \code{\link{terra}}}
+\item{res}{the resolution of the SpatRaster object (in decimal
+degrees). See \code{\link{terra}}.}
 
-\item{col.int}{The colour of the mainland}
+\item{col.int}{the colour of the mainland.}
 
-\item{col.ocean}{The colour of the ocean}
+\item{col.ocean}{the colour of the ocean.}
 
-\item{col.eff}{Two or more colours. To generate the colour gradient used to show the number of occurrences per cell in map}
+\item{col.eff}{two or more colours that are used to generate the
+colour gradient showing the number of occurrences per cell in the
+map.}
 
-\item{do.plot}{Logical; \code{TRUE} the function returns a SpatRaster and a plot.}
+\item{do.plot}{logical. If \code{TRUE}, the function produces a
+plot in addition to returning a SpatRaster.}
 
-\item{...}{Others parameters. See \code{\link{par}} and \code{\link{map}}}
+\item{...}{other parameters. See \code{\link{par}} and
+\code{\link{map}}}
 }
 \value{
-A SpatRaster object and a plot with the sampling effort (number of fossil records per cell). This SpatRaster object have the resolution controlled by the argument \code{res}. The deflaut is \code{res=1}.
+A SpatRaster object with the sampling effort (number of
+  fossil records per cell). This SpatRaster object has the
+  resolution that was specified in the \code{res} argument. The
+  default is \code{res = 5}. Users that wish to work with objects
+  of this type should load package \code{terra}.
 }
 \description{
-Creates a SpatRaster object and a plot of the sampling effort (number of fossil records per cell).
+Creates a SpatRaster object and a plot of the sampling effort
+(number of fossil records per cell).
 }
 \details{
-\strong{CAUTION!} The argument \code{show = "coords"} in \code{\link{pbdb_occurrences}} function is required. 
-We recommend the use of a cairo device (\code{\link{X11}}) for better visualization of the graphs. See \strong{Examples}
+The argument \code{show = "coords"} in the
+  \code{\link{pbdb_occurrences}} function is required. We recommend
+  the use of a cairo device (\code{\link{X11}}) for better
+  visualization of the maps. See Examples.
 }
 \examples{
 \dontrun{
@@ -44,5 +58,6 @@ We recommend the use of a cairo device (\code{\link{X11}}) for better visualizat
 }
 }
 \seealso{
-See \code{\link{pbdb_occurrences}}, \code{\link{map}}, \code{\link{par}} and \code{\link{colors}} help pages
+See \code{\link{pbdb_occurrences}}, \code{\link{map}},
+  \code{\link{par}} and \code{\link{colors}} help pages
 }
