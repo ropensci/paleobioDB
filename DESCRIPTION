@@ -18,15 +18,14 @@ URL: https://docs.ropensci.org/paleobioDB,
     https://github.com/ropensci/paleobioDB
 BugReports: https://github.com/ropensci/paleobioDB/issues
 Imports:
+    curl,
     graphics,
     grDevices,
     gtools,
     maps,
-    RCurl,
     rjson,
     terra
 Suggests:
-    curl,
     roxygen2,
     testthat
 Encoding: UTF-8

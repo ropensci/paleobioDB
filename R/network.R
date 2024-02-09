@@ -10,11 +10,7 @@
 #' }
 #' @noRd
 .get_data_from_uri <- function(uri) {
-  response <- RCurl::getURL(
-    uri,
-    header = TRUE,
-    cainfo = system.file("CurlSSL/cacert.pem", package = "RCurl")
-  )
+  response <- curl::curl_fetch_memory(uri)
   raw_data <- .extract_response_body(response)
   df <- .parse_raw_data(raw_data)
   df
@@ -28,16 +24,20 @@
 #' @return character
 #' @noRd
 .extract_response_body <- function(response) {
-  sp <- strsplit(response, "\r\n\r\n", fixed = TRUE)[[1]]
-  header <- sp[[1]]
-  status <- substring(header, 10, 12)
+  body <- rawToChar(response$content)
 
-  body <- sp[[2]]
-
-  if (status != "200") {
-    stop(sprintf("Error in API response. The server returned a status %s, which indicates that
-something went wrong with your request. In order to debug the problem you may find
-useful information in the following server response:\r\n%s", status, body))
+  if (response$status_code != 200) {
+    err_msg <- strwrap(
+      paste0(
+        "Error in API response. The server returned a status ",
+        response$status_code,
+        ", which indicates that something went wrong with your request. ",
+        "In order to debug the problem you may find useful information ",
+        "in the following server response:\n\n",
+        body
+      )
+    )
+    stop(paste(err_msg, collapse = "\n"))
   }
 
   body
