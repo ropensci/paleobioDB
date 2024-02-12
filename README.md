@@ -115,7 +115,7 @@ cells.
 pbdb_map_occur(canidae, res = 5)
 ```
 
-<img src="man/figures/README-pbdb_map_occur-1.png" width="100%" /><img src="man/figures/README-pbdb_map_occur-2.png" width="100%" />
+<img src="man/figures/README-pbdb_map_occur-1.png" width="100%" />
 
     #> class       : SpatRaster 
     #> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
@@ -137,7 +137,7 @@ change the resolution of the cells.
 pbdb_map_richness(canidae, res = 5, rank = "species")
 ```
 
-<img src="man/figures/README-pbdb_map_richness-1.png" width="100%" /><img src="man/figures/README-pbdb_map_richness-2.png" width="100%" />
+<img src="man/figures/README-pbdb_map_richness-1.png" width="100%" />
 
     #> class       : SpatRaster 
     #> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)

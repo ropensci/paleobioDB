@@ -131,7 +131,7 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
 
 .plot.Raster.rich <- function(r, col.eff, col.ocean, col.int, res, ...) {
   par(oma = c(4, 0, 2, 2), ...)
-  e <- maps::map(type = "n", ...)
+  e <- maps::map(plot = FALSE, ...)
   ext <- ext(e$range)
   r2 <- rast(ext)
   res(r2) <- c(res, res)
