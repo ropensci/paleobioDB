@@ -1,0 +1,19 @@
+bibentry(
+  bibtype  = "Article",
+  title    = "paleobioDB: an R package for downloading, visualizing and processing data from the Paleobiology Database.",
+  author   = c(
+    person("Sara", "Varela"),
+    person("Javier", "González-Hernández"),
+    person(c("Luciano", "F."), "Sgarbi"),
+    person("Charles", "Marshall"),
+    person(c("Mark", "D."), "Uhen"),
+    person("Shanan", "Peters"),
+    person("Michael", "McClennen")
+  ),
+  journal  = "Ecography",
+  year     = "2015",
+  volume   = "38",
+  number   = "4",
+  pages    = "419-425",
+  doi      = "10.1111/ecog.01154"
+)
