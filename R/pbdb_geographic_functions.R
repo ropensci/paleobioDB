@@ -7,17 +7,21 @@
 }
 
 .add.ColOcean <- function(col.ocean, col.int, ...) {
-  par(mar = c(0, 0, 0, 0), xpd = TRUE, ...)
-  maps::map(type = "n", ...)
+  margins <- c(5.1, 0, 0, 0)
+  maps::map(type = "n", mar = margins, ...)
   rect(
     par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4],
     col = col.ocean
   )
-  maps::map(col = col.int, fill = TRUE, add = TRUE, ...)
+  maps::map(col = col.int, fill = TRUE, mar = margins, add = TRUE, ...)
 }
 
 #' @importFrom grDevices adjustcolor colorRampPalette
 .add.Points <- function(Y, col.point, pch, ...) {
+  # Reorder the points so that the coordinates with the highest number
+  # of occurrences come out on top in the plot, making them more
+  # visible
+  Y <- Y[order(Y$Occur), ]
   Pal <- colorRampPalette(col.point)
   Y$n <- as.numeric(cut(Y$Occur, breaks = 5))
   Y$Col <- Pal(5)[Y$n]
@@ -26,15 +30,27 @@
 }
 
 
-.add.Legend <- function(Y1, col.int, pch,...){
-    
-    n<-length(unique(Y1$Col))
-    Col<- unique(Y1$Col)[order(unique(Y1$n))]
-    Legend<-as.integer (seq(min(Y1$Occur), max(Y1$Occur),
-                            length.out= n))
-    legend("bottom", col= Col, inset= c(0,-0.14), legend= Legend, ncol= n, 
-           title="Occurrences",bg=col.int, pch=pch,...)
-}  
+.add.Legend <- function(Y1, pch, ...) {
+  # Overlay plot with transparent plot over the entire device
+  opar <- par(
+    fig = c(0, 1, 0, 1),
+    oma = c(0, 0, 0, 0),
+    mar = c(0, 0, 0, 0),
+    new = TRUE
+  )
+  on.exit(par(opar))
+  plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+
+  n <- length(unique(Y1$Col))
+  Col <- unique(Y1$Col)[order(unique(Y1$n))]
+  Legend <- as.integer(seq(min(Y1$Occur), max(Y1$Occur), length.out = n))
+  legend(
+    "bottom",
+    col = Col, legend = Legend, pch = pch, bg = "white",
+    horiz = TRUE, inset = 0.01,
+    title = "Occurrences", ...
+  )
+}
 
 #' pbdb_map
 #'
@@ -97,7 +113,7 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
   Y <- .extract.LatLong(data)
   Y1 <- .add.Points(Y, col.point, pch, ...)
   title(main = main, line = 1, ...)
-  .add.Legend(Y1, col.int, pch, ...)
+  .add.Legend(Y1, pch, ...)
   invisible()
 }
 
