@@ -97,13 +97,13 @@ corrected or eliminated, they will increase the richness of genera.
 
 ### `pbdb_map`
 
-Returns a map with the species occurrences.
+Plots a map with the species occurrences.
 
 ``` r
 pbdb_map(canidae)
 ```
 
-<img src="man/figures/README-pbdb_map-1.png" width="100%" />
+![](man/figures/README-pbdb_map-1.png)<!-- -->
 
 ### `pbdb_map_occur`
 
@@ -115,7 +115,7 @@ cells.
 pbdb_map_occur(canidae, res = 5)
 ```
 
-<img src="man/figures/README-pbdb_map_occur-1.png" width="100%" />
+![](man/figures/README-pbdb_map_occur-1.png)<!-- -->
 
     #> class       : SpatRaster 
     #> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
@@ -137,7 +137,7 @@ change the resolution of the cells.
 pbdb_map_richness(canidae, res = 5, rank = "species")
 ```
 
-<img src="man/figures/README-pbdb_map_richness-1.png" width="100%" />
+![](man/figures/README-pbdb_map_richness-1.png)<!-- -->
 
     #> class       : SpatRaster 
     #> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
@@ -160,7 +160,7 @@ genera, families, etc. in your query.
 tmp_range <- pbdb_temp_range(canidae, rank = "species")
 ```
 
-<img src="man/figures/README-pbdb_temp_range-1.png" width="100%" />
+![](man/figures/README-pbdb_temp_range-1.png)<!-- -->
 
 ``` r
 head(tmp_range)
@@ -183,7 +183,7 @@ temporal resolution for the steps.
 pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 10), res = 1)
 ```
 
-<img src="man/figures/README-pbdb_richness-1.png" width="100%" />
+![](man/figures/README-pbdb_richness-1.png)<!-- -->
 
     #>    temporal_intervals richness
     #> 1                 0-1       93
@@ -214,7 +214,7 @@ pbdb_orig_ext(
 )
 ```
 
-<img src="man/figures/README-pbdb_orig_ext_1-1.png" width="100%" />
+![](man/figures/README-pbdb_orig_ext_1-1.png)<!-- -->
 
     #>             new ext
     #> 1-2 to 0-1    7   5
@@ -235,7 +235,7 @@ pbdb_orig_ext(
 )
 ```
 
-<img src="man/figures/README-pbdb_orig_ext_2-1.png" width="100%" />
+![](man/figures/README-pbdb_orig_ext_2-1.png)<!-- -->
 
     #>             new ext
     #> 1-2 to 0-1    7   5
@@ -257,7 +257,7 @@ families, etc. in your dataset.
 pbdb_subtaxa(canidae, do.plot = TRUE)
 ```
 
-<img src="man/figures/README-pbdb_subtaxa-1.png" width="100%" />
+![](man/figures/README-pbdb_subtaxa-1.png)<!-- -->
 
     #>   species genera families orders classes phyla
     #> 1      98     27        1      1       1     1
@@ -273,7 +273,7 @@ resolution of the fossil records.
 pbdb_temporal_resolution(canidae)
 ```
 
-<img src="man/figures/README-pbdb_temporal_resolution-1.png" width="100%" />
+![](man/figures/README-pbdb_temporal_resolution-1.png)<!-- -->
 
 ## Docker \[TODO\]
 
@@ -340,23 +340,25 @@ License: GPL-2
 
 To cite package `paleobioDB` in publications use:
 
-    #> Warning in citation("paleobioDB"): could not determine year for 'paleobioDB'
-    #> from package DESCRIPTION file
     #> To cite package 'paleobioDB' in publications use:
     #> 
-    #>   Varela S, González Hernández J, Fabris Sgarbi L (????). _paleobioDB:
-    #>   Download and Process Data from the Paleobiology Database_. R package
-    #>   version 0.7.0.9000, https://github.com/ropensci/paleobioDB,
-    #>   <https://docs.ropensci.org/paleobioDB>.
+    #>   Varela S, González-Hernández J, Sgarbi LF, Marshall C, Uhen MD,
+    #>   Peters S, McClennen M (2015). "paleobioDB: an R package for
+    #>   downloading, visualizing and processing data from the Paleobiology
+    #>   Database." _Ecography_, *38*(4), 419-425. doi:10.1111/ecog.01154
+    #>   <https://doi.org/10.1111/ecog.01154>.
     #> 
     #> A BibTeX entry for LaTeX users is
     #> 
-    #>   @Manual{,
-    #>     title = {paleobioDB: Download and Process Data from the Paleobiology Database},
-    #>     author = {Sara Varela and Javier {González Hernández} and Luciano {Fabris Sgarbi}},
-    #>     note = {R package version 0.7.0.9000, 
-    #> https://github.com/ropensci/paleobioDB},
-    #>     url = {https://docs.ropensci.org/paleobioDB},
+    #>   @Article{,
+    #>     title = {paleobioDB: an R package for downloading, visualizing and processing data from the Paleobiology Database.},
+    #>     author = {Sara Varela and Javier González-Hernández and Luciano F. Sgarbi and Charles Marshall and Mark D. Uhen and Shanan Peters and Michael McClennen},
+    #>     journal = {Ecography},
+    #>     year = {2015},
+    #>     volume = {38},
+    #>     number = {4},
+    #>     pages = {419-425},
+    #>     doi = {10.1111/ecog.01154},
     #>   }
 
 ------------------------------------------------------------------------

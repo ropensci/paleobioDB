@@ -202,19 +202,21 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
 #'   ## to obtain the raster object without plotting it
 #'   pbdb_map_occur(data, res = 3, do.plot = FALSE)
 #' }
-pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
-                           col.eff=c("light blue","blue"), do.plot=TRUE, ...){
-    if (sum((colnames(data) %in% c("lat","lng")))!=2){
-        stop("Invalid data input. Please, add show=c(\"coords\") to your pbdb_occurrences query")
-    }
-    
-    Y <- as.matrix(.extract.LatLong(data))
-    r <- .Raster(Y, res, col.int, col.ocean, ...)
-    if(do.plot==T){
-        
-        .plot.Raster.rich(r,col.eff,col.ocean,col.int,res,...)
-        mtext("Number of records",4,line=-1,cex=2)}
-    r
+pbdb_map_occur <- function(data, res = 5,
+                           col.int = "white", col.ocean = "black",
+                           col.eff = c("light blue", "blue"),
+                           do.plot = TRUE, ...) {
+  if (!all(c("lat", "lng") %in% names(data))) {
+    stop("Invalid data input. Please, add 'show = c(\"coords\")' to your pbdb_occurrences query.")
+  }
+
+  Y <- as.matrix(.extract.LatLong(data))
+  r <- .Raster(Y, res, col.int, col.ocean, ...)
+  if (do.plot) {
+    .plot.Raster.rich(r, col.eff, col.ocean, col.int, res, ...)
+    mtext("Number of records", 4, line = 1, cex = 2)
+  }
+  r
 }
 
 #-------------------------------------------------
@@ -342,27 +344,26 @@ pbdb_map_occur <- function(data,res=5,col.int="white", col.ocean="black",
 #'   ## to obtain the raster object without plotting the map
 #'   pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 #' }
-pbdb_map_richness <- function(data, rank="species", do.plot=TRUE, res=5,col.int="white", col.ocean="black",
-                              col.rich=c("light blue","blue"),...){
-    if(!any(rank==c("species", "genus","family","order","class","phylum"))){
-        stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".
-             See \"pbdb_map_richness\" help page" )}
-    if (sum(colnames(data) %in% c("lat","lng","genus","family","order","class","phylum","mid","fml","odl","cll","phl"))!=7){
-        stop("Invalid data input. In the \"pbdb_occurrences\" function, use the following argument: show=c(\"classext\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"classext\",\"coords\",\"ident\")).
-             See \"pbdb_map_richness\" help page" )}
-    
-    if(rank=="species"){
-        r<-.extract.rank.specie(data,res)
-    }
-    else
-    {
-        r<-.extract.rank.all(data,res,rank)
-    }
-    
-    if(do.plot==TRUE){
-        .plot.Raster.rich(r,col.rich,col.ocean,col.int,res,...)
-        mtext(paste("Richness of", rank),4,line=-1,cex=2)
-        
-    }
-    r
+pbdb_map_richness <- function(data, rank = "species", do.plot = TRUE, res = 5, col.int = "white", col.ocean = "black",
+                              col.rich = c("light blue", "blue"), ...) {
+  if (!(rank %in% c("species", "genus", "family", "order", "class", "phylum"))) {
+    stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".
+             See \"pbdb_map_richness\" help page")
+  }
+  if (sum(colnames(data) %in% c("lat", "lng", "genus", "family", "order", "class", "phylum", "mid", "fml", "odl", "cll", "phl")) != 7) {
+    stop("Invalid data input. In the \"pbdb_occurrences\" function, use the following argument: show=c(\"classext\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"classext\",\"coords\",\"ident\")).
+             See \"pbdb_map_richness\" help page")
+  }
+
+  if (rank == "species") {
+    r <- .extract.rank.specie(data, res)
+  } else {
+    r <- .extract.rank.all(data, res, rank)
+  }
+
+  if (do.plot) {
+    .plot.Raster.rich(r, col.rich, col.ocean, col.int, res, ...)
+    mtext(paste("Richness of", rank), 4, line = 1, cex = 2)
+  }
+  r
 }
