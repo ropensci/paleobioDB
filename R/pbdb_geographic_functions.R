@@ -120,20 +120,22 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
 #-------------------------------------------------
 
 .add.ColOcean2 <- function(col.ocean, col.int, ...) {
-  par(mar = c(0, 0, 0, 0), ...)
-  maps::map(type = "n", add = TRUE, ...)
+  margins <- c(0, 0, 0, 0)
+  maps::map(type = "n", mar = margins, ...)
   rect(
-    par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4],
+    # Subtract a little bit from the right side of the ocean rectangle
+    # to avoid overlap with the raster legend
+    par("usr")[1], par("usr")[3], par("usr")[2] - 3, par("usr")[4],
     col = col.ocean
   )
-  maps::map(col = col.int, fill = TRUE, add = TRUE, ...)
+  maps::map(col = col.int, fill = TRUE, mar = margins, add = TRUE, ...)
 }
 
 .Raster <- function(Y, res, col.int, col.ocean, ...) {
   e <- maps::map(plot = FALSE, ...)
   ext <- ext(e$range)
   r <- rast(ext)
-  res(r) <- c(res, res)
+  res(r) <- res
   values(r) <- NA
   r <- rasterize(Y[, 1:2], r, Y[, 3], fun = sum)
   r
@@ -145,17 +147,13 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
   plot(r, col = adjustcolor(Pal(5), alpha.f = 0.8), add = TRUE, ...)
 }
 
-.plot.Raster.rich <- function(r, col.eff, col.ocean, col.int, res, ...) {
-  par(oma = c(4, 0, 2, 2), ...)
-  e <- maps::map(plot = FALSE, ...)
-  ext <- ext(e$range)
-  r2 <- rast(ext)
-  res(r2) <- c(res, res)
-  values(r2) <- NA
-  plot(r2, xaxt = "n", yaxt = "n")
+.plot.Raster.rich <- function(r, col.eff, col.ocean, col.int,
+                              res, lg_title, ...) {
+  opar <- par(oma = c(0, 0, 0, 5.1))
+  on.exit(par(opar))
   .add.ColOcean2(col.ocean, col.int, ...)
-  maps::map(col = col.int, fill = TRUE, add = TRUE, ...)
   .add.pattern(r, col.eff, ...)
+  mtext(lg_title, 4, line = 3, cex = 1.5)
 }
 
 #' pbdb_map_occur
@@ -213,8 +211,11 @@ pbdb_map_occur <- function(data, res = 5,
   Y <- as.matrix(.extract.LatLong(data))
   r <- .Raster(Y, res, col.int, col.ocean, ...)
   if (do.plot) {
-    .plot.Raster.rich(r, col.eff, col.ocean, col.int, res, ...)
-    mtext("Number of records", 4, line = 1, cex = 1.5)
+    .plot.Raster.rich(
+      r, col.eff, col.ocean, col.int, res,
+      lg_title = "Number of records",
+      ...
+    )
   }
   r
 }
@@ -362,8 +363,11 @@ pbdb_map_richness <- function(data, rank = "species", do.plot = TRUE, res = 5, c
   }
 
   if (do.plot) {
-    .plot.Raster.rich(r, col.rich, col.ocean, col.int, res, ...)
-    mtext(paste("Richness of", rank), 4, line = 1, cex = 1.5)
+    .plot.Raster.rich(
+      r, col.rich, col.ocean, col.int, res,
+      lg_title = paste("Richness of", rank),
+      ...
+    )
   }
   r
 }
