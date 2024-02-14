@@ -164,13 +164,13 @@ tmp_range <- pbdb_temp_range(canidae, rank = "species")
 
 ``` r
 head(tmp_range)
-#>                     max    min
-#> Canis lepophagus    4.9 0.0120
-#> Canis gezi          4.0 0.7810
-#> Lupulella mesomelas 3.6 0.0000
-#> Vulpes chama        3.6 0.0000
-#> Aenocyon dirus      3.6 0.0117
-#> Canis hewitti       3.6 0.0117
+#>                        max   min
+#> Canis lepophagus       4.9 0.012
+#> Canis gezi             4.0 0.781
+#> Canis chihliensis      3.6 0.781
+#> Canis palmidens        3.6 0.781
+#> Eucyon minor           3.6 0.781
+#> Protocyon orocualensis 3.6 0.781
 ```
 
 ### `pbdb_richness`

@@ -112,7 +112,7 @@ pbdb_map_richness(canidae, res = 5, rank = "species")
 Returns a dataframe and a plot with the time span of the species,
 genera, families, etc. in your query.
 
-```{r pbdb_temp_range}
+```{r pbdb_temp_range, fig.dim = c(7, 10)}
 tmp_range <- pbdb_temp_range(canidae, rank = "species")
 head(tmp_range)
 ```

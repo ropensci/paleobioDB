@@ -69,39 +69,43 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 #'   )
 #'   pbdb_temp_range(canis_quaternary, rank = "species", names = FALSE)
 #' }
-  
-
-pbdb_temp_range<- function (data, rank, 
-                             col="#0000FF", names=TRUE, 
-                             do.plot=TRUE){
-  
+pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
+                            do.plot = TRUE) {
   temporal_range <- .extract_temporal_range(data, rank)
 
-  if (do.plot==TRUE){
-    pos<- c(1:dim (temporal_range)[1]-0.9)
-    t_range<- cbind (temporal_range, pos)
-    par(mar = c(4, 0, 1, 15))
-    plot(c(min (t_range$max), max (t_range$max)),
-         c(0, dim (t_range)[1]), 
-         type = "n",axes = FALSE, 
-         xlab = "Time (Ma)", ylab = "", 
-         xlim=c(max (t_range$max), min (t_range$max)))
-    segments(x0 = t_range$min,
-             y0 = t_range$pos,
-             x1 = t_range$max,
-             y1 = t_range$pos,
-             col = col,
-             lwd = 6,
-             lend = 2)
-    axis(1, col="gray30", cex.axis=0.8)  
-    if (names==TRUE){
-      text(x = t_range$min - 0.3, y = t_range$pos,
-      labels = row.names (t_range), adj=c(0,0), 
-      cex=0.5, col="gray30") 
+  if (do.plot) {
+    pos <- seq_len(nrow(temporal_range)) - 0.9
+    t_range <- cbind(temporal_range, pos)
+    # Make right margin large enough to fit the longest name
+    right_margin <- max(nchar(row.names(t_range))) * 0.2
+    opar <- par(mar = c(4, 1, 1, right_margin))
+    on.exit(par(opar))
+    plot(c(min(t_range$min), max(t_range$max)),
+      c(0, nrow(t_range)),
+      type = "n", axes = FALSE,
+      xlab = "Time (Ma)", ylab = "",
+      xlim = c(max(t_range$max), min(t_range$min))
+    )
+    segments(
+      x0 = t_range$min,
+      y0 = t_range$pos,
+      x1 = t_range$max,
+      y1 = t_range$pos,
+      col = col,
+      lwd = 6,
+      lend = 2
+    )
+    axis(1, col = "gray30", cex.axis = 0.8)
+    if (names) {
+      text(
+        x = t_range$min, y = t_range$pos,
+        labels = paste("  ", row.names(t_range)),
+        adj = c(0, 0.5), cex = 0.5, col = "gray30", xpd = NA
+      )
     }
   }
-  
-  return (temporal_range)
+
+  temporal_range
 }
 
 .extract_temporal_range <- function(data, rank) {
@@ -155,7 +159,7 @@ pbdb_temp_range<- function (data, rank,
 
   temporal_range <- data.frame(max_sp, min_sp)
   colnames(temporal_range) <- c("max", "min")
-  temporal_range <- temporal_range[with(temporal_range, order(-max, min)), ]
+  temporal_range <- temporal_range[with(temporal_range, order(-max, -min)), ]
 
   temporal_range
 }
