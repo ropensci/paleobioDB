@@ -214,7 +214,7 @@ pbdb_map_occur <- function(data, res = 5,
   r <- .Raster(Y, res, col.int, col.ocean, ...)
   if (do.plot) {
     .plot.Raster.rich(r, col.eff, col.ocean, col.int, res, ...)
-    mtext("Number of records", 4, line = 1, cex = 2)
+    mtext("Number of records", 4, line = 1, cex = 1.5)
   }
   r
 }
@@ -363,7 +363,7 @@ pbdb_map_richness <- function(data, rank = "species", do.plot = TRUE, res = 5, c
 
   if (do.plot) {
     .plot.Raster.rich(r, col.rich, col.ocean, col.int, res, ...)
-    mtext(paste("Richness of", rank), 4, line = 1, cex = 2)
+    mtext(paste("Richness of", rank), 4, line = 1, cex = 1.5)
   }
   r
 }
