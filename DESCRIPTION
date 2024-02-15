@@ -14,7 +14,7 @@ Description: Includes functions to wrap most endpoints of the
     data. The API documentation for the Paleobiology Database can be
     found at <https://paleobiodb.org/data1.2/>.
 License: GPL-2
-URL: https://docs.ropensci.org/paleobioDB,
+URL: https://docs.ropensci.org/paleobioDB/,
     https://github.com/ropensci/paleobioDB
 BugReports: https://github.com/ropensci/paleobioDB/issues
 Imports:

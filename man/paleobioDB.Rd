@@ -82,7 +82,7 @@ Sara Varela, Javier González-Hernández, Luciano Fabris
   McClennen, 2015. paleobioDB: an R package for downloading,
   visualizing and processing data from the Paleobiology
   Database. Ecography, 38:
-  419-425. \url{https://doi.org/10.1111/ecog.01154}
+  419-425. \doi{10.1111/ecog.01154}
 }
 \seealso{
 {

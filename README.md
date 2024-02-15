@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![CRAN
 status](https://www.r-pkg.org/badges/version/paleobioDB)](https://CRAN.R-project.org/package=paleobioDB)
 [![rstudio mirror
-downloads](https://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/metacran/cranlogs.app)
+downloads](https://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/r-hub/cranlogs.app)
 <!-- badges: end -->
 
 `paleobioDB` is a package for downloading, visualizing and processing
@@ -309,7 +309,7 @@ located in */home/rstudio*. It also exposes the port 8787 of the
 container so you may access to the RStudio web application which is
 bundled in the *rocker* base image.
 
-4.  Navigate to <http://localhost:8787>. Enter with user=*rstudio* and
+4.  Navigate to `http://localhost:8787`. Enter with user=*rstudio* and
     the password you used in the command above.
 
 5.  You may enter to the container via console with:
@@ -331,10 +331,10 @@ library(devtools)
 install.packages(".", repos = NULL, type = "source")
 ```
 
-## Meta \[TODO\]
+## Meta
 
 Please report any [issues or
-bugs](https://github.com/ropensci/pbdb/issues).
+bugs](https://github.com/ropensci/paleobioDB/issues).
 
 License: GPL-2
 
@@ -363,7 +363,7 @@ To cite package `paleobioDB` in publications use:
 
 ------------------------------------------------------------------------
 
-This package is part of the [rOpenSci](http://ropensci.org/packages)
+This package is part of the [rOpenSci](https://ropensci.org/packages)
 project.
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
