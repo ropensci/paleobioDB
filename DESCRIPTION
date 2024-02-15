@@ -9,10 +9,10 @@ Authors@R: c(
     person("Adrián", "Castro Insua", , "adrian.castro.insua@uvigo.gal", role = "ctb")
   )
 Maintainer: Sara Varela <sara.varela@uvigo.gal>
-Description: Includes functions to wrap each endpoint of the 'PaleobioDB'
-    API and functions to visualize and process the fossil data. The API
-    documentation for the Paleobiology Database can be found at
-    <https://paleobiodb.org/data1.2/>.
+Description: Includes functions to wrap most endpoints of the
+    'PaleobioDB' API and functions to visualize and process the fossil
+    data. The API documentation for the Paleobiology Database can be
+    found at <https://paleobiodb.org/data1.2/>.
 License: GPL-2
 URL: https://docs.ropensci.org/paleobioDB,
     https://github.com/ropensci/paleobioDB
