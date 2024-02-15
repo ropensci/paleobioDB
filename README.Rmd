@@ -172,59 +172,62 @@ resolution of the fossil records.
 pbdb_temporal_resolution(canidae)
 ```
 
-## Docker [TODO]
+## Docker
 
-We are including a Dockerfile to ease working on the package as it
-fulfills all the system dependencies of the package.
+We include a Dockerfile to ease working on the package as it fulfills
+all its system dependencies.
 
 How to load the package with Docker:
 
-1. Install Docker. Reference here: https://docs.docker.com/get-started
+1. Install Docker. Reference here: https://docs.docker.com/get-started/
 
-2. Build the *docker image*: from the root folder of this
-   repository. Type:
+2. Build the docker image. From the root folder of this
+   repository, type:
 
 ```bash
 docker build -t rpbdb Docker
 ```
 
-This command will create a *docker image* in your system based on some
+This command will create a docker image in your system based on some
 of the [rocker/tidyverse](https://hub.docker.com/r/rocker/tidyverse/)
-images.  You can see the new image with ```docker image ls```.
+images.  You can see the new image with `docker image ls`.
 
 3. Start a container for this image. Type the following command
-   picking some *<password>* of your choice.
+   picking some `<password>` of your choice.
 
 ```bash
-docker run -d --rm -p 8787:8787 -e PASSWORD=<password> -v $PWD:/home/rstudio rpbdb
+docker run -d --name="rpbdb_rstudio" --rm -p 8787:8787 \
+	   -e PASSWORD=<password> -v $PWD:/home/rstudio rpbdb
 ```
 
 This will start a container with access to your current folder where
 all the code of the package is.  Inside the container, the code will
-be located in */home/rstudio*. It also exposes the port 8787 of the
-container so you may access to the RStudio web application which is
-bundled in the *rocker* base image.
+be located in `/home/rstudio`. It also exposes the port 8787 of the
+container so you may access the RStudio web application which is
+bundled in the Rocker base image.
 
-4. Navigate to `http://localhost:8787`. Enter with user=*rstudio* and
-   the password you used in the command above.
+4. Then, you can either:
 
-5. You may enter to the container via console with:
+	- Navigate to `http://localhost:8787`. Enter with username
+	"rstudio" and the password you used in the command above.
 
-```bash
-docker exec -ti ravis bash
-```
+	- Or you can enter the container via console with:
+
+	```bash
+	docker exec -ti -u rstudio -w /home/rstudio rpbdb_rstudio R
+	```
 
 Either from RStudio or from within the container you can install the
-package out of the code with:
-
-```bash
-cd /home/rstudio
-R
-```
+package from source with:
 
 ```r
-library(devtools)
 install.packages(".", repos = NULL, type = "source")
+```
+
+5. When you are finished, you can stop the container:
+
+```bash
+docker container stop rpbdb_rstudio
 ```
 
 ## Meta
