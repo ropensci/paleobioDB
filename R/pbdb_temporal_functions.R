@@ -193,55 +193,66 @@ pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
 #'   )
 #'   pbdb_richness(data, rank = "species", res = 1, temporal_extent = c(0, 3))
 #'}
+pbdb_richness <- function(data, rank,
+                          res = 1,
+                          temporal_extent = c(0, 10),
+                          colour = "#0000FF30",
+                          bord = "#0000FF",
+                          do.plot = TRUE) {
+  temporal_range <- pbdb_temp_range(data = data, rank = rank, do.plot = FALSE)
+  te <- temporal_extent
+  time <- seq(from = min(te), to = (max(te)), by = res)
 
-pbdb_richness <- function (data, rank, 
-                           res=1, 
-                           temporal_extent=c(0,10), 
-                           colour="#0000FF30", 
-                           bord="#0000FF", 
-                           do.plot=TRUE){
-  
-  temporal_range<- pbdb_temp_range (data=data, rank=rank,do.plot=FALSE)
-  te<- temporal_extent
-  time<- seq (from=min(te), to= (max(te)), by=res)
-  
-  means<- NULL
-  for (i in 1:length (time)-1){
-    x<- (time [i +1] + time [i])/2
-    means<- c(means, x)
-  }
-  a<- NULL
-  for (i in 1:(length (time)-1)) {
-    b<- temporal_range [,1]>time[i] & temporal_range [,2]<=time [i+1]
-    a<- cbind (a,b)
-  }
-  
-  richness<- colSums (a+0, na.rm=T)
-  temporal_intervals<- paste (time[-length (time)], time[-1], sep="-")
-  richness<- data.frame (temporal_intervals, richness)
-  if (do.plot==TRUE) {
+  means <- mapply(function(x, y) mean(c(x, y)), time[-length(time)], time[-1])
+
+  intervals <- cbind(time[-length(time)], time[-1])
+  # Presence/absence matrix per time step
+  a <- apply(intervals, 1, function(interval) {
+    temporal_range[, 1] > interval[1] & temporal_range[, 2] <= interval[2]
+  })
+
+  richness <- colSums(a, na.rm = TRUE)
+  temporal_intervals <- paste(time[-length(time)], time[-1], sep = "-")
+  richness <- data.frame(temporal_intervals, richness)
+  if (do.plot) {
     plot.new()
-    par (mar=c(5,5,1,5), font.lab=1, col.lab="grey20", col.axis="grey50", 
-         cex.axis=0.8)
-    plot.window(xlim=c(max (te),min(te)), xaxs="i",
-                ylim=c(0,(max(richness [,2]))+(max(richness [,2])/10)), yaxs="i")
-    
-    abline(v=seq(min(te), max(te), by=res), col="grey90", lwd=1)
-    abline(h=seq(0, max(richness [,2])+(max(richness [,2])/10), 
-                 by=(max(richness [,2])/10)), col="grey90", lwd=1)
-    xx <- c(means [1], means, means [length (means)])
-    yy <- c(0, richness[,2], 0)
-    polygon(xx, yy, col=colour, border=bord)
-    axis(1, line=1, las=2, labels=temporal_intervals, 
-         at=means)
-    axis(2, line=1, las=1)
-    mtext("Million years before present", line=3.5, adj=1, side=1)
-    mtext("Richness", line= 3.5 , adj=0, side=2)
+    bottom_margin <- 5 + max(nchar(temporal_intervals)) / 3 + 0.4
+    opar <- par(
+      mar = c(bottom_margin, 5, 1, 5),
+      font.lab = 1, col.lab = "grey20",
+      col.axis = "grey50", cex.axis = 0.8
+    )
+    on.exit(par(opar))
+    plot.window(
+      xlim = c(max(te), min(te)), xaxs = "i",
+      ylim = c(0, (max(richness[, 2])) + (max(richness[, 2]) / 10)), yaxs = "i"
+    )
+
+    abline(v = seq(min(te), max(te), by = res), col = "grey90", lwd = 1)
+    abline(
+      h = seq(
+        0, max(richness[, 2]) + (max(richness[, 2]) / 10),
+        by = (max(richness[, 2]) / 10)
+      ),
+      col = "grey90", lwd = 1
+    )
+    xx <- c(means[1], means, means[length(means)])
+    yy <- c(0, richness[, 2], 0)
+    polygon(xx, yy, col = colour, border = bord)
+    axis(1,
+      line = 1, las = 2, labels = temporal_intervals,
+      at = means
+    )
+    axis(2, line = 1, las = 1)
+    mtext(
+      "Million years before present",
+      line = floor(bottom_margin) - 2, adj = 1, side = 1
+    )
+    mtext("Richness", line = 3.5, adj = 0, side = 2)
   }
-  return (richness)
+
+  richness
 }
-
-
 
 #' pbdb_orig_ext
 #' 
