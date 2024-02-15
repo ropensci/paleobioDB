@@ -46,13 +46,13 @@ library(paleobioDB)
 canidae <- pbdb_occurrences(
   base_name = "canidae",
   interval = "Quaternary",
-  show = c("coords", "classext", "ident"),
+  show = c("coords", "class"),
   vocab = "pbdb",
   limit = "all"
 )
 
 dim(canidae)
-#> [1] 1384   34
+#> [1] 1384   23
 
 head(canidae, 3)
 #>   occurrence_no record_type collection_no   identified_name identified_rank
@@ -67,19 +67,17 @@ head(canidae, 3)
 #> 1 Late Pleistocene  0.781 0.0117         4412  111.5667 22.76667 Chordata
 #> 2             <NA>  1.800 0.3000         2673 -112.4000 35.70000 Chordata
 #> 3             <NA>  1.800 0.3000        52058 -112.4000 35.70000 Chordata
-#>   phylum_no    class class_no     order order_no  family family_no genus
-#> 1     33815 Mammalia    36651 Carnivora    36905 Canidae     41189  Cuon
-#> 2     33815 Mammalia    36651 Carnivora    36905 Canidae     41189 Canis
-#> 3     33815 Mammalia    36651 Carnivora    36905 Canidae     41189 Canis
-#>   genus_no primary_name species_name reid_no species_reso difference
-#> 1    41204         Cuon          sp.    <NA>         <NA>       <NA>
-#> 2    41198        Canis     edwardii    8376         <NA>       <NA>
-#> 3    41198        Canis  armbrusteri   30222         <NA>       <NA>
-#>   primary_reso subgenus_name subgenus_reso
-#> 1         <NA>          <NA>          <NA>
-#> 2         <NA>          <NA>          <NA>
-#> 3         <NA>          <NA>          <NA>
+#>      class     order  family genus reid_no difference
+#> 1 Mammalia Carnivora Canidae  Cuon    <NA>       <NA>
+#> 2 Mammalia Carnivora Canidae Canis    8376       <NA>
+#> 3 Mammalia Carnivora Canidae Canis   30222       <NA>
 ```
+
+Note that if the plotting and analysis functions of this package are
+going to be used (as demonstrated in the sections below), it is
+necessary to specify the parameter `show = c("coords", "class")` in the
+`pbdb_occurrences()` function. This returns taxonomic and geographic
+information for the occurrences that is required by these functions.
 
 ### Caution with the raw data
 
@@ -151,27 +149,32 @@ pbdb_map_richness(canidae, res = 5, rank = "species")
 
 ## Explore your fossil data
 
-### `pbdb_temporal_range`
+### `pbdb_temp_range`
 
 Returns a dataframe and a plot with the time span of the species,
-genera, families, etc. in your query.
+genera, families, etc. in your query. Make sure that enough vertical
+space is provided in the graphics device used to do the plotting if
+there are many taxa of the specified rank in your data set.
 
 ``` r
-tmp_range <- pbdb_temp_range(canidae, rank = "species")
+pbdb_temp_range(canidae, rank = "species")
 ```
 
 ![](man/figures/README-pbdb_temp_range-1.png)<!-- -->
 
-``` r
-head(tmp_range)
-#>                        max   min
-#> Canis lepophagus       4.9 0.012
-#> Canis gezi             4.0 0.781
-#> Canis chihliensis      3.6 0.781
-#> Canis palmidens        3.6 0.781
-#> Eucyon minor           3.6 0.781
-#> Protocyon orocualensis 3.6 0.781
-```
+    #>                             max    min
+    #> Canis lepophagus          4.900 0.0120
+    #> Canis gezi                4.000 0.7810
+    #> Canis chihliensis         3.600 0.7810
+    #> Canis palmidens           3.600 0.7810
+    #> Eucyon minor              3.600 0.7810
+    ....
+    #> Urocyon littoralis        0.300 0.0000
+    #> Pseudalopex sechurae      0.126 0.0117
+    #> Vulpes macrotis           0.126 0.0117
+    #> Cubacyon transversidens   0.126 0.0000
+    #> Lycalopex griseus         0.126 0.0000
+    #> Speothos pacivorus        0.126 0.0000
 
 ### `pbdb_richness`
 
@@ -180,73 +183,74 @@ families, etc.) across time. You should set the temporal extent and the
 temporal resolution for the steps.
 
 ``` r
-pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 10), res = 1)
+pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 5), res = 0.5)
 ```
 
 ![](man/figures/README-pbdb_richness-1.png)<!-- -->
 
     #>    temporal_intervals richness
-    #> 1                 0-1       93
-    #> 2                 1-2       83
-    #> 3                 2-3       71
-    #> 4                 3-4       18
-    #> 5                 4-5        1
-    #> 6                 5-6        0
-    #> 7                 6-7        0
-    #> 8                 7-8        0
-    #> 9                 8-9        0
-    #> 10               9-10        0
+    #> 1               0-0.5       74
+    #> 2               0.5-1       87
+    #> 3               1-1.5       78
+    #> 4               1.5-2       81
+    #> 5               2-2.5       71
+    #> 6               2.5-3       71
+    #> 7               3-3.5       18
+    #> 8               3.5-4       15
+    #> 9               4-4.5        1
+    #> 10              4.5-5        1
 
 ### `pbdb_orig_ext`
 
 Returns a dataframe and a plot with the number of new appearances and
 last appearances of species, genera, families, etc. in your query across
-the time. You should set the temporal extent and the resolution of the
-steps. `orig_ext = 1` plots new appearances, `orig_ext = 2` plots last
-appearances in the provided data (possibly extinctions, if the data are
-complete enough).
+time. You should set the temporal extent and the resolution of the
+steps. `orig_ext = 1` plots new appearances:
 
 ``` r
 pbdb_orig_ext(
   canidae,
   rank = "species",
-  orig_ext = 1, temporal_extent = c(0, 10), res = 1
+  orig_ext = 1, temporal_extent = c(0, 5), res = 0.5
 )
 ```
 
 ![](man/figures/README-pbdb_orig_ext_1-1.png)<!-- -->
 
-    #>             new ext
-    #> 1-2 to 0-1    7   5
-    #> 2-3 to 1-2   12   0
-    #> 3-4 to 2-3   53   0
-    #> 4-5 to 3-4   16   0
-    #> 5-6 to 4-5    2   0
-    #> 6-7 to 5-6    0   0
-    #> 7-8 to 6-7    0   0
-    #> 8-9 to 7-8    0   0
-    #> 9-10 to 8-9   0   0
+    #>                new ext
+    #> 0.5-1 to 0-0.5   4  19
+    #> 1-1.5 to 0.5-1   9   0
+    #> 1.5-2 to 1-1.5   2   5
+    #> 2-2.5 to 1.5-2  10   0
+    #> 2.5-3 to 2-2.5   0   0
+    #> 3-3.5 to 2.5-3  53   0
+    #> 3.5-4 to 3-3.5   3   0
+    #> 4-4.5 to 3.5-4  13   0
+    #> 4.5-5 to 4-4.5   1   0
+
+And `orig_ext = 2` plots last appearances in the provided dataframe
+(possibly extinctions, if the data are complete enough).
 
 ``` r
 pbdb_orig_ext(
   canidae,
   rank = "species",
-  orig_ext = 2, temporal_extent = c(0, 10), res = 1
+  orig_ext = 2, temporal_extent = c(0, 5), res = 0.5
 )
 ```
 
 ![](man/figures/README-pbdb_orig_ext_2-1.png)<!-- -->
 
-    #>             new ext
-    #> 1-2 to 0-1    7   5
-    #> 2-3 to 1-2   12   0
-    #> 3-4 to 2-3   53   0
-    #> 4-5 to 3-4   16   0
-    #> 5-6 to 4-5    2   0
-    #> 6-7 to 5-6    0   0
-    #> 7-8 to 6-7    0   0
-    #> 8-9 to 7-8    0   0
-    #> 9-10 to 8-9   0   0
+    #>                new ext
+    #> 0.5-1 to 0-0.5   4  19
+    #> 1-1.5 to 0.5-1   9   0
+    #> 1.5-2 to 1-1.5   2   5
+    #> 2-2.5 to 1.5-2  10   0
+    #> 2.5-3 to 2-2.5   0   0
+    #> 3-3.5 to 2.5-3  53   0
+    #> 3.5-4 to 3-3.5   3   0
+    #> 4-4.5 to 3.5-4  13   0
+    #> 4.5-5 to 4-4.5   1   0
 
 ## `pbdb_subtaxa`
 
@@ -264,16 +268,28 @@ pbdb_subtaxa(canidae, do.plot = TRUE)
 
 ## `pbdb_temporal_resolution`
 
-Returns a plot and a dataframe with a main summary of the temporal
-resolution of the fossil records.
-
-<!-- TODO: truncate output -->
+Returns a plot and a list with a summary of the temporal resolution of
+the fossil records.
 
 ``` r
 pbdb_temporal_resolution(canidae)
 ```
 
 ![](man/figures/README-pbdb_temporal_resolution-1.png)<!-- -->
+
+    #> $summary
+    #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    #>  0.0117  0.1143  0.6550  0.9617  1.8070  4.8880 
+    #> 
+    #> $temporal_resolution
+    #>    [1] 0.7693 1.5000 1.5000 1.5000 0.7820 0.7820 0.7820 0.7820 1.5000 1.5000
+    ....
+    #> [1331] 1.8070 1.8070 1.8070 1.8070 1.8070 2.8190 2.8190 2.8190 2.8190 2.8190
+    #> [1341] 0.1260 2.5763 1.8070 0.4190 0.4190 0.4190 0.4190 0.4190 3.2190 0.7690
+    #> [1351] 0.0117 0.0117 0.0117 2.5880 2.5763 2.5763 0.7690 0.7690 0.7690 0.1143
+    #> [1361] 0.4190 0.1143 0.7690 2.5763 0.1143 0.7690 0.1143 2.5763 0.7690 0.6550
+    #> [1371] 0.6550 1.8070 2.8190 1.5000 2.5763 2.5763 2.5763 0.1143 2.5763 2.5763
+    #> [1381] 2.5763 2.5763 0.0117 0.0117
 
 ## Docker
 
@@ -340,8 +356,6 @@ Please report any [issues or
 bugs](https://github.com/ropensci/paleobioDB/issues).
 
 License: GPL-2
-
-To cite package `paleobioDB` in publications use:
 
     #> To cite package 'paleobioDB' in publications use:
     #> 
