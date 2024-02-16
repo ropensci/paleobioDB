@@ -21,9 +21,14 @@ MINOR IMPROVEMENTS
 
 BUG FIXES
 
-* Fix [issue 50](https://github.com/ropensci/paleobioDB/issues/50)
-  caused by latitude and longitude values being returned as strings by
-  the API.
+* Make names more readable in the plot produced by `pbdb_temp_range()`
+  (#22).
+
+* Prevent x-axis title from overlapping with tick labels in
+  `pbdb_richness()` (#43).
+
+* Fix bug in map plotting caused by latitude and longitude values
+  being returned as strings by the API (#50).
 
 * Fix a certificate issue in RCurl that affected Windows users (#53,
   #54).
