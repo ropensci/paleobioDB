@@ -95,7 +95,7 @@ corrected or eliminated, they will increase the richness of genera.
 
 ### `pbdb_map`
 
-Plots a map with the species occurrences.
+Plots a map showing fossil occurrences.
 
 ``` r
 pbdb_map(canidae)
