@@ -252,7 +252,7 @@ pbdb_orig_ext(
     #> 4-4.5 to 3.5-4  13   0
     #> 4.5-5 to 4-4.5   1   0
 
-## `pbdb_subtaxa`
+### `pbdb_subtaxa`
 
 Returns a plot and a dataframe with the number of species, genera,
 families, etc. in your dataset.
@@ -266,7 +266,7 @@ pbdb_subtaxa(canidae, do.plot = TRUE)
     #>   species genera families orders classes phyla
     #> 1      98     27        1      1       1     1
 
-## `pbdb_temporal_resolution`
+### `pbdb_temporal_resolution`
 
 Returns a plot and a list with a summary of the temporal resolution of
 the fossil records.
