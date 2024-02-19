@@ -9,7 +9,7 @@ pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
                   col.rich = c("light blue", "blue"), ...)
 }
 \arguments{
-\item{data}{input dataframe. This dataframe is the output of the
+\item{data}{input data frame. This data frame is the output of the
 \code{\link{pbdb_occurrences}} function using the argument
 \code{show = c("coords", "classext")}. See also Details and
 Examples.}

@@ -22,7 +22,7 @@ following parameters must be specified (but not both):
 }}
 }
 \value{
-a dataframe with information from a single taxon
+a data frame with information from a single taxon
 }
 \description{
 Returns information about a single taxonomic name, identified

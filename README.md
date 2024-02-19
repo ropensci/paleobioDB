@@ -151,7 +151,7 @@ pbdb_map_richness(canidae, res = 5, rank = "species")
 
 ### `pbdb_temp_range`
 
-Returns a dataframe and a plot with the time span of the species,
+Returns a data frame and a plot with the time span of the species,
 genera, families, etc. in your query. Make sure that enough vertical
 space is provided in the graphics device used to do the plotting if
 there are many taxa of the specified rank in your data set.
@@ -178,7 +178,7 @@ pbdb_temp_range(canidae, rank = "species")
 
 ### `pbdb_richness`
 
-Returns a dataframe and a plot with the number of species (or genera,
+Returns a data frame and a plot with the number of species (or genera,
 families, etc.) across time. You should set the temporal extent and the
 temporal resolution for the steps.
 
@@ -202,7 +202,7 @@ pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 5), res = 0.5)
 
 ### `pbdb_orig_ext`
 
-Returns a dataframe and a plot with the number of new appearances and
+Returns a data frame and a plot with the number of new appearances and
 last appearances of species, genera, families, etc. in your query across
 time. You should set the temporal extent and the resolution of the
 steps. `orig_ext = 1` plots new appearances:
@@ -228,7 +228,7 @@ pbdb_orig_ext(
     #> 4-4.5 to 3.5-4  13   0
     #> 4.5-5 to 4-4.5   1   0
 
-And `orig_ext = 2` plots last appearances in the provided dataframe
+And `orig_ext = 2` plots last appearances in the provided data frame
 (possibly extinctions, if the data are complete enough).
 
 ``` r
@@ -254,7 +254,7 @@ pbdb_orig_ext(
 
 ### `pbdb_subtaxa`
 
-Returns a plot and a dataframe with the number of species, genera,
+Returns a plot and a data frame with the number of species, genera,
 families, etc. in your dataset.
 
 ``` r

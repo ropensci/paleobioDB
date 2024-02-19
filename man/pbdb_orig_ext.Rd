@@ -8,8 +8,8 @@ pbdb_orig_ext(data, rank, temporal_extent, res, orig_ext,
               colour = "#0000FF30", bord = "#0000FF", do.plot = TRUE)
 }
 \arguments{
-\item{data}{dataframe with our query to paleobiodb \code{\link{pbdb_occurrences}}.
-Important, it is required to show the name of the families, orders, etc. in the dataframe, 
+\item{data}{data frame with our query to paleobiodb \code{\link{pbdb_occurrences}}.
+Important, it is required to show the name of the families, orders, etc. in the data frame, 
 to do that set: show=c("classext", "ident") (see example).}
 
 \item{rank}{to set which taxon rank you are interested. By default rank= "species"}
@@ -27,9 +27,10 @@ to do that set: show=c("classext", "ident") (see example).}
 \item{do.plot}{TRUE/FALSE (TRUE by default).}
 }
 \value{
-a  dataframe with the 
-number of first appearances and extinctions of the selected taxon rank across time, 
-and a plot with the first appearances or extinctions of the selected taxon rank across time.
+a data frame with the number of first appearances and
+  extinctions of the selected taxon rank across time, and a plot
+  with the first appearances or extinctions of the selected taxon
+  rank across time.
 }
 \description{
 Plots the appearance of new taxa across time.

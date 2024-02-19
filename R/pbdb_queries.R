@@ -11,7 +11,7 @@
 #' This endpoint must have been previously configured
 #' @param query List of filter parameters for the api. The values provided to the parameters
 #' may be a single string or a list of strings.
-#' @return dataframe
+#' @return data frame
 #' @examples \dontrun{
 #' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "classext", "ident")))
 #' }
@@ -73,7 +73,7 @@
 #'      of the variables (by default variables have short 3-letter
 #'      names).
 #'   }
-#' @return a dataframe with a single occurrence
+#' @return a data frame with a single occurrence
 #
 #' @export
 #'
@@ -135,7 +135,7 @@ pbdb_occurrence <- function(id, ...) {
 #'     \item \emph{show}: to show extra variables (e.g. coords,
 #'       classext, ident).
 #'   }
-#' @return a dataframe with the species occurrences
+#' @return a data frame with the species occurrences
 #'
 #' @export
 #'
@@ -175,7 +175,7 @@ pbdb_occurrences <- function(...) {
 #'     \item \emph{pub_title}: select only references that involve the
 #'       specified publication.
 #'   }
-#' @return a dataframe with the information about the references that
+#' @return a data frame with the information about the references that
 #'   match the query
 #'
 #' @export
@@ -209,7 +209,7 @@ pbdb_ref_occurrences <- function(...) {
 #'     \item ...
 #'   }
 #'
-#' @return a dataframe with a single occurrence
+#' @return a data frame with a single occurrence
 #'
 #' @export
 #' @examples \dontrun{
@@ -232,7 +232,7 @@ pbdb_collection <- function(id, ...) {
 #'   \code{\link{pbdb_occurrences}} to see an explanation about the
 #'   main filtering parameters.
 #'
-#' @return a dataframe with the collections that match the query
+#' @return A data frame with the collections that match the query
 #'
 #' @export
 #' @examples \dontrun{
@@ -262,7 +262,7 @@ pbdb_collections <- function(...) {
 #'   \url{https://paleobiodb.org/data1.2/config.txt?show=clusters} for
 #'   a list of available resolution levels ("cluster_level" column).
 #'
-#' @return a dataframe with the collections that match the query
+#' @return a data frame with the collections that match the query
 #'
 #' @export
 #' @examples \dontrun{
@@ -307,7 +307,7 @@ pbdb_collections_geo <- function(..., level) {
 #'       different forms (see the API documentation in the link
 #'       above).
 #'   }
-#' @return a dataframe with information from a single taxon
+#' @return a data frame with information from a single taxon
 #'
 #' @export
 #' @examples \dontrun{
@@ -347,7 +347,7 @@ pbdb_taxon <- function(...) {
 #'       all of the base taxa.
 #'     \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 #'   }
-#' @return a dataframe with information from a list of taxa
+#' @return a data frame with information from a list of taxa
 #' 
 #' @export 
 #' @examples \dontrun{
@@ -380,7 +380,7 @@ pbdb_taxa <- function(...) {
 #'     \item \emph{limit}: set the limit to the number of matches.
 #'     \item ...
 #'   }
-#' @return a dataframe with information about the matches (taxon rank
+#' @return a data frame with information about the matches (taxon rank
 #'   and number of occurrences in the database)
 #'
 #' @export
@@ -412,7 +412,7 @@ pbdb_taxa_auto <- function(...) {
 #'       of the variables (by default variables have short 3-letter
 #'       names).
 #'   }
-#' @return a dataframe with information from a single temporal
+#' @return a data frame with information from a single temporal
 #'   interval
 #'
 #' @export
@@ -445,7 +445,7 @@ pbdb_interval <- function(...) {
 #'    \item ...
 #'  }
 #'
-#' @return a dataframe with information from several temporal intervals
+#' @return a data frame with information from several temporal intervals
 #'
 #' @export
 #' @examples \dontrun{
@@ -472,7 +472,7 @@ pbdb_intervals <- function(...) {
 #'       3-letter names).
 #'     \item ...
 #'   }
-#' @return a dataframe with information from a single scale
+#' @return a data frame with information from a single scale
 #'
 #' @export
 #' @examples \dontrun{
@@ -497,11 +497,11 @@ pbdb_scale <- function(id, ...) {
 #'     \item ...
 #'   }
 
-#' @return a dataframe with information from the selected scales
+#' @return a data frame with information from the selected scales
 #'
 #' @export
 #' @examples \dontrun{
-#'   ## Get a dataframe with all the scales available in PBDB
+#'   ## Get a data frame with all the scales available in PBDB
 #'   ## by setting no ids
 #'   pbdb_scales()
 #' }
@@ -545,7 +545,7 @@ pbdb_scales <- function(...) {
 #'       3-letter names).
 #'     \item ...
 #'   }
-#' @return a dataframe with information from the selected strata
+#' @return a data frame with information from the selected strata
 #'
 #' @export
 #' @examples \dontrun{
@@ -595,7 +595,7 @@ pbdb_strata <- function(...) {
 #'       3-letter names).
 #'     \item ...
 #'   }
-#' @return a dataframe with information from the strata that matches
+#' @return a data frame with information from the strata that matches
 #'   the \code{name} parameter.
 #'
 #' @export
@@ -624,7 +624,7 @@ pbdb_strata_auto <- function(...) {
 #'       3-letter names).
 #'     \item ...
 #'   }
-#' @return a dataframe with a single reference
+#' @return a data frame with a single reference
 #' @export
 #' @examples \dontrun{
 #'   pbdb_reference(id = 1003, vocab = "pbdb", show = "both")
@@ -658,7 +658,7 @@ pbdb_reference <- function(id, ...) {
 #'       pubtitle, pubtype, created, modified, rank.
 #'     \item ...
 #'   }
-#' @return a dataframe with the information about the references that
+#' @return a data frame with the information about the references that
 #'   match the query
 #'
 #' @export
@@ -694,7 +694,7 @@ pbdb_references <- function(...) {
 #'       pubtitle, pubtype, created, modified, rank.
 #'     \item ...
 #'   }
-#' @return a dataframe with the information about the references that
+#' @return a data frame with the information about the references that
 #'   match the query
 #'
 #' @export
@@ -734,7 +734,7 @@ pbdb_ref_collections <- function(...) {
 #'       matching taxa.
 #'     \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
 #'   }
-#' @return a dataframe with references from a list of taxa
+#' @return a data frame with references from a list of taxa
 #'
 #' @export
 #' @examples \dontrun{

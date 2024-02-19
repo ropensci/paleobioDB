@@ -8,7 +8,7 @@ pbdb_map_occur(data, res = 5, col.int = "white", col.ocean = "black",
                col.eff = c("light blue", "blue"), do.plot = TRUE, ...)
 }
 \arguments{
-\item{data}{input dataframe. This dataframe is the output of the
+\item{data}{input data frame. This data frame is the output of the
 \code{\link{pbdb_occurrences}} function using the argument
 \code{show = "coords"}. See also Details and Examples.}
 

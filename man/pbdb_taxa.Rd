@@ -30,7 +30,7 @@ in \url{https://paleobiodb.org/data1.2/taxa/list}
 }}
 }
 \value{
-a dataframe with information from a list of taxa
+a data frame with information from a list of taxa
 }
 \description{
 Returns information about multiple taxonomic names.  This function

@@ -2,7 +2,7 @@
 data <- readRDS(test_path("fixtures", "canidae_quat_df.rds"))
 
 context("pbdb_temporal_resolution")
-test_that("pbdb_temporal_resolution output is a dataframe, and the names are characters", {
+test_that("pbdb_temporal_resolution output is a data frame, and the names are characters", {
  
   response<- pbdb_temporal_resolution (data, do.plot=F)
   expect_true(is.list (response))
@@ -11,7 +11,7 @@ test_that("pbdb_temporal_resolution output is a dataframe, and the names are cha
 })
 
 context("pbdb_temp_range")
-test_that("pbdb_temp_range output is a dataframe, and the names are characters", {
+test_that("pbdb_temp_range output is a data frame, and the names are characters", {
 
   response<-  pbdb_temp_range (data, rank="species", do.plot=F)
   expect_true(is.data.frame (response))
@@ -21,7 +21,7 @@ test_that("pbdb_temp_range output is a dataframe, and the names are characters",
 
 
 context("pbdb_richness")
-test_that("pbdb_richness output is a dataframe, and the names are characters", {
+test_that("pbdb_richness output is a data frame, and the names are characters", {
   response<-  pbdb_richness (data, 
                              rank="family", 
                              res=1, 
@@ -32,7 +32,7 @@ test_that("pbdb_richness output is a dataframe, and the names are characters", {
 })
 
 context("pbdb_orig_ext")
-test_that("pbdb_orig_ext output is a dataframe, and the names are characters", {
+test_that("pbdb_orig_ext output is a data frame, and the names are characters", {
   response<-  pbdb_orig_ext (data, 
                              rank="family", 
                              , do.plot=F,temporal_extent=c(0,10))

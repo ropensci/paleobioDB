@@ -27,7 +27,7 @@ accepted parameters in
 }}
 }
 \value{
-a dataframe with the information about the references that
+a data frame with the information about the references that
   match the query
 }
 \description{

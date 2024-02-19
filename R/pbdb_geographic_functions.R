@@ -64,7 +64,7 @@
 #' pbdb_map(data, col.int = "white", pch = 19, col.ocean = "black",
 #'          main = NULL, col.point = c("light blue", "blue"), ...)
 #'
-#' @param data input dataframe. This dataframe is the output of the
+#' @param data input data frame. This data frame is the output of the
 #'   \code{\link{pbdb_occurrences}} function using the argument
 #'   \code{show = "coords"}. See also Details and Examples.
 #' @param col.int the colour of the mainland.
@@ -165,7 +165,7 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
 #' pbdb_map_occur(data, res = 5, col.int = "white", col.ocean = "black",
 #'                col.eff = c("light blue", "blue"), do.plot = TRUE, ...)
 #'
-#' @param data input dataframe. This dataframe is the output of the
+#' @param data input data frame. This data frame is the output of the
 #'   \code{\link{pbdb_occurrences}} function using the argument
 #'   \code{show = "coords"}. See also Details and Examples.
 #' @param res the resolution of the SpatRaster object (in decimal
@@ -305,7 +305,7 @@ pbdb_map_occur <- function(data, res = 5,
 #'                   col.int = "white", col.ocean = "black",
 #'                   col.rich = c("light blue", "blue"), ...)
 #'
-#' @param data input dataframe. This dataframe is the output of the
+#' @param data input data frame. This data frame is the output of the
 #'   \code{\link{pbdb_occurrences}} function using the argument
 #'   \code{show = c("coords", "classext")}. See also Details and
 #'   Examples.

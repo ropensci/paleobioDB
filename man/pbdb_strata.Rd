@@ -38,7 +38,7 @@ accepted parameters in
 }}
 }
 \value{
-a dataframe with information from the selected strata
+a data frame with information from the selected strata
 }
 \description{
 Returns information about geological strata, selected by name,

@@ -28,7 +28,7 @@ pbdb_ref_taxa(...)
 }}
 }
 \value{
-a dataframe with references from a list of taxa
+a data frame with references from a list of taxa
 }
 \description{
 This URL path returns information about the source references associated

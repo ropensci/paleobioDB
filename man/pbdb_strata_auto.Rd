@@ -37,7 +37,7 @@ accepted parameters in
 }}
 }
 \value{
-a dataframe with information from the strata that matches
+a data frame with information from the strata that matches
   the \code{name} parameter.
 }
 \description{

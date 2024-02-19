@@ -20,7 +20,7 @@ accepted parameters in
 }}
 }
 \value{
-a dataframe with a single reference
+a data frame with a single reference
 }
 \description{
 Returns information about a single reference, selected by

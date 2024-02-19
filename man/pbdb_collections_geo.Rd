@@ -17,7 +17,7 @@ main filtering parameters.}
 a list of available resolution levels ("cluster_level" column).}
 }
 \value{
-a dataframe with the collections that match the query
+a data frame with the collections that match the query
 }
 \description{
 This path returns information about geographic clusters of

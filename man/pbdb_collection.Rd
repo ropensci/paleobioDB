@@ -21,7 +21,7 @@ available arguments in
 }}
 }
 \value{
-a dataframe with a single occurrence
+a data frame with a single occurrence
 }
 \description{
 Returns information about a single collection record from

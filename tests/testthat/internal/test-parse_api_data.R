@@ -32,7 +32,7 @@ test_that(".parse_raw_data for a JSON string response is a data.frame", {
 	expect_is(parsed, 'data.frame')
 })
 
-test_that(".parse_raw_data for a JSON string that includes \n yields just one row in the dataframe", { 
+test_that(".parse_raw_data for a JSON string that includes \n yields just one row in the data frame", { 
 
 	parsed <- .parse_raw_data(api_json_response_sample_returns)
 	expect_equal(dim(parsed)[1], 1)

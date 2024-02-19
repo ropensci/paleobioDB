@@ -23,7 +23,7 @@ documentation for accepted parameters at
  }}
 }
 \value{
-a dataframe with information from a single temporal
+a data frame with information from a single temporal
   interval
 }
 \description{

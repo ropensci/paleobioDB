@@ -7,7 +7,7 @@
 pbdb_subtaxa(data, do.plot, col)
 }
 \arguments{
-\item{data}{dataframe with our query to the 
+\item{data}{data frame with our query to the 
 paleobiodb \code{\link{pbdb_occurrences}}}
 
 \item{do.plot}{by default this function make a plot to 
@@ -16,11 +16,11 @@ visualize the distribution of taxa. Set to FALSE to skip the plot.}
 \item{col}{set the colour of the histogram. skyblue2 by default.}
 }
 \value{
-a plot and a dataframe with the number of subtaxa in the data.
+a plot and a data frame with the number of subtaxa in the data.
 }
 \description{
 Count the number of taxa (species, genera, families, orders,
-classes, and phyla) in an occurrence dataframe.
+classes, and phyla) in an occurrence data frame.
 }
 \examples{
 \dontrun{

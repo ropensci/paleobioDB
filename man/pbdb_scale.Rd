@@ -20,7 +20,7 @@ documentation for accepted parameters in
 }}
 }
 \value{
-a dataframe with information from a single scale
+a data frame with information from a single scale
 }
 \description{
 Returns information about a single time scale, selected by

@@ -13,7 +13,7 @@ pbdb_collections(...)
 main filtering parameters.}
 }
 \value{
-a dataframe with the collections that match the query
+A data frame with the collections that match the query
 }
 \description{
 Returns information about multiple collections, selected according

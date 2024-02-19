@@ -45,7 +45,7 @@ pbdb_occurrences(...)
 }}
 }
 \value{
-a dataframe with the species occurrences
+a data frame with the species occurrences
 }
 \description{
 Returns information about species occurrence records stored in the

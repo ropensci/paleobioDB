@@ -39,15 +39,15 @@ pbdb_subtaxa(canidae)
 ## to explore the temporal resolution of the fossil records
 pbdb_temporal_resolution(canidae)
 
-## returns a dataframe and a plot with the temporal span
+## returns a data frame and a plot with the temporal span
 ## of the species, genera, etc.
 pbdb_temp_range(canidae, rank = "genus", names = FALSE)
 
-## returns a dataframe and a plot showing the species, genera, etc.
+## returns a data frame and a plot showing the species, genera, etc.
 ## richness across time
 pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 10), res = 1)
 
-## returns a dataframe and a plot showing the evolutionary
+## returns a data frame and a plot showing the evolutionary
 ## and extinction rates across time
 
 ## evolutionary rates: orig_ext = 1

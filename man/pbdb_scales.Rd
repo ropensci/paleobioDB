@@ -18,14 +18,14 @@ documentation for accepted parameters in
 }}
 }
 \value{
-a dataframe with information from the selected scales
+a data frame with information from the selected scales
 }
 \description{
 Returns information about multiple time scales.
 }
 \examples{
 \dontrun{
-  ## Get a dataframe with all the scales available in PBDB
+  ## Get a data frame with all the scales available in PBDB
   ## by setting no ids
   pbdb_scales()
 }

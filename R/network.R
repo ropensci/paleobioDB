@@ -1,10 +1,10 @@
 #' .get_data_from_uri
 #'
-#' Grabs data as dataframe from a URI. Expects the response data to be
+#' Grabs data as data frame from a URI. Expects the response data to be
 #' in JSON format
 #'
 #' @param uri Public internet address of the data
-#' @return dataframe with rows of data
+#' @return data frame with rows of data
 #' @examples \dontrun{
 #' .get_data_from_uri("http://api.example.com/ecologydata")
 #' }
@@ -45,10 +45,10 @@
 
 #' .parse_raw_data
 #'
-#' Parse raw json string as a dataframe
+#' Parse raw json string as a data frame
 #'
 #' @param raw_data json encoded data
-#' @return dataframe
+#' @return data frame
 #' @noRd
 .parse_raw_data <- function(raw_data) {
   data_list <- rjson::fromJSON(raw_data)
@@ -75,10 +75,10 @@
 
 #' .make_data_frame
 #'
-#' Makes a dataframe from a list of lists
+#' Makes a data frame from a list of lists
 #'
 #' @param reg_list data rows as a list of lists
-#' @return dataframe
+#' @return data frame
 #' @noRd
 .make_data_frame <- function(reg_list) {
   if (length(reg_list) == 0) {

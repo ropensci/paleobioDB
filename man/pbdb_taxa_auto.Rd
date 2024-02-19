@@ -19,7 +19,7 @@ accepted parameters in
 }}
 }
 \value{
-a dataframe with information about the matches (taxon rank
+a data frame with information about the matches (taxon rank
   and number of occurrences in the database)
 }
 \description{

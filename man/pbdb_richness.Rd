@@ -7,9 +7,9 @@
 pbdb_richness(data, rank, res, temporal_extent, colour, bord, do.plot)
 }
 \arguments{
-\item{data}{dataframe with our query to the paleobiodb
+\item{data}{data frame with our query to the paleobiodb
 \code{\link{pbdb_occurrences}}.  Important, it is required to
-show the name of the families, orders, etc. in the dataframe, to
+show the name of the families, orders, etc. in the data frame, to
 do that set: show = c("classext", "ident") (see example).}
 
 \item{rank}{to set which taxon rank you are interested. By default
@@ -27,11 +27,11 @@ skyblue2 by default.}
 \item{do.plot}{TRUE/FALSE (TRUE by default).}
 }
 \value{
-a plot and a dataframe with the richness aggregated by the
+a plot and a data frame with the richness aggregated by the
   taxon rank in the specified temporal extent and resolution.
 }
 \description{
-Plots temporal variation in taxon richness from a dataframe of occurrences.
+Plots temporal variation in taxon richness from a data frame of occurrences.
 }
 \examples{
 \dontrun{

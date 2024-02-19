@@ -46,21 +46,21 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 
 #' pbdb_temp_range
 #' 
-#' Constructs a plot and a dataframe with the temporal range of the
+#' Constructs a plot and a data frame with the temporal range of the
 #' taxa (species, genera, families, etc.) within in a selected higher
 #' taxon.
 #' 
 #' @usage pbdb_temp_range(data, rank, col = "#0000FF", names = TRUE, do.plot = TRUE)
 #' 
-#' @param data dataframe with our query to the paleobiodb \code{\link{pbdb_occurrences}}.
-#' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
+#' @param data data frame with our query to the paleobiodb \code{\link{pbdb_occurrences}}.
+#' Important, it is required to show the name of the families, orders, etc. in the data frame, 
 #' to do that
 #' set: show = c("classext", "ident") (see example).
 #' @param rank to set which taxon rank you are interested.
 #' @param col to change the colour of the bars in the plot, skyblue2 by default. 
 #' @param names TRUE/FALSE (TRUE by default). To include or not the name of the taxa in the plot 
 #' @param do.plot TRUE/FALSE (TRUE by default).
-#' @return a plot and a dataframe with the time span of the taxa selected (species, genus, etc.)
+#' @return a plot and a data frame with the time span of the taxa selected (species, genus, etc.)
 #' @export 
 #' @examples \dontrun{
 #'   canis_quaternary <- pbdb_occurrences(
@@ -166,13 +166,13 @@ pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
 
 #' pbdb_richness
 #' 
-#' Plots temporal variation in taxon richness from a dataframe of occurrences.
+#' Plots temporal variation in taxon richness from a data frame of occurrences.
 #' 
 #' @usage pbdb_richness(data, rank, res, temporal_extent, colour, bord, do.plot)
 #' 
-#' @param data dataframe with our query to the paleobiodb
+#' @param data data frame with our query to the paleobiodb
 #'   \code{\link{pbdb_occurrences}}.  Important, it is required to
-#'   show the name of the families, orders, etc. in the dataframe, to
+#'   show the name of the families, orders, etc. in the data frame, to
 #'   do that set: show = c("classext", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default
 #'   rank = "species"
@@ -183,7 +183,7 @@ pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
 #' @param res numeric. to set the intervals of the temporal extent
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' @export
-#' @return a plot and a dataframe with the richness aggregated by the
+#' @return a plot and a data frame with the richness aggregated by the
 #'   taxon rank in the specified temporal extent and resolution.
 #' 
 #' @examples \dontrun{
@@ -262,8 +262,8 @@ pbdb_richness <- function(data, rank,
 #' pbdb_orig_ext(data, rank, temporal_extent, res, orig_ext,
 #'               colour = "#0000FF30", bord = "#0000FF", do.plot = TRUE)
 #' 
-#' @param data dataframe with our query to paleobiodb \code{\link{pbdb_occurrences}}.
-#' Important, it is required to show the name of the families, orders, etc. in the dataframe, 
+#' @param data data frame with our query to paleobiodb \code{\link{pbdb_occurrences}}.
+#' Important, it is required to show the name of the families, orders, etc. in the data frame, 
 #' to do that set: show=c("classext", "ident") (see example).
 #' @param rank to set which taxon rank you are interested. By default rank= "species"
 #' @param temporal_extent vector to set the temporal extent (min, max)
@@ -273,10 +273,11 @@ pbdb_richness <- function(data, rank,
 #' @param bord to set the colour of the border of the polygon
 #' @param do.plot TRUE/FALSE (TRUE by default).
 #' @export 
-#' @return a  dataframe with the 
-#' number of first appearances and extinctions of the selected taxon rank across time, 
-#' and a plot with the first appearances or extinctions of the selected taxon rank across time.
-#' 
+#' @return a data frame with the number of first appearances and
+#'   extinctions of the selected taxon rank across time, and a plot
+#'   with the first appearances or extinctions of the selected taxon
+#'   rank across time.
+#'
 #' @examples \dontrun{
 #'   canidae <- pbdb_occurrences(
 #'     limit = "all", vocab = "pbdb",

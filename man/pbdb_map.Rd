@@ -8,7 +8,7 @@ pbdb_map(data, col.int = "white", pch = 19, col.ocean = "black",
          main = NULL, col.point = c("light blue", "blue"), ...)
 }
 \arguments{
-\item{data}{input dataframe. This dataframe is the output of the
+\item{data}{input data frame. This data frame is the output of the
 \code{\link{pbdb_occurrences}} function using the argument
 \code{show = "coords"}. See also Details and Examples.}
 

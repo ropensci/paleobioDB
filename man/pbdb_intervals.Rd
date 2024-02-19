@@ -22,7 +22,7 @@ pbdb_intervals(...)
 }}
 }
 \value{
-a dataframe with information from several temporal intervals
+a data frame with information from several temporal intervals
 }
 \description{
 Returns information about multiple intervals, selected according to

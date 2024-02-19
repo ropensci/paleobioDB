@@ -7,8 +7,8 @@
 pbdb_temp_range(data, rank, col = "#0000FF", names = TRUE, do.plot = TRUE)
 }
 \arguments{
-\item{data}{dataframe with our query to the paleobiodb \code{\link{pbdb_occurrences}}.
-Important, it is required to show the name of the families, orders, etc. in the dataframe, 
+\item{data}{data frame with our query to the paleobiodb \code{\link{pbdb_occurrences}}.
+Important, it is required to show the name of the families, orders, etc. in the data frame, 
 to do that
 set: show = c("classext", "ident") (see example).}
 
@@ -21,10 +21,10 @@ set: show = c("classext", "ident") (see example).}
 \item{do.plot}{TRUE/FALSE (TRUE by default).}
 }
 \value{
-a plot and a dataframe with the time span of the taxa selected (species, genus, etc.)
+a plot and a data frame with the time span of the taxa selected (species, genus, etc.)
 }
 \description{
-Constructs a plot and a dataframe with the temporal range of the
+Constructs a plot and a data frame with the temporal range of the
 taxa (species, genera, families, etc.) within in a selected higher
 taxon.
 }

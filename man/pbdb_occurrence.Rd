@@ -18,7 +18,7 @@ pbdb_occurrence(id, ...)
 }}
 }
 \value{
-a dataframe with a single occurrence
+a data frame with a single occurrence
 }
 \description{
 Returns information about a single occurrence record from the Paleobiology
