@@ -4,7 +4,7 @@
 #' in JSON format
 #'
 #' @param uri Public internet address of the data
-#' @return data frame with rows of data
+#' @returns data frame with rows of data
 #' @examples \dontrun{
 #' .get_data_from_uri("http://api.example.com/ecologydata")
 #' }
@@ -21,7 +21,7 @@
 #' Extracts the body from a HTTP response or throws error if not 200 status
 #
 #' @param response Raw http response
-#' @return character
+#' @returns character
 #' @noRd
 .extract_response_body <- function(response) {
   body <- rawToChar(response$content)
@@ -48,7 +48,7 @@
 #' Parse raw json string as a data frame
 #'
 #' @param raw_data json encoded data
-#' @return data frame
+#' @returns data frame
 #' @noRd
 .parse_raw_data <- function(raw_data) {
   data_list <- rjson::fromJSON(raw_data)
@@ -78,7 +78,7 @@
 #' Makes a data frame from a list of lists
 #'
 #' @param reg_list data rows as a list of lists
-#' @return data frame
+#' @returns data frame
 #' @noRd
 .make_data_frame <- function(reg_list) {
   if (length(reg_list) == 0) {
@@ -100,10 +100,8 @@
 #' Builds a query string ready for been added to a url, from a list of
 #' name/value parameters
 #'
-#' @usage .build_query_string(args)
-#'
 #' @param args list of parameters
-#' @return character
+#' @returns character
 #' @examples \dontrun{
 #' .build_query_string(list(name="Bob", city="Berlin"))
 #' }
@@ -126,7 +124,7 @@
 #' Maps multivalue elements to semicolon separated strings
 #'
 #' @param element a vector representing some data field
-#' @return a string with the elements of the provided vector separated
+#' @returns a string with the elements of the provided vector separated
 #'   by semicolons if it has more than one element or the vector as it
 #'   was passed to the function if it has length one
 #' @noRd
@@ -150,7 +148,7 @@
 #' expect longitude and latitude to be numeric.
 #'
 #' @param df a data frame
-#' @return a data frame with its "lng" and "lat" columns converted to
+#' @returns a data frame with its "lng" and "lat" columns converted to
 #'   numeric
 #'
 #' @noRd

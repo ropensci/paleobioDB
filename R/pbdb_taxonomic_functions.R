@@ -1,17 +1,16 @@
-#' pbdb_subtaxa
+#' Count number of taxa in an occurrence data frame
 #' 
 #' Count the number of taxa (species, genera, families, orders,
 #' classes, and phyla) in an occurrence data frame.
 #' 
-#' @usage pbdb_subtaxa(data, do.plot, col)
-#' 
-#' @param data data frame with our query to the 
-#' paleobiodb \code{\link{pbdb_occurrences}}
-#' @param do.plot by default this function make a plot to 
-#' visualize the distribution of taxa. Set to FALSE to skip the plot.
-#' @param col set the colour of the histogram. skyblue2 by default.
-#' @return a plot and a data frame with the number of subtaxa in the data.
-#' @export 
+#' @param data Data frame from a query to PaleobioDB as returned by
+#'   the [pbdb_occurrences()] function using the argument
+#'   `show = "class"` or `show = "classext"`.
+#' @param do.plot Logical indicating whether to produce a plot
+#'   (`TRUE` by default).
+#' @param col Colour of the histogram.
+#' @returns A data frame with the number of subtaxa in the data.
+#' @export
 #' @examples \dontrun{
 #'   canidae_quat <- pbdb_occurrences(
 #'     limit = "all", base_name = "Canidae",  interval = "Quaternary",
@@ -19,8 +18,6 @@
 #'   )
 #'   pbdb_subtaxa(canidae_quat)
 #' }
-#'
-
 pbdb_subtaxa<- function (data, 
                          do.plot=TRUE,  
                          col="#0000FF"){

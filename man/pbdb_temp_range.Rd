@@ -2,31 +2,35 @@
 % Please edit documentation in R/pbdb_temporal_functions.R
 \name{pbdb_temp_range}
 \alias{pbdb_temp_range}
-\title{pbdb_temp_range}
+\title{Temporal range of taxa}
 \usage{
 pbdb_temp_range(data, rank, col = "#0000FF", names = TRUE, do.plot = TRUE)
 }
 \arguments{
-\item{data}{data frame with our query to the paleobiodb \code{\link{pbdb_occurrences}}.
-Important, it is required to show the name of the families, orders, etc. in the data frame, 
-to do that
-set: show = c("classext", "ident") (see example).}
+\item{data}{Data frame from a query to PaleobioDB as returned by
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to
+show the name of the families, orders, etc. in the data frame, to
+do that set: \code{show = "classext"} or \code{show = "class"}
+(see Examples).}
 
-\item{rank}{to set which taxon rank you are interested.}
+\item{rank}{The taxon rank to be analyzed.}
 
-\item{col}{to change the colour of the bars in the plot, skyblue2 by default.}
+\item{col}{Colour of the bars in the plot.}
 
-\item{names}{TRUE/FALSE (TRUE by default). To include or not the name of the taxa in the plot}
+\item{names}{Logical indicating whether to include the name of the
+taxa in the plot (\code{TRUE} by default).}
 
-\item{do.plot}{TRUE/FALSE (TRUE by default).}
+\item{do.plot}{Logical value indicating whether to produce a plot
+(\code{TRUE} by default).}
 }
 \value{
-a plot and a data frame with the time span of the taxa selected (species, genus, etc.)
+A data frame with the time span of the taxa selected
+(species, genera, etc.).
 }
 \description{
-Constructs a plot and a data frame with the temporal range of the
-taxa (species, genera, families, etc.) within in a selected higher
-taxon.
+Returns a data frame with the temporal range of the taxa within a
+selected rank (species, genera, families, etc.), and optionally
+generates a plot from it.
 }
 \examples{
 \dontrun{

@@ -7,7 +7,7 @@
 #'
 #' We programmed two different groups of functions. First, we
 #' developed a set of general and flexible functions to wrap the
-#' \href{https://paleobiodb.org/data1.2/}{PaleobioDB API}. These
+#' [PaleobioDB API](https://paleobiodb.org/data1.2/). These
 #' functions connect R with each of the endpoints of the PaleobioDB
 #' API. Second, based on these base functions, we programmed a second
 #' set of functions intended to explore and visualize the fossil
@@ -31,7 +31,7 @@
 #' @keywords internal
 #'
 #' @seealso {
-#' \url{https://paleobiodb.org}
+#' <https://paleobiodb.org>
 #' }
 #'
 #' @examples \dontrun{

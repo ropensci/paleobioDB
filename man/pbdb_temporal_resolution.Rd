@@ -2,21 +2,21 @@
 % Please edit documentation in R/pbdb_temporal_functions.R
 \name{pbdb_temporal_resolution}
 \alias{pbdb_temporal_resolution}
-\title{pbdb_temporal_resolution}
+\title{Temporal resolution of fossil data}
 \usage{
 pbdb_temporal_resolution(data, do.plot = TRUE)
 }
 \arguments{
-\item{data}{data.frame with our query to the paleobiodb
-\code{\link{pbdb_occurrences}}}
+\item{data}{Data frame from a query to PaleobioDB as returned by
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.}
 
-\item{do.plot}{logical. If \code{TRUE}, the function creates a
+\item{do.plot}{Logical. If \code{TRUE}, the function creates a
 frequency plot of the data.}
 }
 \value{
-a plot and a list with a summary of the temporal resolution
-  of the data (min, max, 1st and 3rd quartiles, median and mean),
-  and the temporal resolution of each fossil record (Ma).
+A list with a summary of the temporal resolution of the
+data (min, max, 1st and 3rd quartiles, median and mean), and the
+temporal resolution of each fossil record (Ma).
 }
 \description{
 Shows the temporal resolution of the fossil data.

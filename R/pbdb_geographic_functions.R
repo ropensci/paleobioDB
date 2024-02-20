@@ -52,36 +52,30 @@
   )
 }
 
-#' pbdb_map
-#'
-#' Maps the fossil records.
+#' Map the fossil records
 #'
 #' The function opens a new window with a map showing the distribution
 #' of the fossil records as points. These points are coloured
 #' according to the number of occurrences per cell.
 #'
-#' @usage
-#' pbdb_map(data, col.int = "white", pch = 19, col.ocean = "black",
-#'          main = NULL, col.point = c("light blue", "blue"), ...)
-#'
-#' @param data input data frame. This data frame is the output of the
-#'   \code{\link{pbdb_occurrences}} function using the argument
-#'   \code{show = "coords"}. See also Details and Examples.
-#' @param col.int the colour of the mainland.
-#' @param pch see \code{\link{par}}.
-#' @param col.ocean the colour of the ocean.
-#' @param main title of the map. See \code{\link{par}}.
-#' @param col.point two or more colours that are used to generate the
+#' @param data Input data frame. This data frame is the output of the
+#'   [pbdb_occurrences()] function using the argument
+#'   `show = "coords"`. See also Details and Examples.
+#' @param col.int The colour of the mainland.
+#' @param pch See [par()].
+#' @param col.ocean The colour of the ocean.
+#' @param main Title of the map. See [par()].
+#' @param col.point Two or more colours that are used to generate the
 #'   colour gradient showing the number of occurrences per coordinate
 #'   in the map.
-#' @param ... other parameters. See \code{\link{par}} and
-#'   \code{\link{map}}.
-#' @details The argument \code{show = "coords"} in the
-#'   \code{\link{pbdb_occurrences}} function is required. We recommend
-#'   the use of a cairo device (\code{\link{X11}}) for better
+#' @param ... Other parameters. See [par()] and
+#'   [map()].
+#' @details The argument `show = "coords"` in the
+#'   [pbdb_occurrences()] function is required. We recommend
+#'   the use of a cairo device ([X11()]) for better
 #'   visualization of the maps. See Examples.
-#' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}},
-#'   \code{\link{par}} and \code{\link{colors}} help pages.
+#' @seealso See [pbdb_occurrences()], [map()],
+#'   [par()] and [colors()] help pages.
 #' @export
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
@@ -156,40 +150,36 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
   mtext(lg_title, 4, line = 3, cex = 1.5)
 }
 
-#' pbdb_map_occur
+#' Plot a raster showing the number of fossil occurrences
 #'
-#' Creates a SpatRaster object and a plot of the sampling effort
-#' (number of fossil records per cell).
+#' Creates a `SpatRaster` object and a plot of the sampling
+#' effort (number of fossil records per cell).
 #'
-#' @usage
-#' pbdb_map_occur(data, res = 5, col.int = "white", col.ocean = "black",
-#'                col.eff = c("light blue", "blue"), do.plot = TRUE, ...)
-#'
-#' @param data input data frame. This data frame is the output of the
-#'   \code{\link{pbdb_occurrences}} function using the argument
-#'   \code{show = "coords"}. See also Details and Examples.
-#' @param res the resolution of the SpatRaster object (in decimal
-#'   degrees). See \code{\link{terra}}.
-#' @param col.int the colour of the mainland.
-#' @param col.ocean the colour of the ocean.
-#' @param col.eff two or more colours that are used to generate the
+#' @param data Input data frame. This data frame is the output of the
+#'   [pbdb_occurrences()] function using the argument
+#'   `show = "coords"`. See also Details and Examples.
+#' @param res The resolution of the `SpatRaster` object (in decimal
+#'   degrees). See [terra::res()].
+#' @param col.int The colour of the mainland.
+#' @param col.ocean The colour of the ocean.
+#' @param col.eff Two or more colours that are used to generate the
 #'   colour gradient showing the number of occurrences per cell in the
 #'   map.
-#' @param do.plot logical. If \code{TRUE}, the function produces a
-#'   plot in addition to returning a SpatRaster.
-#' @param ... other parameters. See \code{\link{par}} and
-#'   \code{\link{map}}
-#' @details The argument \code{show = "coords"} in the
-#'   \code{\link{pbdb_occurrences}} function is required. We recommend
-#'   the use of a cairo device (\code{\link{X11}}) for better
+#' @param do.plot Logical. If `TRUE`, the function produces a
+#'   plot in addition to returning a `SpatRaster`.
+#' @param ... Other parameters. See [par()] and
+#'   [map()]
+#' @details The argument `show = "coords"` in the
+#'   [pbdb_occurrences()] function is required. We recommend
+#'   the use of a cairo device ([X11()]) for better
 #'   visualization of the maps. See Examples.
-#' @return A SpatRaster object with the sampling effort (number of
-#'   fossil records per cell). This SpatRaster object has the
-#'   resolution that was specified in the \code{res} argument. The
-#'   default is \code{res = 5}. Users that wish to work with objects
-#'   of this type should load package \code{terra}.
-#' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}},
-#'   \code{\link{par}} and \code{\link{colors}} help pages
+#' @returns A `SpatRaster` object with the sampling effort (number
+#'   of fossil records per cell). This `SpatRaster` object has
+#'   the resolution that was specified in the `res` argument. The
+#'   default is `res = 5`. Users that wish to work with objects
+#'   of this type should load package `terra`.
+#' @seealso See [pbdb_occurrences()], [map()],
+#'   [par()] and [colors()] help pages
 #' @export
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
@@ -197,7 +187,7 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
 #'   )
 #'   X11(width = 13, height = 7.8)
 #'   pbdb_map_occur(data, res = 2)
-#'   ## to obtain the raster object without plotting it
+#'   ## Get the raster object without plotting it
 #'   pbdb_map_occur(data, res = 3, do.plot = FALSE)
 #' }
 pbdb_map_occur <- function(data, res = 5,
@@ -295,44 +285,37 @@ pbdb_map_occur <- function(data, res = 5,
   all
 }
 
-#' pbdb_map_richness
+#' Plot a raster showing the richness of taxa
 #'
-#' Creates a SpatRaster object and a plot with richness of species,
-#' genera, families, etc. per cell.
+#' Creates a `SpatRaster` object and a plot with richness of
+#' species, genera, families, etc. per cell.
 #'
-#' @usage
-#' pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
-#'                   col.int = "white", col.ocean = "black",
-#'                   col.rich = c("light blue", "blue"), ...)
-#'
-#' @param data input data frame. This data frame is the output of the
-#'   \code{\link{pbdb_occurrences}} function using the argument
-#'   \code{show = c("coords", "classext")}. See also Details and
-#'   Examples.
-#' @param rank taxon rank for which richness is calculated. The
-#'   options are: "species", "genus", "family", "order", "class" or
-#'   "phylum".
-#' @param do.plot logical. If \code{TRUE}, the function produces a
-#'   plot in addition to returning a SpatRaster.
-#' @param res the resolution of the SpatRaster object (in decimal
-#'   degrees). See \code{\link{terra}}.
-#' @param col.int the colour of the mainland.
-#' @param col.ocean the colour of the ocean.
-#' @param col.rich two or more colours that are used to generate the
+#' @param data Input data frame. This data frame is the output of the
+#'   [pbdb_occurrences()] function using the argument `show =
+#'   c("coords", "classext")`. See also Details and Examples.
+#' @param rank Taxon rank for which richness is calculated. The
+#'   options are: `"species"`, `"genus"`, `"family"`, `"order"`,
+#'   `"class"` or `"phylum"`.
+#' @param do.plot Logical. If `TRUE`, the function produces a plot in
+#'   addition to returning a `SpatRaster`.
+#' @param res The resolution of the `SpatRaster` object (in decimal
+#'   degrees). See [terra::res()].
+#' @param col.int The colour of the mainland.
+#' @param col.ocean The colour of the ocean.
+#' @param col.rich Two or more colours that are used to generate the
 #'   colour gradient showing the richness per cell in the map.
-#' @param ... other parameters. See \code{\link{par}} and
-#'   \code{\link{map}}.
-#' @details The argument \code{show = c("coords", "classext")} in the
-#'   \code{\link{pbdb_occurrences}} function is required. We recommend
-#'   the use of a cairo device (\code{\link{X11}}) for better
-#'   visualization of the graphs. See Examples.
-#' @return A SpatRaster object with the richness of the specified
-#'   taxon rank per cell. This SpatRaster object has the resolution
-#'   that was specified in the \code{res} argument. The default is
-#'   \code{res = 5}. Users that wish to work with objects of this type
-#'   should load package \code{terra}.
-#' @seealso See \code{\link{pbdb_occurrences}}, \code{\link{map}},
-#'   \code{\link{par}} and \code{\link{colors}} help pages.
+#' @param ... Other parameters. See [par()] and [map()].
+#' @details The argument `show = c("coords", "classext")` in the
+#'   [pbdb_occurrences()] function is required. We recommend the use
+#'   of a cairo device ([X11()]) for better visualization of the
+#'   graphs. See Examples.
+#' @returns A `SpatRaster` object with the richness of the specified
+#'   taxon rank per cell. This `SpatRaster` object has the resolution
+#'   that was specified in the `res` argument. The default is `res =
+#'   5`. Users that wish to work with objects of this type should load
+#'   package `terra`.
+#' @seealso See [pbdb_occurrences()], [map()], [par()] and [colors()]
+#'   help pages.
 #' @export
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
@@ -342,7 +325,7 @@ pbdb_map_occur <- function(data, res = 5,
 #'   X11(width = 13, height = 7.8)
 #'   pbdb_map_richness(data, res = 8, rank = "genus")
 #'   pbdb_map_richness(data, res = 8, rank = "family")
-#'   ## to obtain the raster object without plotting the map
+#'   ## Get the raster object without plotting the map
 #'   pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 #' }
 pbdb_map_richness <- function(data, rank = "species", do.plot = TRUE, res = 5, col.int = "white", col.ocean = "black",

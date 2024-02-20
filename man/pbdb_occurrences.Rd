@@ -2,53 +2,50 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_occurrences}
 \alias{pbdb_occurrences}
-\title{pbdb_occurrences}
+\title{Get information about fossil occurrence records}
 \usage{
 pbdb_occurrences(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See all available arguments in
-\url{https://paleobiodb.org/data1.2/occs/list}
+\item{...}{Arguments passed to the API. See all available arguments at
+\url{https://paleobiodb.org/data1.2/occs/list}.
 \itemize{
-  \item \emph{limit}: Limits the number of records returned. The
-    value may be a positive integer, zero, or "all".
-  \item \emph{taxon_name}: Return only records associated with
-    the specified taxonomic name(s).  You may specify multiple
-    names, separated by commas.
-  \item \emph{base_name}: Return records associated with the
-    specified taxonomic name(s) and any of their children
-    (e.g. base_name = "Canis" will return "Canis", "Canis lupus",
-    "Canis mosbachensis", etc.)
-  \item \emph{lngmin}: numeric. The longitude boundaries will be
-    normalized to fall between -180 and 180. Note that if you
-    specify lngmin then you must also specify lngmax.  Returns
-    only records whose geographic location falls within the given
-    bounding box (defined by lngmin, lngmax, latmin, latmax).  It
-    generates two adjacent bounding boxes if the range crosses
-    the antimeridian.
-  \item \emph{lngmax}: numeric. The longitude boundaries will be
-    normalized to fall between -180 and 180.
-  \item \emph{latmin}: numeric. between -90 and 90.  Note that if
-    you specify latmin then you must also specify latmax.
-  \item \emph{latmax}: numeric. between -90 and 90.
-  \item \emph{min_ma}: return only records whose temporal
-    locality is at least this old, specified in Ma.
-  \item \emph{max_ma}: return only records whose temporal
-    locality is at most this old, specified in Ma.
-  \item \emph{interval}: return only records whose temporal
-    locality falls within the named geologic time interval
-    (e.g. "Miocene").
-  \item \emph{continent}: return only records whose geographic
-    location falls within the specified continent(s).
-  \item \emph{show}: to show extra variables (e.g. coords,
-    classext, ident).
+\item \code{limit}: Limits the number of records returned. The value may be
+a positive integer, zero, or \code{"all"}.
+\item \code{taxon_name}: Return only records associated with the specified
+taxonomic name(s).  You may specify multiple names, separated by
+commas.
+\item \code{base_name}: Return records associated with the specified
+taxonomic name(s) and any of their children (e.g. \code{base_name = "Canis"} will return "Canis", "Canis lupus",
+"Canis mosbachensis", etc.)
+\item \code{lngmin}: Numeric. The longitude boundaries will be normalized to
+fall between -180 and 180. Note that if you specify \code{lngmin} then
+you must also specify \code{lngmax}.  Returns only records whose
+geographic location falls within the given bounding box (defined
+by \code{lngmin}, \code{lngmax}, \code{latmin}, \code{latmax}).  It generates two
+adjacent bounding boxes if the range crosses the antimeridian.
+\item \code{lngmax}: Numeric. The longitude boundaries will be normalized to
+fall between -180 and 180.
+\item \code{latmin}: Numeric value between -90 and 90.  Note that if you
+specify \code{latmin} then you must also specify \code{latmax}.
+\item \code{latmax}: Numeric value between -90 and 90.
+\item \code{min_ma}: Return only records whose temporal locality is at least
+this old, specified in millions of years.
+\item \code{max_ma}: Return only records whose temporal locality is at most
+this old, specified in millions of years.
+\item \code{interval}: Return only records whose temporal locality falls
+within the named geologic time interval (e.g. "Miocene").
+\item \code{continent}: Return only records whose geographic location falls
+within the specified continent(s).
+\item \code{show}: Show extra variables (e.g. \code{"coords"}, \code{"classext"},
+\code{"ident"}).
 }}
 }
 \value{
-a data frame with the species occurrences
+A data frame with the fossil occurrences.
 }
 \description{
-Returns information about species occurrence records stored in the
+Returns information about fossil occurrence records stored in the
 Paleobiology Database.
 }
 \details{

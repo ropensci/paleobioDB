@@ -2,23 +2,36 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_occurrence}
 \alias{pbdb_occurrence}
-\title{pbdb_occurrence}
+\title{Get information about a single occurrence record}
 \usage{
 pbdb_occurrence(id, ...)
 }
 \arguments{
-\item{id}{identifier of the occurrence. This parameter is required}
+\item{id}{Identifier of the occurrence. This parameter is required.}
 
-\item{...}{arguments passed to the API. See all available arguments in
+\item{...}{Arguments passed to the API. See all available arguments at
 \url{https://paleobiodb.org/data1.2/occs/single}. E.g.:
 \itemize{
- \item \emph{vocab}: set vocab = "pbdb" to show the complete name
-   of the variables (by default variables have short 3-letter
-   names).
+\item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
+variables (by default variables have short 3-letter names).
+\item \code{show}: Select additional blocks of information to be returned
+along with the basic record.  Some possible values include:
+\itemize{
+\item \code{"class"}: The taxonomic classification of the
+occurence: phylum, class, order, family, genus.
+\item \code{"coords"}: The latitude and longitude of this
+occurrence.
+\item \code{"loc"}: Additional information about the
+geographic locality of the occurrence
+\item \code{"stratext"}: Detailed information about the
+stratigraphic context of the occurrence.
+\item \code{"lithext"}: Detailed information about the
+lithological context of the occurrence.
+}
 }}
 }
 \value{
-a data frame with a single occurrence
+A data frame with a single occurrence.
 }
 \description{
 Returns information about a single occurrence record from the Paleobiology
@@ -33,6 +46,6 @@ paleontologists and ecologists might use.
 \examples{
 \dontrun{
   pbdb_occurrence(id = 1001)
-  pbdb_occurrence(id = 1001, vocab = "pbdb", show = "coords")
+  pbdb_occurrence(id = 1001, vocab = "pbdb", show = c("class", "coords"))
 }
 }

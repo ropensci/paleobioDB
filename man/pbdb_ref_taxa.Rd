@@ -2,40 +2,40 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_ref_taxa}
 \alias{pbdb_ref_taxa}
-\title{pbdb_ref_taxa}
+\title{Get references for taxonomic names}
 \usage{
 pbdb_ref_taxa(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See all available arguments in
+\item{...}{Arguments passed to the API. See all available arguments at
 \url{https://paleobiodb.org/data1.2/taxa/refs}
 \itemize{
-  \item \emph{name}: returns information about the most fundamental
-    taxonomic name matching this string.
-    The \% and _ characters may be used as wildcards.
-  \item \emph{id}: returns information about the taxonomic name
-    corresponding to this identifier. You may not specify both
-    name and id in the same query.
-  \item \emph{show}: show extra variables.
-  \item \emph{rel}: set rel = "synonyms" to select all synonyms
-    of the base taxon or taxa; rel = "children" to select the
-    taxa immediately contained within the base taxon or taxa; rel
-    = "all_children" to select all taxa contained within each
-    matching taxon and within all synonymous taxa; rel =
-    "all_parents" to select all taxa that contain any of the
-    matching taxa.
-  \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
+\item \code{name}: Returns information about the most fundamental taxonomic
+name matching this string.  The \% and _ characters may be used as
+wildcards.
+\item \code{id}: Returns information about the taxonomic name corresponding
+to this identifier. You may not specify both \code{name} and \code{id} in
+the same query.
+\item \code{show}: Show extra variables.
+\item \code{rel}: Set \code{rel = "synonyms"} to select all synonyms of the base
+taxon or taxa; \code{rel = "children"} to select the taxa immediately
+contained within the base taxon or taxa; \code{rel = "all_children"}
+to select all taxa contained within each matching taxon and
+within all synonymous taxa; \code{rel = "all_parents"} to select all
+taxa that contain any of the matching taxa.
+\item \code{extant}: Logical indicating whether to select only extant or
+non-extant taxa.
 }}
 }
 \value{
-a data frame with references from a list of taxa
+A data frame with references from a list of taxa.
 }
 \description{
-This URL path returns information about the source references associated
-with taxa in the Paleobiology Database. You can use the same parameters
-that are available with pbdb_taxa, but Reference records are returned
-instead of Taxon records. One record is returned per reference,
-even if it is associated with multiple taxa.
+Returns information about the source references associated with
+taxa in the Paleobiology Database. You can use the same parameters
+that are available with \code{pbdb_taxa}, but reference records are
+returned instead of taxon records. One record is returned per
+reference, even if it is associated with multiple taxa.
 }
 \examples{
 \dontrun{

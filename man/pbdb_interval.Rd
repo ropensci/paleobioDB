@@ -2,32 +2,31 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_interval}
 \alias{pbdb_interval}
-\title{pbdb_interval}
+\title{Get information about a single interval}
 \usage{
 pbdb_interval(...)
 }
 \arguments{
-\item{...}{additional arguments passed to the API. See
+\item{...}{Additional arguments passed to the API. See
 documentation for accepted parameters at
-\url{https://paleobiodb.org/data1.2/intervals/single}. Either
- \code{name} or \code{id} must be specified, but both cannot be
- used in the same query:
- \itemize{
-   \item \emph{name}: returns the interval with the specified
-     name.
-   \item \emph{id}: returns the interval corresponding to the
-     specified identifier.
-   \item \emph{vocab}: set vocab = "pbdb" to show the complete name
-     of the variables (by default variables have short 3-letter
-     names).
- }}
+\url{https://paleobiodb.org/data1.2/intervals/single}. Either \code{name}
+or \code{id} must be specified, but both cannot be used in the same
+query:
+\itemize{
+\item \code{name}: Returns the interval with the specified name.
+\item \code{id}: Returns the interval corresponding to the specified
+identifier.
+\item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
+variables (by default variables have short 3-letter names).
+}}
 }
 \value{
-a data frame with information from a single temporal
-  interval
+A data frame with information from a single temporal
+interval.
 }
 \description{
-Returns information about a single interval, selected by identifier.
+Returns information about a single interval, selected by
+identifier.
 }
 \examples{
 \dontrun{

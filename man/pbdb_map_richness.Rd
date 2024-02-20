@@ -2,54 +2,57 @@
 % Please edit documentation in R/pbdb_geographic_functions.R
 \name{pbdb_map_richness}
 \alias{pbdb_map_richness}
-\title{pbdb_map_richness}
+\title{Plot a raster showing the richness of taxa}
 \usage{
-pbdb_map_richness(data, rank = "species", do.plot = TRUE, res = 5,
-                  col.int = "white", col.ocean = "black",
-                  col.rich = c("light blue", "blue"), ...)
+pbdb_map_richness(
+  data,
+  rank = "species",
+  do.plot = TRUE,
+  res = 5,
+  col.int = "white",
+  col.ocean = "black",
+  col.rich = c("light blue", "blue"),
+  ...
+)
 }
 \arguments{
-\item{data}{input data frame. This data frame is the output of the
-\code{\link{pbdb_occurrences}} function using the argument
-\code{show = c("coords", "classext")}. See also Details and
-Examples.}
+\item{data}{Input data frame. This data frame is the output of the
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument \code{show = c("coords", "classext")}. See also Details and Examples.}
 
-\item{rank}{taxon rank for which richness is calculated. The
-options are: "species", "genus", "family", "order", "class" or
-"phylum".}
+\item{rank}{Taxon rank for which richness is calculated. The
+options are: \code{"species"}, \code{"genus"}, \code{"family"}, \code{"order"},
+\code{"class"} or \code{"phylum"}.}
 
-\item{do.plot}{logical. If \code{TRUE}, the function produces a
-plot in addition to returning a SpatRaster.}
+\item{do.plot}{Logical. If \code{TRUE}, the function produces a plot in
+addition to returning a \code{SpatRaster}.}
 
-\item{res}{the resolution of the SpatRaster object (in decimal
-degrees). See \code{\link{terra}}.}
+\item{res}{The resolution of the \code{SpatRaster} object (in decimal
+degrees). See \code{\link[terra:dimensions]{terra::res()}}.}
 
-\item{col.int}{the colour of the mainland.}
+\item{col.int}{The colour of the mainland.}
 
-\item{col.ocean}{the colour of the ocean.}
+\item{col.ocean}{The colour of the ocean.}
 
-\item{col.rich}{two or more colours that are used to generate the
+\item{col.rich}{Two or more colours that are used to generate the
 colour gradient showing the richness per cell in the map.}
 
-\item{...}{other parameters. See \code{\link{par}} and
-\code{\link{map}}.}
+\item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}.}
 }
 \value{
-A SpatRaster object with the richness of the specified
-  taxon rank per cell. This SpatRaster object has the resolution
-  that was specified in the \code{res} argument. The default is
-  \code{res = 5}. Users that wish to work with objects of this type
-  should load package \code{terra}.
+A \code{SpatRaster} object with the richness of the specified
+taxon rank per cell. This \code{SpatRaster} object has the resolution
+that was specified in the \code{res} argument. The default is \code{res = 5}. Users that wish to work with objects of this type should load
+package \code{terra}.
 }
 \description{
-Creates a SpatRaster object and a plot with richness of species,
-genera, families, etc. per cell.
+Creates a \code{SpatRaster} object and a plot with richness of
+species, genera, families, etc. per cell.
 }
 \details{
 The argument \code{show = c("coords", "classext")} in the
-  \code{\link{pbdb_occurrences}} function is required. We recommend
-  the use of a cairo device (\code{\link{X11}}) for better
-  visualization of the graphs. See Examples.
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function is required. We recommend the use
+of a cairo device (\code{\link[=X11]{X11()}}) for better visualization of the
+graphs. See Examples.
 }
 \examples{
 \dontrun{
@@ -60,11 +63,11 @@ The argument \code{show = c("coords", "classext")} in the
   X11(width = 13, height = 7.8)
   pbdb_map_richness(data, res = 8, rank = "genus")
   pbdb_map_richness(data, res = 8, rank = "family")
-  ## to obtain the raster object without plotting the map
+  ## Get the raster object without plotting the map
   pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 }
 }
 \seealso{
-See \code{\link{pbdb_occurrences}}, \code{\link{map}},
-  \code{\link{par}} and \code{\link{colors}} help pages.
+See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}}, \code{\link[=par]{par()}} and \code{\link[=colors]{colors()}}
+help pages.
 }

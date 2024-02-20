@@ -2,27 +2,25 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_intervals}
 \alias{pbdb_intervals}
-\title{pbdb_intervals}
+\title{Get information about multiple intervals}
 \usage{
 pbdb_intervals(...)
 }
 \arguments{
 \item{...}{arguments passed to the API. See documentation for
- accepted parameters in
- \url{https://paleobiodb.org/data1.2/intervals/list}. E.g.:
+accepted parameters at
+\url{https://paleobiodb.org/data1.2/intervals/list}. E.g.:
 \itemize{
-  \item \emph{min_ma}: return only intervals that are at least this old.
-  \item \emph{max_ma}: return only intervals that are at most this old.
-  \item \emph{order}: return the intervals in order starting as specified.
-    Possible values include age, name. Defaults to age.
-  \item \emph{vocab}: set vocab = "pbdb" to show the complete name
-    of the variables (by default variables have short 3-letter
-    names).
-  \item ...
+\item \code{min_ma}: Return only intervals that are at least this old.
+\item \code{max_ma}: Return only intervals that are at most this old.
+\item \code{order}: Return the intervals in order starting as specified.
+Possible values include \code{"age"}, \code{"name"}. Defaults to \code{"age"}.
+\item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
+variables (by default variables have short 3-letter names).
 }}
 }
 \value{
-a data frame with information from several temporal intervals
+A data frame with information from several temporal intervals.
 }
 \description{
 Returns information about multiple intervals, selected according to

@@ -2,38 +2,51 @@
 % Please edit documentation in R/pbdb_temporal_functions.R
 \name{pbdb_orig_ext}
 \alias{pbdb_orig_ext}
-\title{pbdb_orig_ext}
+\title{Appearance of new taxa and extinctions across time}
 \usage{
-pbdb_orig_ext(data, rank, temporal_extent, res, orig_ext,
-              colour = "#0000FF30", bord = "#0000FF", do.plot = TRUE)
+pbdb_orig_ext(
+  data,
+  rank,
+  temporal_extent,
+  res,
+  orig_ext = 1,
+  colour = "#0000FF30",
+  bord = "#0000FF",
+  do.plot = TRUE
+)
 }
 \arguments{
-\item{data}{data frame with our query to paleobiodb \code{\link{pbdb_occurrences}}.
-Important, it is required to show the name of the families, orders, etc. in the data frame, 
-to do that set: show=c("classext", "ident") (see example).}
+\item{data}{Data frame from a query to PaleobioDB as returned by
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to
+show the name of the families, orders, etc. in the data frame, to
+do that set: \code{show = c("classext", "ident")} (see Examples).}
 
-\item{rank}{to set which taxon rank you are interested. By default rank= "species"}
+\item{rank}{The taxon rank to be analyzed. Its default value is
+\code{"species"}.}
 
-\item{temporal_extent}{vector to set the temporal extent (min, max)}
+\item{temporal_extent}{Vector to set the temporal extent (min, max)}
 
-\item{res}{numeric. to set the intervals of the temporal extent}
+\item{res}{Numeric. Sets the intervals of the temporal extent.}
 
-\item{orig_ext}{1 = origination, 2 = extinction.}
+\item{orig_ext}{Set to 1 to plot the number new appearances, or to
+2 to plot the number of extinctions.}
 
-\item{colour}{to change the colour of the bars in the plot, skyblue2 by default.}
+\item{colour}{Colour of the area of the polygon in the plot.}
 
-\item{bord}{to set the colour of the border of the polygon}
+\item{bord}{Colour of the border of the polygon.}
 
-\item{do.plot}{TRUE/FALSE (TRUE by default).}
+\item{do.plot}{Logical value indicating whether to produce a plot
+(\code{TRUE} by default).}
 }
 \value{
-a data frame with the number of first appearances and
-  extinctions of the selected taxon rank across time, and a plot
-  with the first appearances or extinctions of the selected taxon
-  rank across time.
+A data frame with the number of first appearances and
+extinctions of the selected taxon rank across time.
 }
 \description{
-Plots the appearance of new taxa across time.
+Returns a data frame with the appearance of new taxa and their last
+appearances across time in the provided data and optionally
+produces a plot from it, showing the new appearances or last
+appearances.
 }
 \examples{
 \dontrun{

@@ -2,27 +2,25 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_taxon}
 \alias{pbdb_taxon}
-\title{pbdb_taxon}
+\title{Get information about a single taxonomic name}
 \usage{
 pbdb_taxon(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See documentation for
-accepted parameters in
-\url{https://paleobiodb.org/data1.2/taxa/single}. One of the
-following parameters must be specified (but not both):
+\item{...}{Arguments passed to the API. See documentation for accepted
+parameters at \url{https://paleobiodb.org/data1.2/taxa/single}. One of
+the following parameters must be specified (but not both):
 \itemize{
-  \item \emph{name}: returns information about the most fundamental
-    taxonomic name matching this string.
-    The \% and _ characters may be used as wildcards.
-  \item \emph{id}: returns information about the taxonomic name
-    corresponding to the specified identifier. The value can have
-    different forms (see the API documentation in the link
-    above).
+\item \code{name}: Returns information about the most fundamental taxonomic
+name matching this string.  The \% and _ characters may be used as
+wildcards.
+\item \code{id}: Returns information about the taxonomic name corresponding
+to the specified identifier. The value can have different forms
+(see the API documentation in the link above).
 }}
 }
 \value{
-a data frame with information from a single taxon
+A data frame with information from a single taxon.
 }
 \description{
 Returns information about a single taxonomic name, identified

@@ -2,21 +2,22 @@
 % Please edit documentation in R/pbdb_taxonomic_functions.R
 \name{pbdb_subtaxa}
 \alias{pbdb_subtaxa}
-\title{pbdb_subtaxa}
+\title{Count number of taxa in an occurrence data frame}
 \usage{
-pbdb_subtaxa(data, do.plot, col)
+pbdb_subtaxa(data, do.plot = TRUE, col = "#0000FF")
 }
 \arguments{
-\item{data}{data frame with our query to the 
-paleobiodb \code{\link{pbdb_occurrences}}}
+\item{data}{Data frame from a query to PaleobioDB as returned by
+the \code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument
+\code{show = "class"} or \code{show = "classext"}.}
 
-\item{do.plot}{by default this function make a plot to 
-visualize the distribution of taxa. Set to FALSE to skip the plot.}
+\item{do.plot}{Logical indicating whether to produce a plot
+(\code{TRUE} by default).}
 
-\item{col}{set the colour of the histogram. skyblue2 by default.}
+\item{col}{Colour of the histogram.}
 }
 \value{
-a plot and a data frame with the number of subtaxa in the data.
+A data frame with the number of subtaxa in the data.
 }
 \description{
 Count the number of taxa (species, genera, families, orders,
@@ -30,5 +31,4 @@ classes, and phyla) in an occurrence data frame.
   )
   pbdb_subtaxa(canidae_quat)
 }
-
 }

@@ -14,8 +14,6 @@
 #'
 #' Returns a cached variable value. If it's intializated already, it will be initialized by calling the function provided
 #' 
-#' @usage .package_cache_return_or_setup(varname, setupfun)
-#'
 #' @param varname Name of the variable to retrieve
 #' @param setupfun Function to compute the value of the variable in case it is not yet initialized
 #' @examples \dontrun{
@@ -24,7 +22,7 @@
 #'     return (list_from_remote_server)
 #' })
 #' }
-#' @return value of the cached variable
+#' @returns value of the cached variable
 #' @noRd
 
 .package_cache_return_or_setup<-function(varname, setupfun)
@@ -51,10 +49,8 @@
 #' 
 #' Check weather a variable exists in the package cache environment
 #' 
-#' @usage .package_cache_has(varname)
-#' 
 #' @param varname Name of the variable
-#' @return boolean 
+#' @returns boolean 
 #' @noRd
 
 .package_cache_has<-function(varname)
@@ -72,10 +68,8 @@
 #' 
 #' Retrieves the value of a cache variable already initialized
 #' 
-#' @usage .package_cache_get(varname)
-#' 
 #' @param varname Name of the variable
-#' @return value of the variable
+#' @returns value of the variable
 #' @noRd
 
 .package_cache_get<-function(varname)
@@ -87,11 +81,9 @@
 #'
 #' Sets a variable value in cache
 #'
-#' @usage .package_cache_set(varname, value)
-#'
 #' @param varname Name of the variable
 #' @param value the value to be assigned to the variable
-#' @return value of the variable
+#' @returns value of the variable
 #' @examples \dontrun{
 #' .package_cache_set("specieslist", list("dog", "cat", "chupacabra"))
 #' }
@@ -106,8 +98,6 @@
 #'
 #' Delete a variable from cache environment
 #' 
-#' @usage .package_cache_delete(varname)
-#'
 #' @param varname the variable to delete
 #' @noRd
 .package_cache_delete<-function(varname)

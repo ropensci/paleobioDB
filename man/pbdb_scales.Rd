@@ -2,23 +2,21 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_scales}
 \alias{pbdb_scales}
-\title{pbdb_scales}
+\title{Get information about multiple time scales}
 \usage{
 pbdb_scales(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See
-documentation for accepted parameters in
+\item{...}{Arguments passed to the API. See
+documentation for accepted parameters at
 \url{https://paleobiodb.org/data1.2/scales/list}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab = "pbdb" to show the complete
-    name of the variables (by default variables have short
-    3-letter names).
-  \item ...
+\item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
+variables (by default variables have short 3-letter names).
 }}
 }
 \value{
-a data frame with information from the selected scales
+A data frame with information from the selected scales.
 }
 \description{
 Returns information about multiple time scales.

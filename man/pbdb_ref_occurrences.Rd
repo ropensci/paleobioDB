@@ -2,32 +2,32 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_ref_occurrences}
 \alias{pbdb_ref_occurrences}
-\title{pbdb_ref_occurrences}
+\title{Get references associated with fossil occurrences}
 \usage{
 pbdb_ref_occurrences(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See all available arguments in
+\item{...}{arguments passed to the API. See all available arguments at
 \url{https://paleobiodb.org/data1.2/occs/refs}
 \itemize{
-  \item \emph{ref_author}: select only references for which any
-    of the authors matches the specified name.
-  \item \emph{ref_pubyr}: select only references published in the
-    specified year.
-  \item \emph{pub_title}: select only references that involve the
-    specified publication.
+\item \code{ref_author}: Select only references for which any of the authors
+matches the specified name.
+\item \code{ref_pubyr}: Select only references published in the specified
+year.
+\item \code{pub_title}: Select only references that involve the specified
+publication.
 }}
 }
 \value{
-a data frame with the information about the references that
-  match the query
+A data frame with the information about the references that
+match the query.
 }
 \description{
 Returns information about the bibliographic references associated
 with fossil occurrences from the database.
 }
 \details{
-Go to \code{\link{pbdb_occurrences}} to see an explanation about
+Go to \code{\link[=pbdb_occurrences]{pbdb_occurrences()}} to see an explanation about
 the main filtering parameters.
 }
 \examples{

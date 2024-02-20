@@ -2,37 +2,37 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_collections_geo}
 \alias{pbdb_collections_geo}
-\title{pbdb_collections_geo}
+\title{Get information about geographic clusters of collections}
 \usage{
-pbdb_collections_geo(..., level)
+pbdb_collections_geo(level, ...)
 }
 \arguments{
-\item{...}{documentation for all the parameters is available in
-\url{https://paleobiodb.org/data1.2/colls/summary}. Go to
-\code{\link{pbdb_occurrences}} to see an explanation about the
-main filtering parameters.}
-
-\item{level}{an integer specifying a cluster level. Refer to
+\item{level}{An integer specifying a cluster level. Refer to
 \url{https://paleobiodb.org/data1.2/config.txt?show=clusters} for
 a list of available resolution levels ("cluster_level" column).}
+
+\item{...}{Documentation for all the parameters is available at
+\url{https://paleobiodb.org/data1.2/colls/summary}. Go to
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} to see an explanation about the
+main filtering parameters.}
 }
 \value{
-a data frame with the collections that match the query
+A data frame with the collections that match the query.
 }
 \description{
 This path returns information about geographic clusters of
 collections from the Paleobiology Database. These clusters are
 defined in order to facilitate the generation of maps at low
 resolutions. You can make a config request via
-https://paleobiodb.org/data1.2/config in order to get a list of the
-available summary levels.
+\url{https://paleobiodb.org/data1.2/config} in order to get a list
+of the available summary levels.
 }
 \examples{
 \dontrun{
   pbdb_collections_geo(
+    level = 2,
     vocab = "pbdb",
-    lngmin = 0.0, lngmax = 15.0, latmin = 0.0, latmax = 15.0,
-    level = 2
+    lngmin = 0.0, lngmax = 15.0, latmin = 0.0, latmax = 15.0
   )
 }
 }

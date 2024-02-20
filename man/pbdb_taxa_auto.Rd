@@ -2,28 +2,28 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_taxa_auto}
 \alias{pbdb_taxa_auto}
-\title{pbdb_taxa_auto}
+\title{Get a list of taxonomic names matching a prefix or partial name}
 \usage{
 pbdb_taxa_auto(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See documentation for
-accepted parameters in
+\item{...}{Arguments passed to the API. See documentation for
+accepted parameters at
 \url{https://paleobiodb.org/data1.2/taxa/auto}. E.g.:
 \itemize{
-  \item \emph{name}: a partial name or prefix.  It must have at
-    least 3 significant characters, and may include both a genus
-    (possibly abbreviated) and a species.
-  \item \emph{limit}: set the limit to the number of matches.
-  \item ...
+\item \code{name}: A partial name or prefix.  It must have at least 3
+significant characters, and may include both a genus (possibly
+abbreviated) and a species.
+\item \code{limit}: Set the limit to the number of matches.
 }}
 }
 \value{
-a data frame with information about the matches (taxon rank
-  and number of occurrences in the database)
+A data frame with information about the matches (taxon rank
+and number of occurrences in the database).
 }
 \description{
-Returns a list of names matching the given prefix or partial name.
+Returns a list of taxonomic names matching the given prefix or
+partial name.
 }
 \examples{
 \dontrun{

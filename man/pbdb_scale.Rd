@@ -2,25 +2,24 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_scale}
 \alias{pbdb_scale}
-\title{pbdb_scale}
+\title{Get information about a single time scale}
 \usage{
 pbdb_scale(id, ...)
 }
 \arguments{
-\item{id}{identifier of the temporal interval. This parameter is required.}
+\item{id}{Identifier of the temporal interval. This parameter is
+required.}
 
-\item{...}{additional arguments passed to the API. See
-documentation for accepted parameters in
+\item{...}{Additional arguments passed to the API. See
+documentation for accepted parameters at
 \url{https://paleobiodb.org/data1.2/scales/single}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab = "pbdb" to show the complete
-    name of the variables (by default variables have short
-    3-letter names).
-  \item ...
+\item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
+variables (by default variables have short 3-letter names).
 }}
 }
 \value{
-a data frame with information from a single scale
+A data frame with information from a single scale.
 }
 \description{
 Returns information about a single time scale, selected by

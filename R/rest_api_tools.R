@@ -63,7 +63,7 @@
 #' @param ... Custom parameters for the query string
 #' @param query URI parameters for the query string passed as a named list
 #' @param api_base API base for this URI, no matter if global value was defined
-#' @return character
+#' @returns character
 #' @noRd
 
 .build_uri<-function(endpoint, ..., query = list(), api_base = NULL){

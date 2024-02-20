@@ -2,32 +2,31 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_references}
 \alias{pbdb_references}
-\title{pbdb_references}
+\title{Get information about multiple references}
 \usage{
 pbdb_references(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See documentation for
-accepted parameters in
+\item{...}{Arguments passed to the API. See documentation for
+accepted parameters at
 \url{https://paleobiodb.org/data1.2/refs/list}. E.g.:
 \itemize{
-  \item \emph{ref_author} select only references for which any of
-    the authors matches the specified name.
-  \item \emph{ref_pubyr} select only references published in the
-    specified year.
-  \item \emph{pub_title} select only references that involve the
-    specified publication.
-  \item \emph{order} specifies the order in which the results are
-    returned. You can specify multiple values separated by
-    commas, and each value may be appended with .asc or
-    .desc. Accepted values are: author, pubyr, reftitle,
-    pubtitle, pubtype, created, modified, rank.
-  \item ...
+\item \code{ref_author}: Select only references for which any of the authors
+matches the specified name.
+\item \code{ref_pubyr}: Select only references published in the specified
+year.
+\item \code{pub_title}: Select only references that involve the specified
+publication.
+\item \code{order}: Specifies the order in which the results are
+returned. You can specify multiple values separated by commas,
+and each value may be appended with .asc or .desc. Accepted
+values are: \code{"author"}, \code{"pubyr"}, \code{"reftitle"}, \code{"pubtitle"},
+\code{"pubtype"}, \code{"created"}, \code{"modified"}, \code{"rank"}.
 }}
 }
 \value{
-a data frame with the information about the references that
-  match the query
+A data frame with the information about the references that
+match the query.
 }
 \description{
 Returns information about multiple references, selected according

@@ -2,36 +2,48 @@
 % Please edit documentation in R/pbdb_temporal_functions.R
 \name{pbdb_richness}
 \alias{pbdb_richness}
-\title{pbdb_richness}
+\title{Temporal variation in taxon richness}
 \usage{
-pbdb_richness(data, rank, res, temporal_extent, colour, bord, do.plot)
+pbdb_richness(
+  data,
+  rank,
+  res = 1,
+  temporal_extent = c(0, 10),
+  colour = "#0000FF30",
+  bord = "#0000FF",
+  do.plot = TRUE
+)
 }
 \arguments{
-\item{data}{data frame with our query to the paleobiodb
-\code{\link{pbdb_occurrences}}.  Important, it is required to
+\item{data}{Data frame from a query to PaleobioDB as returned by
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to
 show the name of the families, orders, etc. in the data frame, to
-do that set: show = c("classext", "ident") (see example).}
+do that set: \code{show = c("classext", "ident")} (see Examples).}
 
-\item{rank}{to set which taxon rank you are interested. By default
-rank = "species"}
+\item{rank}{The taxon rank to be analyzed. Its default value is
+\code{"species"}.}
 
-\item{res}{numeric. to set the intervals of the temporal extent}
+\item{res}{Numeric. Sets the duration of the intervals in the
+temporal extent.}
 
-\item{temporal_extent}{vector to set the temporal extent (min, max)}
+\item{temporal_extent}{Numeric vector to set the temporal extent
+(min, max).}
 
-\item{colour}{to change the colour of the bars in the plot,
-skyblue2 by default.}
+\item{colour}{Colour of the area of the polygon in the plot.}
 
-\item{bord}{to set the colour of the border of the polygon}
+\item{bord}{Colour of the border of the polygon.}
 
-\item{do.plot}{TRUE/FALSE (TRUE by default).}
+\item{do.plot}{Logical indicating whether to produce a plot
+(\code{TRUE} by default).}
 }
 \value{
-a plot and a data frame with the richness aggregated by the
-  taxon rank in the specified temporal extent and resolution.
+A data frame with the richness aggregated by the taxon rank
+in the specified temporal extent and resolution.
 }
 \description{
-Plots temporal variation in taxon richness from a data frame of occurrences.
+Returns a data frame of temporal variation in taxon richness in the
+indicated temporal extent and resolution from the provided
+occurrence data and optionally produces a plot from it.
 }
 \examples{
 \dontrun{
@@ -39,6 +51,6 @@ Plots temporal variation in taxon richness from a data frame of occurrences.
     limit = "all", vocab = "pbdb", base_name = "Canidae",
     show = c("classext", "ident")
   )
-  pbdb_richness(data, rank = "species", res = 1, temporal_extent = c(0, 3))
+  pbdb_richness(data, rank = "species", res = 0.2, temporal_extent = c(0, 3))
 }
 }

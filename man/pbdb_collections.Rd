@@ -2,18 +2,19 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_collections}
 \alias{pbdb_collections}
-\title{pbdb_collections}
+\title{Get information about multiple collections}
 \usage{
 pbdb_collections(...)
 }
 \arguments{
-\item{...}{documentation for all the parameters is available in
+\item{...}{Additional arguments passed to the API.  See all
+available arguments at
 \url{https://paleobiodb.org/data1.2/colls/list}. Go to
-\code{\link{pbdb_occurrences}} to see an explanation about the
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} to see an explanation about the
 main filtering parameters.}
 }
 \value{
-A data frame with the collections that match the query
+A data frame with the collections that match the query.
 }
 \description{
 Returns information about multiple collections, selected according

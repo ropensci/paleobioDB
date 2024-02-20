@@ -2,35 +2,36 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_taxa}
 \alias{pbdb_taxa}
-\title{pbdb_taxa}
+\title{Get information about multiple taxonomic names}
 \usage{
 pbdb_taxa(...)
 }
 \arguments{
-\item{...}{arguments passed to the API. See all available arguments
-in \url{https://paleobiodb.org/data1.2/taxa/list}
+\item{...}{Arguments passed to the API. See all available arguments
+at \url{https://paleobiodb.org/data1.2/taxa/list}.
 \itemize{
-  \item \emph{name}: returns information about the most
-    fundamental taxonomic name matching this string.  The \% and
-    _ characters may be used as wildcards.
-  \item \emph{id}: return information about the taxonomic name
-    corresponding to this identifier. You may not specify both
-    name and id in the same query.
-  \item \emph{show}: to show extra variables. Some examples
-    include: \emph{attr} the attribution of this taxon (author
-    and year); \emph{app} the age of first and last appearance of
-    this taxon from the occurrences recorded in this database;
-    \emph{size} the number of subtaxa appearing in this database.
-  \item \emph{rel}: set rel = "synonyms" to select all synonyms
-    of the base taxon or taxa; rel = "children" to select the
-    taxa immediately contained within the base taxon or taxa; rel
-    = "common" to select the most specific taxon that contains
-    all of the base taxa.
-  \item \emph{extant}: TRUE/FALSE to select extant/extinct taxa.
+\item \code{name}: Returns information about the most fundamental taxonomic
+name matching this string.  The \% and _ characters may be used as
+wildcards.
+\item \code{id}: Return information about the taxonomic name corresponding
+to this identifier. You may not specify both \code{name} and \code{id} in
+the same query.
+\item \code{show}: Show extra variables. Some examples include: \code{"attr"} the
+attribution of this taxon (author and year); \code{"app"} the age of
+first and last appearance of this taxon from the occurrences
+recorded in this database; \code{"size"} the number of subtaxa
+appearing in this database.
+\item \code{rel}: Set \code{rel = "synonyms"} to select all synonyms of the base
+taxon or taxa; \code{rel = "children"} to select the taxa immediately
+contained within the base taxon or taxa; \code{rel = "common"} to
+select the most specific taxon that contains all of the base
+taxa.
+\item \code{extant}: Logical indicating whether to select only extant or
+non-extant taxa.
 }}
 }
 \value{
-a data frame with information from a list of taxa
+A data frame with information from a list of taxa.
 }
 \description{
 Returns information about multiple taxonomic names.  This function

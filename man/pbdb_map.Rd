@@ -2,43 +2,48 @@
 % Please edit documentation in R/pbdb_geographic_functions.R
 \name{pbdb_map}
 \alias{pbdb_map}
-\title{pbdb_map}
+\title{Map the fossil records}
 \usage{
-pbdb_map(data, col.int = "white", pch = 19, col.ocean = "black",
-         main = NULL, col.point = c("light blue", "blue"), ...)
+pbdb_map(
+  data,
+  col.int = "white",
+  pch = 19,
+  col.ocean = "black",
+  main = NULL,
+  col.point = c("light blue", "blue"),
+  ...
+)
 }
 \arguments{
-\item{data}{input data frame. This data frame is the output of the
-\code{\link{pbdb_occurrences}} function using the argument
+\item{data}{Input data frame. This data frame is the output of the
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument
 \code{show = "coords"}. See also Details and Examples.}
 
-\item{col.int}{the colour of the mainland.}
+\item{col.int}{The colour of the mainland.}
 
-\item{pch}{see \code{\link{par}}.}
+\item{pch}{See \code{\link[=par]{par()}}.}
 
-\item{col.ocean}{the colour of the ocean.}
+\item{col.ocean}{The colour of the ocean.}
 
-\item{main}{title of the map. See \code{\link{par}}.}
+\item{main}{Title of the map. See \code{\link[=par]{par()}}.}
 
-\item{col.point}{two or more colours that are used to generate the
+\item{col.point}{Two or more colours that are used to generate the
 colour gradient showing the number of occurrences per coordinate
 in the map.}
 
-\item{...}{other parameters. See \code{\link{par}} and
-\code{\link{map}}.}
+\item{...}{Other parameters. See \code{\link[=par]{par()}} and
+\code{\link[=map]{map()}}.}
 }
 \description{
-Maps the fossil records.
-}
-\details{
 The function opens a new window with a map showing the distribution
 of the fossil records as points. These points are coloured
 according to the number of occurrences per cell.
-
+}
+\details{
 The argument \code{show = "coords"} in the
-  \code{\link{pbdb_occurrences}} function is required. We recommend
-  the use of a cairo device (\code{\link{X11}}) for better
-  visualization of the maps. See Examples.
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function is required. We recommend
+the use of a cairo device (\code{\link[=X11]{X11()}}) for better
+visualization of the maps. See Examples.
 }
 \examples{
 \dontrun{
@@ -56,6 +61,6 @@ The argument \code{show = "coords"} in the
 }
 }
 \seealso{
-See \code{\link{pbdb_occurrences}}, \code{\link{map}},
-  \code{\link{par}} and \code{\link{colors}} help pages.
+See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}},
+\code{\link[=par]{par()}} and \code{\link[=colors]{colors()}} help pages.
 }

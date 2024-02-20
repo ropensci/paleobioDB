@@ -2,37 +2,44 @@
 % Please edit documentation in R/pbdb_queries.R
 \name{pbdb_collection}
 \alias{pbdb_collection}
-\title{pbdb_collection}
+\title{Get information about a single collection record}
 \usage{
 pbdb_collection(id, ...)
 }
 \arguments{
-\item{id}{identifier of the collection. This parameter is required.}
+\item{id}{Identifier of the collection. This parameter is required.}
 
-\item{...}{additional arguments passed to the API. See all
-available arguments in
+\item{...}{Additional arguments passed to the API. See all
+available arguments at
 \url{https://paleobiodb.org/data1.2/colls/single}. E.g.:
 \itemize{
-  \item \emph{vocab}: set vocab = "pbdb" to show the complete
-    name of the variables (by default variables have short
-    3-letter names).
-  \item \emph{show}: show extra variables.
-  \item ...
+\item \code{vocab}: Set to "pbdb" to show the complete name of the variables
+(by default variables have short 3-letter names).
+\item \code{show}: Select additional blocks of information to be returned
+along with the basic record.  Some possible values include:
+\itemize{
+\item \code{"loc"}: Additional information about the geographic locality
+of the collection
+\item \code{"stratext"}: Detailed information about the stratigraphic
+context of collection.
+\item \code{"lithext"}: Detailed information about the lithological
+context of the collection.
+}
 }}
 }
 \value{
-a data frame with a single occurrence
+A data frame with a single occurrence.
 }
 \description{
 Returns information about a single collection record from
 the Paleobiology Database.
 }
 \details{
-Go to \code{\link{pbdb_occurrences}} to see an explanation about
+Go to \code{\link[=pbdb_occurrences]{pbdb_occurrences()}} to see an explanation about
 the main parameters.
 }
 \examples{
 \dontrun{
-  pbdb_collection(id = 1003, vocab = "pbdb", show = "loc")
+  pbdb_collection(id = 1003, vocab = "pbdb", show = c("loc", "stratext"))
 }
 }

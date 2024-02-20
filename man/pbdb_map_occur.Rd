@@ -2,49 +2,56 @@
 % Please edit documentation in R/pbdb_geographic_functions.R
 \name{pbdb_map_occur}
 \alias{pbdb_map_occur}
-\title{pbdb_map_occur}
+\title{Plot a raster showing the number of fossil occurrences}
 \usage{
-pbdb_map_occur(data, res = 5, col.int = "white", col.ocean = "black",
-               col.eff = c("light blue", "blue"), do.plot = TRUE, ...)
+pbdb_map_occur(
+  data,
+  res = 5,
+  col.int = "white",
+  col.ocean = "black",
+  col.eff = c("light blue", "blue"),
+  do.plot = TRUE,
+  ...
+)
 }
 \arguments{
-\item{data}{input data frame. This data frame is the output of the
-\code{\link{pbdb_occurrences}} function using the argument
+\item{data}{Input data frame. This data frame is the output of the
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument
 \code{show = "coords"}. See also Details and Examples.}
 
-\item{res}{the resolution of the SpatRaster object (in decimal
-degrees). See \code{\link{terra}}.}
+\item{res}{The resolution of the \code{SpatRaster} object (in decimal
+degrees). See \code{\link[terra:dimensions]{terra::res()}}.}
 
-\item{col.int}{the colour of the mainland.}
+\item{col.int}{The colour of the mainland.}
 
-\item{col.ocean}{the colour of the ocean.}
+\item{col.ocean}{The colour of the ocean.}
 
-\item{col.eff}{two or more colours that are used to generate the
+\item{col.eff}{Two or more colours that are used to generate the
 colour gradient showing the number of occurrences per cell in the
 map.}
 
-\item{do.plot}{logical. If \code{TRUE}, the function produces a
-plot in addition to returning a SpatRaster.}
+\item{do.plot}{Logical. If \code{TRUE}, the function produces a
+plot in addition to returning a \code{SpatRaster}.}
 
-\item{...}{other parameters. See \code{\link{par}} and
-\code{\link{map}}}
+\item{...}{Other parameters. See \code{\link[=par]{par()}} and
+\code{\link[=map]{map()}}}
 }
 \value{
-A SpatRaster object with the sampling effort (number of
-  fossil records per cell). This SpatRaster object has the
-  resolution that was specified in the \code{res} argument. The
-  default is \code{res = 5}. Users that wish to work with objects
-  of this type should load package \code{terra}.
+A \code{SpatRaster} object with the sampling effort (number
+of fossil records per cell). This \code{SpatRaster} object has
+the resolution that was specified in the \code{res} argument. The
+default is \code{res = 5}. Users that wish to work with objects
+of this type should load package \code{terra}.
 }
 \description{
-Creates a SpatRaster object and a plot of the sampling effort
-(number of fossil records per cell).
+Creates a \code{SpatRaster} object and a plot of the sampling
+effort (number of fossil records per cell).
 }
 \details{
 The argument \code{show = "coords"} in the
-  \code{\link{pbdb_occurrences}} function is required. We recommend
-  the use of a cairo device (\code{\link{X11}}) for better
-  visualization of the maps. See Examples.
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function is required. We recommend
+the use of a cairo device (\code{\link[=X11]{X11()}}) for better
+visualization of the maps. See Examples.
 }
 \examples{
 \dontrun{
@@ -53,11 +60,11 @@ The argument \code{show = "coords"} in the
   )
   X11(width = 13, height = 7.8)
   pbdb_map_occur(data, res = 2)
-  ## to obtain the raster object without plotting it
+  ## Get the raster object without plotting it
   pbdb_map_occur(data, res = 3, do.plot = FALSE)
 }
 }
 \seealso{
-See \code{\link{pbdb_occurrences}}, \code{\link{map}},
-  \code{\link{par}} and \code{\link{colors}} help pages
+See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}},
+\code{\link[=par]{par()}} and \code{\link[=colors]{colors()}} help pages
 }

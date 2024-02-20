@@ -5,7 +5,7 @@
 \alias{paleobioDB}
 \alias{paleobioDB-package}
 \title{paleobioDB: An R-package for downloading, visualizing and
-  processing data from the Paleobiology Database}
+processing data from the Paleobiology Database}
 \description{
 We have developed paleobioDB, an R-package designed to make easy
 and flexible queries of the Paleobiology Database, as well as to
@@ -78,11 +78,11 @@ pbdb_map_richness(canidae, rank = "species", res = 5)
 }
 \references{
 Sara Varela, Javier González-Hernández, Luciano Fabris
-  Sgarbi, Charles Marshall, Mark D. Uhen, Shanan Peters, Michael
-  McClennen, 2015. paleobioDB: an R package for downloading,
-  visualizing and processing data from the Paleobiology
-  Database. Ecography, 38:
-  419-425. \doi{10.1111/ecog.01154}
+Sgarbi, Charles Marshall, Mark D. Uhen, Shanan Peters, Michael
+McClennen, 2015. paleobioDB: an R package for downloading,
+visualizing and processing data from the Paleobiology
+Database. Ecography, 38:
+419-425. \doi{10.1111/ecog.01154}
 }
 \seealso{
 {
