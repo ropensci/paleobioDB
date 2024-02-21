@@ -347,13 +347,12 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
   
   if (do.plot==TRUE){
     ymx<- max (change[,orig_ext])
-    ymn<- min (change[,orig_ext])
     xmx<- sequence[length (sequence)-1]
     xmn<- sequence [2]
     plot.new()
     par (mar=c(5,5,2,5),font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
     plot.window(xlim=c(xmx, xmn), xaxs="i",
-                ylim=c(ymn,ymx), yaxs="i")
+                ylim=c(0,ymx), yaxs="i")
     abline(v=seq(xmn, xmx, by=res), col="grey90", lwd=1)
     abline(h=seq(0, ymx, 
                  by=(ymx/10)), col="grey90", lwd=1)
