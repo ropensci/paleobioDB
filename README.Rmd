@@ -69,7 +69,7 @@ library(paleobioDB)
 canidae <- pbdb_occurrences(
   base_name = "canidae",
   interval = "Quaternary",
-  show = c("coords", "class"),
+  show = c("coords", "classext"),
   vocab = "pbdb",
   limit = "all"
 )
@@ -81,7 +81,7 @@ head(canidae, 3)
 
 Note that if the plotting and analysis functions of this package are
 going to be used (as demonstrated in the sections below), it is
-necessary to specify the parameter `show = c("coords", "class")` in
+necessary to specify the parameter `show = c("coords", "classext")` in
 the `pbdb_occurrences()` function.  This returns taxonomic and
 geographic information for the occurrences that is required by these
 functions.

@@ -218,17 +218,19 @@ pbdb_map_occur <- function(data, res = 5,
   r <- rast(ext)
   res(r) <- c(res, res)
   values(r) <- 0
+
   if (length(data$accepted_rank) != 0) {
     identified <- data[!is.na(data$accepted_rank), ]
     species <- identified[identified$accepted_rank == "species", ]
     S <- split(species, species$accepted_no)
   }
 
-  if (length(data$mra) != 0) {
-    identified <- data[!is.na(data$mra), ]
-    species <- identified[identified$mra == 3, ]
-    S <- split(species, species$mid)
+  if (length(data$rnk) != 0) {
+    identified <- data[!is.na(data$rnk), ]
+    species <- identified[identified$rnk == 3, ]
+    S <- split(species, species$tid)
   }
+
   R <- lapply(S, function(y) {
     s <- split(y, paste(y$lng, y$lat))
     X <- as.matrix(
@@ -254,23 +256,25 @@ pbdb_map_occur <- function(data, res = 5,
     accepted_rank = c(
       "genus_no", "family_no", "order_no", "class_no", "phylum_no"
     ),
-    mra = c("gnn", "fmn", "odn", "cln", "phn")
+    rnk = c("gnn", "fmn", "odn", "cln", "phn")
   )
+
   if (length(data$accepted_rank) != 0) {
     identified <- data[!is.na(data$accepted_rank), ]
-    col <- paste(ranks$accepted_rank[ranks$rank == rank])
+    col <- ranks$accepted_rank[ranks$rank == rank]
     ident <- identified[!is.na(identified[, col]), ]
-    f <- paste(ident[, col])
+    f <- ident[, col]
     S <- split(ident, f)
   }
 
-  if (length(data$mra) != 0) {
-    identified <- data[!is.na(data$mra), ]
-    col <- paste(ranks$mra[ranks$rank == rank])
+  if (length(data$rnk) != 0) {
+    identified <- data[!is.na(data$rnk), ]
+    col <- ranks$rnk[ranks$rank == rank]
     ident <- identified[!is.na(identified[, col]), ]
-    f <- paste(ident[, col])
+    f <- ident[, col]
     S <- split(ident, f)
   }
+
   R <- lapply(S, function(y) {
     s <- split(y, paste(y$lng, y$lat))
     X <- as.matrix(
@@ -320,7 +324,7 @@ pbdb_map_occur <- function(data, res = 5,
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
 #'     limit = 1000, vocab = "pbdb", base_name = "mammalia",
-#'     show = c("classext", "coords", "ident")
+#'     show = c("classext", "coords")
 #'   )
 #'   X11(width = 13, height = 7.8)
 #'   pbdb_map_richness(data, res = 8, rank = "genus")
@@ -328,15 +332,32 @@ pbdb_map_occur <- function(data, res = 5,
 #'   ## Get the raster object without plotting the map
 #'   pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 #' }
-pbdb_map_richness <- function(data, rank = "species", do.plot = TRUE, res = 5, col.int = "white", col.ocean = "black",
-                              col.rich = c("light blue", "blue"), ...) {
-  if (!(rank %in% c("species", "genus", "family", "order", "class", "phylum"))) {
-    stop("Invalid rank name. Use: \"species\", \"genus\", \"family\", \"order\", \"class\" or \"phylum\".
-             See \"pbdb_map_richness\" help page")
-  }
-  if (sum(colnames(data) %in% c("lat", "lng", "genus", "family", "order", "class", "phylum", "mid", "fml", "odl", "cll", "phl")) != 7) {
-    stop("Invalid data input. In the \"pbdb_occurrences\" function, use the following argument: show=c(\"classext\",\"coords\",\"ident\"). e.g. pbdb_occurrences(..., show=c(\"classext\",\"coords\",\"ident\")).
-             See \"pbdb_map_richness\" help page")
+pbdb_map_richness <- function(data,
+                              rank = "species",
+                              do.plot = TRUE,
+                              res = 5,
+                              col.int = "white",
+                              col.ocean = "black",
+                              col.rich = c("light blue", "blue"),
+                              ...) {
+  valid_ranks <- c("species", "genus", "family", "order", "class", "phylum")
+  rank <- match.arg(rank, valid_ranks)
+
+  pbdb_fields <- c(
+    "accepted_no", "genus_no", "family_no", "order_no", "class_no", "phylum_no"
+  )
+  com_fields <- c("tid", "gnn", "fmn", "odn", "cln", "phn")
+  pbdb_fields_in_data <- all(pbdb_fields %in% colnames(data))
+  com_fields_in_data <- all(com_fields %in% colnames(data))
+  coords_in_data <- all(c("lat", "lng") %in% colnames(data))
+
+  if (!coords_in_data || !(pbdb_fields_in_data || com_fields_in_data)) {
+    stop(
+      "Invalid data input. In the \"pbdb_occurrences\" function, use the ",
+      "following argument:\n",
+      "    'pbdb_occurrences(..., show = c(\"classext\", \"coords\"))'\n",
+      "See \"pbdb_map_richness\" help page."
+    )
   }
 
   if (rank == "species") {
