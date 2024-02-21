@@ -222,15 +222,15 @@ pbdb_orig_ext(
 ![](man/figures/README-pbdb_orig_ext_1-1.png)<!-- -->
 
     #>                new ext
-    #> 0.5-1 to 0-0.5   4  19
+    #> 0.5-1 to 0-0.5   6  19
     #> 1-1.5 to 0.5-1   9   0
     #> 1.5-2 to 1-1.5   2   5
     #> 2-2.5 to 1.5-2  10   0
     #> 2.5-3 to 2-2.5   0   0
     #> 3-3.5 to 2.5-3  53   0
     #> 3.5-4 to 3-3.5   3   0
-    #> 4-4.5 to 3.5-4  13   0
-    #> 4.5-5 to 4-4.5   1   0
+    #> 4-4.5 to 3.5-4  14   0
+    #> 4.5-5 to 4-4.5   0   0
 
 And `orig_ext = 2` plots last appearances in the provided data frame
 (possibly extinctions, if the data are complete enough).
@@ -246,15 +246,15 @@ pbdb_orig_ext(
 ![](man/figures/README-pbdb_orig_ext_2-1.png)<!-- -->
 
     #>                new ext
-    #> 0.5-1 to 0-0.5   4  19
+    #> 0.5-1 to 0-0.5   6  19
     #> 1-1.5 to 0.5-1   9   0
     #> 1.5-2 to 1-1.5   2   5
     #> 2-2.5 to 1.5-2  10   0
     #> 2.5-3 to 2-2.5   0   0
     #> 3-3.5 to 2.5-3  53   0
     #> 3.5-4 to 3-3.5   3   0
-    #> 4-4.5 to 3.5-4  13   0
-    #> 4.5-5 to 4-4.5   1   0
+    #> 4-4.5 to 3.5-4  14   0
+    #> 4.5-5 to 4-4.5   0   0
 
 ### `pbdb_subtaxa`
 

@@ -262,7 +262,7 @@ pbdb_richness <- function(data, rank,
 #' appearances across time in the provided data and optionally
 #' produces a plot from it, showing the new appearances or last
 #' appearances.
-#' 
+#'
 #' @param data Data frame from a query to PaleobioDB as returned by
 #'   [pbdb_occurrences()].  Important: it is required to
 #'   show the name of the families, orders, etc. in the data frame, to
@@ -286,85 +286,81 @@ pbdb_richness <- function(data, rank,
 #'     limit = "all", vocab = "pbdb",
 #'     base_name = "Canidae", show = c("classext", "ident")
 #'   )
-#' 
+#'
 #'   # Plot of the evolutionary rates
 #'   pbdb_orig_ext(
-#'     canidae, rank = "genus", temporal_extent = c(0, 10), res = 1, orig_ext = 1
+#'     canidae,
+#'     rank = "genus",
+#'     orig_ext = 1,
+#'     temporal_extent = c(0, 10), res = 1
 #'   )
-#' 
+#'
 #'   # Plot of the extinction rates
 #'   pbdb_orig_ext(
-#'     canidae, rank = "species", temporal_extent = c(0, 10), res = 1, orig_ext = 2
+#'     canidae,
+#'     rank = "genus",
+#'     orig_ext = 2,
+#'     temporal_extent = c(0, 10), res = 1
 #'   )
 #' }
-pbdb_orig_ext<- function (data, rank, temporal_extent, 
-                          res, orig_ext=1, 
-                          colour="#0000FF30", bord="#0000FF", 
-                          do.plot=TRUE) { 
-  
-  temporal_range<- pbdb_temp_range (data=data, rank=rank, do.plot=FALSE)
-  te<- temporal_extent
-  sequence<- seq (from=min(te), to= (max(te)), by=res)
-  intv<- data.frame (min=sequence [1:length (sequence)-1], 
-                     max=sequence [2:length (sequence)]) 
-  labels1<- paste (intv[,1], intv[,2], sep="-")
-  labels2<- paste (labels1[2:(length (labels1))],
-                   labels1[1:(length (labels1)-1)], 
-                   sep=" to ")
-  
-  res_sp<- list ()
-  for (i in 1:dim(intv)[1])
-  {
-    intvv<- intv [i,]
-    cases1<-  which (as.numeric (temporal_range$min)>= intvv$min &
-                       as.numeric (temporal_range$min)<= intvv$max &
-                       as.numeric (temporal_range$max)>= intvv$max)
-    
-    cases2<-  which (as.numeric (temporal_range$min)<= intvv$min &
-                       as.numeric (temporal_range$max)<= intvv$max &
-                       as.numeric (temporal_range$max)>= intvv$min)
-    
-    cases3<-  which (as.numeric (temporal_range$min)<= intvv$min &
-                       as.numeric (temporal_range$max)>= intvv$max)
-    
-    cases<- unique (c(cases1, cases2, cases3))
-    sps<-temporal_range [cases,]
-    res_sp[[i]]<- sps
-  }
-  
-  change<- data.frame ()
-  for (i in length (res_sp):2)
-  {
-    new_taxa<- length (setdiff (row.names (res_sp[[i-1]]), row.names (res_sp[[i]])))
-    ext<- length (setdiff (row.names (res_sp[[i]]), row.names (res_sp[[i-1]])))
-    col<- c(new_taxa, ext)
-    change<- rbind (change, col)
-  }  
-  
-  names (change)<- c("new", "ext")
-  change<- change[rev(as.numeric (row.names(change))),]
-  row.names (change)<- labels2
-  
-  if (do.plot==TRUE){
-    ymx<- max (change[,orig_ext])
-    xmx<- sequence[length (sequence)-1]
-    xmn<- sequence [2]
+pbdb_orig_ext <- function(data,
+                          rank,
+                          temporal_extent,
+                          res,
+                          orig_ext = 1,
+                          colour = "#0000FF30",
+                          bord = "#0000FF",
+                          do.plot = TRUE) {
+  temporal_range <- pbdb_temp_range(data = data, rank = rank, do.plot = FALSE)
+  te <- temporal_extent
+  sequence <- seq(from = min(te), to = max(te), by = res)
+  intervals <- data.frame(min = sequence[-length(sequence)], max = sequence[-1])
+  labels1 <- paste(intervals[, 1], intervals[, 2], sep = "-")
+  labels2 <- paste(labels1[-1], labels1[-length(labels1)], sep = " to ")
+
+  res_sp <- apply(intervals, 1, function(int) {
+    in_interval <- temporal_range[, 1] > int[1] & temporal_range[, 2] <= int[2]
+    row.names(temporal_range)[in_interval]
+  })
+
+  change <- mapply(
+    function(sp_a, sp_b) {
+      new <- length(setdiff(sp_a, sp_b))
+      ext <- length(setdiff(sp_b, sp_a))
+      c(new, ext)
+    },
+    res_sp[-length(res_sp)],
+    res_sp[-1]
+  )
+
+  change <- as.data.frame(t(change))
+  names(change) <- c("new", "ext")
+  row.names(change) <- labels2
+
+  if (do.plot) {
+    ymx <- max(change[, orig_ext])
+    xmx <- sequence[length(sequence) - 1]
+    xmn <- sequence[2]
     plot.new()
-    par (mar=c(5,5,2,5),font.lab=1, col.lab="grey20", col.axis="grey50", cex.axis=0.8)
-    plot.window(xlim=c(xmx, xmn), xaxs="i",
-                ylim=c(0,ymx), yaxs="i")
-    abline(v=seq(xmn, xmx, by=res), col="grey90", lwd=1)
-    abline(h=seq(0, ymx, 
-                 by=(ymx/10)), col="grey90", lwd=1)
-    xx <- c(xmn,  sequence[2:(length (sequence)-1)], xmx)
-    yy <- c(0, change[,orig_ext], 0)
-    polygon(xx, yy, col=colour, border=bord)
-    
-    axis(1, line=1, labels=labels2, at= xx [-c(1,length (xx))])
-    axis(2, line=1, las=1)
-    mtext("Million years before present", line=3, adj=1, side=1)
-    mtext(paste ("Number of ", rank, sep=""), line= 3 , adj=0, side=2)
-    title (ifelse (orig_ext==1,"First appearences", "Last appearences"))
+    par(mar = c(5, 5, 2, 5), font.lab = 1, col.lab = "grey20", col.axis = "grey50", cex.axis = 0.8)
+    plot.window(
+      xlim = c(xmx, xmn), xaxs = "i",
+      ylim = c(0, ymx), yaxs = "i"
+    )
+    abline(v = seq(xmn, xmx, by = res), col = "grey90", lwd = 1)
+    abline(h = seq(0, ymx,
+      by = (ymx / 10)
+    ), col = "grey90", lwd = 1)
+    xx <- c(xmn, sequence[2:(length(sequence) - 1)], xmx)
+    yy <- c(0, change[, orig_ext], 0)
+    polygon(xx, yy, col = colour, border = bord)
+
+    axis(1, line = 1, labels = labels2, at = xx[-c(1, length(xx))])
+    axis(2, line = 1, las = 1)
+    mtext("Million years before present", line = 3, adj = 1, side = 1)
+    mtext(paste("Number of ", rank, sep = ""), line = 3, adj = 0, side = 2)
+    title(ifelse(orig_ext == 1, "First appearences", "Last appearences"))
   }
-  return (change)
+
+  change
 }
