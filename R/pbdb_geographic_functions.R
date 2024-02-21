@@ -138,7 +138,7 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
 #' @importFrom grDevices adjustcolor colorRampPalette
 .add.pattern <- function(r, col.eff, ...) {
   Pal <- colorRampPalette(col.eff)
-  plot(r, col = adjustcolor(Pal(5), alpha.f = 0.8), add = TRUE, ...)
+  plot(r, col = adjustcolor(Pal(50), alpha.f = 0.8), add = TRUE, ...)
 }
 
 .plot.Raster.rich <- function(r, col.eff, col.ocean, col.int,
