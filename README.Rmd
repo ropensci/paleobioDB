@@ -102,10 +102,11 @@ corrected or eliminated, they will increase the richness of genera.
 
 ### `pbdb_map`
 
-Plots a map showing fossil occurrences.
+Plots a map showing fossil occurrences and invisibly returns a data
+frame with the number of occurrences per coordinate.
 
-```{r pbdb_map}
-pbdb_map(canidae)
+```{r pbdb_map, out.lines = 12}
+(pbdb_map(canidae))
 ```
 
 ### `pbdb_map_occur`

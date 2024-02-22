@@ -16,7 +16,8 @@ pbdb_temp_range(
 \item{data}{Data frame from a query to PaleobioDB as returned by
 \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to have
 information about the taxonomic classification of the occurrences
-in the data frame, to do that set: \code{show = "classext"} or \code{show = "class"} (see Examples).}
+in the data frame, to do that set the \code{show} parameter to
+\code{"class"} or \code{"classext"} (see Examples).}
 
 \item{rank}{The taxon rank to be analyzed.  The default value is
 \code{"species"}.}
@@ -42,7 +43,7 @@ generates a plot from it.
 \dontrun{
   canis_quaternary <- pbdb_occurrences(
     limit = "all", base_name = "Canis", interval = "Quaternary",
-    show = c("coords", "classext", "ident"), vocab = "pbdb"
+    show = c("coords", "classext"), vocab = "pbdb"
   )
   pbdb_temp_range(canis_quaternary, rank = "species", names = FALSE)
 }

@@ -51,8 +51,8 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 #' @param data Data frame from a query to PaleobioDB as returned by
 #'   [pbdb_occurrences()].  Important: it is required to have
 #'   information about the taxonomic classification of the occurrences
-#'   in the data frame, to do that set: `show = "classext"` or `show =
-#'   "class"` (see Examples).
+#'   in the data frame, to do that set the `show` parameter to
+#'   `"class"` or `"classext"` (see Examples).
 #' @param rank The taxon rank to be analyzed.  The default value is
 #'   `"species"`.
 #' @param col Colour of the bars in the plot.
@@ -66,7 +66,7 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 #' @examples \dontrun{
 #'   canis_quaternary <- pbdb_occurrences(
 #'     limit = "all", base_name = "Canis", interval = "Quaternary",
-#'     show = c("coords", "classext", "ident"), vocab = "pbdb"
+#'     show = c("coords", "classext"), vocab = "pbdb"
 #'   )
 #'   pbdb_temp_range(canis_quaternary, rank = "species", names = FALSE)
 #' }
@@ -177,9 +177,10 @@ pbdb_temp_range <- function(data,
 #' occurrence data and optionally produces a plot from it.
 #'
 #' @param data Data frame from a query to PaleobioDB as returned by
-#'   [pbdb_occurrences()].  Important: it is required to
-#'   show the name of the families, orders, etc. in the data frame, to
-#'   do that set: `show = c("classext", "ident")` (see Examples).
+#'   [pbdb_occurrences()].  Important: it is required to have
+#'   information about the taxonomic classification of the occurrences
+#'   in the data frame, to do that set the `show` parameter to
+#'   `"class"` or `"classext"` (see Examples).
 #' @param rank The taxon rank to be analyzed. The default value is
 #'   `"species"`.
 #' @param colour Colour of the area of the polygon in the plot.
@@ -188,18 +189,18 @@ pbdb_temp_range <- function(data,
 #'   (min, max).
 #' @param res Numeric. Sets the duration of the intervals in the
 #'   temporal extent.
-#' @param do.plot Logical indicating whether to produce a plot
-#'   (`TRUE` by default).
+#' @param do.plot Logical indicating whether to produce a plot (`TRUE`
+#'   by default).
 #' @export
-#' @returns A data frame with the richness aggregated by the taxon rank
-#'   in the specified temporal extent and resolution.
+#' @returns A data frame with the richness aggregated by the taxon
+#'   rank in the specified temporal extent and resolution.
 #'
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
 #'     limit = "all",
 #'     vocab = "pbdb",
 #'     base_name = "Canidae",
-#'     show = "classext"
+#'     show = "class"
 #'   )
 #'   pbdb_richness(data, rank = "species", res = 0.2, temporal_extent = c(0, 3))
 #'}
@@ -295,7 +296,7 @@ pbdb_richness <- function(data,
 #' @examples \dontrun{
 #'   canidae <- pbdb_occurrences(
 #'     limit = "all", vocab = "pbdb",
-#'     base_name = "Canidae", show = c("classext", "ident")
+#'     base_name = "Canidae", show = "classext"
 #'   )
 #'
 #'   # Plot of the evolutionary rates

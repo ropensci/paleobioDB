@@ -52,7 +52,7 @@ appearances.
 \dontrun{
   canidae <- pbdb_occurrences(
     limit = "all", vocab = "pbdb",
-    base_name = "Canidae", show = c("classext", "ident")
+    base_name = "Canidae", show = "classext"
   )
 
   # Plot of the evolutionary rates

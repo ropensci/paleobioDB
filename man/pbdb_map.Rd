@@ -11,13 +11,13 @@ pbdb_map(
   col.ocean = "black",
   main = NULL,
   col.point = c("light blue", "blue"),
+  do.plot = TRUE,
   ...
 )
 }
 \arguments{
 \item{data}{Input data frame. This data frame is the output of the
-\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument
-\code{show = "coords"}. See also Details and Examples.}
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument \code{show = "coords"}. See also Details and Examples.}
 
 \item{col.int}{The colour of the mainland.}
 
@@ -31,8 +31,14 @@ pbdb_map(
 colour gradient showing the number of occurrences per coordinate
 in the map.}
 
-\item{...}{Other parameters. See \code{\link[=par]{par()}} and
-\code{\link[=map]{map()}}.}
+\item{do.plot}{Logical. If \code{TRUE}, the function produces a plot in
+addition to returning a data frame with the occurrence counts.}
+
+\item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}.}
+}
+\value{
+A data frame with the number of occurrences per
+coordinate.
 }
 \description{
 The function opens a new window with a map showing the distribution
@@ -40,10 +46,9 @@ of the fossil records as points. These points are coloured
 according to the number of occurrences per cell.
 }
 \details{
-The argument \code{show = "coords"} in the
-\code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function is required. We recommend
-the use of a cairo device (\code{\link[=X11]{X11()}}) for better
-visualization of the maps. See Examples.
+The argument \code{show = "coords"} in the \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}
+function is required. We recommend the use of a cairo device
+(\code{\link[=X11]{X11()}}) for better visualization of the maps. See Examples.
 }
 \examples{
 \dontrun{
@@ -61,6 +66,6 @@ visualization of the maps. See Examples.
 }
 }
 \seealso{
-See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}},
-\code{\link[=par]{par()}} and \code{\link[=colors]{colors()}} help pages.
+See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}}, \code{\link[=par]{par()}} and \code{\link[=colors]{colors()}}
+help pages.
 }

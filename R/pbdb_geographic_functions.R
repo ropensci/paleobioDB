@@ -18,10 +18,6 @@
 
 #' @importFrom grDevices adjustcolor colorRampPalette
 .add.Points <- function(Y, col.point, pch, ...) {
-  # Reorder the points so that the coordinates with the highest number
-  # of occurrences come out on top in the plot, making them more
-  # visible
-  Y <- Y[order(Y$Occur), ]
   Pal <- colorRampPalette(col.point)
   Y$n <- as.numeric(cut(Y$Occur, breaks = 5))
   Y$Col <- Pal(5)[Y$n]
@@ -59,8 +55,8 @@
 #' according to the number of occurrences per cell.
 #'
 #' @param data Input data frame. This data frame is the output of the
-#'   [pbdb_occurrences()] function using the argument
-#'   `show = "coords"`. See also Details and Examples.
+#'   [pbdb_occurrences()] function using the argument `show =
+#'   "coords"`. See also Details and Examples.
 #' @param col.int The colour of the mainland.
 #' @param pch See [par()].
 #' @param col.ocean The colour of the ocean.
@@ -68,14 +64,16 @@
 #' @param col.point Two or more colours that are used to generate the
 #'   colour gradient showing the number of occurrences per coordinate
 #'   in the map.
-#' @param ... Other parameters. See [par()] and
-#'   [map()].
-#' @details The argument `show = "coords"` in the
-#'   [pbdb_occurrences()] function is required. We recommend
-#'   the use of a cairo device ([X11()]) for better
-#'   visualization of the maps. See Examples.
-#' @seealso See [pbdb_occurrences()], [map()],
-#'   [par()] and [colors()] help pages.
+#' @param do.plot Logical. If `TRUE`, the function produces a plot in
+#'   addition to returning a data frame with the occurrence counts.
+#' @param ... Other parameters. See [par()] and [map()].
+#' @details The argument `show = "coords"` in the [pbdb_occurrences()]
+#'   function is required. We recommend the use of a cairo device
+#'   ([X11()]) for better visualization of the maps. See Examples.
+#' @returns A data frame with the number of occurrences per
+#'   coordinate.
+#' @seealso See [pbdb_occurrences()], [map()], [par()] and [colors()]
+#'   help pages.
 #' @export
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
@@ -91,7 +89,8 @@
 #'   )
 #' }
 pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
-                     main = NULL, col.point = c("light blue", "blue"), ...) {
+                     main = NULL, col.point = c("light blue", "blue"),
+                     do.plot = TRUE, ...) {
   if (!all(c("lat", "lng") %in% names(data))) {
     err_msg <- strwrap(
       paste(
@@ -103,12 +102,18 @@ pbdb_map <- function(data, col.int = "white", pch = 19, col.ocean = "black",
     stop(paste(err_msg, collapse = "\n"))
   }
 
-  .add.ColOcean(col.ocean, col.int, ...)
   Y <- .extract.LatLong(data)
-  Y1 <- .add.Points(Y, col.point, pch, ...)
-  title(main = main, line = 1, ...)
-  .add.Legend(Y1, pch, ...)
-  invisible()
+  # Reorder the points so that the coordinates with the highest number
+  # of occurrences come out on top in the plot, making them more
+  # visible
+  Y <- Y[order(Y$Occur), ]
+  if (do.plot) {
+    .add.ColOcean(col.ocean, col.int, ...)
+    Y1 <- .add.Points(Y, col.point, pch, ...)
+    title(main = main, line = 1, ...)
+    .add.Legend(Y1, pch, ...)
+  }
+  invisible(Y)
 }
 
 #-------------------------------------------------

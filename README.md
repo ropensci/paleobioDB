@@ -99,13 +99,28 @@ corrected or eliminated, they will increase the richness of genera.
 
 ### `pbdb_map`
 
-Plots a map showing fossil occurrences.
+Plots a map showing fossil occurrences and invisibly returns a data
+frame with the number of occurrences per coordinate.
 
 ``` r
-pbdb_map(canidae)
+(pbdb_map(canidae))
 ```
 
 ![](man/figures/README-pbdb_map-1.png)<!-- -->
+
+    #>                               lng        lat Occur
+    #> -70.583885.-52.415833  -70.583885 -52.415833     1
+    #> -69.583336.-52.166668  -69.583336 -52.166668     1
+    #> -70.060555.-52.054722  -70.060555 -52.054722     1
+    #> -70.174446.-51.74778   -70.174446 -51.747780     1
+    #> -72.599998.-51.051388  -72.599998 -51.051388     1
+    ....
+    #> 22.033333.46.966667     22.033333  46.966667    11
+    #> 11.25.45.416668         11.250000  45.416668    12
+    #> -117.33.900002        -117.000000  33.900002    13
+    #> 5.395.43.686111          5.395000  43.686111    14
+    #> -105.699997.39.299999 -105.699997  39.299999    15
+    #> 27.7208.-26.016701      27.720800 -26.016701    18
 
 ### `pbdb_map_occur`
 

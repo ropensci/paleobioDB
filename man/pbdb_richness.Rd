@@ -16,9 +16,10 @@ pbdb_richness(
 }
 \arguments{
 \item{data}{Data frame from a query to PaleobioDB as returned by
-\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to
-show the name of the families, orders, etc. in the data frame, to
-do that set: \code{show = c("classext", "ident")} (see Examples).}
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to have
+information about the taxonomic classification of the occurrences
+in the data frame, to do that set the \code{show} parameter to
+\code{"class"} or \code{"classext"} (see Examples).}
 
 \item{rank}{The taxon rank to be analyzed. The default value is
 \code{"species"}.}
@@ -33,12 +34,12 @@ temporal extent.}
 
 \item{bord}{Colour of the border of the polygon.}
 
-\item{do.plot}{Logical indicating whether to produce a plot
-(\code{TRUE} by default).}
+\item{do.plot}{Logical indicating whether to produce a plot (\code{TRUE}
+by default).}
 }
 \value{
-A data frame with the richness aggregated by the taxon rank
-in the specified temporal extent and resolution.
+A data frame with the richness aggregated by the taxon
+rank in the specified temporal extent and resolution.
 }
 \description{
 Returns a data frame of temporal variation in taxon richness in the
@@ -51,7 +52,7 @@ occurrence data and optionally produces a plot from it.
     limit = "all",
     vocab = "pbdb",
     base_name = "Canidae",
-    show = "classext"
+    show = "class"
   )
   pbdb_richness(data, rank = "species", res = 0.2, temporal_extent = c(0, 3))
 }
