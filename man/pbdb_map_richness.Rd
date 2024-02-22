@@ -12,6 +12,7 @@ pbdb_map_richness(
   col_int = "white",
   col_ocean = "black",
   col_rich = c("light blue", "blue"),
+  title = "Taxonomic richness",
   ...
 )
 }
@@ -35,6 +36,9 @@ degrees). See \code{\link[terra:dimensions]{terra::res()}}.}
 
 \item{col_rich}{Two or more colours that are used to generate the
 colour gradient showing the richness per cell in the map.}
+
+\item{title}{A title for the plot, to be positioned to the right of
+the legend.}
 
 \item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}.}
 }

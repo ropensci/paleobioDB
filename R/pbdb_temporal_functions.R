@@ -189,6 +189,7 @@ pbdb_temp_range <- function(data,
 #'   (min, max).
 #' @param res Numeric. Sets the duration of the intervals in the
 #'   temporal extent.
+#' @param ylab A label for the y axis.
 #' @param do_plot Logical indicating whether to produce a plot (`TRUE`
 #'   by default).
 #' @export
@@ -211,6 +212,7 @@ pbdb_richness <- function(data,
                           temporal_extent = c(0, 10),
                           colour = "#0000FF30",
                           bord = "#0000FF",
+                          ylab = "Richness",
                           do_plot = TRUE) {
   rank <- match.arg(rank)
   temporal_range <- pbdb_temp_range(data = data, rank = rank, do_plot = FALSE)
@@ -262,7 +264,7 @@ pbdb_richness <- function(data,
       "Million years before present",
       line = floor(bottom_margin) - 2, adj = 1, side = 1
     )
-    mtext("Richness", line = 3.5, adj = 0, side = 2)
+    mtext(ylab, line = 3.5, adj = 0, side = 2)
   }
 
   richness

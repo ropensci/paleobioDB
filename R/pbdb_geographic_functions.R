@@ -312,6 +312,8 @@ pbdb_map_occur <- function(data,
 #' @param col_ocean The colour of the ocean.
 #' @param col_rich Two or more colours that are used to generate the
 #'   colour gradient showing the richness per cell in the map.
+#' @param title A title for the plot, to be positioned to the right of
+#'   the legend.
 #' @param ... Other parameters. See [par()] and [map()].
 #' @details The argument `show = c("coords", "classext")` in the
 #'   [pbdb_occurrences()] function is required. We recommend the use
@@ -344,6 +346,7 @@ pbdb_map_richness <- function(data,
                               col_int = "white",
                               col_ocean = "black",
                               col_rich = c("light blue", "blue"),
+                              title = "Taxonomic richness",
                               ...) {
   rank <- match.arg(rank)
 
@@ -374,7 +377,7 @@ pbdb_map_richness <- function(data,
   if (do_plot) {
     .plot_raster_rich(
       r, col_rich, col_ocean, col_int, res,
-      lg_title = paste("Richness of", rank),
+      lg_title = title,
       ...
     )
   }
