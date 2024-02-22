@@ -6,7 +6,7 @@
 \usage{
 pbdb_richness(
   data,
-  rank,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
   res = 1,
   temporal_extent = c(0, 10),
   colour = "#0000FF30",
@@ -20,7 +20,7 @@ pbdb_richness(
 show the name of the families, orders, etc. in the data frame, to
 do that set: \code{show = c("classext", "ident")} (see Examples).}
 
-\item{rank}{The taxon rank to be analyzed. Its default value is
+\item{rank}{The taxon rank to be analyzed. The default value is
 \code{"species"}.}
 
 \item{res}{Numeric. Sets the duration of the intervals in the
@@ -48,8 +48,10 @@ occurrence data and optionally produces a plot from it.
 \examples{
 \dontrun{
   data <- pbdb_occurrences(
-    limit = "all", vocab = "pbdb", base_name = "Canidae",
-    show = c("classext", "ident")
+    limit = "all",
+    vocab = "pbdb",
+    base_name = "Canidae",
+    show = "classext"
   )
   pbdb_richness(data, rank = "species", res = 0.2, temporal_extent = c(0, 3))
 }

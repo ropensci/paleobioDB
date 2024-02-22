@@ -299,7 +299,7 @@ pbdb_map_occur <- function(data, res = 5,
 #'   c("coords", "classext")`. See also Details and Examples.
 #' @param rank Taxon rank for which richness is calculated. The
 #'   options are: `"species"`, `"genus"`, `"family"`, `"order"`,
-#'   `"class"` or `"phylum"`.
+#'   `"class"` or `"phylum"`.  The default value is `"species"`.
 #' @param do.plot Logical. If `TRUE`, the function produces a plot in
 #'   addition to returning a `SpatRaster`.
 #' @param res The resolution of the `SpatRaster` object (in decimal
@@ -333,20 +333,21 @@ pbdb_map_occur <- function(data, res = 5,
 #'   pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
 #' }
 pbdb_map_richness <- function(data,
-                              rank = "species",
+                              rank = c("species", "genus", "family",
+                                       "order", "class", "phylum"),
                               do.plot = TRUE,
                               res = 5,
                               col.int = "white",
                               col.ocean = "black",
                               col.rich = c("light blue", "blue"),
                               ...) {
-  valid_ranks <- c("species", "genus", "family", "order", "class", "phylum")
-  rank <- match.arg(rank, valid_ranks)
+  rank <- match.arg(rank)
 
   pbdb_fields <- c(
     "accepted_no", "genus_no", "family_no", "order_no", "class_no", "phylum_no"
   )
   com_fields <- c("tid", "gnn", "fmn", "odn", "cln", "phn")
+
   pbdb_fields_in_data <- all(pbdb_fields %in% colnames(data))
   com_fields_in_data <- all(com_fields %in% colnames(data))
   coords_in_data <- all(c("lat", "lng") %in% colnames(data))

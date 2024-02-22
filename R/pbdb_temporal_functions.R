@@ -43,17 +43,18 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 }
 
 #' Temporal range of taxa
-#' 
+#'
 #' Returns a data frame with the temporal range of the taxa within a
 #' selected rank (species, genera, families, etc.), and optionally
 #' generates a plot from it.
-#' 
+#'
 #' @param data Data frame from a query to PaleobioDB as returned by
-#'   [pbdb_occurrences()].  Important: it is required to
-#'   show the name of the families, orders, etc. in the data frame, to
-#'   do that set: `show = "classext"` or `show = "class"`
-#'   (see Examples).
-#' @param rank The taxon rank to be analyzed.
+#'   [pbdb_occurrences()].  Important: it is required to have
+#'   information about the taxonomic classification of the occurrences
+#'   in the data frame, to do that set: `show = "classext"` or `show =
+#'   "class"` (see Examples).
+#' @param rank The taxon rank to be analyzed.  The default value is
+#'   `"species"`.
 #' @param col Colour of the bars in the plot.
 #' @param names Logical indicating whether to include the name of the
 #'   taxa in the plot (`TRUE` by default).
@@ -69,8 +70,13 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 #'   )
 #'   pbdb_temp_range(canis_quaternary, rank = "species", names = FALSE)
 #' }
-pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
+pbdb_temp_range <- function(data,
+                            rank = c("species", "genus", "family",
+                                     "order", "class", "phylum"),
+                            col = "#0000FF",
+                            names = TRUE,
                             do.plot = TRUE) {
+  rank <- match.arg(rank)
   temporal_range <- .extract_temporal_range(data, rank)
 
   if (do.plot) {
@@ -165,16 +171,16 @@ pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
 }
 
 #' Temporal variation in taxon richness
-#' 
+#'
 #' Returns a data frame of temporal variation in taxon richness in the
 #' indicated temporal extent and resolution from the provided
 #' occurrence data and optionally produces a plot from it.
-#' 
+#'
 #' @param data Data frame from a query to PaleobioDB as returned by
 #'   [pbdb_occurrences()].  Important: it is required to
 #'   show the name of the families, orders, etc. in the data frame, to
 #'   do that set: `show = c("classext", "ident")` (see Examples).
-#' @param rank The taxon rank to be analyzed. Its default value is
+#' @param rank The taxon rank to be analyzed. The default value is
 #'   `"species"`.
 #' @param colour Colour of the area of the polygon in the plot.
 #' @param bord Colour of the border of the polygon.
@@ -187,20 +193,25 @@ pbdb_temp_range <- function(data, rank, col = "#0000FF", names = TRUE,
 #' @export
 #' @returns A data frame with the richness aggregated by the taxon rank
 #'   in the specified temporal extent and resolution.
-#' 
+#'
 #' @examples \dontrun{
 #'   data <- pbdb_occurrences(
-#'     limit = "all", vocab = "pbdb", base_name = "Canidae",
-#'     show = c("classext", "ident")
+#'     limit = "all",
+#'     vocab = "pbdb",
+#'     base_name = "Canidae",
+#'     show = "classext"
 #'   )
 #'   pbdb_richness(data, rank = "species", res = 0.2, temporal_extent = c(0, 3))
 #'}
-pbdb_richness <- function(data, rank,
+pbdb_richness <- function(data,
+                          rank = c("species", "genus", "family",
+                                   "order", "class", "phylum"),
                           res = 1,
                           temporal_extent = c(0, 10),
                           colour = "#0000FF30",
                           bord = "#0000FF",
                           do.plot = TRUE) {
+  rank <- match.arg(rank)
   temporal_range <- pbdb_temp_range(data = data, rank = rank, do.plot = FALSE)
   te <- temporal_extent
   time <- seq(from = min(te), to = (max(te)), by = res)
@@ -257,7 +268,7 @@ pbdb_richness <- function(data, rank,
 }
 
 #' Appearance of new taxa and extinctions across time
-#' 
+#'
 #' Returns a data frame with the appearance of new taxa and their last
 #' appearances across time in the provided data and optionally
 #' produces a plot from it, showing the new appearances or last
@@ -304,13 +315,15 @@ pbdb_richness <- function(data, rank,
 #'   )
 #' }
 pbdb_orig_ext <- function(data,
-                          rank,
+                          rank = c("species", "genus", "family",
+                                   "order", "class", "phylum"),
                           temporal_extent,
                           res,
                           orig_ext = 1,
                           colour = "#0000FF30",
                           bord = "#0000FF",
                           do.plot = TRUE) {
+  rank <- match.arg(rank)
   temporal_range <- pbdb_temp_range(data = data, rank = rank, do.plot = FALSE)
   te <- temporal_extent
   sequence <- seq(from = min(te), to = max(te), by = res)

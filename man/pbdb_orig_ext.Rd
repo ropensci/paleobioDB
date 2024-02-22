@@ -6,7 +6,7 @@
 \usage{
 pbdb_orig_ext(
   data,
-  rank,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
   temporal_extent,
   res,
   orig_ext = 1,
@@ -57,12 +57,18 @@ appearances.
 
   # Plot of the evolutionary rates
   pbdb_orig_ext(
-    canidae, rank = "genus", temporal_extent = c(0, 10), res = 1, orig_ext = 1
+    canidae,
+    rank = "genus",
+    orig_ext = 1,
+    temporal_extent = c(0, 10), res = 1
   )
 
   # Plot of the extinction rates
   pbdb_orig_ext(
-    canidae, rank = "species", temporal_extent = c(0, 10), res = 1, orig_ext = 2
+    canidae,
+    rank = "genus",
+    orig_ext = 2,
+    temporal_extent = c(0, 10), res = 1
   )
 }
 }

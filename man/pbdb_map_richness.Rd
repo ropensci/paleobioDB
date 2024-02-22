@@ -6,7 +6,7 @@
 \usage{
 pbdb_map_richness(
   data,
-  rank = "species",
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
   do.plot = TRUE,
   res = 5,
   col.int = "white",
@@ -21,7 +21,7 @@ pbdb_map_richness(
 
 \item{rank}{Taxon rank for which richness is calculated. The
 options are: \code{"species"}, \code{"genus"}, \code{"family"}, \code{"order"},
-\code{"class"} or \code{"phylum"}.}
+\code{"class"} or \code{"phylum"}.  The default value is \code{"species"}.}
 
 \item{do.plot}{Logical. If \code{TRUE}, the function produces a plot in
 addition to returning a \code{SpatRaster}.}
@@ -58,7 +58,7 @@ graphs. See Examples.
 \dontrun{
   data <- pbdb_occurrences(
     limit = 1000, vocab = "pbdb", base_name = "mammalia",
-    show = c("classext", "coords", "ident")
+    show = c("classext", "coords")
   )
   X11(width = 13, height = 7.8)
   pbdb_map_richness(data, res = 8, rank = "genus")

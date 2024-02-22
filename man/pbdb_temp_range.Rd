@@ -4,16 +4,22 @@
 \alias{pbdb_temp_range}
 \title{Temporal range of taxa}
 \usage{
-pbdb_temp_range(data, rank, col = "#0000FF", names = TRUE, do.plot = TRUE)
+pbdb_temp_range(
+  data,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
+  col = "#0000FF",
+  names = TRUE,
+  do.plot = TRUE
+)
 }
 \arguments{
 \item{data}{Data frame from a query to PaleobioDB as returned by
-\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to
-show the name of the families, orders, etc. in the data frame, to
-do that set: \code{show = "classext"} or \code{show = "class"}
-(see Examples).}
+\code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.  Important: it is required to have
+information about the taxonomic classification of the occurrences
+in the data frame, to do that set: \code{show = "classext"} or \code{show = "class"} (see Examples).}
 
-\item{rank}{The taxon rank to be analyzed.}
+\item{rank}{The taxon rank to be analyzed.  The default value is
+\code{"species"}.}
 
 \item{col}{Colour of the bars in the plot.}
 
