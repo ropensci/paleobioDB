@@ -212,7 +212,7 @@ pbdb_map_occur <- function(data, res = 5,
 
 #-------------------------------------------------
 
-.extract.rank.specie <- function(data, res = res) {
+.extract.rank.species <- function(data, res = res) {
   e <- maps::map(plot = FALSE)
   ext <- ext(e$range)
   r <- rast(ext)
@@ -361,7 +361,7 @@ pbdb_map_richness <- function(data,
   }
 
   if (rank == "species") {
-    r <- .extract.rank.specie(data, res)
+    r <- .extract.rank.species(data, res)
   } else {
     r <- .extract.rank.all(data, res, rank)
   }
