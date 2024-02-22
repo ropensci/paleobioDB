@@ -4,15 +4,14 @@
 \alias{pbdb_subtaxa}
 \title{Count number of taxa in an occurrence data frame}
 \usage{
-pbdb_subtaxa(data, do.plot = TRUE, col = "#0000FF")
+pbdb_subtaxa(data, do_plot = TRUE, col = "#0000FF")
 }
 \arguments{
 \item{data}{Data frame from a query to PaleobioDB as returned by
-the \code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument
-\code{show = "class"} or \code{show = "classext"}.}
+the \code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument \code{show = "class"} or \code{show = "classext"}.}
 
-\item{do.plot}{Logical indicating whether to produce a plot
-(\code{TRUE} by default).}
+\item{do_plot}{Logical indicating whether to produce a plot (\code{TRUE}
+by default).}
 
 \item{col}{Colour of the histogram.}
 }

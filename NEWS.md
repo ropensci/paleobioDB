@@ -1,6 +1,11 @@
 paleobioDB 0.7.0.9000
 =====================
 
+This new major version of the paleobioDB package uses a new API
+version.  It is possible that code written for previous versions might
+not be compatible.  If you need to run older code, you might have to
+rewrite it or to install an older version of the package.
+
 ### NEW FEATURES
 
 * Update to API version 1.2 (#51, #57).
@@ -9,6 +14,10 @@ paleobioDB 0.7.0.9000
 
 * Use methods from package `terra` instead of `raster` in functions
   that plot and return raster objects.
+
+* Function and argument names consistently use snake case now, so some
+  argument names have been changed (e.g. the `do.plot` parameter
+  available in many plotting functions has been renamed to `do_plot`).
 
 * Query functions warn the user when no records are returned.
 

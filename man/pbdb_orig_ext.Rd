@@ -12,7 +12,7 @@ pbdb_orig_ext(
   orig_ext = 1,
   colour = "#0000FF30",
   bord = "#0000FF",
-  do.plot = TRUE
+  do_plot = TRUE
 )
 }
 \arguments{
@@ -35,7 +35,7 @@ do that set: \code{show = c("classext", "ident")} (see Examples).}
 
 \item{bord}{Colour of the border of the polygon.}
 
-\item{do.plot}{Logical value indicating whether to produce a plot
+\item{do_plot}{Logical value indicating whether to produce a plot
 (\code{TRUE} by default).}
 }
 \value{

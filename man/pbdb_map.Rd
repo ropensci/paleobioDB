@@ -6,12 +6,12 @@
 \usage{
 pbdb_map(
   data,
-  col.int = "white",
+  col_int = "white",
   pch = 19,
-  col.ocean = "black",
+  col_ocean = "black",
   main = NULL,
-  col.point = c("light blue", "blue"),
-  do.plot = TRUE,
+  col_point = c("light blue", "blue"),
+  do_plot = TRUE,
   ...
 )
 }
@@ -19,19 +19,19 @@ pbdb_map(
 \item{data}{Input data frame. This data frame is the output of the
 \code{\link[=pbdb_occurrences]{pbdb_occurrences()}} function using the argument \code{show = "coords"}. See also Details and Examples.}
 
-\item{col.int}{The colour of the mainland.}
+\item{col_int}{The colour of the mainland.}
 
 \item{pch}{See \code{\link[=par]{par()}}.}
 
-\item{col.ocean}{The colour of the ocean.}
+\item{col_ocean}{The colour of the ocean.}
 
 \item{main}{Title of the map. See \code{\link[=par]{par()}}.}
 
-\item{col.point}{Two or more colours that are used to generate the
+\item{col_point}{Two or more colours that are used to generate the
 colour gradient showing the number of occurrences per coordinate
 in the map.}
 
-\item{do.plot}{Logical. If \code{TRUE}, the function produces a plot in
+\item{do_plot}{Logical. If \code{TRUE}, the function produces a plot in
 addition to returning a data frame with the occurrence counts.}
 
 \item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}.}
@@ -60,7 +60,9 @@ function is required. We recommend the use of a cairo device
   pbdb_map(data, pch = 1)
   pbdb_map(
     data,
-    pch = 19, col.point = c("pink", "red"), col.ocean = "light blue",
+    pch = 19,
+    col_point = c("pink", "red"),
+    col_ocean = "light blue",
     main = "Canis"
   )
 }

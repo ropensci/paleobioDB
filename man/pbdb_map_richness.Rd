@@ -7,11 +7,11 @@
 pbdb_map_richness(
   data,
   rank = c("species", "genus", "family", "order", "class", "phylum"),
-  do.plot = TRUE,
+  do_plot = TRUE,
   res = 5,
-  col.int = "white",
-  col.ocean = "black",
-  col.rich = c("light blue", "blue"),
+  col_int = "white",
+  col_ocean = "black",
+  col_rich = c("light blue", "blue"),
   ...
 )
 }
@@ -23,17 +23,17 @@ pbdb_map_richness(
 options are: \code{"species"}, \code{"genus"}, \code{"family"}, \code{"order"},
 \code{"class"} or \code{"phylum"}.  The default value is \code{"species"}.}
 
-\item{do.plot}{Logical. If \code{TRUE}, the function produces a plot in
+\item{do_plot}{Logical. If \code{TRUE}, the function produces a plot in
 addition to returning a \code{SpatRaster}.}
 
 \item{res}{The resolution of the \code{SpatRaster} object (in decimal
 degrees). See \code{\link[terra:dimensions]{terra::res()}}.}
 
-\item{col.int}{The colour of the mainland.}
+\item{col_int}{The colour of the mainland.}
 
-\item{col.ocean}{The colour of the ocean.}
+\item{col_ocean}{The colour of the ocean.}
 
-\item{col.rich}{Two or more colours that are used to generate the
+\item{col_rich}{Two or more colours that are used to generate the
 colour gradient showing the richness per cell in the map.}
 
 \item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}.}
@@ -64,7 +64,7 @@ graphs. See Examples.
   pbdb_map_richness(data, res = 8, rank = "genus")
   pbdb_map_richness(data, res = 8, rank = "family")
   ## Get the raster object without plotting the map
-  pbdb_map_richness(data, res = 8, rank = "family", do.plot = FALSE)
+  pbdb_map_richness(data, res = 8, rank = "family", do_plot = FALSE)
 }
 }
 \seealso{

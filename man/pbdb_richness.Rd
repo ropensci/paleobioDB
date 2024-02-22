@@ -11,7 +11,7 @@ pbdb_richness(
   temporal_extent = c(0, 10),
   colour = "#0000FF30",
   bord = "#0000FF",
-  do.plot = TRUE
+  do_plot = TRUE
 )
 }
 \arguments{
@@ -34,7 +34,7 @@ temporal extent.}
 
 \item{bord}{Colour of the border of the polygon.}
 
-\item{do.plot}{Logical indicating whether to produce a plot (\code{TRUE}
+\item{do_plot}{Logical indicating whether to produce a plot (\code{TRUE}
 by default).}
 }
 \value{

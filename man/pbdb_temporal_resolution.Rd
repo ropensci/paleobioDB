@@ -4,13 +4,13 @@
 \alias{pbdb_temporal_resolution}
 \title{Temporal resolution of fossil data}
 \usage{
-pbdb_temporal_resolution(data, do.plot = TRUE)
+pbdb_temporal_resolution(data, do_plot = TRUE)
 }
 \arguments{
 \item{data}{Data frame from a query to PaleobioDB as returned by
 \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}.}
 
-\item{do.plot}{Logical. If \code{TRUE}, the function creates a
+\item{do_plot}{Logical. If \code{TRUE}, the function creates a
 frequency plot of the data.}
 }
 \value{

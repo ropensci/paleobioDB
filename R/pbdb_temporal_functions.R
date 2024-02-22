@@ -4,7 +4,7 @@
 #'
 #' @param data Data frame from a query to PaleobioDB as returned by
 #'   [pbdb_occurrences()].
-#' @param do.plot Logical. If `TRUE`, the function creates a
+#' @param do_plot Logical. If `TRUE`, the function creates a
 #'   frequency plot of the data.
 #' @returns A list with a summary of the temporal resolution of the
 #'   data (min, max, 1st and 3rd quartiles, median and mean), and the
@@ -14,7 +14,7 @@
 #'   data <- pbdb_occurrences(taxon_name = "Canidae", interval = "Quaternary")
 #'   pbdb_temporal_resolution(data)
 #' }
-pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
+pbdb_temporal_resolution <- function(data, do_plot = TRUE) {
   if (!any(c("eag", "max_ma") %in% names(data))) {
     err_msg <- strwrap(
       paste(
@@ -32,7 +32,7 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
   diff <- as.numeric(data[[early_age_col]]) - as.numeric(data[[late_age_col]])
   tr <- list(summary = summary(diff), temporal_resolution = diff)
 
-  if (do.plot) {
+  if (do_plot) {
     hist(unlist(tr[[2]]), freq = TRUE, col = "#0000FF", border = FALSE,
          xlim = c(max(unlist(tr[[2]]), na.rm = TRUE), 0),
          breaks = 50, xlab = "Temporal resolution of the data (Ma)",
@@ -58,7 +58,7 @@ pbdb_temporal_resolution <- function(data, do.plot = TRUE) {
 #' @param col Colour of the bars in the plot.
 #' @param names Logical indicating whether to include the name of the
 #'   taxa in the plot (`TRUE` by default).
-#' @param do.plot Logical value indicating whether to produce a plot
+#' @param do_plot Logical value indicating whether to produce a plot
 #'   (`TRUE` by default).
 #' @returns A data frame with the time span of the taxa selected
 #'   (species, genera, etc.).
@@ -75,11 +75,11 @@ pbdb_temp_range <- function(data,
                                      "order", "class", "phylum"),
                             col = "#0000FF",
                             names = TRUE,
-                            do.plot = TRUE) {
+                            do_plot = TRUE) {
   rank <- match.arg(rank)
   temporal_range <- .extract_temporal_range(data, rank)
 
-  if (do.plot) {
+  if (do_plot) {
     pos <- seq_len(nrow(temporal_range)) - 0.9
     t_range <- cbind(temporal_range, pos)
     # Make right margin large enough to fit the longest name
@@ -189,7 +189,7 @@ pbdb_temp_range <- function(data,
 #'   (min, max).
 #' @param res Numeric. Sets the duration of the intervals in the
 #'   temporal extent.
-#' @param do.plot Logical indicating whether to produce a plot (`TRUE`
+#' @param do_plot Logical indicating whether to produce a plot (`TRUE`
 #'   by default).
 #' @export
 #' @returns A data frame with the richness aggregated by the taxon
@@ -211,9 +211,9 @@ pbdb_richness <- function(data,
                           temporal_extent = c(0, 10),
                           colour = "#0000FF30",
                           bord = "#0000FF",
-                          do.plot = TRUE) {
+                          do_plot = TRUE) {
   rank <- match.arg(rank)
-  temporal_range <- pbdb_temp_range(data = data, rank = rank, do.plot = FALSE)
+  temporal_range <- pbdb_temp_range(data = data, rank = rank, do_plot = FALSE)
   te <- temporal_extent
   time <- seq(from = min(te), to = (max(te)), by = res)
 
@@ -228,7 +228,7 @@ pbdb_richness <- function(data,
   richness <- colSums(a, na.rm = TRUE)
   temporal_intervals <- paste(time[-length(time)], time[-1], sep = "-")
   richness <- data.frame(temporal_intervals, richness)
-  if (do.plot) {
+  if (do_plot) {
     plot.new()
     bottom_margin <- 5 + max(nchar(temporal_intervals)) / 3 + 0.4
     opar <- par(
@@ -287,7 +287,7 @@ pbdb_richness <- function(data,
 #'   2 to plot the number of extinctions.
 #' @param colour Colour of the area of the polygon in the plot.
 #' @param bord Colour of the border of the polygon.
-#' @param do.plot Logical value indicating whether to produce a plot
+#' @param do_plot Logical value indicating whether to produce a plot
 #'   (`TRUE` by default).
 #' @export
 #' @returns A data frame with the number of first appearances and
@@ -323,9 +323,9 @@ pbdb_orig_ext <- function(data,
                           orig_ext = 1,
                           colour = "#0000FF30",
                           bord = "#0000FF",
-                          do.plot = TRUE) {
+                          do_plot = TRUE) {
   rank <- match.arg(rank)
-  temporal_range <- pbdb_temp_range(data = data, rank = rank, do.plot = FALSE)
+  temporal_range <- pbdb_temp_range(data = data, rank = rank, do_plot = FALSE)
   te <- temporal_extent
   sequence <- seq(from = min(te), to = max(te), by = res)
   intervals <- data.frame(min = sequence[-length(sequence)], max = sequence[-1])
@@ -351,7 +351,7 @@ pbdb_orig_ext <- function(data,
   names(change) <- c("new", "ext")
   row.names(change) <- labels2
 
-  if (do.plot) {
+  if (do_plot) {
     ymx <- max(change[, orig_ext])
     xmx <- sequence[length(sequence) - 1]
     xmn <- sequence[2]

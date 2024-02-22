@@ -184,7 +184,7 @@ Returns a plot and a data frame with the number of species, genera,
 families, etc. in your dataset.
 
 ```{r pbdb_subtaxa}
-pbdb_subtaxa(canidae, do.plot = TRUE)
+pbdb_subtaxa(canidae)
 ```
 
 ### `pbdb_temporal_resolution`

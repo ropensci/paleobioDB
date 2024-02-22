@@ -277,7 +277,7 @@ Returns a plot and a data frame with the number of species, genera,
 families, etc. in your dataset.
 
 ``` r
-pbdb_subtaxa(canidae, do.plot = TRUE)
+pbdb_subtaxa(canidae)
 ```
 
 ![](man/figures/README-pbdb_subtaxa-1.png)<!-- -->

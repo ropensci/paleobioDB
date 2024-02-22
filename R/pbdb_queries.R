@@ -346,7 +346,7 @@ pbdb_taxon <- function(...) {
 }
 
 #' Get information about multiple taxonomic names
-#' 
+#'
 #' Returns information about multiple taxonomic names.  This function
 #' can be used to query for all of the children or parents of a given
 #' taxon, among other operations.
@@ -378,8 +378,8 @@ pbdb_taxon <- function(...) {
 #'   non-extant taxa.
 #'
 #' @returns A data frame with information from a list of taxa.
-#' 
-#' @export 
+#'
+#' @export
 #' @examples \dontrun{
 #'   pbdb_taxa(name = "Canidae", vocab = "pbdb",
 #'             show = c("attr", "app", "size", "class"))

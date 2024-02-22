@@ -9,7 +9,7 @@ pbdb_temp_range(
   rank = c("species", "genus", "family", "order", "class", "phylum"),
   col = "#0000FF",
   names = TRUE,
-  do.plot = TRUE
+  do_plot = TRUE
 )
 }
 \arguments{
@@ -27,7 +27,7 @@ in the data frame, to do that set the \code{show} parameter to
 \item{names}{Logical indicating whether to include the name of the
 taxa in the plot (\code{TRUE} by default).}
 
-\item{do.plot}{Logical value indicating whether to produce a plot
+\item{do_plot}{Logical value indicating whether to produce a plot
 (\code{TRUE} by default).}
 }
 \value{
