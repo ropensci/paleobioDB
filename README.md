@@ -166,6 +166,30 @@ pbdb_map_richness(canidae, res = 5, rank = "species")
     #> min value   :   1 
     #> max value   :  14
 
+If you do not need the plot and you are only interested in obtaining a
+richness raster for some other purposes, you could use the argument
+`do_plot = FALSE`. For instance, this returns the same raster object as
+above (a `SpatRaster` object from the `terra` package) without plotting
+it:
+
+``` r
+pbdb_map_richness(canidae, res = 5, rank = "species", do_plot = FALSE)
+#> class       : SpatRaster 
+#> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
+#> resolution  : 5, 5  (x, y)
+#> extent      : -180, 190, -85.19218, 84.80782  (xmin, xmax, ymin, ymax)
+#> coord. ref. : lon/lat WGS 84 
+#> source(s)   : memory
+#> name        : sum 
+#> min value   :   1 
+#> max value   :  14
+```
+
+The `do_plot` argument is available in all the functions in the package
+that produce a plot and return an object. This means that the plot is
+optional in all the other plotting functions that are described here.
+Check their documentation for more details.
+
 ## Explore your fossil data
 
 ### `pbdb_temp_range`
