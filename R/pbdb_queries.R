@@ -155,8 +155,15 @@ pbdb_occurrence <- function(id, ...) {
 #' * `interval`: Return only records whose temporal locality falls
 #'   within the named geologic time interval (e.g. "Miocene").
 #'
-#' * `continent`: Return only records whose geographic location falls
-#'   within the specified continent(s).
+#' * `cc`: Return only records whose location falls within the
+#'   specified geographic regions. The value of this parameter should
+#'   be one or more two-character country codes and/or three-character
+#'   continent codes as a comma-separated list (see
+#'   <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2> and
+#'   <https://paleobiodb.org/data1.2/config.txt?show=continents>). If
+#'   the parameter value starts with !, then records falling into
+#'   these regions are excluded instead of included. Any country codes
+#'   starting with ^ are subtracted from the filter.
 #'
 #' * `show`: Show extra variables (e.g. `"coords"`, `"classext"`,
 #'   `"ident"`).
@@ -787,4 +794,153 @@ pbdb_ref_collections <- function(...) {
 pbdb_ref_taxa <- function(...) {
   l <- list(...)
   .pbdb_query("taxa/refs", query = l)
+}
+
+#' Get information about a single fossil specimen
+#'
+#' Returns information about a single fossil specimen, identified
+#' either by name or by identifier.
+#'
+#' @param id The identifier of the specimen.  This parameter is
+#'   required.
+#' @param ... Arguments passed to the API.  See all available
+#'   arguments at <https://paleobiodb.org/data1.2/specs/single>.
+#'
+#' * `vocab`: Set to "pbdb" to show the complete name of the variables
+#'   (by default variables have short 3-letter names).
+#'
+#' * `show`: Select additional blocks of information to be returned
+#'   along with the basic record.  Some possible values include:
+#'
+#'     * `"loc"`: Additional information about the geographic locality
+#'       of the associated occurrence, if any.
+#'
+#'     * `"stratext"`: Detailed information about the stratigraphic
+#'       context of the associated occurrence.
+#'
+#'     * `"lithext"`: Detailed information about the lithological
+#'       context of the associated occurrence.
+#'
+#'     * `"refattr"`: The author(s) and year of publication of the
+#'       reference from which this data was entered. If no reference
+#'       is recorded for this specimen, the information from the
+#'       associated occurrence or collection reference is returned
+#'       instead.
+#'
+#' @returns A data frame with information about a single specimen.
+#'
+#' @export
+#' @examples \dontrun{
+#' pbdb_specimen(id = 30050, show = c("class", "loc", "refattr"))
+#' }
+pbdb_specimen <- function(id, ...) {
+  l <- list(id = id, ...)
+  .pbdb_query("specs/single", query = l)
+}
+
+#' Get information about multiple fossil specimens
+#'
+#' Returns information about multiple fossil specimens, selected
+#' according to the parameters you provide.  Depending upon which
+#' output blocks you select (`show` parameter), the response will
+#' contain some fields describing the specimens and some describing
+#' the occurrences and collections (if any) with which they are
+#' associated.
+#'
+#' @param ... Arguments passed to the API.  See all available
+#'   arguments at <https://paleobiodb.org/data1.2/specs/list>. See the
+#'   [pbdb_occurrences()] documentation for an explanation about the
+#'   main filtering parameters.
+#' @returns A data frame with the fossil specimens that match the
+#'   query.
+#'
+#' @export
+#' @examples \dontrun{
+#'   pbdb_specimens(base_name = "Cetacea", interval = "Miocene", vocab = "pbdb")
+#' }
+pbdb_specimens <- function(...) {
+  l <- list(...)
+  .pbdb_query("specs/list", query = l)
+}
+
+#' Get references for fossil specimens
+#'
+#' Returns information about the bibliographic references associated
+#' with the selected fossil specimens.
+#'
+#' @param ... Arguments passed to the API. See documentation for
+#'   accepted parameters at
+#'   <https://paleobiodb.org/data1.2/specs/refs>. E.g.:
+#'
+#' * `spec_id`: Comma-separated list of specimen identifiers.
+#'
+#' * `base_name`: Return only records associated with the specified
+#'   taxonomic name(s), including all subtaxa and synonyms.
+#'
+#' * `ref_author`: Select only references for which any of the authors
+#'   matches the specified name.
+#'
+#' * `ref_pubyr`: Select only references published in the specified
+#'   year.
+#'
+#' * `pub_title`: Select only references that involve the specified
+#'   publication.
+#'
+#' @returns A data frame with the information about the references that
+#'   match the query.
+#'
+#' @export
+#' @examples \dontrun{
+#' pbdb_ref_specimens(spec_id = c(1505, 30050))
+#' }
+pbdb_ref_specimens <- function(...) {
+  l <- list(...)
+  .pbdb_query("specs/refs", query = l)
+}
+
+#' Get information about specimen measurements
+#'
+#' Returns information about the measurements associated with the
+#' selected fossil specimens.
+#'
+#' @param ... Arguments passed to the API.  See all available
+#'   arguments at <https://paleobiodb.org/data1.2/specs/measurements>.
+#'
+#' The following parameters can be used to retrieve measurements from
+#' a known list of specimens, occurrences, or collections. Only the
+#' records matching all specified parameters will be returned:
+#'
+#' * `spec_id`: A comma-separated list of specimen identifiers.
+#'
+#' * `occ_id`: A comma-separated list of occurrence identifiers.
+#'
+#' * `coll_id`: A comma-separated list of collection identifiers.
+#'
+#' It is possible to return additional information along with the
+#' basic record with the following parameter:
+#'
+#' * `show`: Possible values include:
+#'
+#'     * `"spec"`: Includes all of the core fields describing the
+#'       specimen from which this measurement was taken.
+#'
+#'     * `"methods"`: Information about the collection methods used.
+#'
+#' See the [pbdb_occurrences()] documentation for an explanation about
+#' more filtering parameters.
+#'
+#' @returns A data frame with information about the measurements that
+#'   match the query.
+#'
+#' @export
+#' @examples \dontrun{
+#'   pbdb_measurements(
+#'     spec_id = c(1505, 30050),
+#'     show = c("spec", "class", "methods"),
+#'     vocab = "pbdb"
+#'   )
+#' }
+pbdb_measurements <- function(...) {
+  l <- list(...)
+  .pbdb_query("specs/measurements", query = l)
 }

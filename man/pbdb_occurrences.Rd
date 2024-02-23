@@ -35,8 +35,15 @@ this old, specified in millions of years.
 this old, specified in millions of years.
 \item \code{interval}: Return only records whose temporal locality falls
 within the named geologic time interval (e.g. "Miocene").
-\item \code{continent}: Return only records whose geographic location falls
-within the specified continent(s).
+\item \code{cc}: Return only records whose location falls within the
+specified geographic regions. The value of this parameter should
+be one or more two-character country codes and/or three-character
+continent codes as a comma-separated list (see
+\url{https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2} and
+\url{https://paleobiodb.org/data1.2/config.txt?show=continents}). If
+the parameter value starts with !, then records falling into
+these regions are excluded instead of included. Any country codes
+starting with ^ are subtracted from the filter.
 \item \code{show}: Show extra variables (e.g. \code{"coords"}, \code{"classext"},
 \code{"ident"}).
 }}
