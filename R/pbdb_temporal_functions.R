@@ -289,6 +289,7 @@ pbdb_richness <- function(data,
 #'   2 to plot the number of extinctions.
 #' @param colour Colour of the area of the polygon in the plot.
 #' @param bord Colour of the border of the polygon.
+#' @param ylab A label for the y axis.
 #' @param do_plot Logical value indicating whether to produce a plot
 #'   (`TRUE` by default).
 #' @export
@@ -325,6 +326,7 @@ pbdb_orig_ext <- function(data,
                           orig_ext = 1,
                           colour = "#0000FF30",
                           bord = "#0000FF",
+                          ylab = NULL,
                           do_plot = TRUE) {
   rank <- match.arg(rank)
   temporal_range <- pbdb_temp_range(data = data, rank = rank, do_plot = FALSE)
@@ -335,7 +337,7 @@ pbdb_orig_ext <- function(data,
   labels2 <- paste(labels1[-1], labels1[-length(labels1)], sep = " to ")
 
   res_sp <- apply(intervals, 1, function(int) {
-    in_interval <- temporal_range[, 1] > int[1] & temporal_range[, 2] <= int[2]
+    in_interval <- temporal_range$max > int[1] & temporal_range$min <= int[2]
     row.names(temporal_range)[in_interval]
   })
 
@@ -358,15 +360,22 @@ pbdb_orig_ext <- function(data,
     xmx <- sequence[length(sequence) - 1]
     xmn <- sequence[2]
     plot.new()
-    par(mar = c(5, 5, 2, 5), font.lab = 1, col.lab = "grey20", col.axis = "grey50", cex.axis = 0.8)
+
+    opar <- par(
+      mar = c(5, 5, 2, 5),
+      font.lab = 1,
+      col.lab = "grey20",
+      col.axis = "grey50",
+      cex.axis = 0.8
+    )
+    on.exit(par(opar))
+
     plot.window(
       xlim = c(xmx, xmn), xaxs = "i",
       ylim = c(0, ymx), yaxs = "i"
     )
     abline(v = seq(xmn, xmx, by = res), col = "grey90", lwd = 1)
-    abline(h = seq(0, ymx,
-      by = (ymx / 10)
-    ), col = "grey90", lwd = 1)
+    abline(h = seq(0, ymx, by = (ymx / 10)), col = "grey90", lwd = 1)
     xx <- c(xmn, sequence[2:(length(sequence) - 1)], xmx)
     yy <- c(0, change[, orig_ext], 0)
     polygon(xx, yy, col = colour, border = bord)
@@ -374,7 +383,14 @@ pbdb_orig_ext <- function(data,
     axis(1, line = 1, labels = labels2, at = xx[-c(1, length(xx))])
     axis(2, line = 1, las = 1)
     mtext("Million years before present", line = 3, adj = 1, side = 1)
-    mtext(paste("Number of ", rank, sep = ""), line = 3, adj = 0, side = 2)
+    if (is.null(ylab)) {
+      rank_plurals <- c(
+        species = "species", genus = "genera", family = "families",
+        order = "orders", class = "classes", phylum = "phyla"
+      )
+      ylab <- paste("Number of", rank_plurals[rank])
+    }
+    mtext(ylab, line = 3, adj = 0, side = 2)
     title(ifelse(orig_ext == 1, "First appearences", "Last appearences"))
   }
 

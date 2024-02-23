@@ -245,10 +245,12 @@ pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 5), res = 0.5)
 
 ### `pbdb_orig_ext`
 
-Returns a data frame and a plot with the number of new appearances and
-last appearances of species, genera, families, etc. in your query across
-time. You should set the temporal extent and the resolution of the
-steps. `orig_ext = 1` plots new appearances:
+Returns a data frame and a plot with the number of appearances and
+dissapearances of taxa between consecutive time intervals in the data
+you provide. These time intervals are defined by the temporal extent
+(`temporal_extent`) and resolution (`res`) arguments. This is another
+way of visualizing the same information that is shown in the
+`pbdb_temp_range()` plot. `orig_ext = 1` plots new appearances:
 
 ``` r
 pbdb_orig_ext(
@@ -271,8 +273,8 @@ pbdb_orig_ext(
     #> 4-4.5 to 3.5-4  14   0
     #> 4.5-5 to 4-4.5   0   0
 
-And `orig_ext = 2` plots last appearances in the provided data frame
-(possibly extinctions, if the data are complete enough).
+And `orig_ext = 2` plots disappearances of taxa between time intervals
+in the provided data frame.
 
 ``` r
 pbdb_orig_ext(

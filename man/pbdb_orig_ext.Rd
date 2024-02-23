@@ -12,6 +12,7 @@ pbdb_orig_ext(
   orig_ext = 1,
   colour = "#0000FF30",
   bord = "#0000FF",
+  ylab = NULL,
   do_plot = TRUE
 )
 }
@@ -34,6 +35,8 @@ do that set: \code{show = c("classext", "ident")} (see Examples).}
 \item{colour}{Colour of the area of the polygon in the plot.}
 
 \item{bord}{Colour of the border of the polygon.}
+
+\item{ylab}{A label for the y axis.}
 
 \item{do_plot}{Logical value indicating whether to produce a plot
 (\code{TRUE} by default).}
