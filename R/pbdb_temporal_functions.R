@@ -223,9 +223,15 @@ pbdb_richness <- function(data,
 
   intervals <- cbind(time[-length(time)], time[-1])
   # Presence/absence matrix per time step
-  a <- apply(intervals, 1, function(interval) {
-    temporal_range[, 1] > interval[1] & temporal_range[, 2] <= interval[2]
-  })
+  a <- apply(
+    intervals,
+    MARGIN = 1,
+    function(interval) {
+      temporal_range$max > interval[1] & temporal_range$min <= interval[2]
+    },
+    simplify = FALSE
+  )
+  a <- do.call(cbind, a)
 
   richness <- colSums(a, na.rm = TRUE)
   temporal_intervals <- paste(time[-length(time)], time[-1], sep = "-")

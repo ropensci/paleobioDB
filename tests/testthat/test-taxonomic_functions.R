@@ -6,7 +6,7 @@ test_that("pbdb_subtaxa output is a data frame, and the names are characters", {
   data<-  pbdb_occurrences (limit="100", vocab="pbdb",
                             base_name="Canidae", show=c('classext', 'ident') )
   
-  response<- pbdb_subtaxa (data, do.plot=F)
+  response<- pbdb_subtaxa (data, do_plot=F)
   expect_true(is.data.frame (response))
   expect_is (names (response)[1], "character")
   expect_true (dim (response)[1]==1)
