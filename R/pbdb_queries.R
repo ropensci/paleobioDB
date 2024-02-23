@@ -1,21 +1,25 @@
-# R Functions leveraging the use o the different API endpoints 
+# R Functions leveraging the use of the different API endpoints
 # available
 
 #' .pbdb_query
-#' 
+#'
 #' Central function for sending all queries to the remote API
 #'
-#' @param endpoint Name of the endpoint, inside the API, to which the query must be sent. 
-#' This endpoint must have been previously configured
-#' @param query List of filter parameters for the api. The values provided to the parameters
-#' may be a single string or a list of strings.
+#' @param endpoint Name of the endpoint, inside the API, to which the
+#'   query must be sent.  This endpoint must have been previously
+#'   configured
+#' @param query List of filter parameters for the api. The values
+#'   provided to the parameters may be a single string or a list of
+#'   strings.
 #' @returns data frame
 #' @examples \dontrun{
-#' .pbdb_query("occs/list", list(base_name="Canidae", show=c("coords", "classext", "ident")))
+#'   .pbdb_query(
+#'     "occs/list",
+#'     list(base_name = "Canidae", show = c("coords", "classext", "ident"))
+#'   )
 #' }
 #' @noRd
-
-.pbdb_query<-function(endpoint, query = list()){
+.pbdb_query <- function(endpoint, query = list()) {
   query <- lapply(query, .implode_to_string)
   uri <- .build_uri(endpoint, query = query)
 
@@ -24,7 +28,6 @@
   df
 }
 
-
 #' .implode_to_string
 #'
 #' Converts a list of strings in a single comma separated string
@@ -32,7 +35,7 @@
 #' @param params list of strings
 #' @returns character
 #' @examples \dontrun{
-#' .implode_to_string(list("categoryA", "categoryB", "categoryC"))
+#'   .implode_to_string(list("categoryA", "categoryB", "categoryC"))
 #' }
 #' @noRd
 .implode_to_string <- function(params) {
@@ -731,7 +734,11 @@ pbdb_references <- function(...) {
 #'
 #' @export
 #' @examples \dontrun{
-#'   pbdb_ref_collections(base_name = "Canidae", interval = "Quaternary", cc = "ASI")
+#'   pbdb_ref_collections(
+#'     base_name = "Canidae",
+#'     interval = "Quaternary",
+#'     cc = "ASI"
+#'   )
 #' }
 pbdb_ref_collections <- function(...) {
   l <- list(...)

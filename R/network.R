@@ -1,3 +1,28 @@
+#' Generate a URI conforming to the scheme documented in the
+#' paleobioDB API
+#'
+#' @param endpoint Name of an endpoint.
+#' @param query URI parameters for the query string passed as a named
+#'   list.
+#' @param api_base The server to be contacted.
+#' @param format Format in which results will be returned.  For now,
+#'   json is the only supported format.
+#' @param data_serv The data service version.  Could be either
+#'   "data1.1" or "data1.2"
+#' @returns A URL to perform an HTTP GET request.
+#' @noRd
+.build_uri <- function(endpoint,
+                       query = list(),
+                       api_base = "https://paleobiodb.org",
+                       format = "json",
+                       data_serv = "data1.2") {
+  uri <- paste(api_base, data_serv, endpoint, sep = "/")
+  uri <- paste(uri, format, sep = ".")
+  query_str <- .build_query_string(query)
+  uri <- paste(uri, query_str, sep = "?")
+  uri
+}
+
 #' .get_data_from_uri
 #'
 #' Grabs data as data frame from a URI. Expects the response data to be
@@ -103,16 +128,16 @@
 #' @param args list of parameters
 #' @returns character
 #' @examples \dontrun{
-#' .build_query_string(list(name="Bob", city="Berlin"))
+#'   .build_query_string(list(name = "Bob", city = "Berlin"))
 #' }
 #' @noRd
 .build_query_string <- function(args) {
   qs <- ""
 
-  for (argName in names(args)) {
-    strArgValue <- as.character(args[argName][[1]])
-    encodedArgValue <- utils::URLencode(strArgValue)
-    qs <- paste(qs, argName, "=", encodedArgValue, "&", sep = "")
+  for (arg_name in names(args)) {
+    str_arg_value <- as.character(args[arg_name][[1]])
+    encoded_arg_value <- utils::URLencode(str_arg_value)
+    qs <- paste0(qs, arg_name, "=", encoded_arg_value, "&")
   }
   qs <- substr(qs, 0, nchar(qs) - 1)
 
@@ -128,14 +153,13 @@
 #'   by semicolons if it has more than one element or the vector as it
 #'   was passed to the function if it has length one
 #' @noRd
-
-.collapse_array_columns_map<- function (element){  
-  if (length (element) > 1){
-    mapped<- paste (element, collapse=";")
-  }else {
-    mapped<- element
+.collapse_array_columns_map <- function(element) {
+  if (length(element) > 1) {
+    mapped <- paste(element, collapse = ";")
+  } else {
+    mapped <- element
   }
-  
+
   mapped
 }
 

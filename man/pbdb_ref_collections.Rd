@@ -35,6 +35,10 @@ collection data were entered.
 }
 \examples{
 \dontrun{
-  pbdb_ref_collections(base_name = "Canidae", interval = "Quaternary", cc = "ASI")
+  pbdb_ref_collections(
+    base_name = "Canidae",
+    interval = "Quaternary",
+    cc = "ASI"
+  )
 }
 }
