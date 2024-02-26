@@ -11,6 +11,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/paleobioDB)](https://CRAN.R-project.org/package=paleobioDB)
 [![rstudio mirror
 downloads](https://cranlogs.r-pkg.org/badges/paleobioDB)](https://github.com/r-hub/cranlogs.app)
+[![R-CMD-check](https://github.com/ropensci/paleobioDB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ropensci/paleobioDB/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 `paleobioDB` is a package for downloading, visualizing and processing

@@ -10,3 +10,4 @@ build
 Docker
 .*\.tar\.gz$
 ^README\.Rmd$
+^\.github$
