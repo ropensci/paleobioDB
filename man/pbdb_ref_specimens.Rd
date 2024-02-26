@@ -11,7 +11,7 @@ pbdb_ref_specimens(...)
 accepted parameters at
 \url{https://paleobiodb.org/data1.2/specs/refs}. E.g.:
 \itemize{
-\item \code{spec_id}: Comma-separated list of specimen identifiers.
+\item \code{spec_id}: List of specimen identifiers.
 \item \code{base_name}: Return only records associated with the specified
 taxonomic name(s), including all subtaxa and synonyms.
 \item \code{ref_author}: Select only references for which any of the authors

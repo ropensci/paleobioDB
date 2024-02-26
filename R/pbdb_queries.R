@@ -123,8 +123,7 @@ pbdb_occurrence <- function(id, ...) {
 #'   a positive integer, zero, or `"all"`.
 #'
 #' * `taxon_name`: Return only records associated with the specified
-#'   taxonomic name(s).  You may specify multiple names, separated by
-#'   commas.
+#'   taxonomic name(s).  You may specify multiple names.
 #'
 #' * `base_name`: Return records associated with the specified
 #'   taxonomic name(s) and any of their children (e.g. `base_name =
@@ -719,7 +718,7 @@ pbdb_references <- function(...) {
 #'   accepted parameters at
 #'   <https://paleobiodb.org/data1.2/colls/refs>. E.g.:
 #'
-#' * `id`: Comma-separated list of collection identifiers.
+#' * `id`: List of collection identifiers.
 #'
 #' * `ref_author`: Select only references for which any of the authors
 #'   matches the specified name.
@@ -872,7 +871,7 @@ pbdb_specimens <- function(...) {
 #'   accepted parameters at
 #'   <https://paleobiodb.org/data1.2/specs/refs>. E.g.:
 #'
-#' * `spec_id`: Comma-separated list of specimen identifiers.
+#' * `spec_id`: List of specimen identifiers.
 #'
 #' * `base_name`: Return only records associated with the specified
 #'   taxonomic name(s), including all subtaxa and synonyms.
@@ -910,11 +909,11 @@ pbdb_ref_specimens <- function(...) {
 #' a known list of specimens, occurrences, or collections. Only the
 #' records matching all specified parameters will be returned:
 #'
-#' * `spec_id`: A comma-separated list of specimen identifiers.
+#' * `spec_id`: A list of specimen identifiers.
 #'
-#' * `occ_id`: A comma-separated list of occurrence identifiers.
+#' * `occ_id`: A list of occurrence identifiers.
 #'
-#' * `coll_id`: A comma-separated list of collection identifiers.
+#' * `coll_id`: A list of collection identifiers.
 #'
 #' It is possible to return additional information along with the
 #' basic record with the following parameter:
@@ -943,4 +942,111 @@ pbdb_ref_specimens <- function(...) {
 pbdb_measurements <- function(...) {
   l <- list(...)
   .pbdb_query("specs/measurements", query = l)
+}
+
+#' Get information about a single taxonomic opinion
+#'
+#' Returns information about a single taxonomic opinion, selected by
+#' identifier.
+#'
+#' @param id Identifier of the opinion. This parameter is required.
+#' @param ... Arguments passed to the API. See documentation for
+#'   accepted parameters at
+#'   <https://paleobiodb.org/data1.2/opinions/single>. E.g.:
+#'
+#' * `vocab`: Set to `"pbdb"` to show the complete name of the
+#'   variables (by default variables have short 3-letter names).
+#'
+#' * `show`: Additional information to be shown along with the basic
+#'   record.  Some possible values include:
+#'
+#'     * `basis`: The basis of the opinion, which can be
+#'       "stated with evidence", "stated without evidence", "implied",
+#'       or "second hand".
+#'
+#'     * `entname`: The names of the people who authorized, entered
+#'       and modified this record.
+#'
+#'     * `refattr`: The author(s) and year of publication of the
+#'       reference from which the opinion was entered.
+#'
+#' @returns A data frame with a single taxonomic opinion.
+#' @export
+#' @examples \dontrun{
+#'   pbdb_opinion(id = 1000, vocab = "pbdb", show = "full")
+#' }
+pbdb_opinion <- function(id, ...) {
+  l <- list(id = id, ...)
+  .pbdb_query("opinions/single", query = l)
+}
+
+#' Get information about multiple taxonomic opinions
+#'
+#' Returns information about multiple taxonomic opinions, selected
+#' according to criteria other than taxon name. This function could be
+#' used to query for all of the opinions attributed to a particular
+#' author, or to show all of the recently entered opinions.
+#'
+#' @param ... Arguments passed to the API. See documentation for
+#'   accepted parameters at
+#'   <https://paleobiodb.org/data1.2/opinions/list>. E.g.:
+#'
+#' * `id`: Selects the opinions corresponding to the specified
+#'   identifier(s). You may provide more than one.
+#'
+#' * `op_author`: Selects only opinions attributed to the specified
+#'   author. Note that the opinion author(s) may be different from the
+#'   author(s) of the reference from which the opinion was
+#'   entered. This parameter accepts last names only, no first
+#'   initials. You can specify more than one author name, in which
+#'   case all opinions which match any of these will be selected.
+#'
+#' * `ops_created_before`: Select only records associated with taxa
+#'   that were created before the specified date or date/time. See
+#'   <https://paleobiodb.org/data1.2/datetime> for documentation on
+#'   how to specify date/time values.
+#'
+#' * `ops_created_after`: Select only records associated with taxa
+#'   that were created on or after the specified date or
+#'   date/time. See <https://paleobiodb.org/data1.2/datetime> for
+#'   documentation on how to specify date/time values.
+#'
+#' * `op_type`: You can use this parameter to retrieve all opinions,
+#'   or only the classification opinions, or only certain kinds of
+#'   opinions. The default is all opinions. Accepted values include:
+#'   `"all"` (the default), `"class"`, `"valid"`, `"accepted"`,
+#'   `"junior"`, `"invalid"`.
+#'
+#' @returns A data frame with information about the taxonomic opinions
+#'   that match the query.
+#' @export
+#' @examples \dontrun{
+#'   pbdb_opinions(op_pubyr = 1818)
+#' }
+pbdb_opinions <- function(...) {
+  l <- list(...)
+  .pbdb_query("opinions/list", query = l)
+}
+
+#' Get taxonomic opinions about taxa
+#'
+#' Returns information about the taxonomic opinions used to build the
+#' taxonomic hierarchy. From all of the opinions entered into the
+#' database about a particular taxon, the most recent opinion that is
+#' stated with the most evidence is used to classify that taxon. The
+#' others are considered to be superseded and are ignored.
+#'
+#' @param ... Arguments passed to the API. See documentation for
+#'   accepted parameters at
+#'   <https://paleobiodb.org/data1.2/taxa/opinions>.
+#'
+#' @returns A data frame with information about the taxonomic opinions
+#'   that match the query.
+#' @export
+#' @examples \dontrun{
+#'   pbdb_opinions_taxa(base_name = "Canis")
+#' }
+pbdb_opinions_taxa <- function(...) {
+  l <- list(...)
+  .pbdb_query("taxa/opinions", query = l)
 }

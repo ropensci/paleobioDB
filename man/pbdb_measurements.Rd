@@ -14,9 +14,9 @@ The following parameters can be used to retrieve measurements from
 a known list of specimens, occurrences, or collections. Only the
 records matching all specified parameters will be returned:
 \itemize{
-\item \code{spec_id}: A comma-separated list of specimen identifiers.
-\item \code{occ_id}: A comma-separated list of occurrence identifiers.
-\item \code{coll_id}: A comma-separated list of collection identifiers.
+\item \code{spec_id}: A list of specimen identifiers.
+\item \code{occ_id}: A list of occurrence identifiers.
+\item \code{coll_id}: A list of collection identifiers.
 }
 
 It is possible to return additional information along with the

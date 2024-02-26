@@ -1,10 +1,10 @@
 paleobioDB 0.7.0.9000
 =====================
 
-This new major version of the paleobioDB package uses a new API
-version.  It is possible that code written for previous versions might
-not be compatible.  If you need to run older code, you might have to
-rewrite it or to install an older version of the package.
+This new version of the paleobioDB package uses a new API version.  It
+is possible that code written for previous versions might not be
+compatible.  If you need to run older code, you might have to rewrite
+it or to install an older version of the package.
 
 ### NEW FEATURES
 
@@ -14,6 +14,10 @@ rewrite it or to install an older version of the package.
   `pbdb_ref_specimens()`, and `pbdb_measurements()` can be used to get
   information about fossil specimens and measurements associated with
   them.
+
+* The new functions `pbdb_opinion()`, `pbdb_opinions()` and
+  `pbdb_opinions_taxa()` can be used to get information about
+  taxonomic opinions.
 
 ### MINOR IMPROVEMENTS
 
@@ -37,7 +41,7 @@ rewrite it or to install an older version of the package.
 * In the `pbdb_temp_range()` plot, taxa names are now more readable
   (#22).
 
-* `pbdb_richness()` prevents x-axis title from overlapping with tick
+* `pbdb_richness()` prevents x axis title from overlapping with tick
   labels if these are long (#43).
 
 * Fix bug in map plotting caused by latitude and longitude values

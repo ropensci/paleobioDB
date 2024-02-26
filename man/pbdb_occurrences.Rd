@@ -13,8 +13,7 @@ pbdb_occurrences(...)
 \item \code{limit}: Limits the number of records returned. The value may be
 a positive integer, zero, or \code{"all"}.
 \item \code{taxon_name}: Return only records associated with the specified
-taxonomic name(s).  You may specify multiple names, separated by
-commas.
+taxonomic name(s).  You may specify multiple names.
 \item \code{base_name}: Return records associated with the specified
 taxonomic name(s) and any of their children (e.g. \code{base_name = "Canis"} will return "Canis", "Canis lupus",
 "Canis mosbachensis", etc.)
