@@ -15,7 +15,8 @@
 #'   pbdb_temporal_resolution(data)
 #' }
 pbdb_temporal_resolution <- function(data, do_plot = TRUE) {
-  if (!any(c("eag", "max_ma") %in% names(data))) {
+  if (!all(c("max_ma", "min_ma") %in% names(data)) &&
+        !all(c("eag", "lag") %in% names(data))) {
     err_msg <- strwrap(
       paste(
         "No temporal information found in the provided data.frame.",
@@ -82,7 +83,7 @@ pbdb_temp_range <- function(data,
   if (do_plot) {
     pos <- seq_len(nrow(temporal_range)) - 0.9
     t_range <- cbind(temporal_range, pos)
-    # Make right margin large enough to fit the longest name
+    # Make right margin wide enough to fit the longest name
     right_margin <- max(nchar(row.names(t_range))) * 0.2
     opar <- par(mar = c(4, 1, 1, right_margin))
     on.exit(par(opar))
