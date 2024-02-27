@@ -115,8 +115,6 @@ pbdb_temp_range <- function(data,
 }
 
 .extract_temporal_range <- function(data, rank) {
-  rank_lc <- tolower(rank)
-
   col_abbr <- c(
     accepted_name = "tna", genus = "gnl", family = "fml",
     order = "odl", class = "cll", phylum = "phl"
@@ -134,9 +132,9 @@ pbdb_temp_range <- function(data,
 
   long_names <- "phylum" %in% names(data)
 
-  rank_col <- rank_lc
+  rank_col <- rank
 
-  if (rank_lc == "species") {
+  if (rank == "species") {
     # This is the corresponding column for the species name in the
     # data.frame
     rank_col <- "accepted_name"
@@ -150,9 +148,6 @@ pbdb_temp_range <- function(data,
     }
   }
 
-  if (!(rank_col %in% names(col_abbr))) {
-    stop(paste("Unknown rank", rank))
-  }
   rank_col <- if (long_names) rank_col else col_abbr[[rank_col]]
   early_age_col <- if (long_names) "max_ma" else "eag"
   late_age_col <- if (long_names) "min_ma" else "lag"
