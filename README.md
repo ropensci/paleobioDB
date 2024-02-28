@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/paleobioDB)](https://CRAN.R-project.org/package=paleobioDB)
 [![rstudio mirror
@@ -19,8 +17,14 @@ data from the [Paleobiology Database](https://paleobiodb.org/).
 
 ## Installation
 
-You can install the development version of paleobioDB from
-[GitHub](https://github.com/) with:
+Install the latest release from CRAN:
+
+``` r
+install.packages("paleobioDB")
+```
+
+Alternatively, you can install the development version of paleobioDB
+from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")

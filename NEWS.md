@@ -1,10 +1,10 @@
-paleobioDB 0.7.0.9000
-=====================
+paleobioDB 1.0.0
+================
 
-This new version of the paleobioDB package uses a new API version.  It
-is possible that code written for previous versions might not be
-compatible.  If you need to run older code, you might have to rewrite
-it or to install an older version of the package.
+This new major version of the paleobioDB package uses a new API
+version.  It is possible that code written for previous versions might
+not be compatible.  If you need to run older code, you might have to
+rewrite it or to install an older version of the package.
 
 ### NEW FEATURES
 
@@ -21,8 +21,8 @@ it or to install an older version of the package.
 
 ### MINOR IMPROVEMENTS
 
-* Use methods from package `terra` instead of `raster` in functions
-  that plot and return raster objects.
+* Methods from package `terra` (instead of `raster`) are used in
+  functions that plot and return raster objects.
 
 * Function and argument names consistently use snake case now, so some
   argument names have been changed (e.g. the `do.plot` parameter
