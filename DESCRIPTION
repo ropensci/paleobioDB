@@ -1,7 +1,7 @@
 Type: Package
 Package: paleobioDB
 Title: Download and Process Data from the Paleobiology Database
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: c(
     person("Sara", "Varela", , "sara.varela@uvigo.gal", role = "aut",
            comment = c(ORCID = "0000-0002-5756-5737")),
@@ -34,4 +34,4 @@ Suggests:
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2

@@ -57,9 +57,9 @@ devtools::install_github("ropensci/paleobioDB")
 
 ## General overview
 
-`paleobioDB` has 19 functions to wrap most endpoints of the PaleobioDB
-API, plus 8 functions to visualize and process the fossil data. The
-API documentation for the Paleobiology Database can be found
+`paleobioDB` provides functions that wrap most endpoints of the
+PaleobioDB API, and allows visualizing and processing the fossil
+data. The API documentation for the Paleobiology Database can be found
 [here](https://paleobiodb.org/data1.2/).
 
 ## Download fossil occurrences from PaleobioDB
@@ -92,7 +92,7 @@ the `pbdb_occurrences()` function.  This returns taxonomic and
 geographic information for the occurrences that is required by these
 functions.
 
-### Caution with the raw data
+### Caution with raw data
 
 Beware of synonyms and errors, they could twist your estimations about
 species richness, evolutionary and extinction rates, etc. `paleobioDB`

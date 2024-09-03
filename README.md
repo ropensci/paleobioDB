@@ -33,9 +33,9 @@ devtools::install_github("ropensci/paleobioDB")
 
 ## General overview
 
-`paleobioDB` has 19 functions to wrap most endpoints of the PaleobioDB
-API, plus 8 functions to visualize and process the fossil data. The API
-documentation for the Paleobiology Database can be found
+`paleobioDB` provides functions that wrap most endpoints of the
+PaleobioDB API, and allows visualizing and processing the fossil data.
+The API documentation for the Paleobiology Database can be found
 [here](https://paleobiodb.org/data1.2/).
 
 ## Download fossil occurrences from PaleobioDB
@@ -57,7 +57,7 @@ canidae <- pbdb_occurrences(
 )
 
 dim(canidae)
-#> [1] 1384   28
+#> [1] 1395   28
 
 head(canidae, 3)
 #>   occurrence_no record_type collection_no   identified_name identified_rank
@@ -69,9 +69,9 @@ head(canidae, 3)
 #> 2         44838    Canis edwardii       species       44838       Irvingtonian
 #> 3         44827 Canis armbrusteri       species       44827       Irvingtonian
 #>      late_interval max_ma min_ma reference_no       lng      lat   phylum
-#> 1 Late Pleistocene  0.781 0.0117         4412  111.5667 22.76667 Chordata
-#> 2             <NA>  1.800 0.3000         2673 -112.4000 35.70000 Chordata
-#> 3             <NA>  1.800 0.3000        52058 -112.4000 35.70000 Chordata
+#> 1 Late Pleistocene  0.774 0.0117         4412  111.5667 22.76667 Chordata
+#> 2             <NA>  1.400 0.2100         2673 -112.4000 35.70000 Chordata
+#> 3             <NA>  1.400 0.2100        52058 -112.4000 35.70000 Chordata
 #>   phylum_no    class class_no     order order_no  family family_no genus
 #> 1     33815 Mammalia    36651 Carnivora    36905 Canidae     41189  Cuon
 #> 2     33815 Mammalia    36651 Carnivora    36905 Canidae     41189 Canis
@@ -88,7 +88,7 @@ necessary to specify the parameter `show = c("coords", "classext")` in
 the `pbdb_occurrences()` function. This returns taxonomic and geographic
 information for the occurrences that is required by these functions.
 
-### Caution with the raw data
+### Caution with raw data
 
 Beware of synonyms and errors, they could twist your estimations about
 species richness, evolutionary and extinction rates, etc. `paleobioDB`
@@ -117,8 +117,8 @@ frame with the number of occurrences per coordinate.
     #> -70.583885.-52.415833  -70.583885 -52.415833     1
     #> -69.583336.-52.166668  -69.583336 -52.166668     1
     #> -70.060555.-52.054722  -70.060555 -52.054722     1
+    #> -60.46299.-51.829769   -60.462990 -51.829769     1
     #> -70.174446.-51.74778   -70.174446 -51.747780     1
-    #> -72.599998.-51.051388  -72.599998 -51.051388     1
     ....
     #> 22.033333.46.966667     22.033333  46.966667    11
     #> 11.25.45.416668         11.250000  45.416668    12
@@ -210,19 +210,19 @@ pbdb_temp_range(canidae, rank = "species")
 
 ![](man/figures/README-pbdb_temp_range-1.png)<!-- -->
 
-    #>                             max    min
-    #> Canis lepophagus          4.900 0.0120
-    #> Canis gezi                4.000 0.7810
-    #> Canis chihliensis         3.600 0.7810
-    #> Canis palmidens           3.600 0.7810
-    #> Eucyon minor              3.600 0.7810
+    #>                              max    min
+    #> Canis lepophagus          4.7000 0.0140
+    #> Canis gezi                3.7000 0.3000
+    #> Canis chihliensis         3.6000 0.7740
+    #> Canis palmidens           3.6000 0.7740
+    #> Eucyon minor              3.6000 0.7740
     ....
-    #> Urocyon littoralis        0.300 0.0000
-    #> Pseudalopex sechurae      0.126 0.0117
-    #> Vulpes macrotis           0.126 0.0117
-    #> Cubacyon transversidens   0.126 0.0000
-    #> Lycalopex griseus         0.126 0.0000
-    #> Speothos pacivorus        0.126 0.0000
+    #> Pseudalopex sechurae      0.1290 0.0117
+    #> Vulpes macrotis           0.1290 0.0117
+    #> Cubacyon transversidens   0.1290 0.0000
+    #> Lycalopex griseus         0.1290 0.0000
+    #> Speothos pacivorus        0.1290 0.0000
+    #> Dusicyon australis        0.0117 0.0000
 
 ### `pbdb_richness`
 
@@ -237,10 +237,10 @@ pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 5), res = 0.5)
 ![](man/figures/README-pbdb_richness-1.png)<!-- -->
 
     #>    temporal_intervals richness
-    #> 1               0-0.5       74
-    #> 2               0.5-1       87
-    #> 3               1-1.5       78
-    #> 4               1.5-2       81
+    #> 1               0-0.5       78
+    #> 2               0.5-1       83
+    #> 3               1-1.5       79
+    #> 4               1.5-2       77
     #> 5               2-2.5       71
     #> 6               2.5-3       71
     #> 7               3-3.5       18
@@ -268,10 +268,10 @@ pbdb_orig_ext(
 ![](man/figures/README-pbdb_orig_ext_1-1.png)<!-- -->
 
     #>                new ext
-    #> 0.5-1 to 0-0.5   6  19
-    #> 1-1.5 to 0.5-1   9   0
-    #> 1.5-2 to 1-1.5   2   5
-    #> 2-2.5 to 1.5-2  10   0
+    #> 0.5-1 to 0-0.5  12  17
+    #> 1-1.5 to 0.5-1   4   0
+    #> 1.5-2 to 1-1.5   7   5
+    #> 2-2.5 to 1.5-2   6   0
     #> 2.5-3 to 2-2.5   0   0
     #> 3-3.5 to 2.5-3  53   0
     #> 3.5-4 to 3-3.5   3   0
@@ -292,10 +292,10 @@ pbdb_orig_ext(
 ![](man/figures/README-pbdb_orig_ext_2-1.png)<!-- -->
 
     #>                new ext
-    #> 0.5-1 to 0-0.5   6  19
-    #> 1-1.5 to 0.5-1   9   0
-    #> 1.5-2 to 1-1.5   2   5
-    #> 2-2.5 to 1.5-2  10   0
+    #> 0.5-1 to 0-0.5  12  17
+    #> 1-1.5 to 0.5-1   4   0
+    #> 1.5-2 to 1-1.5   7   5
+    #> 2-2.5 to 1.5-2   6   0
     #> 2.5-3 to 2-2.5   0   0
     #> 3-3.5 to 2.5-3  53   0
     #> 3.5-4 to 3-3.5   3   0
@@ -314,7 +314,7 @@ pbdb_subtaxa(canidae)
 ![](man/figures/README-pbdb_subtaxa-1.png)<!-- -->
 
     #>   species genera families orders classes phyla
-    #> 1      98     27        1      1       1     1
+    #> 1     100     27        1      1       1     1
 
 ### `pbdb_temporal_resolution`
 
@@ -329,17 +329,17 @@ pbdb_temporal_resolution(canidae)
 
     #> $summary
     #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    #>  0.0117  0.1143  0.6550  0.9617  1.8070  4.8880 
+    #>  0.0117  0.1173  0.6450  0.9294  1.8060  4.6860 
     #> 
     #> $temporal_resolution
-    #>    [1] 0.7693 1.5000 1.5000 1.5000 0.7820 0.7820 0.7820 0.7820 1.5000 1.5000
+    #>    [1] 0.7623 1.1900 1.1900 1.1900 4.4900 0.7800 0.7800 0.7800 0.7800 4.4900
     ....
-    #> [1331] 1.8070 1.8070 1.8070 1.8070 1.8070 2.8190 2.8190 2.8190 2.8190 2.8190
-    #> [1341] 0.1260 2.5763 1.8070 0.4190 0.4190 0.4190 0.4190 0.4190 3.2190 0.7690
-    #> [1351] 0.0117 0.0117 0.0117 2.5880 2.5763 2.5763 0.7690 0.7690 0.7690 0.1143
-    #> [1361] 0.4190 0.1143 0.7690 2.5763 0.1143 0.7690 0.1143 2.5763 0.7690 0.6550
-    #> [1371] 0.6550 1.8070 2.8190 1.5000 2.5763 2.5763 2.5763 0.1143 2.5763 2.5763
-    #> [1381] 2.5763 2.5763 0.0117 0.0117
+    #> [1341] 2.8260 2.8260 2.8260 0.1290 2.5683 1.8060 1.4000 1.4000 1.4000 1.4000
+    #> [1351] 1.4000 3.4000 0.2883 0.0117 0.0117 0.0117 2.5800 2.5683 2.5683 0.2883
+    #> [1361] 0.2883 0.2883 0.1173 1.4000 0.1173 0.2883 2.5683 0.1173 0.2883 0.1173
+    #> [1371] 2.5683 0.2883 0.6450 0.6450 1.8060 2.8260 1.1900 2.5683 2.5683 2.5683
+    #> [1381] 0.1173 2.5683 2.5683 2.5683 2.5683 0.0117 0.0117 1.0260 0.6450 0.0117
+    #> [1391] 0.0117 0.7623 0.6450 0.6450 0.6450
 
 ## Docker
 
