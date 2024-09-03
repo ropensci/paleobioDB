@@ -32,7 +32,7 @@ map.}
 \item{do_plot}{Logical. If \code{TRUE}, the function produces a plot in
 addition to returning a \code{SpatRaster}.}
 
-\item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}}
+\item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[maps:map]{maps::map()}}}
 }
 \value{
 A \code{SpatRaster} object with the sampling effort (number of
@@ -62,6 +62,6 @@ function is required. We recommend the use of a cairo device
 }
 }
 \seealso{
-See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}}, \code{\link[=par]{par()}} and \code{\link[=colors]{colors()}}
+See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[maps:map]{maps::map()}}, \code{\link[=par]{par()}} and \code{\link[=colors]{colors()}}
 help pages
 }

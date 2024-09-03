@@ -65,13 +65,13 @@
 #'   in the map.
 #' @param do_plot Logical. If `TRUE`, the function produces a plot in
 #'   addition to returning a data frame with the occurrence counts.
-#' @param ... Other parameters. See [par()] and [map()].
+#' @param ... Other parameters. See [par()] and [maps::map()].
 #' @details The argument `show = "coords"` in the [pbdb_occurrences()]
 #'   function is required. We recommend the use of a cairo device
 #'   ([X11()]) for better visualization of the maps. See Examples.
 #' @returns A data frame with the number of occurrences per
 #'   coordinate.
-#' @seealso See [pbdb_occurrences()], [map()], [par()] and [colors()]
+#' @seealso See [pbdb_occurrences()], [maps::map()], [par()] and [colors()]
 #'   help pages.
 #' @export
 #' @examples \dontrun{
@@ -173,7 +173,7 @@ pbdb_map <- function(data, col_int = "white", pch = 19, col_ocean = "black",
 #'   map.
 #' @param do_plot Logical. If `TRUE`, the function produces a plot in
 #'   addition to returning a `SpatRaster`.
-#' @param ... Other parameters. See [par()] and [map()]
+#' @param ... Other parameters. See [par()] and [maps::map()]
 #' @details The argument `show = "coords"` in the [pbdb_occurrences()]
 #'   function is required. We recommend the use of a cairo device
 #'   ([X11()]) for better visualization of the maps. See Examples.
@@ -182,7 +182,7 @@ pbdb_map <- function(data, col_int = "white", pch = 19, col_ocean = "black",
 #'   resolution that was specified in the `res` argument. The default
 #'   is `res = 5`. Users that wish to work with objects of this type
 #'   should load package `terra`.
-#' @seealso See [pbdb_occurrences()], [map()], [par()] and [colors()]
+#' @seealso See [pbdb_occurrences()], [maps::map()], [par()] and [colors()]
 #'   help pages
 #' @export
 #' @examples \dontrun{
@@ -314,7 +314,7 @@ pbdb_map_occur <- function(data,
 #'   colour gradient showing the richness per cell in the map.
 #' @param title A title for the plot, to be positioned to the right of
 #'   the legend.
-#' @param ... Other parameters. See [par()] and [map()].
+#' @param ... Other parameters. See [par()] and [maps::map()].
 #' @details The argument `show = c("coords", "classext")` in the
 #'   [pbdb_occurrences()] function is required. We recommend the use
 #'   of a cairo device ([X11()]) for better visualization of the
@@ -324,7 +324,7 @@ pbdb_map_occur <- function(data,
 #'   that was specified in the `res` argument. The default is `res =
 #'   5`. Users that wish to work with objects of this type should load
 #'   package `terra`.
-#' @seealso See [pbdb_occurrences()], [map()], [par()] and [colors()]
+#' @seealso See [pbdb_occurrences()], [maps::map()], [par()] and [colors()]
 #'   help pages.
 #' @export
 #' @examples \dontrun{

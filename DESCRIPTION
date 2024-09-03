@@ -22,8 +22,6 @@ URL: https://docs.ropensci.org/paleobioDB/,
 BugReports: https://github.com/ropensci/paleobioDB/issues
 Imports:
     curl,
-    graphics,
-    grDevices,
     gtools,
     maps,
     rjson,

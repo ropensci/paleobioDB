@@ -525,6 +525,15 @@ pbdb_scale <- function(id, ...) {
 #'   documentation for accepted parameters at
 #'   <https://paleobiodb.org/data1.2/scales/list>. E.g.:
 #'
+#' * `all_records`: Set to `TRUE` to list all intervals.
+#'
+#' * `id`: Return only time scales with the specified
+#'   identifier(s). It is possible to provide multiple identifiers as
+#'   a comma-separated list.
+#'
+#' * `name`: Return only time scales with the specified name(s). It is
+#'   possible to provide multiple names as a comma-separated list.
+#'
 #' * `vocab`: Set to `"pbdb"` to show the complete name of the
 #'   variables (by default variables have short 3-letter names).
 #'
@@ -534,7 +543,7 @@ pbdb_scale <- function(id, ...) {
 #' @examples \dontrun{
 #'   ## Get a data frame with all the scales available in PBDB
 #'   ## by setting no ids
-#'   pbdb_scales()
+#'   pbdb_scales(all_records = TRUE)
 #' }
 pbdb_scales <- function(...) {
   l <- list(...)

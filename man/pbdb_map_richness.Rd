@@ -40,7 +40,7 @@ colour gradient showing the richness per cell in the map.}
 \item{title}{A title for the plot, to be positioned to the right of
 the legend.}
 
-\item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[=map]{map()}}.}
+\item{...}{Other parameters. See \code{\link[=par]{par()}} and \code{\link[maps:map]{maps::map()}}.}
 }
 \value{
 A \code{SpatRaster} object with the richness of the specified
@@ -72,6 +72,6 @@ graphs. See Examples.
 }
 }
 \seealso{
-See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[=map]{map()}}, \code{\link[=par]{par()}} and \code{\link[=colors]{colors()}}
+See \code{\link[=pbdb_occurrences]{pbdb_occurrences()}}, \code{\link[maps:map]{maps::map()}}, \code{\link[=par]{par()}} and \code{\link[=colors]{colors()}}
 help pages.
 }

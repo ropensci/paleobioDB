@@ -22,9 +22,10 @@ test_that("pbdb_scale() returns a data frame with an id column", {
   expect_equal(nrow(response), 1)
 })
 
-test_that("multivalue elements are converted to a string with semicolons", {
+test_that("pbdb_scales() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
-  response <- pbdb_scales()
-  expect_true("lvs" %in% names(response))
-  expect_true(all(grepl(";", response$lvs)))
+  response <- pbdb_scales(all_records = TRUE)
+  expect_s3_class(response, "data.frame")
+  expect_true("oid" %in% names(response))
+  expect_gt(nrow(response), 1)
 })

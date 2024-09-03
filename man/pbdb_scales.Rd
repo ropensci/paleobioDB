@@ -11,6 +11,12 @@ pbdb_scales(...)
 documentation for accepted parameters at
 \url{https://paleobiodb.org/data1.2/scales/list}. E.g.:
 \itemize{
+\item \code{all_records}: Set to \code{TRUE} to list all intervals.
+\item \code{id}: Return only time scales with the specified
+identifier(s). It is possible to provide multiple identifiers as
+a comma-separated list.
+\item \code{name}: Return only time scales with the specified name(s). It is
+possible to provide multiple names as a comma-separated list.
 \item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
 variables (by default variables have short 3-letter names).
 }}
@@ -25,6 +31,6 @@ Returns information about multiple time scales.
 \dontrun{
   ## Get a data frame with all the scales available in PBDB
   ## by setting no ids
-  pbdb_scales()
+  pbdb_scales(all_records = TRUE)
 }
 }
