@@ -76,7 +76,7 @@
 #' @returns data frame
 #' @noRd
 .parse_raw_data <- function(raw_data) {
-  data_list <- rjson::fromJSON(raw_data)
+  data_list <- jsonlite::fromJSON(raw_data)
 
   if ("warnings" %in% names(data_list)) {
     # Enumerate warnings that were returned by the PBDB API
@@ -93,31 +93,16 @@
     )
   }
 
-  df <- .make_data_frame(data_list$records)
-  df
-}
-
-
-#' .make_data_frame
-#'
-#' Makes a data frame from a list of lists
-#'
-#' @param reg_list data rows as a list of lists
-#' @returns data frame
-#' @noRd
-.make_data_frame <- function(reg_list) {
-  if (length(reg_list) == 0) {
+  if (length(data_list$records) == 0) {
     warning("The PBDB API returned no records for this query.", call. = FALSE)
     return(data.frame())
   }
 
-  dfr_rows <- lapply(reg_list, function(reg) {
-    as.data.frame(lapply(reg, .collapse_array_columns_map))
-  })
+  if (!is.data.frame(data_list$records)) {
+    stop("The records in the response were not coerced to a data.frame")
+  }
 
-  dfr <- do.call(gtools::smartbind, dfr_rows)
-  dfr <- .convert_data_frame_columns(dfr)
-  dfr
+  .convert_data_frame_columns(data_list$records)
 }
 
 #' .build_query_string
@@ -143,26 +128,6 @@
 
   qs
 }
-
-#' .collapse_array_columns_map
-#'
-#' Maps multivalue elements to semicolon separated strings
-#'
-#' @param element a vector representing some data field
-#' @returns a string with the elements of the provided vector separated
-#'   by semicolons if it has more than one element or the vector as it
-#'   was passed to the function if it has length one
-#' @noRd
-.collapse_array_columns_map <- function(element) {
-  if (length(element) > 1) {
-    mapped <- paste(element, collapse = ";")
-  } else {
-    mapped <- element
-  }
-
-  mapped
-}
-
 
 #' .convert_data_frame_columns
 #'

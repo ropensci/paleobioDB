@@ -1,3 +1,15 @@
+paleobioDB 1.0.0.9000
+=====================
+
+### DOCUMENTATION FIXES
+
+* In `pbdb_scales()`, at least one parameter needs to be specified
+  now, so the examples in the documentation were updated accordingly.
+
+### OTHER CHANGES
+
+* The `rjson` dependency was replaced by `jsonlite`.
+
 paleobioDB 1.0.0
 ================
 

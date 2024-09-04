@@ -38,28 +38,23 @@ test_that(".parse_raw_data() replicates warnings from the API", {
   )
 })
 
-test_that(".make_data_frame() warns the user if no records are returned", {
+test_that(".parse_raw_data() warns the user if no records are returned", {
+  resp <- readRDS(test_path("fixtures", "no_records_resp.rds"))
+  raw_data <- .extract_response_body(resp)
   expect_warning(
-    .make_data_frame(list()),
+    .parse_raw_data(raw_data),
     regexp = "The PBDB API returned no records for this query."
   )
 })
 
-test_that(".make_data_frame() returns a data frame", {
+test_that(".parse_raw_data() returns a data frame", {
   resp <- readRDS(test_path("fixtures", "valid_id_resp.rds"))
   raw_data <- .extract_response_body(resp)
-  data_list <- rjson::fromJSON(raw_data)
-  df <- .make_data_frame(data_list$records)
+  df <- .parse_raw_data(raw_data)
   expect_s3_class(df, "data.frame")
   expect_identical(
     names(df),
     c("oid", "cid", "tna", "rnk", "tid", "oei",
       "eag", "lag", "rid", "lng", "lat")
   )
-})
-
-test_that(".collapse_array_columns_map() returns a length one character", {
-  s <- .collapse_array_columns_map(1:3)
-  expect_length(s, 1)
-  expect_equal(s, "1;2;3")
 })
