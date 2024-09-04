@@ -1,13 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 init.R
-paleobioDB-Ex.R
 .gitignore
 .git
-^\.travis\.yml$
 NEWS.md
-build
-Docker
 .*\.tar\.gz$
 ^README\.Rmd$
 ^\.github$
