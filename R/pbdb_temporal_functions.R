@@ -15,8 +15,10 @@
 #'   pbdb_temporal_resolution(data)
 #' }
 pbdb_temporal_resolution <- function(data, do_plot = TRUE) {
-  if (!all(c("max_ma", "min_ma") %in% names(data)) &&
-        !all(c("eag", "lag") %in% names(data))) {
+  if (
+    !all(c("max_ma", "min_ma") %in% names(data)) &&
+      !all(c("eag", "lag") %in% names(data))
+  ) {
     err_msg <- strwrap(
       paste(
         "No temporal information found in the provided data.frame.",
@@ -34,10 +36,19 @@ pbdb_temporal_resolution <- function(data, do_plot = TRUE) {
   tr <- list(summary = summary(diff), temporal_resolution = diff)
 
   if (do_plot) {
-    hist(unlist(tr[[2]]), freq = TRUE, col = "#0000FF", border = FALSE,
-         xlim = c(max(unlist(tr[[2]]), na.rm = TRUE), 0),
-         breaks = 50, xlab = "Temporal resolution of the data (Ma)",
-         main = "", col.lab = "grey30", col.axis = "grey30", cex.axis = 0.8)
+    hist(
+      unlist(tr[[2]]),
+      freq = TRUE,
+      col = "#0000FF",
+      border = FALSE,
+      xlim = c(max(unlist(tr[[2]]), na.rm = TRUE), 0),
+      breaks = 50,
+      xlab = "Temporal resolution of the data (Ma)",
+      main = "",
+      col.lab = "grey30",
+      col.axis = "grey30",
+      cex.axis = 0.8
+    )
   }
 
   tr
@@ -71,12 +82,13 @@ pbdb_temporal_resolution <- function(data, do_plot = TRUE) {
 #'   )
 #'   pbdb_temp_range(canis_quaternary, rank = "species", names = FALSE)
 #' }
-pbdb_temp_range <- function(data,
-                            rank = c("species", "genus", "family",
-                                     "order", "class", "phylum"),
-                            col = "#0000FF",
-                            names = TRUE,
-                            do_plot = TRUE) {
+pbdb_temp_range <- function(
+  data,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
+  col = "#0000FF",
+  names = TRUE,
+  do_plot = TRUE
+) {
   rank <- match.arg(rank)
   temporal_range <- .extract_temporal_range(data, rank)
 
@@ -87,10 +99,13 @@ pbdb_temp_range <- function(data,
     right_margin <- max(nchar(row.names(t_range))) * 0.2
     opar <- par(mar = c(4, 1, 1, right_margin))
     on.exit(par(opar))
-    plot(c(min(t_range$min), max(t_range$max)),
+    plot(
+      c(min(t_range$min), max(t_range$max)),
       c(0, nrow(t_range)),
-      type = "n", axes = FALSE,
-      xlab = "Time (Ma)", ylab = "",
+      type = "n",
+      axes = FALSE,
+      xlab = "Time (Ma)",
+      ylab = "",
       xlim = c(max(t_range$max), min(t_range$min))
     )
     segments(
@@ -105,9 +120,13 @@ pbdb_temp_range <- function(data,
     axis(1, col = "gray30", cex.axis = 0.8)
     if (names) {
       text(
-        x = t_range$min, y = t_range$pos,
+        x = t_range$min,
+        y = t_range$pos,
         labels = paste("  ", row.names(t_range)),
-        adj = c(0, 0.5), cex = 0.5, col = "gray30", xpd = NA
+        adj = c(0, 0.5),
+        cex = 0.5,
+        col = "gray30",
+        xpd = NA
       )
     }
   }
@@ -117,8 +136,12 @@ pbdb_temp_range <- function(data,
 
 .extract_temporal_range <- function(data, rank) {
   col_abbr <- c(
-    accepted_name = "tna", genus = "gnl", family = "fml",
-    order = "odl", class = "cll", phylum = "phl"
+    accepted_name = "tna",
+    genus = "gnl",
+    family = "fml",
+    order = "odl",
+    class = "cll",
+    phylum = "phl"
   )
 
   if (!("phylum" %in% names(data) || "phl" %in% names(data))) {
@@ -201,15 +224,16 @@ pbdb_temp_range <- function(data,
 #'   )
 #'   pbdb_richness(data, rank = "species", res = 0.2, temporal_extent = c(0, 3))
 #'}
-pbdb_richness <- function(data,
-                          rank = c("species", "genus", "family",
-                                   "order", "class", "phylum"),
-                          res = 1,
-                          temporal_extent = c(0, 10),
-                          colour = "#0000FF30",
-                          bord = "#0000FF",
-                          ylab = "Richness",
-                          do_plot = TRUE) {
+pbdb_richness <- function(
+  data,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
+  res = 1,
+  temporal_extent = c(0, 10),
+  colour = "#0000FF30",
+  bord = "#0000FF",
+  ylab = "Richness",
+  do_plot = TRUE
+) {
   rank <- match.arg(rank)
   temporal_range <- pbdb_temp_range(data = data, rank = rank, do_plot = FALSE)
   te <- temporal_extent
@@ -237,34 +261,39 @@ pbdb_richness <- function(data,
     bottom_margin <- 5 + max(nchar(temporal_intervals)) / 3 + 0.4
     opar <- par(
       mar = c(bottom_margin, 5, 1, 5),
-      font.lab = 1, col.lab = "grey20",
-      col.axis = "grey50", cex.axis = 0.8
+      font.lab = 1,
+      col.lab = "grey20",
+      col.axis = "grey50",
+      cex.axis = 0.8
     )
     on.exit(par(opar))
     plot.window(
-      xlim = c(max(te), min(te)), xaxs = "i",
-      ylim = c(0, (max(richness[, 2])) + (max(richness[, 2]) / 10)), yaxs = "i"
+      xlim = c(max(te), min(te)),
+      xaxs = "i",
+      ylim = c(0, (max(richness[, 2])) + (max(richness[, 2]) / 10)),
+      yaxs = "i"
     )
 
     abline(v = seq(min(te), max(te), by = res), col = "grey90", lwd = 1)
     abline(
       h = seq(
-        0, max(richness[, 2]) + (max(richness[, 2]) / 10),
+        0,
+        max(richness[, 2]) + (max(richness[, 2]) / 10),
         by = (max(richness[, 2]) / 10)
       ),
-      col = "grey90", lwd = 1
+      col = "grey90",
+      lwd = 1
     )
     xx <- c(means[1], means, means[length(means)])
     yy <- c(0, richness[, 2], 0)
     polygon(xx, yy, col = colour, border = bord)
-    axis(1,
-      line = 1, las = 2, labels = temporal_intervals,
-      at = means
-    )
+    axis(1, line = 1, las = 2, labels = temporal_intervals, at = means)
     axis(2, line = 1, las = 1)
     mtext(
       "Million years before present",
-      line = floor(bottom_margin) - 2, adj = 1, side = 1
+      line = floor(bottom_margin) - 2,
+      adj = 1,
+      side = 1
     )
     mtext(ylab, line = 3.5, adj = 0, side = 2)
   }
@@ -320,16 +349,17 @@ pbdb_richness <- function(data,
 #'     temporal_extent = c(0, 10), res = 1
 #'   )
 #' }
-pbdb_orig_ext <- function(data,
-                          rank = c("species", "genus", "family",
-                                   "order", "class", "phylum"),
-                          temporal_extent,
-                          res,
-                          orig_ext = 1,
-                          colour = "#0000FF30",
-                          bord = "#0000FF",
-                          ylab = NULL,
-                          do_plot = TRUE) {
+pbdb_orig_ext <- function(
+  data,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
+  temporal_extent,
+  res,
+  orig_ext = 1,
+  colour = "#0000FF30",
+  bord = "#0000FF",
+  ylab = NULL,
+  do_plot = TRUE
+) {
   rank <- match.arg(rank)
   temporal_range <- pbdb_temp_range(data = data, rank = rank, do_plot = FALSE)
   te <- temporal_extent
@@ -373,8 +403,10 @@ pbdb_orig_ext <- function(data,
     on.exit(par(opar))
 
     plot.window(
-      xlim = c(xmx, xmn), xaxs = "i",
-      ylim = c(0, ymx), yaxs = "i"
+      xlim = c(xmx, xmn),
+      xaxs = "i",
+      ylim = c(0, ymx),
+      yaxs = "i"
     )
     abline(v = seq(xmn, xmx, by = res), col = "grey90", lwd = 1)
     abline(h = seq(0, ymx, by = (ymx / 10)), col = "grey90", lwd = 1)
@@ -387,8 +419,12 @@ pbdb_orig_ext <- function(data,
     mtext("Million years before present", line = 3, adj = 1, side = 1)
     if (is.null(ylab)) {
       rank_plurals <- c(
-        species = "species", genus = "genera", family = "families",
-        order = "orders", class = "classes", phylum = "phyla"
+        species = "species",
+        genus = "genera",
+        family = "families",
+        order = "orders",
+        class = "classes",
+        phylum = "phyla"
       )
       ylab <- paste("Number of", rank_plurals[rank])
     }

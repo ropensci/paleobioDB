@@ -10,7 +10,10 @@
   margins <- c(5.1, 0, 0, 0)
   maps::map(type = "n", mar = margins, ...)
   rect(
-    par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4],
+    par("usr")[1],
+    par("usr")[3],
+    par("usr")[2],
+    par("usr")[4],
     col = col_ocean
   )
   maps::map(col = col_int, fill = TRUE, mar = margins, add = TRUE, ...)
@@ -41,9 +44,14 @@
   lg_vals <- as.integer(seq(min(y1$Occur), max(y1$Occur), length.out = n))
   legend(
     "bottom",
-    col = cols, legend = lg_vals, pch = pch, bg = "white",
-    horiz = TRUE, inset = 0.01,
-    title = "Occurrences", ...
+    col = cols,
+    legend = lg_vals,
+    pch = pch,
+    bg = "white",
+    horiz = TRUE,
+    inset = 0.01,
+    title = "Occurrences",
+    ...
   )
 }
 
@@ -89,9 +97,16 @@
 #'     main = "Canis"
 #'   )
 #' }
-pbdb_map <- function(data, col_int = "white", pch = 19, col_ocean = "black",
-                     main = NULL, col_point = c("light blue", "blue"),
-                     do_plot = TRUE, ...) {
+pbdb_map <- function(
+  data,
+  col_int = "white",
+  pch = 19,
+  col_ocean = "black",
+  main = NULL,
+  col_point = c("light blue", "blue"),
+  do_plot = TRUE,
+  ...
+) {
   if (!all(c("lat", "lng") %in% names(data))) {
     err_msg <- strwrap(
       paste(
@@ -125,7 +140,10 @@ pbdb_map <- function(data, col_int = "white", pch = 19, col_ocean = "black",
   rect(
     # Subtract a little bit from the right side of the ocean rectangle
     # to avoid overlap with the raster legend
-    par("usr")[1], par("usr")[3], par("usr")[2] - 3, par("usr")[4],
+    par("usr")[1],
+    par("usr")[3],
+    par("usr")[2] - 3,
+    par("usr")[4],
     col = col_ocean
   )
   maps::map(col = col_int, fill = TRUE, mar = margins, add = TRUE, ...)
@@ -147,8 +165,15 @@ pbdb_map <- function(data, col_int = "white", pch = 19, col_ocean = "black",
   plot(r, col = adjustcolor(pal(50), alpha.f = 0.8), add = TRUE, ...)
 }
 
-.plot_raster_rich <- function(r, col_eff, col_ocean, col_int,
-                              res, lg_title, ...) {
+.plot_raster_rich <- function(
+  r,
+  col_eff,
+  col_ocean,
+  col_int,
+  res,
+  lg_title,
+  ...
+) {
   opar <- par(oma = c(0, 0, 0, 5.1))
   on.exit(par(opar))
   .add_col_ocean_2(col_ocean, col_int, ...)
@@ -194,13 +219,15 @@ pbdb_map <- function(data, col_int = "white", pch = 19, col_ocean = "black",
 #'   ## Get the raster object without plotting it
 #'   pbdb_map_occur(data, res = 3, do_plot = FALSE)
 #' }
-pbdb_map_occur <- function(data,
-                           res = 5,
-                           col_int = "white",
-                           col_ocean = "black",
-                           col_eff = c("light blue", "blue"),
-                           do_plot = TRUE,
-                           ...) {
+pbdb_map_occur <- function(
+  data,
+  res = 5,
+  col_int = "white",
+  col_ocean = "black",
+  col_eff = c("light blue", "blue"),
+  do_plot = TRUE,
+  ...
+) {
   if (!all(c("lat", "lng") %in% names(data))) {
     stop(
       "Invalid data input. ",
@@ -212,7 +239,11 @@ pbdb_map_occur <- function(data,
   r <- .rasterize_coords(y, res, ...)
   if (do_plot) {
     .plot_raster_rich(
-      r, col_eff, col_ocean, col_int, res,
+      r,
+      col_eff,
+      col_ocean,
+      col_int,
+      res,
       lg_title = "Number of records",
       ...
     )
@@ -261,7 +292,11 @@ pbdb_map_occur <- function(data,
   ranks <- data.frame(
     rank = c("genus", "family", "order", "class", "phylum"),
     accepted_rank = c(
-      "genus_no", "family_no", "order_no", "class_no", "phylum_no"
+      "genus_no",
+      "family_no",
+      "order_no",
+      "class_no",
+      "phylum_no"
     ),
     rnk = c("gnn", "fmn", "odn", "cln", "phn")
   )
@@ -338,20 +373,26 @@ pbdb_map_occur <- function(data,
 #'   ## Get the raster object without plotting the map
 #'   pbdb_map_richness(data, res = 8, rank = "family", do_plot = FALSE)
 #' }
-pbdb_map_richness <- function(data,
-                              rank = c("species", "genus", "family",
-                                       "order", "class", "phylum"),
-                              do_plot = TRUE,
-                              res = 5,
-                              col_int = "white",
-                              col_ocean = "black",
-                              col_rich = c("light blue", "blue"),
-                              title = "Taxonomic richness",
-                              ...) {
+pbdb_map_richness <- function(
+  data,
+  rank = c("species", "genus", "family", "order", "class", "phylum"),
+  do_plot = TRUE,
+  res = 5,
+  col_int = "white",
+  col_ocean = "black",
+  col_rich = c("light blue", "blue"),
+  title = "Taxonomic richness",
+  ...
+) {
   rank <- match.arg(rank)
 
   pbdb_fields <- c(
-    "accepted_no", "genus_no", "family_no", "order_no", "class_no", "phylum_no"
+    "accepted_no",
+    "genus_no",
+    "family_no",
+    "order_no",
+    "class_no",
+    "phylum_no"
   )
   com_fields <- c("tid", "gnn", "fmn", "odn", "cln", "phn")
 
@@ -376,7 +417,11 @@ pbdb_map_richness <- function(data,
 
   if (do_plot) {
     .plot_raster_rich(
-      r, col_rich, col_ocean, col_int, res,
+      r,
+      col_rich,
+      col_ocean,
+      col_int,
+      res,
       lg_title = title,
       ...
     )

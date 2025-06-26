@@ -9,7 +9,9 @@ test_that("pbdb_specimen() returns a data frame with an id column", {
 test_that("pbdb_specimens() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
   response <- pbdb_specimens(
-    base_name = "Cetacea", interval = "Miocene", vocab = "pbdb"
+    base_name = "Cetacea",
+    interval = "Miocene",
+    vocab = "pbdb"
   )
   expect_s3_class(response, "data.frame")
   expect_true("specimen_no" %in% names(response))

@@ -1,7 +1,11 @@
 test_that("pbdb_strata() returns a data frame with time ranges", {
   skip_if_offline("paleobiodb.org")
   response <- pbdb_strata(
-    lngmin = 0, lngmax = 15, latmin = 0, latmax = 5, rank = "formation"
+    lngmin = 0,
+    lngmax = 15,
+    latmin = 0,
+    latmax = 5,
+    rank = "formation"
   )
   expect_s3_class(response, "data.frame")
   expect_true(all(c("eag", "lag") %in% names(response)))

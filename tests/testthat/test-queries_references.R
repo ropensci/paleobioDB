@@ -17,7 +17,9 @@ test_that("pbdb_references() returns a data frame with an id column", {
 test_that("pbdb_ref_occurrences() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
   response <- pbdb_ref_occurrences(
-    base_name = "Canis", ref_pubyr = 2000, vocab = "pbdb"
+    base_name = "Canis",
+    ref_pubyr = 2000,
+    vocab = "pbdb"
   )
   expect_s3_class(response, "data.frame")
   expect_true("reference_no" %in% names(response))

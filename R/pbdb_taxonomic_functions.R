@@ -18,9 +18,7 @@
 #'   )
 #'   pbdb_subtaxa(canidae_quat)
 #' }
-pbdb_subtaxa <- function(data,
-                         do_plot = TRUE,
-                         col = "#0000FF") {
+pbdb_subtaxa <- function(data, do_plot = TRUE, col = "#0000FF") {
   species <- nrow(
     pbdb_temp_range(data = data, rank = "species", do_plot = FALSE)
   )

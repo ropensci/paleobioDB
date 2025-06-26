@@ -53,8 +53,19 @@ test_that(".make_data_frame() returns a data frame", {
   expect_s3_class(df, "data.frame")
   expect_identical(
     names(df),
-    c("oid", "cid", "tna", "rnk", "tid", "oei",
-      "eag", "lag", "rid", "lng", "lat")
+    c(
+      "oid",
+      "cid",
+      "tna",
+      "rnk",
+      "tid",
+      "oei",
+      "eag",
+      "lag",
+      "rid",
+      "lng",
+      "lat"
+    )
   )
 })
 

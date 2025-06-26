@@ -11,11 +11,13 @@
 #'   "data1.1" or "data1.2"
 #' @returns A URL to perform an HTTP GET request.
 #' @noRd
-.build_uri <- function(endpoint,
-                       query = list(),
-                       api_base = "https://paleobiodb.org",
-                       format = "json",
-                       data_serv = "data1.2") {
+.build_uri <- function(
+  endpoint,
+  query = list(),
+  api_base = "https://paleobiodb.org",
+  format = "json",
+  data_serv = "data1.2"
+) {
   uri <- paste(api_base, data_serv, endpoint, sep = "/")
   uri <- paste(uri, format, sep = ".")
   query_str <- .build_query_string(query)

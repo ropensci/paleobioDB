@@ -17,7 +17,10 @@ test_that("pbdb_collections() returns a data frame with an id column", {
 test_that("pbdb_collections_geo() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
   response <- pbdb_collections_geo(
-    lngmin = 0.0, lngmax = 15.0, latmin = 0.0, latmax = 15.0,
+    lngmin = 0.0,
+    lngmax = 15.0,
+    latmin = 0.0,
+    latmax = 15.0,
     level = 2,
     vocab = "pbdb"
   )
