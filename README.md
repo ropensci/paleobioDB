@@ -57,7 +57,7 @@ canidae <- pbdb_occurrences(
 )
 
 dim(canidae)
-#> [1] 1395   28
+#> [1] 1401   28
 
 head(canidae, 3)
 #>   occurrence_no record_type collection_no   identified_name identified_rank
@@ -115,13 +115,13 @@ frame with the number of occurrences per coordinate.
 
     #>                               lng        lat Occur
     #> -70.583885.-52.415833  -70.583885 -52.415833     1
-    #> -69.583336.-52.166668  -69.583336 -52.166668     1
+    #> -69.583336.-52.083332  -69.583336 -52.083332     1
     #> -70.060555.-52.054722  -70.060555 -52.054722     1
     #> -60.46299.-51.829769   -60.462990 -51.829769     1
     #> -70.174446.-51.74778   -70.174446 -51.747780     1
     ....
-    #> 22.033333.46.966667     22.033333  46.966667    11
     #> 11.25.45.416668         11.250000  45.416668    12
+    #> 22.033333.46.966667     22.033333  46.966667    12
     #> -117.33.900002        -117.000000  33.900002    13
     #> 5.395.43.686111          5.395000  43.686111    14
     #> -105.699997.39.299999 -105.699997  39.299999    15
@@ -140,7 +140,7 @@ pbdb_map_occur(canidae, res = 5)
 ![](man/figures/README-pbdb_map_occur-1.png)<!-- -->
 
     #> class       : SpatRaster 
-    #> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
+    #> size        : 34, 74, 1  (nrow, ncol, nlyr)
     #> resolution  : 5, 5  (x, y)
     #> extent      : -180, 190, -85.19218, 84.80782  (xmin, xmax, ymin, ymax)
     #> coord. ref. : lon/lat WGS 84 
@@ -162,7 +162,7 @@ pbdb_map_richness(canidae, res = 5, rank = "species")
 ![](man/figures/README-pbdb_map_richness-1.png)<!-- -->
 
     #> class       : SpatRaster 
-    #> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
+    #> size        : 34, 74, 1  (nrow, ncol, nlyr)
     #> resolution  : 5, 5  (x, y)
     #> extent      : -180, 190, -85.19218, 84.80782  (xmin, xmax, ymin, ymax)
     #> coord. ref. : lon/lat WGS 84 
@@ -180,7 +180,7 @@ it:
 ``` r
 pbdb_map_richness(canidae, res = 5, rank = "species", do_plot = FALSE)
 #> class       : SpatRaster 
-#> dimensions  : 34, 74, 1  (nrow, ncol, nlyr)
+#> size        : 34, 74, 1  (nrow, ncol, nlyr)
 #> resolution  : 5, 5  (x, y)
 #> extent      : -180, 190, -85.19218, 84.80782  (xmin, xmax, ymin, ymax)
 #> coord. ref. : lon/lat WGS 84 
@@ -212,7 +212,7 @@ pbdb_temp_range(canidae, rank = "species")
 
     #>                              max    min
     #> Canis lepophagus          4.7000 0.0140
-    #> Canis gezi                3.7000 0.3000
+    #> Canis gezi                3.8000 0.4000
     #> Canis chihliensis         3.6000 0.7740
     #> Canis palmidens           3.6000 0.7740
     #> Eucyon minor              3.6000 0.7740
@@ -237,14 +237,14 @@ pbdb_richness(canidae, rank = "species", temporal_extent = c(0, 5), res = 0.5)
 ![](man/figures/README-pbdb_richness-1.png)<!-- -->
 
     #>    temporal_intervals richness
-    #> 1               0-0.5       78
-    #> 2               0.5-1       83
-    #> 3               1-1.5       79
+    #> 1               0-0.5       79
+    #> 2               0.5-1       84
+    #> 3               1-1.5       80
     #> 4               1.5-2       77
     #> 5               2-2.5       71
-    #> 6               2.5-3       71
+    #> 6               2.5-3       70
     #> 7               3-3.5       18
-    #> 8               3.5-4       15
+    #> 8               3.5-4       18
     #> 9               4-4.5        1
     #> 10              4.5-5        1
 
@@ -270,12 +270,12 @@ pbdb_orig_ext(
     #>                new ext
     #> 0.5-1 to 0-0.5  12  17
     #> 1-1.5 to 0.5-1   4   0
-    #> 1.5-2 to 1-1.5   7   5
+    #> 1.5-2 to 1-1.5   8   5
     #> 2-2.5 to 1.5-2   6   0
-    #> 2.5-3 to 2-2.5   0   0
-    #> 3-3.5 to 2.5-3  53   0
-    #> 3.5-4 to 3-3.5   3   0
-    #> 4-4.5 to 3.5-4  14   0
+    #> 2.5-3 to 2-2.5   1   0
+    #> 3-3.5 to 2.5-3  52   0
+    #> 3.5-4 to 3-3.5   0   0
+    #> 4-4.5 to 3.5-4  17   0
     #> 4.5-5 to 4-4.5   0   0
 
 And `orig_ext = 2` plots disappearances of taxa between time intervals
@@ -294,12 +294,12 @@ pbdb_orig_ext(
     #>                new ext
     #> 0.5-1 to 0-0.5  12  17
     #> 1-1.5 to 0.5-1   4   0
-    #> 1.5-2 to 1-1.5   7   5
+    #> 1.5-2 to 1-1.5   8   5
     #> 2-2.5 to 1.5-2   6   0
-    #> 2.5-3 to 2-2.5   0   0
-    #> 3-3.5 to 2.5-3  53   0
-    #> 3.5-4 to 3-3.5   3   0
-    #> 4-4.5 to 3.5-4  14   0
+    #> 2.5-3 to 2-2.5   1   0
+    #> 3-3.5 to 2.5-3  52   0
+    #> 3.5-4 to 3-3.5   0   0
+    #> 4-4.5 to 3.5-4  17   0
     #> 4.5-5 to 4-4.5   0   0
 
 ### `pbdb_subtaxa`
@@ -314,7 +314,7 @@ pbdb_subtaxa(canidae)
 ![](man/figures/README-pbdb_subtaxa-1.png)<!-- -->
 
     #>   species genera families orders classes phyla
-    #> 1     100     27        1      1       1     1
+    #> 1     101     27        1      1       1     1
 
 ### `pbdb_temporal_resolution`
 
@@ -329,17 +329,17 @@ pbdb_temporal_resolution(canidae)
 
     #> $summary
     #>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    #>  0.0117  0.1173  0.6450  0.9294  1.8060  4.6860 
+    #>  0.0117  0.1173  0.6450  0.9392  1.8060  4.6860 
     #> 
     #> $temporal_resolution
     #>    [1] 0.7623 1.1900 1.1900 1.1900 4.4900 0.7800 0.7800 0.7800 0.7800 4.4900
     ....
-    #> [1341] 2.8260 2.8260 2.8260 0.1290 2.5683 1.8060 1.4000 1.4000 1.4000 1.4000
-    #> [1351] 1.4000 3.4000 0.2883 0.0117 0.0117 0.0117 2.5800 2.5683 2.5683 0.2883
-    #> [1361] 0.2883 0.2883 0.1173 1.4000 0.1173 0.2883 2.5683 0.1173 0.2883 0.1173
-    #> [1371] 2.5683 0.2883 0.6450 0.6450 1.8060 2.8260 1.1900 2.5683 2.5683 2.5683
-    #> [1381] 0.1173 2.5683 2.5683 2.5683 2.5683 0.0117 0.0117 1.0260 0.6450 0.0117
-    #> [1391] 0.0117 0.7623 0.6450 0.6450 0.6450
+    #> [1351] 0.3883 0.3883 0.3883 0.1173 1.3500 0.1173 0.3883 2.5683 0.1173 0.3883
+    #> [1361] 0.1173 2.5683 0.3883 0.6450 0.6450 1.8060 2.8260 1.1900 2.5683 2.5683
+    #> [1371] 2.5683 0.1173 2.5683 2.5683 2.5683 2.5683 0.0117 0.0117 1.0260 0.6450
+    #> [1381] 0.0117 0.7623 0.6450 0.6450 0.6450 0.1173 0.1173 0.1173 0.1290 2.5683
+    #> [1391] 2.5683 0.7623 0.1173 2.5683 2.5683 2.5683 0.1173 2.5683 2.5683 1.8060
+    #> [1401] 1.8060
 
 ## Meta
 
@@ -348,7 +348,7 @@ bugs](https://github.com/ropensci/paleobioDB/issues).
 
 License: GPL-2
 
-    #> To cite package 'paleobioDB' in publications use:
+    #> Para citar o pacote 'paleobioDB' em publicações use:
     #> 
     #>   Varela S, González-Hernández J, Sgarbi LF, Marshall C, Uhen MD,
     #>   Peters S, McClennen M (2015). "paleobioDB: an R package for
@@ -356,7 +356,7 @@ License: GPL-2
     #>   Database." _Ecography_, *38*(4), 419-425. doi:10.1111/ecog.01154
     #>   <https://doi.org/10.1111/ecog.01154>.
     #> 
-    #> A BibTeX entry for LaTeX users is
+    #> Uma entrada BibTeX para usuários(as) de LaTeX é
     #> 
     #>   @Article{,
     #>     title = {paleobioDB: an R package for downloading, visualizing and processing data from the Paleobiology Database.},
