@@ -8,7 +8,7 @@ test_that("pbdb_collection() returns a data frame with an id column", {
 
 test_that("pbdb_collections() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
-  response <- pbdb_collections(id = c(10, 11), vocab = "pbdb")
+  response <- pbdb_collections(coll_id = c(10, 11), vocab = "pbdb")
   expect_s3_class(response, "data.frame")
   expect_true("collection_no" %in% names(response))
   expect_equal(nrow(response), 2)

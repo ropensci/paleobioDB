@@ -501,7 +501,7 @@ pbdb_intervals <- function(...) {
 #'   required.
 #' @param ... Additional arguments passed to the API. See
 #'   documentation for accepted parameters at
-#'   <https://paleobiodb.org/data1.2/scales/single>. E.g.:
+#'   <https://paleobiodb.org/data1.2/timescales/single>. E.g.:
 #'
 #' * `vocab`: Set to `"pbdb"` to show the complete name of the
 #'   variables (by default variables have short 3-letter names).
@@ -514,7 +514,7 @@ pbdb_intervals <- function(...) {
 #' }
 pbdb_scale <- function(id, ...) {
   l <- list(id = id, ...)
-  .pbdb_query("scales/single", query = l)
+  .pbdb_query("timescales/single", query = l)
 }
 
 #' Get information about multiple time scales
@@ -523,7 +523,7 @@ pbdb_scale <- function(id, ...) {
 #'
 #' @param ... Arguments passed to the API. See
 #'   documentation for accepted parameters at
-#'   <https://paleobiodb.org/data1.2/scales/list>. E.g.:
+#'   <https://paleobiodb.org/data1.2/timescales/list>. E.g.:
 #'
 #' * `all_records`: Set to `TRUE` to list all intervals.
 #'
@@ -547,7 +547,7 @@ pbdb_scale <- function(id, ...) {
 #' }
 pbdb_scales <- function(...) {
   l <- list(...)
-  .pbdb_query("scales/list", query = l)
+  .pbdb_query("timescales/list", query = l)
 }
 
 #' Get information about geological strata
@@ -727,7 +727,7 @@ pbdb_references <- function(...) {
 #'   accepted parameters at
 #'   <https://paleobiodb.org/data1.2/colls/refs>. E.g.:
 #'
-#' * `id`: List of collection identifiers.
+#' * `coll_id`: List of collection identifiers.
 #'
 #' * `ref_author`: Select only references for which any of the authors
 #'   matches the specified name.

@@ -9,7 +9,7 @@ pbdb_scales(...)
 \arguments{
 \item{...}{Arguments passed to the API. See
 documentation for accepted parameters at
-\url{https://paleobiodb.org/data1.2/scales/list}. E.g.:
+\url{https://paleobiodb.org/data1.2/timescales/list}. E.g.:
 \itemize{
 \item \code{all_records}: Set to \code{TRUE} to list all intervals.
 \item \code{id}: Return only time scales with the specified

@@ -11,7 +11,7 @@ pbdb_ref_collections(...)
 accepted parameters at
 \url{https://paleobiodb.org/data1.2/colls/refs}. E.g.:
 \itemize{
-\item \code{id}: List of collection identifiers.
+\item \code{coll_id}: List of collection identifiers.
 \item \code{ref_author}: Select only references for which any of the authors
 matches the specified name.
 \item \code{ref_pubyr}: Select only references published in the specified

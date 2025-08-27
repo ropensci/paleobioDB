@@ -12,7 +12,7 @@ required.}
 
 \item{...}{Additional arguments passed to the API. See
 documentation for accepted parameters at
-\url{https://paleobiodb.org/data1.2/scales/single}. E.g.:
+\url{https://paleobiodb.org/data1.2/timescales/single}. E.g.:
 \itemize{
 \item \code{vocab}: Set to \code{"pbdb"} to show the complete name of the
 variables (by default variables have short 3-letter names).

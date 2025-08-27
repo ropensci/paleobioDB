@@ -12,10 +12,10 @@ Authors@R: c(
            comment = c(ORCID = "0000-0003-4184-8641"))
   )
 Maintainer: Adrián Castro Insua <adrian.castro.insua@uvigo.gal>
-Description: Includes functions to wrap most endpoints of the 'PaleobioDB'
-    API and functions to visualize and process the fossil data. The API
-    documentation for the Paleobiology Database can be found at
-    <https://paleobiodb.org/data1.2/>.
+Description: Includes functions to wrap most endpoints of the
+    'PaleobioDB' API and to visualize and process the obtained fossil
+    data. The API documentation for the Paleobiology Database can be
+    found at <https://paleobiodb.org/data1.2/>.
 License: GPL-2
 URL: https://docs.ropensci.org/paleobioDB/,
     https://github.com/ropensci/paleobioDB

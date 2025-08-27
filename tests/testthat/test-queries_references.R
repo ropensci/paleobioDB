@@ -17,7 +17,8 @@ test_that("pbdb_references() returns a data frame with an id column", {
 test_that("pbdb_ref_occurrences() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
   response <- pbdb_ref_occurrences(
-    base_name = "Canis", ref_pubyr = 2000, vocab = "pbdb"
+    base_name = "Canis", ref_pubyr = 2000,
+    vocab = "pbdb", limit = 10
   )
   expect_s3_class(response, "data.frame")
   expect_true("reference_no" %in% names(response))
@@ -26,14 +27,14 @@ test_that("pbdb_ref_occurrences() returns a data frame with an id column", {
 
 test_that("pbdb_ref_collections() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
-  response <- pbdb_ref_collections(id = 1, vocab = "pbdb")
+  response <- pbdb_ref_collections(coll_id = 1, vocab = "pbdb")
   expect_s3_class(response, "data.frame")
   expect_true("reference_no" %in% names(response))
 })
 
 test_that("pbdb_ref_taxa() returns a data frame with an id column", {
   skip_if_offline("paleobiodb.org")
-  response <- pbdb_ref_taxa(name = "Felidae")
+  response <- pbdb_ref_taxa(name = "Felidae", limit = 10)
   expect_s3_class(response, "data.frame")
   expect_true("oid" %in% names(response))
 })

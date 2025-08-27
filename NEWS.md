@@ -1,10 +1,17 @@
 paleobioDB 1.0.0.9000
 =====================
 
+### BUG FIXES
+
+* Addressed some API URL changes ("scales" to "timescales"), although
+  the corresponding function names were not altered.
+
 ### DOCUMENTATION FIXES
 
 * In `pbdb_scales()`, at least one parameter needs to be specified
   now, so the examples in the documentation were updated accordingly.
+
+* Parameter name changes.
 
 ### OTHER CHANGES
 
